@@ -63,37 +63,79 @@ public class Game
 			for (int c=0; c < board[0].length; c++)
 			{
 				if (board[r][c] != null)
-				{ result[r][c] = board[r][c].getStrRep();}
+				{ result[r][c] = board[r][c].toString();}
 			}
 
 		}
 		return result;
 		
 	}
+	/** gets a 2D array representing board
+	 * @return String array representing pieces on the board
+	 */
+	public String[][] toStringArray()
+	{
+		String[][] res = new String[board.length][board[0].length];
+		for (int r=0; r < board.length;r++)
+		{
+			for (int c=0; c < board[0].length; c++)
+			{
+				if (board[r][c] == null)
+				{
+					res[r][c] = null;
+				}
+				else
+				{
+					res[r][c] = board[r][c].toString();
+				}
+			}
+		} 
+		return res;
+	}
+	 /** returns string representation of board
+	 * @return string representing current state of board
+	 */
+	public String toString()
+	{
+		String[][] asStringArray = this.toStringArray();
+
+		return toString(this.board);
+	}
+	/**
+	 * returns string representation of board given
+	 * @param board a 2D array of ChessPiece objects
+	 * @return string representing current state of board
+	 */
+	public String toString(ChessPiece[][] board)
+	{
+		String horizontalLine = "-- -- -- -- -- -- -- --";
+		String res = horizontalLine + "\n";
+		for (int r=0; r < board.length;r++)
+		{
+			res = res + "|";
+			for (int c=0; c < board[0].length; c++)
+			{
+				if(board[r][c] == null) 
+				{ 
+					res = res + "  |";
+				}
+				else 
+				{ 
+					res = res + board[r][c].toString();
+					res = res + "|";
+				}
+			}
+			res = res + "\n" + horizontalLine + "\n";
+		}
+		return res;
+	}
         /**
 	 * display string representation of board
 	 */
 	public void display()
 	{
-		String horizontalLine = "\n -- -- -- -- -- -- -- -- \n";
-		System.out.print(horizontalLine);
-		for (int r=0; r < board.length;r++)
-		{
-			System.out.print("|");
-			for (int c=0; c < board[0].length; c++)
-			{
-				if(board[r][c] == null) 
-				{ 
-					System.out.print("  |");
-				}
-				else 
-				{ 
-					System.out.print(board[r][c].getStrRep());
-					System.out.print("|");
-				}
-			}
-			System.out.print(horizontalLine);
-		}
+		System.out.print(this);
+
 	}
 	/**moves a piece
 	 * @param curRow current row of piece to be moved

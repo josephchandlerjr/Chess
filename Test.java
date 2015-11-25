@@ -20,7 +20,7 @@ public class Test
 	public static boolean testMove(Game g, int oldRow,int oldCol,int newRow,int newCol,String[][] correctBoard)
 	{
 		g.movePiece(oldRow,oldCol,newRow,newCol);
-		return Arrays.deepEquals(g.getBoardStrRep(), correctBoard);
+		return Arrays.deepEquals(g.toStringArray(), correctBoard);
 	} 
 	public static boolean testMoves(Game g)
 	{
@@ -28,6 +28,7 @@ public class Test
 		{
 				int[] params = TestData.testBoardMoves[i];
 			        String[][] board = TestData.testBoards[i].array;	
+				g.display();
 				if (!testMove(g,params[0],params[1],params[2],params[3],board))
 				{ 
 					g.display();
@@ -35,6 +36,7 @@ public class Test
 					System.out.print(TestData.testBoards[i]);
 					return false;
 				}
+				g.display();
 		}
 		return true;
 		

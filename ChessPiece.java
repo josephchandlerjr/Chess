@@ -27,7 +27,7 @@ public class ChessPiece
 	 * gets the string representation of piece
 	 * @return string representation of piece
 	 */
-	public String getStrRep()
+	public String toString()
 	{
 		return strRep;
 	}
