@@ -3,7 +3,7 @@
 
 public class King extends ChessPiece
 {
-	public King(int row, int col, int color)
+	public King(int row, int col, String color)
 	{
 		super(row, col, color, "K");
 	}

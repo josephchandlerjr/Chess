@@ -3,7 +3,7 @@
 
 public class Rook extends ChessPiece
 {
-	public Rook(int row, int col, int color)
+	public Rook(int row, int col, String color)
 	{
 		super(row, col, color, "R");
 	}
