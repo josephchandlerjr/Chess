@@ -17,26 +17,24 @@ public class Test
 		
 
 	}
-	public static boolean testMove(Game g, int oldRow,int oldCol,int newRow,int newCol,String[][] correctBoard)
+	public static boolean testMove(Game g, int oldRow,int oldCol,int newRow,int newCol,TestBoard correctBoard)
 	{
 		g.movePiece(oldRow,oldCol,newRow,newCol);
-		return Arrays.deepEquals(g.toStringArray(), correctBoard);
+		return Arrays.deepEquals(g.toStringArray(), correctBoard.array);
 	} 
 	public static boolean testMoves(Game g)
 	{
 		for (int i=0; i < TestData.testBoards.length; i++)
 		{
 				int[] params = TestData.testBoardMoves[i];
-			        String[][] board = TestData.testBoards[i].array;	
-				g.display();
+			        TestBoard board = TestData.testBoards[i];	
 				if (!testMove(g,params[0],params[1],params[2],params[3],board))
 				{ 
 					g.display();
 					System.out.println("should be");
-					System.out.print(TestData.testBoards[i]);
+					System.out.print(board);
 					return false;
 				}
-				g.display();
 		}
 		return true;
 		

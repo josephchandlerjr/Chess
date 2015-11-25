@@ -20,6 +20,10 @@ public class TestBoard
 			res = res + "\n";
 
 		}
-		return res;
+		return Game.toString(array);
+	}
+	public void display()
+	{
+		System.out.print(toString());
 	}
 }

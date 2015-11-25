@@ -99,14 +99,15 @@ public class Game
 	{
 		String[][] asStringArray = this.toStringArray();
 
-		return toString(this.board);
+		return Game.toString(asStringArray);
 	}
 	/**
 	 * returns string representation of board given
-	 * @param board a 2D array of ChessPiece objects
+	 * is static method to be used by any 2D string array
+	 * @param board a 2D array of String elements
 	 * @return string representing current state of board
 	 */
-	public String toString(ChessPiece[][] board)
+	public static String toString(String[][] board)
 	{
 		String horizontalLine = "-- -- -- -- -- -- -- --";
 		String res = horizontalLine + "\n";
@@ -121,7 +122,7 @@ public class Game
 				}
 				else 
 				{ 
-					res = res + board[r][c].toString();
+					res = res + board[r][c];
 					res = res + "|";
 				}
 			}
