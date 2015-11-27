@@ -130,36 +130,35 @@ public class Game
 	 */
 	public boolean movePiece(int curRow, int curCol, int newRow, int newCol)
 	{ 
-		if (curRow == newRow && curCol == newCol) //going nowhere
-		{ return false;}
-
 		Square fromSquare = board[curRow][curCol];
 		Square toSquare = board[newRow][newCol];
 		
-		if (!fromSquare.isOccupied()) // can't move a piece that isn't there
+		return movePiece(fromSquare,toSquare);
+		
+	}
+	/**moves a piece
+	 * @param from Square piece to be moved is on
+	 * @param to Square piece is to be moved to 
+	 * @return true if move is made, false if not a valid move
+	 */
+	public boolean movePiece(Square from, Square to)
+	{
+                if (from == to){ return false;}
+		
+		if (!from.isOccupied()) // can't move a piece that isn't there
 		{ return false;} 
 		
-		if (true) //later will call isValidMove() here
+		if (isValidMove(from,to)) 
 		{
-			toSquare.setPiece(fromSquare.getPiece());
-			fromSquare.setPiece(null);
-			toSquare.movePiece(newRow,newCol);
+			to.setPiece(from.getPiece());
+			from.setPiece(null);
+			to.movePiece(to);
 			return true;
 			
 		}
 		return false;
 	}
-	/**moves a piece
-	 * @param curRow current row of piece to be moved
-	 * @param curCol current column of piece to be moved
-	 * @param newRow row of new position
-	 * @param newCol column of new position
-	 * @return true if move is made, false if not a valid move
-	 */
-	public boolean movePiece(Square from, Square to)
-	{
-		return movePiece(from.getRow(),from.getCol(),to.getRow(),to.getCol());
-	}
+	
 	/**
 	 * return opposite color
 	 * @param myColor can be String BLACK or WHITE
@@ -170,4 +169,28 @@ public class Game
 		if (myColor == "WHITE"){ return "BLACK";}
 		return "WHITE";
 	}
+        
+	/**
+	 * checks if a move is valid
+	 * @param from Square piece to be moved is on
+	 * @param to Square piece will be moved to
+	 * @return true if move is valid else false
+	 */
+	 public boolean isValidMove(Square from, Square to)
+	 {
+		 ChessPiece p = from.getPiece();
+		 if (p instanceof Pawn){ return isValidPawnMove(from, to);}
+		 if (p instanceof Rook){ return isValidRookMove(from, to);}
+		 if (p instanceof Knight){ return isValidKnightMove(from, to);}
+		 if (p instanceof Bishop){ return isValidBishopMove(from, to);}
+		 if (p instanceof Queen){ return isValidQueenMove(from, to);}
+		 if (p instanceof King){ return isValidKingMove(from, to);}
+		 return false;
+	 }
+	 public boolean isValidPawnMove(Square from, Square to){ return true;}
+	 public boolean isValidRookMove(Square from, Square to){ return true;}
+         public boolean isValidKnightMove(Square from, Square to){ return true;}
+	 public boolean isValidBishopMove(Square from, Square to){ return true;}
+	 public boolean isValidQueenMove(Square from, Square to){ return true;}
+	 public boolean isValidKingMove(Square from, Square to){ return true;}
 }

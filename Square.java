@@ -68,10 +68,10 @@ public class Square
 	 * @param row new row
 	 * @param col new column
 	 */
-	public void movePiece(int row, int col)
+	public void movePiece(Square square)
 	{
-		piece.setRow(row);
-		piece.setCol(col);
+		piece.setRow(square.getRow());
+		piece.setCol(square.getCol());
 	}
 	/**
 	 * gets color of square

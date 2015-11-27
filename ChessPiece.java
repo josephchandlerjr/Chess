@@ -51,17 +51,6 @@ public class ChessPiece
 	}
 
 	/**
-	 * moves piece to new col, row
-	 * @param row new row
-	 * @param col new column
-	 */
-	public void move(int row, int col)
-	{
-		setRow(row);
-		setCol(col);
-	}
-	
-	/**
 	 * sets row of piece
 	 * @param row row to set piece to
 	 */
