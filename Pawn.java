@@ -7,12 +7,6 @@ public class Pawn extends ChessPiece
 		super(row, col, color, "P");
 	}
 	/**
-	 * returns all valid moves as array of Square Objs 
-	 * @param aSquare square number attempting to move to
-	 * @return true if move is successful else false
-	 */
-	public boolean validMoves(int row, int col, ChessPiece[][] board)
-	/**
 	 * determines if a move is valid
 	 * @param aSquare square number attempting to move to
 	 * @return true if move is successful else false
@@ -20,7 +14,7 @@ public class Pawn extends ChessPiece
 	public boolean isValidMove(int row, int col, ChessPiece[][] board)
 	{
 
-		return false;
+		return true;
 
 
 	}

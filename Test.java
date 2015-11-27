@@ -5,6 +5,8 @@ import java.util.Arrays;
 
 public class Test
 {
+	final static boolean VERBOSE = false;
+
 	public static void main(String[] args)
 	{
 		Game g = new Game();
@@ -19,7 +21,19 @@ public class Test
 	}
 	public static boolean testMove(Game g, int oldRow,int oldCol,int newRow,int newCol,TestBoard correctBoard)
 	{
+		if (VERBOSE)
+		{
+			System.out.println("Game board before:");
+			g.display();
+		}
 		g.movePiece(oldRow,oldCol,newRow,newCol);
+		if (VERBOSE)
+		{
+			System.out.println("Game board after move:");
+			g.display();
+			System.out.println("Correct board is:");
+			System.out.print(correctBoard);
+		}
 		return Arrays.deepEquals(g.toStringArray(), correctBoard.array);
 	} 
 	public static boolean testMoves(Game g)

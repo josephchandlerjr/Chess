@@ -124,10 +124,7 @@ public class ChessPiece
 	 */
 	public String otherColor()
 	{
-		if (getColor().equals("BLACK")) 
-		{ return "WHITE";}
-		else 
-		{ return "BLACK";}
+		return Game.OpponentsColor(getColor());
 	}
 
 }

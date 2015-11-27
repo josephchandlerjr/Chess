@@ -27,6 +27,14 @@ public class Square
 		this.piece = piece;
 	}
 	/**
+	 * gets piece on this square
+	 * @return piece on this square or null if there is none
+	 */
+	public ChessPiece getPiece()
+	{
+		return piece;
+	}
+	/**
 	 * gets the string representation of piece on this square
 	 * @return string representation of piece
 	 */
