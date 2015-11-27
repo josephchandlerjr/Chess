@@ -12,9 +12,9 @@ public class Bishop extends ChessPiece
 	 * @param aSquare square number attempting to move to
 	 * @return true if move is successful else false
 	 */
-	public boolean validMove(int row, int col, ChessPiece[][] board)
+	public boolean isValidMove(int row, int col, ChessPiece[][] board)
 	{
-		return false;
+		return true;
 	}
 	
 	

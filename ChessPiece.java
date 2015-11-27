@@ -92,7 +92,7 @@ public class ChessPiece
 	 * @param col column number attempting to move to
 	 * @return true if move is successful else false
 	 */
-	public boolean validMove(int row, int col)
+	public boolean isValidMove(int row, int col, ChessPiece[][] board)
 	{
 		//to be implemented in subclasses, here just return false and print
 		//warning in case something goes awry

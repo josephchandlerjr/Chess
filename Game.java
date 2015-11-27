@@ -149,7 +149,7 @@ public class Game
 	{
 		ChessPiece piece = board[curRow][curCol];
 		if (piece == null) { return false;} // can't move a piece that isn't there
-		if (true) //later will call obj.isValidMove() here
+		if (piece.isValidMove(newRow,newCol,board)) //later will call obj.isValidMove() here
 		{
 			if (curRow == newRow && curCol == newCol)
 			{ return false;}
