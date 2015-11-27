@@ -30,35 +30,35 @@ public class Game
 		//place pawns
 		for (int i=0; i < 8; i++)
 		{
-			board[1][i].setPiece(new Pawn(1, i, "BLACK"));
-			board[6][i].setPiece(new Pawn(6, i, "WHITE"));
+			board[1][i].setPiece(new Pawn("BLACK"));
+			board[6][i].setPiece(new Pawn("WHITE"));
 		}
 	        	
 		//rooks
-		board[0][0].setPiece(new Rook(0,0,"BLACK"));
-		board[0][7].setPiece(new Rook(0,7,"BLACK"));
-		board[7][0].setPiece(new Rook(7,0,"WHITE"));
-		board[7][7].setPiece(new Rook(7,7,"WHITE"));
+		board[0][0].setPiece(new Rook("BLACK"));
+		board[0][7].setPiece(new Rook("BLACK"));
+		board[7][0].setPiece(new Rook("WHITE"));
+		board[7][7].setPiece(new Rook("WHITE"));
 
 		//knights
-		board[0][1].setPiece(new Knight(0,1,"BLACK"));
-		board[0][6].setPiece(new Knight(0,6,"BLACK"));
-		board[7][1].setPiece(new Knight(7,1,"WHITE"));
-		board[7][6].setPiece(new Knight(7,6,"WHITE"));
+		board[0][1].setPiece(new Knight("BLACK"));
+		board[0][6].setPiece(new Knight("BLACK"));
+		board[7][1].setPiece(new Knight("WHITE"));
+		board[7][6].setPiece(new Knight("WHITE"));
 
 		//Bishops
-		board[0][2].setPiece(new Bishop(0,2,"BLACK"));
-		board[0][5].setPiece(new Bishop(0,5,"BLACK"));
-		board[7][2].setPiece(new Bishop(7,2,"WHITE"));
-		board[7][5].setPiece(new Bishop(7,5,"WHITE"));
+		board[0][2].setPiece(new Bishop("BLACK"));
+		board[0][5].setPiece(new Bishop("BLACK"));
+		board[7][2].setPiece(new Bishop("WHITE"));
+		board[7][5].setPiece(new Bishop("WHITE"));
 
 		//Queens
-		board[0][3].setPiece(new Queen(0,3,"BLACK"));
-		board[7][3].setPiece(new Queen(7,3,"WHITE"));
+		board[0][3].setPiece(new Queen("BLACK"));
+		board[7][3].setPiece(new Queen("WHITE"));
 
 		//Kings
-		board[0][4].setPiece(new King(0,4,"BLACK"));
-		board[7][4].setPiece(new King(7,4,"WHITE"));	
+		board[0][4].setPiece(new King("BLACK"));
+		board[7][4].setPiece(new King("WHITE"));	
 	}
 	/** gets a 2D array representing board
 	 * @return String array representing pieces on the board
@@ -152,7 +152,6 @@ public class Game
 		{
 			to.setPiece(from.getPiece());
 			from.setPiece(null);
-			to.movePiece(to);
 			return true;
 			
 		}

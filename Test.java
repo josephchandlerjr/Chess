@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Test
 {
-	final static boolean VERBOSE = true;
+	final static boolean VERBOSE = false;
 
 	public static void main(String[] args)
 	{

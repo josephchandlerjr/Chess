@@ -64,16 +64,6 @@ public class Square
 	}
 
 	/**
-	 * moves piece to new col, row
-	 * @param row new row
-	 * @param col new column
-	 */
-	public void movePiece(Square square)
-	{
-		piece.setRow(square.getRow());
-		piece.setCol(square.getCol());
-	}
-	/**
 	 * gets color of square
 	 * @return color of square
 	 */
