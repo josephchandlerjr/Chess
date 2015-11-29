@@ -1,6 +1,6 @@
-//
-
-
+/** 
+ * represents a rook chess piece
+ */
 public class Rook extends ChessPiece
 {
 	public Rook(String color)

@@ -1,6 +1,6 @@
-//
-
-
+/**
+ * represents a chess piece. This is superclass to all specific pieces: Pawn, Bishop, etc
+ */
 public class ChessPiece
 {
 	//instance variables

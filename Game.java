@@ -1,15 +1,17 @@
-
-
-// board is 2D array, black starts on rows 0 and 1 facing "down", white starts
-// on rows 6 and 7 facing "up" 
+/** 
+ * represents a chess game
+ * board is 2D array of Square objects
+*/ 
 public class Game
 {
 	//instance variables
 	Square[][] board;
+	Score scoreSheet;
 	
 	public Game()
 	{
 		board = new Square[8][8];
+		scoreSheet = new Score();
 		initializeBoard();
 		
 	}
@@ -152,6 +154,7 @@ public class Game
 		{
 			to.setPiece(from.getPiece());
 			from.setPiece(null);
+			scoreSheet.addMove(from,to);
 			return true;
 			
 		}

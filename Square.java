@@ -1,4 +1,6 @@
-
+/** 
+ * represents a square on the chess board
+ */
 public class Square
 {
 	private String color; //the string BLACK or WHITE

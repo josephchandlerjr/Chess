@@ -1,14 +1,22 @@
-//sole purpose is to test
 
 import java.util.Arrays;
 
 
+/** 
+ * holds tests to aid development
+ * run main() to run tests
+ * use -v switch to make verbose
+ */ 
 public class Test
 {
-	final static boolean VERBOSE = false;
+	private static boolean VERBOSE = false;
+	private static TestBoard[] testBoards = TestData.testBoards;
+	private static int[][] testBoardMoves = TestData.testBoardMoves;
 
 	public static void main(String[] args)
 	{
+		if ( args.length > 0 && args[0].equals("-v"))
+		{ VERBOSE = true;}
 		Game g = new Game();
 		System.out.println("Testing Game.move()");
 	        if (testMoves(g))
@@ -38,10 +46,11 @@ public class Test
 	} 
 	public static boolean testMoves(Game g)
 	{
-		for (int i=0; i < TestData.testBoards.length; i++)
+		
+		for (int i=0; i < testBoards.length; i++)
 		{
-				int[] params = TestData.testBoardMoves[i];
-			        TestBoard board = TestData.testBoards[i];	
+				int[] params = testBoardMoves[i];
+			        TestBoard board = testBoards[i];	
 				if (!testMove(g,params[0],params[1],params[2],params[3],board))
 				{ 
 					g.display();
@@ -49,7 +58,38 @@ public class Test
 					System.out.print(board);
 					return false;
 				}
+
 		}
+
+		int[][] scoreSheet = g.scoreSheet.toIntArray();
+		if (VERBOSE)
+		{
+			System.out.println("The score sheet shows:");
+			for (int i=0; i < scoreSheet.length; i++)
+			{
+				
+				System.out.printf("from (%d,%d) to (%d,%d)\n",scoreSheet[i][0],
+									      scoreSheet[i][1],
+									      scoreSheet[i][2],
+									      scoreSheet[i][3]);
+
+			}
+			System.out.println("Actual moves are:");
+			for (int i=0; i < testBoardMoves.length; i++)
+			{
+				
+				System.out.printf("from (%d,%d) to (%d,%d)\n",testBoardMoves[i][0],
+									      testBoardMoves[i][1],
+									      testBoardMoves[i][2],
+									      testBoardMoves[i][3]);
+
+			}
+		}
+
+		boolean correctScoreSheet = Arrays.deepEquals(testBoards,scoreSheet);
+		if (!correctScoreSheet)
+		{ return false;}
+
 		return true;
 		
 	}

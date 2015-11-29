@@ -1,4 +1,6 @@
-
+/**
+ * holds data sets to be used in Test class
+ */
 public class TestData
 {
 	public static final int[][] testBoardMoves = { 

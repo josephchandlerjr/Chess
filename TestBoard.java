@@ -1,4 +1,6 @@
-
+/**
+ * a string array representing a board to be used in testing
+ */
 public class TestBoard
 {
 	String[][] array;
