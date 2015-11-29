@@ -4,23 +4,13 @@
 public class TestData
 {
 	public static final int[][] testBoardMoves = { 
-		                                          {0,0,0,0},
 		                                          {1,0,2,0},
 							  {6,1,5,1},
 							  {0,1,2,2},
 							  {7,2,5,0},
 	                                                  };
 	public static final TestBoard[] testBoards = { 
-		        new TestBoard( new String[][] {
-			{"BR","BN","BB","BQ","BK","BB","BN","BR"},
-			{"BP","BP","BP","BP","BP","BP","BP","BP"},
-			{null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null},
-			{"WP","WP","WP","WP","WP","WP","WP","WP"},
-			{"WR","WN","WB","WQ","WK","WB","WN","WR"}
-		        }),
+
 		        new TestBoard( new String[][] {
 			{"BR","BN","BB","BQ","BK","BB","BN","BR"}, //(1,0) -> (2,0)
 			{null,"BP","BP","BP","BP","BP","BP","BP"},

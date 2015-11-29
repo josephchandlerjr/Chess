@@ -86,9 +86,12 @@ public class Test
 			}
 		}
 
-		boolean correctScoreSheet = Arrays.deepEquals(testBoards,scoreSheet);
+		boolean correctScoreSheet = Arrays.deepEquals(testBoardMoves,scoreSheet);
 		if (!correctScoreSheet)
-		{ return false;}
+		{ 
+			System.out.println("Score sheet incorrect");
+			return false;
+		}
 
 		return true;
 		
