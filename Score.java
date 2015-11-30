@@ -23,7 +23,7 @@ public class Score
 	 * @param square the square we are looking for
 	 * @return true if square is anywhere in socre sheet else false
 	 */
-	public boolean sheetContains(Square square)
+	public boolean contains(Square square)
 	{
 		for (Move move : moves)
 		{

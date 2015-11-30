@@ -10,31 +10,39 @@ import java.util.Arrays;
 public class Test
 {
 	private static boolean VERBOSE = false;
-	private static TestBoard[] testBoards = TestData.testBoards;
-	private static int[][] testBoardMoves = TestData.testBoardMoves;
+	private static TestBoard[] goodTestBoards = TestData.goodTestBoards;
+	private static int[][] testBoardMoves = TestData.goodTestBoardMoves;
+	private static boolean[] moveIsValid = TestData.moveIsValid;
 
+	/**
+	 * runs tests
+	 */
 	public static void main(String[] args)
 	{
 		if ( args.length > 0 && args[0].equals("-v"))
 		{ VERBOSE = true;}
 		Game g = new Game();
-		System.out.println("Testing Game.move()");
-	        if (testMoves(g))
+		System.out.println("Testing");
+	        if (testMoves(g, goodTestBoards, testBoardMoves))
 		{System.out.println("Tests Successful");}
 		else
-		{System.out.println("Problem with Game.move()");}
+		{System.out.println("Tests Failed");}
 
 		
 
 	}
-	public static boolean testMove(Game g, int oldRow,int oldCol,int newRow,int newCol,TestBoard correctBoard)
+	/**
+	 * tests a move by comparing its string array representation to the known correct string array 
+	 * @return true if the string arrays match else false
+	 */
+	public static boolean testMove(Game g, int oldRow,int oldCol,int newRow,int newCol,TestBoard correctBoard, boolean result)
 	{
 		if (VERBOSE)
 		{
 			System.out.println("Game board before:");
 			g.display();
 		}
-		g.movePiece(oldRow,oldCol,newRow,newCol);
+		boolean moveResult = g.movePiece(oldRow,oldCol,newRow,newCol);
 		if (VERBOSE)
 		{
 			System.out.println("Game board after move:");
@@ -42,16 +50,19 @@ public class Test
 			System.out.println("Correct board is:");
 			System.out.print(correctBoard);
 		}
-		return Arrays.deepEquals(g.toStringArray(), correctBoard.array);
+		
+		return moveResult == result && Arrays.deepEquals(g.toStringArray(), correctBoard.array);
 	} 
-	public static boolean testMoves(Game g)
+
+	public static boolean testMoves(Game g, TestBoard[] boards, int[][] moves)
 	{
 		
-		for (int i=0; i < testBoards.length; i++)
+		for (int i=0; i < boards.length; i++)
 		{
-				int[] params = testBoardMoves[i];
-			        TestBoard board = testBoards[i];	
-				if (!testMove(g,params[0],params[1],params[2],params[3],board))
+				int[] params = moves[i];
+			        TestBoard board = boards[i];	
+				boolean moveResult = testMove(g,params[0],params[1],params[2],params[3],board, moveIsValid[i]);
+				if (!moveResult)
 				{ 
 					g.display();
 					System.out.println("should be");
@@ -60,6 +71,8 @@ public class Test
 				}
 
 		}
+
+		System.out.println("All moves correct");
 
 		int[][] scoreSheet = g.scoreSheet.toIntArray();
 		if (VERBOSE)
@@ -75,26 +88,53 @@ public class Test
 
 			}
 			System.out.println("Actual moves are:");
-			for (int i=0; i < testBoardMoves.length; i++)
+			for (int i=0; i < moves.length; i++)
 			{
 				
-				System.out.printf("from (%d,%d) to (%d,%d)\n",testBoardMoves[i][0],
-									      testBoardMoves[i][1],
-									      testBoardMoves[i][2],
-									      testBoardMoves[i][3]);
+				System.out.printf("from (%d,%d) to (%d,%d)\n",moves[i][0],
+									      moves[i][1],
+									      moves[i][2],
+									      moves[i][3]);
 
 			}
 		}
+		moves = removeBadMoves();
 
-		boolean correctScoreSheet = Arrays.deepEquals(testBoardMoves,scoreSheet);
+		boolean correctScoreSheet = Arrays.deepEquals(moves,scoreSheet);
 		if (!correctScoreSheet)
 		{ 
 			System.out.println("Score sheet incorrect");
 			return false;
 		}
 
+		System.out.println("Score sheet correct");
 		return true;
 		
 	}
+	/** removes bad moves from test moves so can compare to score sheet from game
+	 * @return new moves integer array minus the moves that should have been invalid
+	 */
+	public static int[][] removeBadMoves()
+	{
+		int numGoodMoves = 0;
+		for (int i=0; i < moveIsValid.length; i++)
+		{
+			if (moveIsValid[i] == true) 
+			{ numGoodMoves ++;}
+		}
 
+		int[][] newScoreSheet = new int[numGoodMoves][4];
+
+		int newIndex=0;
+		for (int j=0; j < testBoardMoves.length; j++)
+		{
+			if (moveIsValid[j])
+			{
+				newScoreSheet[newIndex] = testBoardMoves[j];
+				newIndex++;
+			}
+		}
+		return newScoreSheet;
+
+	} 
 }

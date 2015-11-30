@@ -3,13 +3,37 @@
  */
 public class TestData
 {
-	public static final int[][] testBoardMoves = { 
+	public static final int[][] goodTestBoardMoves = { 
 		                                          {1,0,2,0},
 							  {6,1,5,1},
 							  {0,1,2,2},
 							  {7,2,5,0},
+							  {1,4,3,4},
+							  {6,4,4,4},
+							  {0,6,2,5},
+							  {6,3,5,3},
+							  {1,3,3,3},
+							  {4,4,3,4},
+							  {4,4,3,3},
+							  {3,4,4,5},
+							  {3,4,5,4},
 	                                                  };
-	public static final TestBoard[] testBoards = { 
+	public static final boolean[] moveIsValid =       { 
+		                                          true,
+							  true,
+							  true,
+							  true,
+							  true,
+							  true,
+							  true,
+							  true,
+							  true,
+							  false,
+							  true, 
+							  false, 
+							  false 
+	                                                  };
+	public static final TestBoard[] goodTestBoards = { 
 
 		        new TestBoard( new String[][] {
 			{"BR","BN","BB","BQ","BK","BB","BN","BR"}, //(1,0) -> (2,0)
@@ -49,6 +73,96 @@ public class TestData
 			{null,null,null,null,null,null,null,null},
 			{"WB","WP",null,null,null,null,null,null},
 			{"WP",null,"WP","WP","WP","WP","WP","WP"},
+			{"WR","WN",null,"WQ","WK","WB","WN","WR"}
+		        }),
+			new TestBoard( new String[][] {
+			{"BR",null,"BB","BQ","BK","BB","BN","BR"}, //(1,4) -> (3,4)
+			{null,"BP","BP","BP",null,"BP","BP","BP"},
+			{"BP",null,"BN",null,null,null,null,null},
+			{null,null,null,null,"BP",null,null,null},
+			{null,null,null,null,null,null,null,null},
+			{"WB","WP",null,null,null,null,null,null},
+			{"WP",null,"WP","WP","WP","WP","WP","WP"},
+			{"WR","WN",null,"WQ","WK","WB","WN","WR"}
+		        }),
+			new TestBoard( new String[][] {
+			{"BR",null,"BB","BQ","BK","BB","BN","BR"}, //(6,4) -> (4,4)
+			{null,"BP","BP","BP",null,"BP","BP","BP"},
+			{"BP",null,"BN",null,null,null,null,null},
+			{null,null,null,null,"BP",null,null,null},
+			{null,null,null,null,"WP",null,null,null},
+			{"WB","WP",null,null,null,null,null,null},
+			{"WP",null,"WP","WP",null,"WP","WP","WP"},
+			{"WR","WN",null,"WQ","WK","WB","WN","WR"}
+		        }),
+			new TestBoard( new String[][] {
+			{"BR",null,"BB","BQ","BK","BB",null,"BR"}, //(0,6) -> (2,5)
+			{null,"BP","BP","BP",null,"BP","BP","BP"},
+			{"BP",null,"BN",null,null,"BN",null,null},
+			{null,null,null,null,"BP",null,null,null},
+			{null,null,null,null,"WP",null,null,null},
+			{"WB","WP",null,null,null,null,null,null},
+			{"WP",null,"WP","WP",null,"WP","WP","WP"},
+			{"WR","WN",null,"WQ","WK","WB","WN","WR"}
+		        }),
+			new TestBoard( new String[][] {
+			{"BR",null,"BB","BQ","BK","BB",null,"BR"}, //(6,3) -> (5,3)
+			{null,"BP","BP","BP",null,"BP","BP","BP"},
+			{"BP",null,"BN",null,null,"BN",null,null},
+			{null,null,null,null,"BP",null,null,null},
+			{null,null,null,null,"WP",null,null,null},
+			{"WB","WP",null,"WP",null,null,null,null},
+			{"WP",null,"WP",null,null,"WP","WP","WP"},
+			{"WR","WN",null,"WQ","WK","WB","WN","WR"}
+		        }),
+			new TestBoard( new String[][] {
+			{"BR",null,"BB","BQ","BK","BB",null,"BR"}, //(1,3) -> (3,3)
+			{null,"BP","BP",null,null,"BP","BP","BP"},
+			{"BP",null,"BN",null,null,"BN",null,null},
+			{null,null,null,"BP","BP",null,null,null},
+			{null,null,null,null,"WP",null,null,null},
+			{"WB","WP",null,"WP",null,null,null,null},
+			{"WP",null,"WP",null,null,"WP","WP","WP"},
+			{"WR","WN",null,"WQ","WK","WB","WN","WR"}
+		        }),
+			new TestBoard( new String[][] {
+			{"BR",null,"BB","BQ","BK","BB",null,"BR"}, //(4,4) -> (3,4) bad move
+			{null,"BP","BP",null,null,"BP","BP","BP"},
+			{"BP",null,"BN",null,null,"BN",null,null},
+			{null,null,null,"BP","BP",null,null,null},
+			{null,null,null,null,"WP",null,null,null},
+			{"WB","WP",null,"WP",null,null,null,null},
+			{"WP",null,"WP",null,null,"WP","WP","WP"},
+			{"WR","WN",null,"WQ","WK","WB","WN","WR"}
+		        }),
+			new TestBoard( new String[][] {
+			{"BR",null,"BB","BQ","BK","BB",null,"BR"}, //(4,4) -> (3,3) 
+			{null,"BP","BP",null,null,"BP","BP","BP"},
+			{"BP",null,"BN",null,null,"BN",null,null},
+			{null,null,null,"WP","BP",null,null,null},
+			{null,null,null,null,null,null,null,null},
+			{"WB","WP",null,"WP",null,null,null,null},
+			{"WP",null,"WP",null,null,"WP","WP","WP"},
+			{"WR","WN",null,"WQ","WK","WB","WN","WR"}
+		        }),
+			new TestBoard( new String[][] {
+			{"BR",null,"BB","BQ","BK","BB",null,"BR"}, //(3,4) -> (4,5) bad move 
+			{null,"BP","BP",null,null,"BP","BP","BP"},
+			{"BP",null,"BN",null,null,"BN",null,null},
+			{null,null,null,"WP","BP",null,null,null},
+			{null,null,null,null,null,null,null,null},
+			{"WB","WP",null,"WP",null,null,null,null},
+			{"WP",null,"WP",null,null,"WP","WP","WP"},
+			{"WR","WN",null,"WQ","WK","WB","WN","WR"}
+		        }),
+			new TestBoard( new String[][] {
+			{"BR",null,"BB","BQ","BK","BB",null,"BR"}, //(3,4) -> (5,4) bad move 
+			{null,"BP","BP",null,null,"BP","BP","BP"},
+			{"BP",null,"BN",null,null,"BN",null,null},
+			{null,null,null,"WP","BP",null,null,null},
+			{null,null,null,null,null,null,null,null},
+			{"WB","WP",null,"WP",null,null,null,null},
+			{"WP",null,"WP",null,null,"WP","WP","WP"},
 			{"WR","WN",null,"WQ","WK","WB","WN","WR"}
 		        })
 			};

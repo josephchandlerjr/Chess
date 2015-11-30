@@ -1,6 +1,6 @@
 /** 
  * represents a chess game
- * board is 2D array of Square objects
+ * board is 2D array of  objects
 */ 
 public class Game
 {
@@ -132,6 +132,8 @@ public class Game
 	 */
 	public boolean movePiece(int curRow, int curCol, int newRow, int newCol)
 	{ 
+		if (isOffBoard(newRow,newCol))
+		{ return false;}
 		Square fromSquare = board[curRow][curCol];
 		Square toSquare = board[newRow][newCol];
 		
@@ -139,17 +141,17 @@ public class Game
 		
 	}
 	/**moves a piece
-	 * @param from Square piece to be moved is on
-	 * @param to Square piece is to be moved to 
+	 * @param from  piece to be moved is on
+	 * @param to  piece is to be moved to 
 	 * @return true if move is made, false if not a valid move
 	 */
 	public boolean movePiece(Square from, Square to)
 	{
+
                 if (from == to){ return false;}
-		
+	        	
 		if (!from.isOccupied()) // can't move a piece that isn't there
 		{ return false;} 
-		
 		if (isValidMove(from,to)) 
 		{
 			to.setPiece(from.getPiece());
@@ -162,20 +164,9 @@ public class Game
 	}
 	
 	/**
-	 * return opposite color
-	 * @param myColor can be String BLACK or WHITE
-	 * @return if WHITE is give as param return BLACK else WHITE
-	 */
-	public static String OpponentsColor(String myColor)
-	{
-		if (myColor == "WHITE"){ return "BLACK";}
-		return "WHITE";
-	}
-        
-	/**
 	 * checks if a move is valid
-	 * @param from Square piece to be moved is on
-	 * @param to Square piece will be moved to
+	 * @param from  piece to be moved is on
+	 * @param to  piece will be moved to
 	 * @return true if move is valid else false
 	 */
 	 public boolean isValidMove(Square from, Square to)
@@ -189,10 +180,94 @@ public class Game
 		 if (p instanceof King){ return isValidKingMove(from, to);}
 		 return false;
 	 }
-	 public boolean isValidPawnMove(Square from, Square to){ return true;}
+	 public boolean isValidPawnMove(Square from, Square to)
+	 { 
+		 int fromRow = from.getRow();
+		 int fromCol = from.getCol();
+		 int toRow = to.getRow();
+		 int toCol = to.getCol();
+
+		 Pawn piece= (Pawn)(from.getPiece());
+		 String myColor = piece.getColor();
+		 int direction = piece.getDirection();
+
+
+		 if (fromCol == toCol         &&
+	         fromRow + direction == toRow &&
+		 !to.isOccupied()                       )// advance one row
+		 { 
+			 return true;
+		 }
+		 else if(fromCol-1 == toCol           &&
+		         fromRow + direction == toRow &&
+			 isOccupiedByOpponent(to, myColor)       ) // capture diagnonal
+		 {
+			 return true;
+		 }
+		 else if(fromCol+1 == toCol           &&
+		         fromRow + direction == toRow &&
+			 isOccupiedByOpponent(to, myColor)       ) // capture diagnonal // capture diagonal
+		 {
+			 return true;
+		 }
+		 else if(fromCol == toCol                 &&      // advance two rows, first move only
+	                 fromRow + 2 * direction == toRow &&
+		         !to.isOccupied()                 &&
+		       	 !scoreSheet.contains(from)         )
+		 {
+			 return true;
+		 }
+		 return false;
+	 }
 	 public boolean isValidRookMove(Square from, Square to){ return true;}
          public boolean isValidKnightMove(Square from, Square to){ return true;}
 	 public boolean isValidBishopMove(Square from, Square to){ return true;}
 	 public boolean isValidQueenMove(Square from, Square to){ return true;}
 	 public boolean isValidKingMove(Square from, Square to){ return true;}
+
+	 /**
+	  * checks if a row,column combination is off of the 8x8 board
+	  * @return if row,column combination if off board else false
+	  */
+	 public static boolean isOffBoard(int row, int col)
+	 {
+		 return row > 7 || row < 0 || col > 7 || row < 0;
+	 }
+
+	/**
+	 * return opposite color
+	 * @param myColor can be String BLACK or WHITE
+	 * @return if WHITE is give as param return BLACK else WHITE
+	 */
+	public static String OpponentsColor(String myColor)
+	{
+		if (myColor == "WHITE"){ return "BLACK";}
+		return "WHITE";
+	} 
+
+	public boolean hasWhitePiece(Square s)
+	{
+		return s.isOccupied() && s.getPiece().getColor().equals("WHITE");
+	}
+
+	public boolean hasBlackPiece(Square s)
+	{
+		return s.isOccupied() && s.getPiece().getColor().equals("BLACK");
+	}
+
+	public boolean isOccupiedByOpponent(Square s, String myColor)
+	{
+		if (!s.isOccupied()){ return false;}
+		String opponentsColor = Game.OpponentsColor(myColor);
+		if (opponentsColor.equals("BLACK"))
+		{
+
+			return hasBlackPiece(s);
+		}
+		else if(opponentsColor.equals("WHITE"))
+		{
+			return hasWhitePiece(s);
+		}
+		return false;
+	}
 }
