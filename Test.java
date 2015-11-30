@@ -20,13 +20,20 @@ public class Test
 	public static void main(String[] args)
 	{
 		if ( args.length > 0 && args[0].equals("-v"))
-		{ VERBOSE = true;}
+		{ 
+			VERBOSE = true;
+		}
 		Game g = new Game();
 		System.out.println("Testing");
+
 	        if (testMoves(g, goodTestBoards, testBoardMoves))
-		{System.out.println("Tests Successful");}
+		{
+			System.out.println("Tests Successful");
+		}
 		else
-		{System.out.println("Tests Failed");}
+		{
+			System.out.println("Tests Failed");
+		}
 
 		
 
@@ -53,7 +60,12 @@ public class Test
 		
 		return moveResult == result && Arrays.deepEquals(g.toStringArray(), correctBoard.array);
 	} 
-
+	/** performs a series of moves and ensures they are handled correctly
+	 * @param g Game instance
+	 * @param boards an array of TestBoards to test results against
+	 * @param moves 2D array; each row is a a move in form of a 4-tuple {fromRow,fromCol,toRow,toCol}
+	 * @return true if all tests successful else false
+	 */
 	public static boolean testMoves(Game g, TestBoard[] boards, int[][] moves)
 	{
 		
@@ -61,7 +73,8 @@ public class Test
 		{
 				int[] params = moves[i];
 			        TestBoard board = boards[i];	
-				boolean moveResult = testMove(g,params[0],params[1],params[2],params[3],board, moveIsValid[i]);
+				boolean moveResult = testMove(g,params[0],params[1],params[2],params[3],
+						     board, moveIsValid[i]);
 				if (!moveResult)
 				{ 
 					g.display();
