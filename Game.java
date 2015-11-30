@@ -219,7 +219,56 @@ public class Game
 		 }
 		 return false;
 	 }
-	 public boolean isValidRookMove(Square from, Square to){ return true;}
+	 public boolean isValidRookMove(Square from, Square to)
+	 {       
+		 int fromRow = from.getRow();
+		 int fromCol = from.getCol();
+		 int toRow = to.getRow();
+		 int toCol = to.getCol();
+		 ChessPiece piece= from.getPiece();
+		 String myColor = piece.getColor();
+		 int step;
+		 
+		 if (isOccupiedByPieceOfSameColor(to, myColor)) { return false;}
+
+		 if(fromRow == toRow)//left-to-right
+		 {
+			 // determine what direction we are heading
+			 if (toCol > fromCol){step = 1;}
+			 else{ step = -1;}
+
+			 // check if pieces lie in between squares
+			 int col = fromCol + step;
+			 int row = toRow; 
+			 while (col != toCol)
+			 {	
+				 if (board[row][col].isOccupied())
+				 {
+					 return false;
+				 }
+				 col = col + step;
+			 }
+			 return true;
+			 
+		 }
+		 else if(fromCol == toCol)//up-and-down
+		 {
+			 if (toRow > fromRow){ step = 1;}
+			 else { step = -1;}
+
+			 // check if pieces lie in between squares
+			 int row = fromRow + step;
+			 int col = toCol;
+			 while (row != toRow)
+			 {	
+				 if (board[row][col].isOccupied()){return false;}
+				 row = row + step;
+			 }
+			 return true;
+			 
+		 }
+		 return false;
+	 }
          public boolean isValidKnightMove(Square from, Square to){ return true;}
 	 public boolean isValidBishopMove(Square from, Square to){ return true;}
 	 public boolean isValidQueenMove(Square from, Square to){ return true;}
@@ -245,29 +294,15 @@ public class Game
 		return "WHITE";
 	} 
 
-	public boolean hasWhitePiece(Square s)
-	{
-		return s.isOccupied() && s.getPiece().getColor().equals("WHITE");
-	}
-
-	public boolean hasBlackPiece(Square s)
-	{
-		return s.isOccupied() && s.getPiece().getColor().equals("BLACK");
-	}
-
 	public boolean isOccupiedByOpponent(Square s, String myColor)
 	{
-		if (!s.isOccupied()){ return false;}
 		String opponentsColor = Game.OpponentsColor(myColor);
-		if (opponentsColor.equals("BLACK"))
-		{
+		return s.isOccupied() && s.getPiece().getColor().equals(opponentsColor);
+	}
 
-			return hasBlackPiece(s);
-		}
-		else if(opponentsColor.equals("WHITE"))
-		{
-			return hasWhitePiece(s);
-		}
-		return false;
+	public boolean isOccupiedByPieceOfSameColor(Square s, String myColor)
+	{
+		return s.isOccupied() && s.getPiece().getColor().equals(myColor);
+
 	}
 }

@@ -17,6 +17,13 @@ public class TestData
 							  {4,4,3,3},
 							  {3,4,4,5},
 							  {3,4,5,4},
+							  {2,0,3,0},
+							  {0,0,2,0},
+							  {2,0,2,2},
+							  {6,7,4,7},
+							  {7,7,5,7},
+							  {5,7,5,2},
+							  {5,7,5,4},
 	                                                  };
 	public static final boolean[] moveIsValid =       { 
 		                                          true,
@@ -31,7 +38,14 @@ public class TestData
 							  false,
 							  true, 
 							  false, 
-							  false 
+							  false, 
+							  true, 
+							  true, 
+							  false,
+							  true, 
+							  true, 
+							  false, 
+							  true 
 	                                                  };
 	public static final TestBoard[] goodTestBoards = { 
 
@@ -164,6 +178,76 @@ public class TestData
 			{"WB","WP",null,"WP",null,null,null,null},
 			{"WP",null,"WP",null,null,"WP","WP","WP"},
 			{"WR","WN",null,"WQ","WK","WB","WN","WR"}
+		        }),
+			new TestBoard( new String[][] {
+			{"BR",null,"BB","BQ","BK","BB",null,"BR"}, //(2,0) -> (3,0)  
+			{null,"BP","BP",null,null,"BP","BP","BP"},
+			{null,null,"BN",null,null,"BN",null,null},
+			{"BP",null,null,"WP","BP",null,null,null},
+			{null,null,null,null,null,null,null,null},
+			{"WB","WP",null,"WP",null,null,null,null},
+			{"WP",null,"WP",null,null,"WP","WP","WP"},
+			{"WR","WN",null,"WQ","WK","WB","WN","WR"}
+		        }),
+			new TestBoard( new String[][] {
+			{null,null,"BB","BQ","BK","BB",null,"BR"}, //(0,0) -> (2,0)  
+			{null,"BP","BP",null,null,"BP","BP","BP"},
+			{"BR",null,"BN",null,null,"BN",null,null},
+			{"BP",null,null,"WP","BP",null,null,null},
+			{null,null,null,null,null,null,null,null},
+			{"WB","WP",null,"WP",null,null,null,null},
+			{"WP",null,"WP",null,null,"WP","WP","WP"},
+			{"WR","WN",null,"WQ","WK","WB","WN","WR"}
+		        }),
+			new TestBoard( new String[][] {
+			{null,null,"BB","BQ","BK","BB",null,"BR"}, //(2,0) -> (2,2) bad move  
+			{null,"BP","BP",null,null,"BP","BP","BP"},
+			{"BR",null,"BN",null,null,"BN",null,null},
+			{"BP",null,null,"WP","BP",null,null,null},
+			{null,null,null,null,null,null,null,null},
+			{"WB","WP",null,"WP",null,null,null,null},
+			{"WP",null,"WP",null,null,"WP","WP","WP"},
+			{"WR","WN",null,"WQ","WK","WB","WN","WR"}
+		        }),
+			new TestBoard( new String[][] {
+			{null,null,"BB","BQ","BK","BB",null,"BR"}, //(6,7) -> (4,7)   
+			{null,"BP","BP",null,null,"BP","BP","BP"},
+			{"BR",null,"BN",null,null,"BN",null,null},
+			{"BP",null,null,"WP","BP",null,null,null},
+			{null,null,null,null,null,null,null,"WP"},
+			{"WB","WP",null,"WP",null,null,null,null},
+			{"WP",null,"WP",null,null,"WP","WP",null},
+			{"WR","WN",null,"WQ","WK","WB","WN","WR"}
+		        }),
+			new TestBoard( new String[][] {
+			{null,null,"BB","BQ","BK","BB",null,"BR"}, //(7,7) -> (5,7)   
+			{null,"BP","BP",null,null,"BP","BP","BP"},
+			{"BR",null,"BN",null,null,"BN",null,null},
+			{"BP",null,null,"WP","BP",null,null,null},
+			{null,null,null,null,null,null,null,"WP"},
+			{"WB","WP",null,"WP",null,null,null,"WR"},
+			{"WP",null,"WP",null,null,"WP","WP",null},
+			{"WR","WN",null,"WQ","WK","WB","WN",null}
+		        }),
+			new TestBoard( new String[][] {
+			{null,null,"BB","BQ","BK","BB",null,"BR"}, //(5,7) -> (5,2) bad move  
+			{null,"BP","BP",null,null,"BP","BP","BP"},
+			{"BR",null,"BN",null,null,"BN",null,null},
+			{"BP",null,null,"WP","BP",null,null,null},
+			{null,null,null,null,null,null,null,"WP"},
+			{"WB","WP",null,"WP",null,null,null,"WR"},
+			{"WP",null,"WP",null,null,"WP","WP",null},
+			{"WR","WN",null,"WQ","WK","WB","WN",null}
+		        }),
+			new TestBoard( new String[][] {
+			{null,null,"BB","BQ","BK","BB",null,"BR"}, //(5,7) -> (5,4)   
+			{null,"BP","BP",null,null,"BP","BP","BP"},
+			{"BR",null,"BN",null,null,"BN",null,null},
+			{"BP",null,null,"WP","BP",null,null,null},
+			{null,null,null,null,null,null,null,"WP"},
+			{"WB","WP",null,"WP","WR",null,null,null},
+			{"WP",null,"WP",null,null,"WP","WP",null},
+			{"WR","WN",null,"WQ","WK","WB","WN",null}
 		        })
 			};
 }
