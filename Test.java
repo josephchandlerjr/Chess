@@ -47,18 +47,18 @@ public class Test
 		if (VERBOSE)
 		{
 			System.out.println("Game board before:");
-			g.display();
+			g.board.display();
 		}
 		boolean moveResult = g.movePiece(oldRow,oldCol,newRow,newCol);
 		if (VERBOSE)
 		{
 			System.out.println("Game board after move:");
-			g.display();
+			g.board.display();
 			System.out.println("Correct board is:");
 			System.out.print(correctBoard);
 		}
 		
-		return moveResult == result && Arrays.deepEquals(g.toStringArray(), correctBoard.array);
+		return moveResult == result && Arrays.deepEquals(g.board.toStringArray(), correctBoard.array);
 	} 
 	/** performs a series of moves and ensures they are handled correctly
 	 * @param g Game instance
@@ -77,7 +77,7 @@ public class Test
 						     board, moveIsValid[i]);
 				if (!moveResult)
 				{ 
-					g.display();
+					g.board.display();
 					System.out.println("should be");
 					System.out.print(board);
 					return false;

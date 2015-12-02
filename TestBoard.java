@@ -22,7 +22,7 @@ public class TestBoard
 			res = res + "\n";
 
 		}
-		return Game.toString(array);
+		return Board.toString(array);
 	}
 	public void display()
 	{

@@ -11,12 +11,37 @@ public class Board
 	{
 		board = new Square[8][8];
 	}
-
+	/**
+	 * gets a square from the board
+	 * @param row row square you want lies on
+	 * @param col column square you want lies on
+	 * @return Square instance you asked for
+	 */
 	public Square getSquare(int row, int col)
 	{
 		return board[row][col];
 	}
-
+        /**
+	 * assigns a given Square with a give ChessPiece
+	 * @param row row of square
+	 * @param col column of square
+	 * @param piece ChessPiece to assign
+	 */
+	public void setPiece(int row, int col, ChessPiece piece)
+	{
+		board[row][col].setPiece(piece);
+	}
+	/**
+	 * gets a square from the board
+	 * @param row row square you want lies on
+	 * @param col column square you want lies on
+	 * @return Square instance you asked for
+	 */
+	public void setSquare(String color, int row, int col)
+	{
+		board[row][col] = new Square(color,row,col);
+	}
+	
 	/** gets a 2D array representing board
 	 * @return String array representing pieces on the board
 	 */
@@ -49,7 +74,7 @@ public class Board
 	 * @param board a 2D array of String elements
 	 * @return string representing current state of board
 	 */
-	public String toString(String[][] board)
+	public static String toString(String[][] board)
 	{
 		String horizontalLine = "-- -- -- -- -- -- -- --";
 		String res = horizontalLine + "\n";
@@ -86,7 +111,7 @@ public class Board
 	  * checks if a row,column combination is off of the 8x8 board
 	  * @return if row,column combination if off board else false
 	  */
-	 public static boolean isOffBoard(int row, int col)
+	 public boolean isOffBoard(int row, int col)
 	 {
 		 return row > 7 || row < 0 || col > 7 || row < 0;
 	 }
