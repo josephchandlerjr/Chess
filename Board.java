@@ -187,20 +187,22 @@ public class Board
 		 int colStep;
 		 
 		 if     (toRow > fromRow){ rowStep = 1;}
-		 else if(toRow > fromRow){ rowStep = -1;}
+		 else if(toRow < fromRow){ rowStep = -1;}
 		 else                    { rowStep = 0;}
                  
 		 if     (toCol > fromCol){ colStep = 1;}
-		 else if(toCol > fromCol){ colStep = -1;}
+		 else if(toCol < fromCol){ colStep = -1;}
 		 else                    { colStep = 0;}	 
 
 		 int col = fromCol + colStep;
 		 int row = fromRow + rowStep;
-		 while (col != toCol && row != toRow)
+
+		 while (col != toCol || row != toRow)
 		 {	
 			 result.add(getSquare(row,col));
 			 col = col + colStep;
-			 row = row + colStep;
+			 row = row + rowStep;
+
 		 }
 		 
 		 return result;

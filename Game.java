@@ -170,44 +170,9 @@ public class Game
 		 int step;
 		 
 		 if (board.isOccupiedByPieceOfSameColor(to, myColor)) { return false;}
+		 if (board.piecesBetween(from, to)){ return false;}
+		 return true;
 
-		 if(fromRow == toRow)//left-to-right
-		 {
-			 // determine what direction we are heading
-			 if (toCol > fromCol){step = 1;}
-			 else{ step = -1;}
-
-			 // check if pieces lie in between squares
-			 int col = fromCol + step;
-			 int row = toRow; 
-			 while (col != toCol)
-			 {	
-				 if (board.getSquare(row,col).isOccupied())
-				 {
-					 return false;
-				 }
-				 col = col + step;
-			 }
-			 return true;
-			 
-		 }
-		 else if(fromCol == toCol)//up-and-down
-		 {
-			 if (toRow > fromRow){ step = 1;}
-			 else { step = -1;}
-
-			 // check if pieces lie in between squares
-			 int row = fromRow + step;
-			 int col = toCol;
-			 while (row != toRow)
-			 {	
-				 if (board.getSquare(row,col).isOccupied()){return false;}
-				 row = row + step;
-			 }
-			 return true;
-			 
-		 }
-		 return false;
 	 }
          public boolean isValidKnightMove(Square from, Square to){ return true;}
 	 public boolean isValidBishopMove(Square from, Square to){ return true;}
