@@ -88,10 +88,7 @@ public class Game
 	public boolean movePiece(Square from, Square to)
 	{
 
-                if (from == to){ return false;}
-	        	
-		if (!from.isOccupied()) // can't move a piece that isn't there
-		{ return false;} 
+                
 		if (isValidMove(from,to)) 
 		{
 			ChessPiece piece = from.getPiece();
@@ -112,13 +109,21 @@ public class Game
 	 */
 	 public boolean isValidMove(Square from, Square to)
 	 {
+		 if (from == to){ return false;}
+	        	
+		 if (!from.isOccupied()) // can't move a piece that isn't there
+		 { return false;} 
+
+		 if (board.isOccupiedByPieceOfSameColor(to, from.getPiece().getColor()))
+		 { return false;}
+
 		 ChessPiece p = from.getPiece();
 		 if (p instanceof Pawn){ return isValidPawnMove(from, to);}
 		 if (p instanceof Rook){ return isValidRookMove(from, to);}
 		 if (p instanceof Knight){ return isValidKnightMove(from, to);}
 		 if (p instanceof Bishop){ return isValidBishopMove(from, to);}
 		 if (p instanceof Queen){ return isValidQueenMove(from, to);}
-		 if (p instanceof King){ return isValidKingMove(from, to);}
+		 if (p instanceof King){ return isValidKingMove(from, to, false);}
 		 return false;
 	 }
 	 public boolean isValidPawnMove(Square from, Square to)
@@ -172,7 +177,22 @@ public class Game
 		 return true;
 
 	 }
-         public boolean isValidKnightMove(Square from, Square to){ return true;}
+         public boolean isValidKnightMove(Square from, Square to)
+	 { 
+		 int fromRow = from.getRow();
+		 int fromCol = from.getCol();
+		 int toRow = to.getRow();
+		 int toCol = to.getCol();
+
+		 int rowDiff = Math.abs(toRow - fromRow);
+		 int colDiff = Math.abs(toCol - fromCol);
+
+		 if (rowDiff == 2 && colDiff == 1) { return true;}
+		 if (rowDiff == 1 && colDiff == 2) { return true;}
+		 
+		 return false;
+		 
+	 }
 	 public boolean isValidBishopMove(Square from, Square to)
 	 { 
 		 ChessPiece piece= from.getPiece();
@@ -187,6 +207,71 @@ public class Game
 	 {
 		 return isValidRookMove(from,to) || isValidBishopMove(from,to);
 	 }
-	 public boolean isValidKingMove(Square from, Square to){ return true;}
+	 /**
+	  * determines if a given move is a valid move for a king
+	  * @param from Square you are moving from
+	  * @param to Square you are moving to
+	  * @param ignoreCheckRule if this is true it doesn't ensure move doesn't put king in check
+	  * @return true if move is valid else false;
+	  */
+	 public boolean isValidKingMove(Square from, Square to, boolean ignoreCheckRule)
+	 {    
+		 //ignoreCheckRule only set to false when called from within KingInCheck to preven recursion
+		 if (!ignoreCheckRule && kingInCheck(to)) { return false;} //king can't move into check
+		 // need additional is-same-square-check here when called directly from kingInCheck
+
+		 if (from == to){ return false;}
+		 
+		 int fromRow = from.getRow();
+		 int fromCol = from.getCol();
+		 int toRow = to.getRow();
+		 int toCol = to.getCol();
+
+		 int colDiff = toCol - fromCol;
+		 int rowDiff = toRow - fromRow;
+		 
+		 
+		 return Math.abs(colDiff) <= 1 && Math.abs(rowDiff) <= 1; 
+		 
+		 
+	 }
+
+	 public boolean kingInCheck(Square kingsLocation)
+	 {
+		 for (int row=0; row < 8; row++)
+		 {
+			 for (int col=0; col < 8; col++)
+			 {
+				 int r = row; int c=col;
+				 Square from = board.getSquare(row, col);
+				 if (from.isOccupied())
+				 {
+					 ChessPiece piece = from.getPiece();
+					 if (piece instanceof King)
+					 {
+						 if(isValidKingMove(from,kingsLocation,true))
+						 {
+							 return true;
+						 }
+
+					 }
+					 else if(isValidMove(from, kingsLocation))
+				         {
+						 return true;
+					 }
+				 }
+			 }
+		 }
+		 return false;
+	 }
+	 public boolean blackKingInCheck()
+	 {
+		 return kingInCheck(board.blackKingsSquare);
+	 }
+	 public boolean whiteKingInCheck()
+	 {
+		 return kingInCheck(board.whiteKingsSquare);
+	 }
+
 
 }

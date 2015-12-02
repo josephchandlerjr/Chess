@@ -46,6 +46,7 @@ public class Test
 	{
 		if (VERBOSE)
 		{
+			System.out.printf("testing move: %d %d to %d %d\n",oldRow,oldCol,newRow,newCol);
 			System.out.println("Game board before:");
 			g.board.display();
 		}
@@ -57,6 +58,8 @@ public class Test
 			System.out.println("Correct board is:");
 			System.out.print(correctBoard);
 		}
+		if (g.blackKingInCheck()){ System.out.println("Black king in check!");}
+		if (g.whiteKingInCheck()){ System.out.println("White king in check!");}
 		
 		return moveResult == result && Arrays.deepEquals(g.board.toStringArray(), correctBoard.array);
 	} 
@@ -68,7 +71,6 @@ public class Test
 	 */
 	public static boolean testMoves(Game g, TestBoard[] boards, int[][] moves)
 	{
-		
 		for (int i=0; i < boards.length; i++)
 		{
 				int[] params = moves[i];
@@ -77,6 +79,10 @@ public class Test
 						     board, moveIsValid[i]);
 				if (!moveResult)
 				{ 
+					System.out.printf("error moving %d %d to %d %d",params[0],
+							                                params[1],
+											params[2],
+											params[3]);
 					g.board.display();
 					System.out.println("should be");
 					System.out.print(board);
