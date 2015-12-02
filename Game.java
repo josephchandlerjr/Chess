@@ -164,7 +164,7 @@ public class Game
 
 		 ChessPiece piece= from.getPiece();
 		 String myColor = piece.getColor();
-		 if (!board.isInSameColumn(from,to) && !board.isInSameRow(from,to)){ return false;}
+		 if (!board.areOnSameColumn(from,to) && !board.areOnSameRow(from,to)){ return false;}
 		  
 		 if (board.isOccupiedByPieceOfSameColor(to, myColor)) { return false;}
 		 if (board.piecesBetween(from, to)){ return false;}
@@ -172,7 +172,16 @@ public class Game
 
 	 }
          public boolean isValidKnightMove(Square from, Square to){ return true;}
-	 public boolean isValidBishopMove(Square from, Square to){ return true;}
+	 public boolean isValidBishopMove(Square from, Square to)
+	 { 
+		 ChessPiece piece= from.getPiece();
+		 String myColor = piece.getColor();
+		 if (!board.areOnSameDiagonal(from,to)) { return false;}
+		  
+		 if (board.isOccupiedByPieceOfSameColor(to, myColor)) { return false;}
+		 if (board.piecesBetween(from, to)){ return false;}
+		 return true;
+	 }
 	 public boolean isValidQueenMove(Square from, Square to){ return true;}
 	 public boolean isValidKingMove(Square from, Square to){ return true;}
 

@@ -208,18 +208,36 @@ public class Board
 		 return result;
 			 
 	 }
-	public boolean isInSameColumn(Square from, Square to)
+	public boolean areOnSameColumn(Square A, Square B)
 	 {       
-		 int fromCol = from.getCol();
-		 int toCol = to.getCol();
+		 int fromCol = A.getCol();
+		 int toCol = B.getCol();
 
 		 return fromCol == toCol;
 	 }
-	public boolean isInSameRow(Square from, Square to)
+	public boolean areOnSameRow(Square A, Square B)
 	 {       
-		 int fromRow = from.getRow();
-		 int toRow = to.getRow();
+		 int fromRow = A.getRow();
+		 int toRow = B.getRow();
 
 		 return fromRow == toRow;
 	 }
+	/**
+	 * tests if two pieces are on same diagonal
+	 * @param A a Square
+	 * @param B a Square
+	 * @return true if A and B on the same diagonal else false
+	 */
+	public boolean areOnSameDiagonal(Square A, Square B)
+	{
+	         int fromCol = A.getCol();
+		 int toCol = B.getCol();
+		 int fromRow = A.getRow();
+		 int toRow = B.getRow();
+
+		 int colDiff = toCol - fromCol;
+		 int rowDiff = toRow - fromRow;
+
+		 return Math.abs(colDiff) == Math.abs(rowDiff);
+	}
 }

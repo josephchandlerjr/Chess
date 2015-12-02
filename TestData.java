@@ -24,6 +24,10 @@ public class TestData
 							  {7,7,5,7},
 							  {5,7,5,2},
 							  {5,7,5,4},
+							  {5,4,4,5},
+							  {5,0,4,0},
+							  {7,5,4,2},
+							  {7,5,6,4},
 	                                                  };
 	public static final boolean[] moveIsValid =       { 
 		                                          true,
@@ -45,6 +49,10 @@ public class TestData
 							  true, 
 							  true, 
 							  false, 
+							  true,
+							  false,
+							  false,
+							  false,
 							  true 
 	                                                  };
 	public static final TestBoard[] goodTestBoards = { 
@@ -248,6 +256,46 @@ public class TestData
 			{"WB","WP",null,"WP","WR",null,null,null},
 			{"WP",null,"WP",null,null,"WP","WP",null},
 			{"WR","WN",null,"WQ","WK","WB","WN",null}
+		        }),
+			new TestBoard( new String[][] {
+			{null,null,"BB","BQ","BK","BB",null,"BR"}, //(5,4) -> (4,5) bad move  
+			{null,"BP","BP",null,null,"BP","BP","BP"},
+			{"BR",null,"BN",null,null,"BN",null,null},
+			{"BP",null,null,"WP","BP",null,null,null},
+			{null,null,null,null,null,null,null,"WP"},
+			{"WB","WP",null,"WP","WR",null,null,null},
+			{"WP",null,"WP",null,null,"WP","WP",null},
+			{"WR","WN",null,"WQ","WK","WB","WN",null}
+		        }),
+			new TestBoard( new String[][] {
+			{null,null,"BB","BQ","BK","BB",null,"BR"}, //(5,0) -> (4,0) bad move  
+			{null,"BP","BP",null,null,"BP","BP","BP"},
+			{"BR",null,"BN",null,null,"BN",null,null},
+			{"BP",null,null,"WP","BP",null,null,null},
+			{null,null,null,null,null,null,null,"WP"},
+			{"WB","WP",null,"WP","WR",null,null,null},
+			{"WP",null,"WP",null,null,"WP","WP",null},
+			{"WR","WN",null,"WQ","WK","WB","WN",null}
+		        }),
+			new TestBoard( new String[][] {
+			{null,null,"BB","BQ","BK","BB",null,"BR"}, //(7,5) -> (4,2) bad move  
+			{null,"BP","BP",null,null,"BP","BP","BP"},
+			{"BR",null,"BN",null,null,"BN",null,null},
+			{"BP",null,null,"WP","BP",null,null,null},
+			{null,null,null,null,null,null,null,"WP"},
+			{"WB","WP",null,"WP","WR",null,null,null},
+			{"WP",null,"WP",null,null,"WP","WP",null},
+			{"WR","WN",null,"WQ","WK","WB","WN",null}
+		        }),
+			new TestBoard( new String[][] {
+			{null,null,"BB","BQ","BK","BB",null,"BR"}, //(7,5) -> (6,4)   
+			{null,"BP","BP",null,null,"BP","BP","BP"},
+			{"BR",null,"BN",null,null,"BN",null,null},
+			{"BP",null,null,"WP","BP",null,null,null},
+			{null,null,null,null,null,null,null,"WP"},
+			{"WB","WP",null,"WP","WR",null,null,null},
+			{"WP",null,"WP",null,"WB","WP","WP",null},
+			{"WR","WN",null,"WQ","WK",null,"WN",null}
 		        })
 			};
 }
