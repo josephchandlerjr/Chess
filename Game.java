@@ -182,7 +182,10 @@ public class Game
 		 if (board.piecesBetween(from, to)){ return false;}
 		 return true;
 	 }
-	 public boolean isValidQueenMove(Square from, Square to){ return true;}
+	 public boolean isValidQueenMove(Square from, Square to)
+	 {
+		 return isValidRookMove(from,to) || isValidBishopMove(from,to);
+	 }
 	 public boolean isValidKingMove(Square from, Square to){ return true;}
 
 }
