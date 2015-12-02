@@ -208,5 +208,18 @@ public class Board
 		 return result;
 			 
 	 }
+	public boolean isInSameColumn(Square from, Square to)
+	 {       
+		 int fromCol = from.getCol();
+		 int toCol = to.getCol();
 
+		 return fromCol == toCol;
+	 }
+	public boolean isInSameRow(Square from, Square to)
+	 {       
+		 int fromRow = from.getRow();
+		 int toRow = to.getRow();
+
+		 return fromRow == toRow;
+	 }
 }

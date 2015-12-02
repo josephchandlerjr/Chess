@@ -161,14 +161,11 @@ public class Game
 	 }
 	 public boolean isValidRookMove(Square from, Square to)
 	 {       
-		 int fromRow = from.getRow();
-		 int fromCol = from.getCol();
-		 int toRow = to.getRow();
-		 int toCol = to.getCol();
+
 		 ChessPiece piece= from.getPiece();
 		 String myColor = piece.getColor();
-		 int step;
-		 
+		 if (!board.isInSameColumn(from,to) && !board.isInSameRow(from,to)){ return false;}
+		  
 		 if (board.isOccupiedByPieceOfSameColor(to, myColor)) { return false;}
 		 if (board.piecesBetween(from, to)){ return false;}
 		 return true;
