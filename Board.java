@@ -6,6 +6,8 @@ import java.util.ArrayList;
 public class Board
 {
 	private Square[][] board;
+	Square whiteKingsSquare;
+	Square blackKingsSquare;
 
 	public Board()
 	{
@@ -29,7 +31,15 @@ public class Board
 	 */
 	public void setPiece(int row, int col, ChessPiece piece)
 	{
-		board[row][col].setPiece(piece);
+		Square square = board[row][col];
+		square.setPiece(piece);
+		if (piece instanceof King)
+		{ 
+			String color = piece.getColor();
+			if (color.equals("BLACK"))      { blackKingsSquare = square;}
+			else if (color.equals("WHITE")) { whiteKingsSquare = square;}
+		}
+
 	}
 	/**
 	 * gets a square from the board
