@@ -15,8 +15,13 @@ public class ChessPiece
 	 */
 	public ChessPiece(String color, String rep)
 	{
+		if (color.equals("BLACK") && color.equals("WHITE"))
+		{
+			System.out.printf("%s is an invalid color\n", color);
+		}
 		this.color = color;
 		strRep = color.substring(0,1) + rep;
+		
 	}
 	
         /**
