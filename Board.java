@@ -8,6 +8,7 @@ public class Board
 	private Square[][] board;
 	Square whiteKingsSquare;
 	Square blackKingsSquare;
+	
 
 	public Board()
 	{

@@ -30,6 +30,7 @@ public class TestData
 							  {7,5,6,4},
 							  {0,3,1,3},
 							  {1,3,3,5},
+							  {0,4,1,4},
 	                                                  };
 	public static final boolean[] moveIsValid =       { 
 		                                          true,
@@ -55,6 +56,7 @@ public class TestData
 							  false,
 							  false,
 							  false,
+							  true, 
 							  true, 
 							  true, 
 							  true 
@@ -314,6 +316,16 @@ public class TestData
 			new TestBoard( new String[][] {
 			{null,null,"BB",null,"BK","BB",null,"BR"}, //(1,3) -> (3,5)   
 			{null,"BP","BP",null,null,"BP","BP","BP"},
+			{"BR",null,"BN",null,null,"BN",null,null},
+			{"BP",null,null,"WP","BP","BQ",null,null},
+			{null,null,null,null,null,null,null,"WP"},
+			{"WB","WP",null,"WP","WR",null,null,null},
+			{"WP",null,"WP",null,"WB","WP","WP",null},
+			{"WR","WN",null,"WQ","WK",null,"WN",null}
+		        }),
+			new TestBoard( new String[][] {
+			{null,null,"BB",null,null,"BB",null,"BR"}, //(0,4) -> (1,4)   
+			{null,"BP","BP",null,"BK","BP","BP","BP"},
 			{"BR",null,"BN",null,null,"BN",null,null},
 			{"BP",null,null,"WP","BP","BQ",null,null},
 			{null,null,null,null,null,null,null,"WP"},

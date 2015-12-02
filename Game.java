@@ -94,7 +94,8 @@ public class Game
 		{ return false;} 
 		if (isValidMove(from,to)) 
 		{
-			to.setPiece(from.getPiece());
+			ChessPiece piece = from.getPiece();
+			board.setPiece(to.getRow(),to.getCol(), piece);
 			from.setPiece(null);
 			scoreSheet.addMove(from,to);
 			return true;
