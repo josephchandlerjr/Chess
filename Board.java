@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 
 /**
  * represents a chess game board
@@ -150,5 +150,61 @@ public class Board
 		return s.isOccupied() && s.getPiece().getColor().equals(myColor);
 
 	}
+	/**
+	 * takes two pieces on same row, column, or diagonal and tells if there are pieces between them
+	 * @param from a Square on the board
+	 * @param to another Square on board
+	 * @return true if there are occupied squares between Squares given else false 
+	 */
+	public boolean piecesBetween(Square from, Square to)
+	{
+		ArrayList<Square> squares = squaresBetween(from, to);
+		for (Square square : squares)
+		{
+			if (square.isOccupied())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * returns squares that lie between two squares on same row, column or diagonal
+	 * @param from a Square on the board
+	 * @param to another Square on board
+	 * @return array of Square objects between the two give Squares
+	 */
+	public ArrayList<Square> squaresBetween(Square from, Square to)
+	 {       
+		 ArrayList<Square> result = new ArrayList<Square>();
+		 int fromRow = from.getRow();
+		 int fromCol = from.getCol();
+		 int toRow = to.getRow();
+		 int toCol = to.getCol();
+
+		 int rowStep;
+		 int colStep;
+		 
+		 if     (toRow > fromRow){ rowStep = 1;}
+		 else if(toRow > fromRow){ rowStep = -1;}
+		 else                    { rowStep = 0;}
+                 
+		 if     (toCol > fromCol){ colStep = 1;}
+		 else if(toCol > fromCol){ colStep = -1;}
+		 else                    { colStep = 0;}	 
+
+		 int col = fromCol + colStep;
+		 int row = fromRow + rowStep;
+		 while (col != toCol && row != toRow)
+		 {	
+			 result.add(getSquare(row,col));
+			 col = col + colStep;
+			 row = row + colStep;
+		 }
+		 
+		 return result;
+			 
+	 }
 
 }
