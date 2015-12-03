@@ -244,8 +244,11 @@ public class Game
 		 { return false;}
 		 if (to.getRow()==6 && to.getCol()==3){System.out.println("still here");}
 
-		 //ignoreCheckRule only set to false when called from within KingInCheck to preven recursion
-		 Board boardAfterMove = altBoard(from, to);
+		 //ignoreCheckRule only set to false when called from within KingInCheck to prevent recursion
+		 Move move1 = new Move(from,to);
+		 Move move2 = new Move(null, from);
+		 Move[] moves = {move1, move2};
+		 Board boardAfterMove = altBoard(moves);//from, to);
 		 if (!ignoreCheckRule && kingInCheck(to,boardAfterMove)) 
 		 { 
 			 return false;} 
@@ -360,7 +363,11 @@ public class Game
 		 {
 			 for (Square to : board.board[row])
 			 {
-				 if (isValidMove(kingsLocation, to) && !kingInCheck(to,altBoard(kingsLocation,to)))
+				 Move move1 = new Move(kingsLocation, to);
+				 Move move2 = new Move(null, kingsLocation);
+				 Move[] moves = {move1, move2};
+				 Board boardAfter = altBoard(moves);
+				 if (isValidMove(kingsLocation, to) && !kingInCheck(to, boardAfter));//to,altBoard(kingsLocation,to)))
 				 { return false;}
 			 }
 		 }
@@ -402,15 +409,43 @@ public class Game
 		 
 		 return newBoard;
 	 } 
+	/**
+	 * gets a copy of the current board with addition of moves given
+	 * @param moves array of Moves objects, if element contains null Square reference implies to us null piece
+	 * @return copy of current board object with moves applied
+	 */ 
+	 public Board altBoard(Move[] moves)
+	 {
+	         Board newBoard = board.copy();
+		 for (Move move : moves)
+		 { 
+			 ChessPiece piece;
+			 //direct access to newBoard here, maybe change later
+			 if (move.from == null)
+			 {
+				 piece = null;
+			 }
+			 else
+			 {
+				 piece = move.from.getPiece();
+			 }
+
+			 newBoard.setPiece(move.to.getRow(),move.to.getCol(), piece);
+		 } 
+		 return newBoard;
+	 } 
 	 /**
 	  * determines if white can castle king side
 	  * @return true if white can castle king side else false
 	  */
 	 public boolean whiteCanCastleKingSide()
 	 {
-		 //rook and king in original positions
-		 //return !scoreSheet.contains();
+		 //rook and king in original positions?
+		 if (scoreSheet.contains(initWKR) || scoreSheet.contains(initWK))
+		 { return false;}
 		 //no pieces between
+		 if (board.piecesBetween(initWKR,initWK))
+		 { return false;}
 
 		 //does not put king in check
 
@@ -422,6 +457,12 @@ public class Game
 	  */
 	 public boolean blackCanCastleKingSide()
 	 {
+		 //rook and king in original positions?
+		 if (scoreSheet.contains(initBKR) || scoreSheet.contains(initBK))
+		 { return false;}
+		 //no pieces between
+		 if (board.piecesBetween(initBKR,initBK))
+		 { return false;}
 		 return false;
 	 } 
 
@@ -431,8 +472,13 @@ public class Game
 	  */
 	 public boolean whiteCanCastleQueenSide()
 	 {
+
 		 //rook and king in original positions
+		 if (scoreSheet.contains(initWQR) || scoreSheet.contains(initWK))
+		 { return false;}
 		 //no pieces between
+		 if (board.piecesBetween(initWQR,initWK))
+		 { return false;}
 
 		 //does not put king in check
 
@@ -444,6 +490,13 @@ public class Game
 	  */
 	 public boolean blackCanCastleQueenSide()
 	 {
+
+		 //rook and king in original positions
+		 if (scoreSheet.contains(initBQR) || scoreSheet.contains(initBK))
+		 { return false;}
+		 //no pieces between
+		 if (board.piecesBetween(initBQR,initBK))
+		 { return false;}
 		 return false;
 	 } 
 
