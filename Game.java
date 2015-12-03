@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /** 
  * represents a chess game
  * board is 2D array of  objects
@@ -216,11 +218,20 @@ public class Game
 	  */
 	 public boolean isValidKingMove(Square from, Square to, boolean ignoreCheckRule)
 	 {    
-		 //ignoreCheckRule only set to false when called from within KingInCheck to preven recursion
-		 if (!ignoreCheckRule && kingInCheck(to)) { return false;} //king can't move into check
-		 // need additional is-same-square-check here when called directly from kingInCheck
 
+		 // need duplicate logic here when called directly from kingInCheck
 		 if (from == to){ return false;}
+	        	
+		 if (!from.isOccupied()) // can't move a piece that isn't there
+		 { return false;} 
+
+		 if (board.isOccupiedByPieceOfSameColor(to, from.getPiece().getColor()))
+		 { return false;}
+
+		 //ignoreCheckRule only set to false when called from within KingInCheck to preven recursion
+		 if (!ignoreCheckRule && kingInCheck(to,from)) 
+		 { 
+			 return false;} //king can't move into check
 		 
 		 int fromRow = from.getRow();
 		 int fromCol = from.getCol();
@@ -229,6 +240,7 @@ public class Game
 
 		 int colDiff = toCol - fromCol;
 		 int rowDiff = toRow - fromRow;
+
 		 
 		 
 		 return Math.abs(colDiff) <= 1 && Math.abs(rowDiff) <= 1; 
@@ -236,15 +248,13 @@ public class Game
 		 
 	 }
 
-	 public boolean kingInCheck(Square kingsLocation)
+	 public boolean kingInCheck(Square kingsLocation, Square ignore)
 	 {
 		 for (int row=0; row < 8; row++)
 		 {
-			 for (int col=0; col < 8; col++)
+			 for (Square from : board.board[row])
 			 {
-				 int r = row; int c=col;
-				 Square from = board.getSquare(row, col);
-				 if (from.isOccupied())
+				 if (from.isOccupied() && from != ignore)
 				 {
 					 ChessPiece piece = from.getPiece();
 					 if (piece instanceof King)
@@ -262,16 +272,81 @@ public class Game
 				 }
 			 }
 		 }
+
 		 return false;
 	 }
+	 /** finds out if black king is in check
+	  * @return true if black king is in check else false
+	  */
 	 public boolean blackKingInCheck()
 	 {
-		 return kingInCheck(board.blackKingsSquare);
+		 return kingInCheck(board.blackKingsSquare, null);
 	 }
+	 /** finds out if white king is in check
+	  * @return true if white king is in check else false
+	  */
 	 public boolean whiteKingInCheck()
 	 {
-		 return kingInCheck(board.whiteKingsSquare);
+		 return kingInCheck(board.whiteKingsSquare, null);
 	 }
+	 /** 
+	  * finds all squares that are valid moves from a given starting square
+	  * @param from Square we are moving from
+	  * @return ArrayList of Square elements which are valid moves from starting point
+	  */
+	 public ArrayList<Square> getAllMoves(Square from)
+	 {
+		 ArrayList<Square> result = new ArrayList<Square>();
+		 for (int row=0; row < 8; row++)
+		 {
+			 for (Square to : board.board[row])
+			 {
+				 if (isValidMove(from, to))
+				 {
+					 result.add(to);
+				 }
+			 }
+		 }
+		 return result; 
+	 }
+	 /**
+	  * finds out if given color is in checkmate
+	  * @param color color of side we are testing
+	  * @return true if given colors king is in checkmate else false
+	  */
+	 public boolean colorInCheckmate(String color)
+	 {
+		 Square kingsLocation = board.whiteKingsSquare;
+		 if (color.equals("BLACK"))
+		 { kingsLocation = board.blackKingsSquare; }
+
+		 for (int row=0; row < 8; row++)
+		 {
+			 for (Square to : board.board[row])
+			 {
+				 if (isValidMove(kingsLocation, to) && !kingInCheck(to,null)){ return false;}
+			 }
+		 }
+		 return true;
+
+	 }
+	 /**
+	  * finds out if black king is in checkmate
+	  * @return true if black king is in checkmate else false
+	  */
+	 public boolean blackInCheckmate()
+	 {
+		 return colorInCheckmate("BLACK");
+	 }
+	 /**
+	  * finds out if white king is in checkmate
+	  * @return true if white king is in checkmate else false
+	  */
+	 public boolean whiteInCheckmate()
+	 {
+		 return colorInCheckmate("WHITE");
+	 }
+	 
 
 
 }

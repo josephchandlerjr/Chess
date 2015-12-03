@@ -53,13 +53,14 @@ public class Test
 		boolean moveResult = g.movePiece(oldRow,oldCol,newRow,newCol);
 		if (VERBOSE)
 		{
+			System.out.printf("movePiece returns %s\n", moveResult);
 			System.out.println("Game board after move:");
 			g.board.display();
 			System.out.println("Correct board is:");
 			System.out.print(correctBoard);
+			if (g.blackKingInCheck()){ System.out.println("Black king in check!");}
+			if (g.whiteKingInCheck()){ System.out.println("White king in check!");}
 		}
-		if (g.blackKingInCheck()){ System.out.println("Black king in check!");}
-		if (g.whiteKingInCheck()){ System.out.println("White king in check!");}
 		
 		return moveResult == result && Arrays.deepEquals(g.board.toStringArray(), correctBoard.array);
 	} 
