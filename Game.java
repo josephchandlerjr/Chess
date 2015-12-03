@@ -125,7 +125,6 @@ public class Game
 	 */
 	 public boolean isValidMove(Square from, Square to)
 	 {
-		 if (to.getRow()==6 && to.getCol()==3){System.out.printf("%s testing\n",from);}
 		 if (from == to){ return false;}
 	        	
 		 if (!from.isOccupied()) // can't move a piece that isn't there
@@ -242,13 +241,12 @@ public class Game
 
 		 if (board.isOccupiedByPieceOfSameColor(to, from.getPiece().getColor()))
 		 { return false;}
-		 if (to.getRow()==6 && to.getCol()==3){System.out.println("still here");}
 
 		 //ignoreCheckRule only set to false when called from within KingInCheck to prevent recursion
 		 Move move1 = new Move(from,to);
 		 Move move2 = new Move(null, from);
 		 Move[] moves = {move1, move2};
-		 Board boardAfterMove = altBoard(moves);//from, to);
+		 Board boardAfterMove = altBoard(moves);
 		 if (!ignoreCheckRule && kingInCheck(to,boardAfterMove)) 
 		 { 
 			 return false;} 
@@ -267,12 +265,16 @@ public class Game
 		 
 		 
 	 }
-
-	 public boolean kingInCheck(Square to, Board board)
+	 /** tests if king is in check, if explicit board given will use it
+	  * @param kingsLoc kings Square, if board given will get Square of same row/col on it instead implicitly
+	  * @param board if Board object given will use it instead of game board, if null will ignore param
+	  * @return true if king is on kingsLoc is in check else false 
+	  */
+	 public boolean kingInCheck(Square kingsLoc, Board board)
 	 {
 
 		 if (board == null){ board = this.board;}
-		 Square kingsLocation = board.getSquare(to.getRow(),to.getCol());
+		 Square kingsLocation = board.getSquare(kingsLoc.getRow(),kingsLoc.getCol());
 		 for (int row=0; row < 8; row++)
 		 {
 			 for (Square from : board.board[row])
@@ -329,10 +331,6 @@ public class Game
 				 {
 					 result.add(to);
 				 }
-				 else 
-				 {
-					 System.out.printf("%s cannot move to %d %d\n",from,to.getRow(),to.getCol());
-				 }
 			 }
 		 }
 		 return result; 
@@ -357,7 +355,6 @@ public class Game
 		 if (color.equals("BLACK"))
 		 { kingsLocation = board.blackKingsSquare; }
 		 ArrayList<Square> validMoves = getAllMoves(kingsLocation);
-		 System.out.printf("checking %d %s king moves\n",validMoves.size(),color);
 
 		 for (int row=0; row < 8; row++)
 		 {
@@ -367,7 +364,7 @@ public class Game
 				 Move move2 = new Move(null, kingsLocation);
 				 Move[] moves = {move1, move2};
 				 Board boardAfter = altBoard(moves);
-				 if (isValidMove(kingsLocation, to) && !kingInCheck(to, boardAfter));//to,altBoard(kingsLocation,to)))
+				 if (isValidMove(kingsLocation, to) && !kingInCheck(to, boardAfter));
 				 { return false;}
 			 }
 		 }
@@ -390,25 +387,7 @@ public class Game
 	 {
 		 return colorInCheckmate("WHITE");
 	 }
-	/**
-	 * gets a copy of the current board with addition of one move
-	 * @param from square to move from
-	 * @param to square to move to
-	 * @return newly created board, a copy of old with addition of one move
-	 */ 
-	 public Board altBoard(Square from, Square to)
-	 {
 
-                 Board newBoard = board.copy();
-		 //direct access to newBoard here, maybe change later
-		 Square newFrom = newBoard.getSquare(from.getRow(),from.getCol());
-
-		 ChessPiece piece = from.getPiece();
-		 newBoard.setPiece(to.getRow(),to.getCol(), piece);
-		 newFrom.setPiece(null);
-		 
-		 return newBoard;
-	 } 
 	/**
 	 * gets a copy of the current board with addition of moves given
 	 * @param moves array of Moves objects, if element contains null Square reference implies to us null piece
@@ -440,16 +419,8 @@ public class Game
 	  */
 	 public boolean whiteCanCastleKingSide()
 	 {
-		 //rook and king in original positions?
-		 if (scoreSheet.contains(initWKR) || scoreSheet.contains(initWK))
-		 { return false;}
-		 //no pieces between
-		 if (board.piecesBetween(initWKR,initWK))
-		 { return false;}
+		 return canCastle(initWK, initWKR, "KING");
 
-		 //does not put king in check
-
-		 return false;
 	 }
 	 /**
 	  * determines if black can castle king side
@@ -457,13 +428,9 @@ public class Game
 	  */
 	 public boolean blackCanCastleKingSide()
 	 {
-		 //rook and king in original positions?
-		 if (scoreSheet.contains(initBKR) || scoreSheet.contains(initBK))
-		 { return false;}
-		 //no pieces between
-		 if (board.piecesBetween(initBKR,initBK))
-		 { return false;}
-		 return false;
+
+		 return canCastle(initBK, initBKR, "KING");
+
 	 } 
 
 	 /**
@@ -472,17 +439,7 @@ public class Game
 	  */
 	 public boolean whiteCanCastleQueenSide()
 	 {
-
-		 //rook and king in original positions
-		 if (scoreSheet.contains(initWQR) || scoreSheet.contains(initWK))
-		 { return false;}
-		 //no pieces between
-		 if (board.piecesBetween(initWQR,initWK))
-		 { return false;}
-
-		 //does not put king in check
-
-		 return false;
+		 return canCastle(initWK, initWQR, "QUEEN");
 	 }
 	 /**
 	  * determines if black can castle queen side
@@ -491,13 +448,55 @@ public class Game
 	 public boolean blackCanCastleQueenSide()
 	 {
 
-		 //rook and king in original positions
-		 if (scoreSheet.contains(initBQR) || scoreSheet.contains(initBK))
+		 return canCastle(initBK, initBQR, "QUEEN");
+
+	 } 
+	 /**
+	  * determines if given side can castle side
+	  * @param initK initial Square of king
+	  * @param initR initial Square of rook
+	  * @return true if side can castle  side else false
+	  */
+	 public boolean canCastle(Square initK, Square initR, String side)
+	 {
+		 int kingShift = 8;
+		 int rookShift = 8; 
+		 if (side.equals("KING"))
+		 {
+			 kingShift = 2;
+			 rookShift = -2;
+		 }
+		 else if (side.equals("QUEEN"))
+		 {
+			 kingShift = -2;
+			 rookShift = 3;
+		 }
+		 //rook and king in original positions?
+		 if (scoreSheet.contains(initR) || scoreSheet.contains(initK))
 		 { return false;}
 		 //no pieces between
-		 if (board.piecesBetween(initBQR,initBK))
+		 if (board.piecesBetween(initR,initK))
 		 { return false;}
-		 return false;
+
+		 //does not put king in check
+		 Square newKingSqr = board.getSquare(initK.getRow(), initK.getCol() + kingShift);
+		 Square newRookSqr = board.getSquare(initR.getRow(), initR.getCol() + rookShift);
+
+		 Move moveKing = new Move(initK, newKingSqr);
+                 Move makeInitKingNull = new Move(null, initK);
+		 Move moveRook = new Move(initR,newRookSqr);
+		 Move makeInitRookNull = new Move(null, initR);
+		 Move[] moves = {moveKing,makeInitKingNull,moveRook,makeInitRookNull};
+
+		 Board newBoard = altBoard(moves);
+
+		 if (kingInCheck(newKingSqr, newBoard))
+		 { return false;}
+
+
+		 return true;
+
 	 } 
 
+	 
 }
