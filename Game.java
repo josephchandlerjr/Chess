@@ -10,6 +10,13 @@ public class Game
 	//instance variables
 	Board board;
 	Score scoreSheet;
+	// intial locations of pieces involved in castling
+	Square initWK;
+	Square initBK;
+	Square initWKR;
+	Square initWQR;
+	Square initBKR;
+	Square initBQR;
 	
 	public Game()
 	{
@@ -41,9 +48,13 @@ public class Game
 	        	
 		//rooks
 		board.setPiece(0, 0, new Rook("BLACK"));
+		initBQR = board.getSquare(0,0);
 		board.setPiece(0, 7, new Rook("BLACK"));
+		initBKR = board.getSquare(0,7);
 		board.setPiece(7, 0, new Rook("WHITE"));
+		initWQR = board.getSquare(7,0);
 		board.setPiece(7, 7, new Rook("WHITE"));
+		initWKR = board.getSquare(7,7);
 
 		//knights
 		board.setPiece(0, 1, new Knight("BLACK"));
@@ -63,7 +74,9 @@ public class Game
 
 		//Kings
 		board.setPiece(0, 4, new King("BLACK"));
+		initBK = board.getSquare(0,4);
 		board.setPiece(7, 4, new King("WHITE"));	
+		initWK = board.getSquare(7,4);
 	}
 
 	/**moves a piece
@@ -370,7 +383,12 @@ public class Game
 	 {
 		 return colorInCheckmate("WHITE");
 	 }
-	 
+	/**
+	 * gets a copy of the current board with addition of one move
+	 * @param from square to move from
+	 * @param to square to move to
+	 * @return newly created board, a copy of old with addition of one move
+	 */ 
 	 public Board altBoard(Square from, Square to)
 	 {
 
@@ -384,6 +402,49 @@ public class Game
 		 
 		 return newBoard;
 	 } 
-	 
+	 /**
+	  * determines if white can castle king side
+	  * @return true if white can castle king side else false
+	  */
+	 public boolean whiteCanCastleKingSide()
+	 {
+		 //rook and king in original positions
+		 //return !scoreSheet.contains();
+		 //no pieces between
+
+		 //does not put king in check
+
+		 return false;
+	 }
+	 /**
+	  * determines if black can castle king side
+	  * @return true if black can castle king side else false
+	  */
+	 public boolean blackCanCastleKingSide()
+	 {
+		 return false;
+	 } 
+
+	 /**
+	  * determines if white can castle queen side
+	  * @return true if white can castle queen side else false
+	  */
+	 public boolean whiteCanCastleQueenSide()
+	 {
+		 //rook and king in original positions
+		 //no pieces between
+
+		 //does not put king in check
+
+		 return false;
+	 }
+	 /**
+	  * determines if black can castle queen side
+	  * @return true if black can castle queen side else false
+	  */
+	 public boolean blackCanCastleQueenSide()
+	 {
+		 return false;
+	 } 
 
 }
