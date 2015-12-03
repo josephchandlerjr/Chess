@@ -60,6 +60,8 @@ public class Test
 			System.out.print(correctBoard);
 			if (g.blackKingInCheck()){ System.out.println("Black king in check!");}
 			if (g.whiteKingInCheck()){ System.out.println("White king in check!");}
+			if (g.blackInCheckmate()){ System.out.println("Black king in checkmate!!");}
+			if (g.whiteInCheckmate()){ System.out.println("White king in checkmate!!");}
 		}
 		
 		return moveResult == result && Arrays.deepEquals(g.board.toStringArray(), correctBoard.array);

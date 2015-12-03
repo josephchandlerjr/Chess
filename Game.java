@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /** 
  * represents a chess game
@@ -111,6 +112,7 @@ public class Game
 	 */
 	 public boolean isValidMove(Square from, Square to)
 	 {
+		 if (to.getRow()==6 && to.getCol()==3){System.out.printf("%s testing\n",from);}
 		 if (from == to){ return false;}
 	        	
 		 if (!from.isOccupied()) // can't move a piece that isn't there
@@ -227,11 +229,13 @@ public class Game
 
 		 if (board.isOccupiedByPieceOfSameColor(to, from.getPiece().getColor()))
 		 { return false;}
+		 if (to.getRow()==6 && to.getCol()==3){System.out.println("still here");}
 
 		 //ignoreCheckRule only set to false when called from within KingInCheck to preven recursion
-		 if (!ignoreCheckRule && kingInCheck(to,from)) 
+		 Board boardAfterMove = altBoard(from, to);
+		 if (!ignoreCheckRule && kingInCheck(to,boardAfterMove)) 
 		 { 
-			 return false;} //king can't move into check
+			 return false;} 
 		 
 		 int fromRow = from.getRow();
 		 int fromCol = from.getCol();
@@ -248,13 +252,16 @@ public class Game
 		 
 	 }
 
-	 public boolean kingInCheck(Square kingsLocation, Square ignore)
+	 public boolean kingInCheck(Square to, Board board)
 	 {
+
+		 if (board == null){ board = this.board;}
+		 Square kingsLocation = board.getSquare(to.getRow(),to.getCol());
 		 for (int row=0; row < 8; row++)
 		 {
 			 for (Square from : board.board[row])
 			 {
-				 if (from.isOccupied() && from != ignore)
+				 if (from.isOccupied())
 				 {
 					 ChessPiece piece = from.getPiece();
 					 if (piece instanceof King)
@@ -267,6 +274,7 @@ public class Game
 					 }
 					 else if(isValidMove(from, kingsLocation))
 				         {
+
 						 return true;
 					 }
 				 }
@@ -305,10 +313,15 @@ public class Game
 				 {
 					 result.add(to);
 				 }
+				 else 
+				 {
+					 System.out.printf("%s cannot move to %d %d\n",from,to.getRow(),to.getCol());
+				 }
 			 }
 		 }
 		 return result; 
 	 }
+
 	 /**
 	  * finds out if given color is in checkmate
 	  * @param color color of side we are testing
@@ -316,15 +329,26 @@ public class Game
 	  */
 	 public boolean colorInCheckmate(String color)
 	 {
+		 if (color.equals("WHITE"))
+		 {
+			 if(!whiteKingInCheck()){return false;}
+		 }
+		 else
+		 {
+			 if(!blackKingInCheck()){return false;}
+		 }
 		 Square kingsLocation = board.whiteKingsSquare;
 		 if (color.equals("BLACK"))
 		 { kingsLocation = board.blackKingsSquare; }
+		 ArrayList<Square> validMoves = getAllMoves(kingsLocation);
+		 System.out.printf("checking %d %s king moves\n",validMoves.size(),color);
 
 		 for (int row=0; row < 8; row++)
 		 {
 			 for (Square to : board.board[row])
 			 {
-				 if (isValidMove(kingsLocation, to) && !kingInCheck(to,null)){ return false;}
+				 if (isValidMove(kingsLocation, to) && !kingInCheck(to,altBoard(kingsLocation,to)))
+				 { return false;}
 			 }
 		 }
 		 return true;
@@ -347,6 +371,19 @@ public class Game
 		 return colorInCheckmate("WHITE");
 	 }
 	 
+	 public Board altBoard(Square from, Square to)
+	 {
 
+                 Board newBoard = board.copy();
+		 //direct access to newBoard here, maybe change later
+		 Square newFrom = newBoard.getSquare(from.getRow(),from.getCol());
+
+		 ChessPiece piece = from.getPiece();
+		 newBoard.setPiece(to.getRow(),to.getCol(), piece);
+		 newFrom.setPiece(null);
+		 
+		 return newBoard;
+	 } 
+	 
 
 }

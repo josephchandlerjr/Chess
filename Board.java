@@ -14,6 +14,11 @@ public class Board
 	{
 		board = new Square[8][8];
 	}
+
+	public Board(Square[][] board)
+	{
+		this.board = board;
+	}
 	/**
 	 * gets a square from the board
 	 * @param row row square you want lies on
@@ -250,5 +255,33 @@ public class Board
 		 int rowDiff = toRow - fromRow;
 
 		 return Math.abs(colDiff) == Math.abs(rowDiff);
+	}
+	/** 
+	 * makes copy of this board object
+	 * @return new Board object which is copy of this board object
+	 */
+	public Board copy()
+	{
+		Square[][] newArray = new Square[8][8];
+		for (int row=0; row < 8; row++)
+		{
+			for (int col=0; col < 8; col++)
+			{
+				newArray[row][col] = board[row][col].copy();
+			}
+		}
+		
+	        Board newBoard = new Board(newArray);	
+		int whiteKingRow = whiteKingsSquare.getRow();
+		int whiteKingCol = whiteKingsSquare.getCol();
+
+		int blackKingRow = blackKingsSquare.getRow();
+		int blackKingCol = blackKingsSquare.getCol();
+
+		newBoard.whiteKingsSquare = newBoard.getSquare(whiteKingRow,whiteKingCol);
+		newBoard.blackKingsSquare = newBoard.getSquare(blackKingRow,blackKingCol);
+
+		return newBoard;
+
 	}
 }

@@ -8,9 +8,7 @@ public class ChessPiece
 	private String strRep;
 
         /** initializes chess piece with row, column, color and string representation
-	 * @param row row number 
-	 * @param col column number
-	 * @param color set to 0 for white and 1 for black
+	 * @param color "WHITE" or "BLACK" 
 	 * @param rep string representation to be used
 	 */
 	public ChessPiece(String color, String rep)

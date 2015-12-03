@@ -91,4 +91,17 @@ public class Square
 	{
 		return piece != null;
 	}
+
+	/**
+	 * get copy of this square
+	 * @return copy of this square
+	 */
+	public Square copy()
+	{
+		Square newSquare = new Square(color, row, col);
+		newSquare.setPiece(piece);
+		return newSquare;
+	}
+
+	
 }
