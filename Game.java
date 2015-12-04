@@ -540,21 +540,21 @@ public class Game
 			 if (side.equals("KING"))
 			 {
 				 if (!blackCanCastleKingSide()){return false;}
-				 initR = initWKR;
+				 initR = initBKR;
 				 kingShift = 2;
 				 rookShift = -2;
 			 }
 			 else if(side.equals("QUEEN"))
 			 {
 				 if (!blackCanCastleQueenSide()){return false;}
-				 initR = initWQR;
+				 initR = initBQR;
 				 kingShift = -2;
 				 rookShift = 3;
 			 }
 		 }
 		 Square newKingSqr = board.getSquare(initK.getRow(), initK.getCol() + kingShift);
 		 Square newRookSqr = board.getSquare(initR.getRow(), initR.getCol() + rookShift);
-		
+
 		 ChessPiece king = initK.getPiece();
 		 ChessPiece rook = initR.getPiece();
 		 initK.setPiece(null);

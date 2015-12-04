@@ -42,13 +42,19 @@ public class Test
 	 * tests a move by comparing its string array representation to the known correct string array 
 	 * @return true if the string arrays match else false
 	 */
-	public static boolean testMove(Game g, int oldRow,int oldCol,int newRow,int newCol,TestBoard correctBoard, boolean result)
+	public static boolean testMove(Game g, int oldRow,int oldCol,int newRow,int newCol,TestBoard correctBoard, boolean result, int castleSwitch)
 	{
 		if (VERBOSE)
 		{
 			System.out.printf("testing move: %d %d to %d %d\n",oldRow,oldCol,newRow,newCol);
 		}
-		boolean moveResult = g.movePiece(oldRow,oldCol,newRow,newCol);
+		// Test uses special codes to account for castling
+		boolean moveResult = false;
+		if (castleSwitch==8){ moveResult = g.castle("WHITE", "KING");}
+		else if(castleSwitch==9){ moveResult = g.castle("BLACK", "KING");}
+		else if(castleSwitch==10){ moveResult = g.castle("WHITE", "QUEEN");}
+		else if(castleSwitch==11){ moveResult = g.castle("BLACK", "QUEEN");}
+		else { moveResult = g.movePiece(oldRow,oldCol,newRow,newCol);}
 		if (VERBOSE)
 		{
 			System.out.printf("movePiece returns %s\n", moveResult);
@@ -84,7 +90,7 @@ public class Test
 				int[] params = moves[i];
 			        TestBoard board = boards[i];	
 				boolean moveResult = testMove(g,params[0],params[1],params[2],params[3],
-						     board, moveIsValid[i]);
+						     board, moveIsValid[i],params[4]);
 				if (!moveResult)
 				{ 
 					System.out.printf("error moving %d %d to %d %d",params[0],
@@ -102,6 +108,8 @@ public class Test
 		System.out.println("All moves correct");
 
 		int[][] scoreSheet = g.scoreSheet.toIntArray();
+		moves = removeBadMoves();
+
 		if (VERBOSE)
 		{
 			System.out.println("The score sheet shows:");
@@ -125,9 +133,16 @@ public class Test
 
 			}
 		}
-		moves = removeBadMoves();
-
-		boolean correctScoreSheet = Arrays.deepEquals(moves,scoreSheet);
+		//lets remove that 5th int at the end of each row used as castle switch
+		int[][] movesWithoutCastleSwitch = new int[moves.length][4];
+	        for (int row=0; row < moves.length; row++)
+		{
+			for(int col=0;col < 4; col++)
+			{
+				movesWithoutCastleSwitch[row][col] = moves[row][col];
+			}
+		}
+		boolean correctScoreSheet = Arrays.deepEquals(movesWithoutCastleSwitch,scoreSheet);
 		if (!correctScoreSheet)
 		{ 
 			System.out.println("Score sheet incorrect");
