@@ -3,7 +3,7 @@
  */
 public class TestData
 {
-	public static final int[][] goodTestBoardMoves = { 
+	public static final int[][] testBoardMoves1 = { 
 		                                          {1,0,2,0},
 							  {6,1,5,1},
 							  {0,1,2,2},
@@ -35,7 +35,7 @@ public class TestData
 							  {7,4,6,5},
 							  {0,5,2,3},
 	                                                  };
-	public static final boolean[] moveIsValid =       { 
+	public static final boolean[] moveIsValid1 =       { 
 		                                          true,
 							  true,
 							  true,
@@ -67,7 +67,7 @@ public class TestData
 							  true,
 							  true 
 	                                                  };
-	public static final TestBoard[] goodTestBoards = { 
+	public static final TestBoard[] testBoards1= { 
 
 		        new TestBoard( new String[][] {
 			{"BR","BN","BB","BQ","BK","BB","BN","BR"}, //(1,0) -> (2,0)

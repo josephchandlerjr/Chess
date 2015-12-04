@@ -10,9 +10,9 @@ import java.util.Arrays;
 public class Test
 {
 	private static boolean VERBOSE = false;
-	private static TestBoard[] goodTestBoards = TestData.goodTestBoards;
-	private static int[][] testBoardMoves = TestData.goodTestBoardMoves;
-	private static boolean[] moveIsValid = TestData.moveIsValid;
+	private static TestBoard[] testBoards = TestData.testBoards1;
+	private static int[][] testBoardMoves = TestData.testBoardMoves1;
+	private static boolean[] moveIsValid = TestData.moveIsValid1;
 
 	/**
 	 * runs tests
@@ -26,7 +26,7 @@ public class Test
 		Game g = new Game();
 		System.out.println("Testing");
 
-	        if (testMoves(g, goodTestBoards, testBoardMoves))
+	        if (testMoves(g, testBoards, testBoardMoves))
 		{
 			System.out.println("Tests Successful");
 		}
@@ -74,14 +74,14 @@ public class Test
 	 */
 	public static boolean testMoves(Game g, TestBoard[] boards, int[][] moves)
 	{
+		System.out.println("Initial Game board:");
+		if (VERBOSE){g.board.display();}
 		for (int i=0; i < boards.length; i++)
 		{
 				int[] params = moves[i];
 			        TestBoard board = boards[i];	
 				boolean moveResult = testMove(g,params[0],params[1],params[2],params[3],
 						     board, moveIsValid[i]);
-				System.out.println("Initial Game board:");
-				g.board.display();
 				if (!moveResult)
 				{ 
 					System.out.printf("error moving %d %d to %d %d",params[0],
