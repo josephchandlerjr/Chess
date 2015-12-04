@@ -74,8 +74,11 @@ public class Test
 	 */
 	public static boolean testMoves(Game g, TestBoard[] boards, int[][] moves)
 	{
-		System.out.println("Initial Game board:");
-		if (VERBOSE){g.board.display();}
+		if (VERBOSE)
+		{
+			System.out.println("Initial Game board:");
+			g.board.display();
+		}
 		for (int i=0; i < boards.length; i++)
 		{
 				int[] params = moves[i];
