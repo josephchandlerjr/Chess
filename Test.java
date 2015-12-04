@@ -47,8 +47,6 @@ public class Test
 		if (VERBOSE)
 		{
 			System.out.printf("testing move: %d %d to %d %d\n",oldRow,oldCol,newRow,newCol);
-			System.out.println("Game board before:");
-			g.board.display();
 		}
 		boolean moveResult = g.movePiece(oldRow,oldCol,newRow,newCol);
 		if (VERBOSE)
@@ -56,12 +54,14 @@ public class Test
 			System.out.printf("movePiece returns %s\n", moveResult);
 			System.out.println("Game board after move:");
 			g.board.display();
-			System.out.println("Correct board is:");
-			System.out.print(correctBoard);
 			if (g.blackKingInCheck()){ System.out.println("Black king in check!");}
 			if (g.whiteKingInCheck()){ System.out.println("White king in check!");}
 			if (g.blackInCheckmate()){ System.out.println("Black king in checkmate!!");}
 			if (g.whiteInCheckmate()){ System.out.println("White king in checkmate!!");}
+			if (g.whiteCanCastleKingSide()){ System.out.println("White can castle king side");}
+			if (g.whiteCanCastleQueenSide()){ System.out.println("White can castle queen side");}
+			if (g.blackCanCastleKingSide()){ System.out.println("Black can castle king side");}
+			if (g.blackCanCastleQueenSide()){ System.out.println("Black can castle queen side");}
 		}
 		
 		return moveResult == result && Arrays.deepEquals(g.board.toStringArray(), correctBoard.array);
@@ -80,6 +80,8 @@ public class Test
 			        TestBoard board = boards[i];	
 				boolean moveResult = testMove(g,params[0],params[1],params[2],params[3],
 						     board, moveIsValid[i]);
+				System.out.println("Initial Game board:");
+				g.board.display();
 				if (!moveResult)
 				{ 
 					System.out.printf("error moving %d %d to %d %d",params[0],
