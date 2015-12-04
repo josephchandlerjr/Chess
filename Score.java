@@ -18,6 +18,11 @@ public class Score
 		moves.add(move);
 	}
 
+	public void addMove(Move move)
+	{
+		moves.add(move);
+	}
+
 	/**
 	 * searches score sheet for a given square
 	 * @param square the square we are looking for
@@ -45,7 +50,7 @@ public class Score
 			Square to = moves.get(i).to;
 			result[i][0] = from.getRow(); 
 			result[i][1] = from.getCol(); 
-			result[i][2] = to.getRow(); 
+			result[i][2] = to.getRow();
 			result[i][3] = to.getCol(); 
 
 		}

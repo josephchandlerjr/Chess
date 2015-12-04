@@ -497,6 +497,76 @@ public class Game
 		 return true;
 
 	 } 
+	 /**
+	  * castles
+	  * @param color of side to castle, is either "BLACK" or "WHITE"
+	  * @param side to castle on, is either "KING" or "QUEEN"
+	  * @return true if castle, false if was invalid move
+	  */
+	 public boolean castle(String color, String side)
+	 {
+		 
+		 // to make compiler happy
+		 Square initK = null;
+		 Square initR = null;
+		 int kingShift = 0;
+		 int rookShift = 0 ;
 
+		 if (color.equals("WHITE"))
+		 {
+			 initK = initWK;
+
+			 if (side.equals("KING"))
+			 {
+				 if (!whiteCanCastleKingSide()){return false;}
+				 initR = initWKR;
+				 kingShift = 2;
+				 rookShift = -2;
+
+			 }
+			 else if(side.equals("QUEEN"))
+			 {
+				 if (!whiteCanCastleQueenSide()){return false;}
+				 initR = initWQR;
+				 kingShift = -2;
+				 rookShift = 3;
+				 
+			 }
+		 }
+		 else if (color.equals("BLACK"))
+		 {
+			 initK = initBK;
+
+			 if (side.equals("KING"))
+			 {
+				 if (!blackCanCastleKingSide()){return false;}
+				 initR = initWKR;
+				 kingShift = 2;
+				 rookShift = -2;
+			 }
+			 else if(side.equals("QUEEN"))
+			 {
+				 if (!blackCanCastleQueenSide()){return false;}
+				 initR = initWQR;
+				 kingShift = -2;
+				 rookShift = 3;
+			 }
+		 }
+		 Square newKingSqr = board.getSquare(initK.getRow(), initK.getCol() + kingShift);
+		 Square newRookSqr = board.getSquare(initR.getRow(), initR.getCol() + rookShift);
+		
+		 ChessPiece king = initK.getPiece();
+		 ChessPiece rook = initR.getPiece();
+		 initK.setPiece(null);
+		 initR.setPiece(null);
+		 newKingSqr.setPiece(king);
+		 newRookSqr.setPiece(rook);
+
+		 Move castle = new Move(side, initK, newKingSqr, initR, newRookSqr);
+		 scoreSheet.addMove(castle);
+
+		 return true;
+
+	 }
 	 
 }
