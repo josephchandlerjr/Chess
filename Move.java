@@ -17,7 +17,14 @@ public class Move
 		this.from = from;
 		this.to = to;
 	}
-
+	/**
+	 * second constructor to be used for castling
+	 * @param side king side or queen side, is "KING" or "QUEEN"
+	 * @param f from Square in first move
+	 * @param t to Square in first move 
+	 * @param f2 from Square in second move
+	 * @param t2 to Square in second move
+	 */
 	public Move(String side, Square f, Square t, Square f2, Square t2)
 	{
 		isCastle = true;
