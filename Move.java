@@ -7,9 +7,8 @@ public class Move
 	Square from;
 	Square to;
 	boolean isCastle = false;
-	String castleSide = "";
-	Square from2 = null;
-	Square to2 = null;
+	String castleSide;
+	Move move2; // castling has second move
 	
 
 	public Move(Square from, Square to)
@@ -31,8 +30,7 @@ public class Move
 		castleSide = side;
 		from = f;
 		to = t;
-		from2 = f2;
-		to2 = t2;
+		move2 = new Move(f2,t2);
 	        	
 
 
