@@ -1,0 +1,897 @@
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.03"]
+[Round "01"]
+[White "Gromit"]
+[Black "Neurologic"]
+[Result "0-1"]
+
+1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f4 c5 6.d5 O-O 7.Nf3 e6 8.Bd3 exd5
+9.cxd5 Qb6 10.Qb3 Qxb3 11.axb3 Na6 12.Nb5 Nb4 13.Bb1 Nxe4 14.Nc7 Nc3
+15.Nxa8 Nxb1 16.O-O Na6 17.Re1 Bf5 18.Rxa6 bxa6 19.Nc7 Rb8 20.Ne8 Bf8
+21.Nf6+ Kg7 22.Ne8+ Kh8 23.Nd2 Nxd2 24.Bxd2 Rxb3 25.Bc3+ Rxc3
+26.bxc3 h5 27.Ra1 Bd3 28.Ra3 Bb5 29.Nc7 Bh6 30.g3 Bg7 31.Kf2 Bc4
+32.Ke3 Bf6 0-1
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.03"]
+[Round "01"]
+[White "Gandalf"]
+[Black "Nimzo98"]
+[Result "0-1"]
+
+1.d4 Nf6 2.c4 e6 3.Nf3 b6 4.Nc3 Bb7 5.a3 d5 6.e3 Bd6 7.cxd5 exd5
+8.b4 O-O 9.Bd3 Nbd7 10.Qb3 c6 11.O-O a5 12.Bd2 axb4 13.axb4 Qe7 14.Ne2 Ne4
+15.Ng3 Nxd2 16.Nxd2 g6 17.Rab1 Nf6 18.Rfe1 Qd7 19.Nf3 Rfe8 20.Ne2 Ne4
+21.Rec1 Qc7 22.h3 Qe7 23.Bxe4 dxe4 24.Nd2 Ba6 25.Nc4 Bc7 26.Nc3 Bb7
+27.Nd2 Qh4 28.Qc2 Bb8 29.Ncxe4 c5 30.bxc5 Bxe4 31.Nxe4 Rxe4 32.Rxb6 Re8
+33.Rcb1 Qd8 34.Kf1 Bc7 35.Rb7 Rb8 36.d5 Rxb7 37.Rxb7 Bh2 38.Qa2 Qc8
+39.c6 Qf5 40.Qd2 Ra8 41.Ke2 Bg1 42.f3 Qg5 43.g4 Bxe3 44.Qb2 Bf4 45.Qd4 Bd6
+46.Kd1 Qh4 47.Ra7 Re8 48.Kc2 Qg3 49.Qe4 Rxe4 50.Ra8+ Kg7 0-1
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.03"]
+[Round "01"]
+[White "Shredder"]
+[Black "Diep"]
+[Result "1/2-1/2"]
+
+1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.Nf3 g6 7.Bf4 Bg7 8.Qa4+ Bd7
+9.Qb3 b5 10.Bxd6 Qb6 11.e4 b4 12.e5 bxc3 13.exf6 Bxf6 14.Qxb6 axb6 15.b4 c2
+16.Rc1 Bc3+ 17.Nd2 Ba4 18.Bd3 Kd7 19.Bf4 Bxb4 20.O-O Bxd2 21.Bxd2 Rc8
+22.Bxc2 Bxc2 23.Rxc2 Kd6 24.Bf4+ Kxd5 25.Rd1+ Kc6 26.Rd6+ Kb7
+27.Rf6 Rd8 28.Rxf7+ Rd7 29.Rxd7+ Nxd7 30.Rd2 Nf8 31.Be5 Kc6 32.h4 Ra7
+33.Kf1 Rd7 34.Rb2 h5 35.f3 b5 36.Kf2 Ne6 37.g4 hxg4 38.fxg4 c4
+39.Re2 Nc5 40.Kf3 Nd3 41.Ba1 Rf7+ 42.Kg3 b4 43.h5 gxh5 44.gxh5 Rh7
+45.Rc2 Kd5 46.Kh4 c3 47.Kg5 Rg7+ 48.Kf6 Rg1 49.Bxc3 bxc3 50.Rxc3 Ne5
+51.Ra3 Rf1+ 52.Kg7 Rf7+ 53.Kg8 Rf6 54.Kg7 Rc6 55.h6 Rg6+ 56.Kh7 Rg2
+57.Ra8 Ke6 58.a4 Kf6 59.Ra6+ Ke7 60.Ra7+ Kd6 61.a5 Rg1 62.a6 Rg2 63.Rb7 Nd7
+64.Rb8 1/2-1/2
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.03"]
+[Round "01"]
+[White "Comet"]
+[Black "Diogenes"]
+[Result "1-0"]
+
+1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 O-O
+8.c3 d6 9.h3 Bb7 10.d4 Re8 11.Nbd2 Bf8 12.a4 exd4 13.cxd4 Na5 14.Bc2 c5
+15.e5 dxe5 16.dxe5 Nd7 17.b3 Nc6 18.Bb2 Nb4 19.Be4 Rb8 20.axb5 axb5
+21.Qe2 Bxe4 22.Nxe4 Qc8 23.Nfg5 h6 24.e6 fxe6 25.Qh5 e5 26.Qg6 hxg5
+27.Nxg5 Nf6 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.03"]
+[Round "01"]
+[White "IsiChess"]
+[Black "SOS"]
+[Result "0-1"]
+
+1.e4 c5 2.Nf3 Qc7 3.d4 cxd4 4.Nxd4 a6 5.Nc3 Nf6 6.Be2 e5 7.Nf5 Qc6 8.Bf3 d6
+9.Bg5 Nbd7 10.O-O h6 11.Bd2 Nb6 12.Ne3 Be7 13.b3 O-O 14.a4 Be6
+15.Ncd5 Nfxd5 16.exd5 Nxd5 17.Qe1 Nxe3 18.Bxc6 Nxc2 19.Qe4 Nxa1
+20.Bxb7 Nxb3 21.Be3 Rab8 22.Bxa6 f5 23.Qc6 Kf7 24.Rd1 Rb4 25.Bb6 Nc5
+26.Bxc5 dxc5 27.Re1 Rd8 28.Bb5 Bd6 29.a5 Ke7 30.Rd1 Bb3 31.Ra1 Be6
+32.a6 Bd7 33.Qxd7+ Rxd7 34.Bxd7 Kxd7 35.a7 Rb8 36.axb8=N+ Bxb8
+37.Ra8 Bd6 38.Ra7+ Bc7 39.h4 e4 40.Ra3 Ke6 41.Ra6+ Kd5 42.Ra7 Be5
+43.Rd7+ Ke6 44.Rd8 Bf6 45.Rc8 Kd5 46.h5 f4 47.Kf1 f3 48.gxf3 exf3 49.Rc7 c4
+50.Ke1 c3 51.Kd1 Bd4 52.Rd7+ Ke4 53.Kc2 Bf6 54.Rc7 Kf4 55.Kd3 Kg4
+56.Rc5 Kh3 57.Ra5 Kg2 58.Ra2 Be5 59.Ke3 Bc7 60.Rc2 Ba5 61.Kf4 Bb4
+62.Ke4 Kh3 63.Kxf3 Kh4 64.Ke3 Kxh5 65.Kd3 Kg4 66.Kc4 Ba5 67.Kb5 Bc7
+68.Rxc3 Bf4 69.f3+ Kg3 70.Kc6 h5 71.Kd5 h4 72.Rb3 h3 73.Rb7 g6
+74.Ke4 h2 75.Rb1 Bd6 76.Kd5 Bc7 77.f4 Bxf4 78.Ke4 0-1
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.03"]
+[Round "01"]
+[White "XXXXII"]
+[Black "P.ConNerS"]
+[Result "0-1"]
+
+1.d4 d5 2.Nf3 Nf6 3.c4 c6 4.Nc3 dxc4 5.a4 Bf5 6.Ne5 e6 7.f3 Bb4 8.Bg5 h6
+9.Bxf6 Qxf6 10.e4 Bh7 11.Bxc4 O-O 12.O-O Rd8 13.Qb3 c5 14.Rad1 Nc6
+15.Nxc6 bxc6 16.d5 Bxc3 17.bxc3 exd5 18.exd5 cxd5 19.Bxd5 Rab8 20.Qa2 Qxc3
+21.Bxf7+ Kh8 22.Qb3 Qxb3 23.Rxd8+ Rxd8 24.Bxb3 Rb8 25.Bc4 Rb4 26.Bb5 c4
+27.Rd1 Bd3 28.Kf2 a6 29.Bxa6 Rxa4 30.Bb7 Ra2+ 31.Kg3 g5 32.f4 Kg7
+33.Bf3 Kg6 34.h4 gxh4+ 35.Kxh4 Kf5 36.Kg3 Ra6 37.Bg4+ Ke4 38.Re1+ Kd4
+39.Be2 Rf6 40.Rd1 Ke3 41.Bxd3 cxd3 42.Re1+ Kd4 43.Re7 d2 44.Rd7+ Ke3
+45.Re7+ Kd3 46.Rd7+ Ke2 47.Re7+ Kf1 48.Rd7 Ke1 49.Re7+ Kd1 50.Rc7 h5
+51.Kf3 Re6 52.Kf2 Re2+ 53.Kf1 Re4 54.Kf2 Rxf4+ 55.Kg3 Rf1 56.Rb7 h4+
+57.Kh2 Kc2 58.Rc7+ Kb3 59.Rb7+ Kc4 60.Rc7+ Kb5 61.Rb7+ Kc6 62.Rg7 d1=Q
+63.Rg6+ Kb5 64.Rg5+ Ka4 65.Ra5+ Kxa5 66.g3 Rh1+ 67.Kg2 Qf1# 0-1
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.03"]
+[Round "01"]
+[White "Patzer"]
+[Black "Ikarus"]
+[Result "1-0"]
+
+1.e4 d5 2.exd5 Qxd5 3.Nc3 Qd8 4.Ne4 Nc6 5.Nf3 Nf6 6.Nc3 e5 7.Bb5 Bd6
+8.Bxc6+ bxc6 9.O-O O-O 10.d3 Qd7 11.Bg5 Qf5 12.Qe2 Nd5 13.Ne4 h6 14.Bd2 Nf4
+15.Bxf4 Qxf4 16.h3 Be6 17.c3 c5 18.b3 Rad8 19.Rae1 Rfe8 20.Kh1 f6 21.g3 Qf5
+22.g4 Qh7 23.Rg1 Be7 24.Kh2 Rd7 25.c4 Red8 26.Rd1 g5 27.Ne1 a5 28.f3 a4
+29.Ra1 axb3 30.axb3 Rb8 31.Ra6 Qf7 32.Ra3 c6 33.Nc2 Rdb7 34.Nd2 h5
+35.Ra6 Bd7 36.Re1 Qh7 37.Kg2 Rd8 38.Rb1 Be8 39.Ne4 Rbb8 40.Ne3 Ra8
+41.Rba1 Rxa6 42.Rxa6 hxg4 43.hxg4 Bd7 44.Qe1 Kf8 45.Qa5 Kf7 46.Ra7 Rh8
+47.Nf1 Ke6 48.Qc7 Qh1+ 49.Kf2 Rd8 50.Neg3 Qh4 51.Kg2 Qh8 52.Nf5 Qf8
+53.N1e3 e4 54.dxe4 Kf7 55.Qxd7 Rxd7 56.Rxd7 Qa8 57.Rxe7+ Kg8 58.e5 fxe5
+59.Rg7+ Kf8 60.Rxg5 Qa2+ 61.Kg3 Qxb3 62.Rg6 Qc3 63.Kh4 Qd2 64.Kg5 Qd8+
+65.Kh5 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.04"]
+[Round "02"]
+[White "Neurologic"]
+[Black "P.ConNerS"]
+[Result "0-1"]
+
+1.e4 c5 2.Nf3 e6 3.d4 cxd4 4.Nxd4 a6 5.Bd3 Bc5 6.Nb3 Ba7 7.Qe2 Nc6
+8.Be3 Bxe3 9.Qxe3 d6 10.O-O Nf6 11.Nc3 O-O 12.Qg5 Bd7 13.Rad1 b5 14.a3 Ne5
+15.Be2 Qc7 16.f4 h6 17.Qh4 Nc4 18.e5 dxe5 19.fxe5 Nxe5 20.Rxf6 gxf6
+21.Qxh6 f5 22.Nd4 Rfc8 23.Bh5 Qc5 24.Qf6 Be8 25.Nce2 Nc4 26.Qg5+ Kf8
+27.Qh6+ Ke7 28.Bf3 Nxb2 29.Rb1 Nc4 30.Bxa8 Rxa8 31.a4 Nd6 32.Kh1 bxa4
+33.Qg5+ Kd7 34.Rd1 a3 35.Qg3 Rd8 36.Nb3 Qb6 37.Nbc1 Kc7 38.Nd4 Kb7
+39.Qe3 Ne4 40.Ncb3 Ba4 41.Rd3 a2 42.Qe1 Nf2+ 43.Qxf2 Bxb3 0-1
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.04"]
+[Round "02"]
+[White "Nimzo98"]
+[Black "Patzer"]
+[Result "1-0"]
+
+1.e4 e5 2.Nf3 Nc6 3.Nc3 g6 4.d4 exd4 5.Nxd4 Bg7 6.Be3 Nf6 7.Nxc6 bxc6
+8.e5 Ng8 9.Bd4 Qe7 10.Qe2 f6 11.exf6 Nxf6 12.O-O-O Qxe2 13.Bxe2 d5
+14.Bd3 O-O 15.Rhe1 Nh5 16.Bc5 Bxc3 17.bxc3 Rd8 18.Re7 Nf4 19.Rde1 Nxg2
+20.Re8+ Rxe8 21.Rxe8+ Kf7 22.Rh8 Kg7 23.Bd4+ Kh6 24.Ba6 c5 25.Be5 Bxa6
+26.Rxa8 Nh4 27.Rxa7 Bf1 28.Rxc7 Nf3 29.Bg3 Kg5 30.Rxc5 Kg4 31.a4 d4
+32.c4 h5 33.a5 h4 34.Bb8 d3 35.a6 Be2 36.cxd3 Nd4 37.a7 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.04"]
+[Round "02"]
+[White "SOS"]
+[Black "Comet"]
+[Result "1-0"]
+
+1.e4 c5 2.Nf3 d6 3.g3 Nc6 4.Bg2 g6 5.d3 Bg7 6.O-O h5 7.Nc3 Bg4 8.h3 Bxf3
+9.Qxf3 Nf6 10.Rb1 Qa5 11.Qd1 O-O-O 12.a3 Nd7 13.Bd2 Rdg8 14.b4 Qd8
+15.b5 Nd4 16.Nd5 e6 17.Ne3 e5 18.a4 Kb8 19.a5 Ne6 20.h4 g5 21.hxg5 h4
+22.Nf5 hxg3 23.Nxd6 Nxg5 24.fxg3 Nh3+ 25.Bxh3 Rxh3 26.Kg2 Rgh8 27.Qf3 Rh2+
+28.Kg1 Rxd2 29.Nxf7 Qg8 30.Nxh8 Bxh8 31.c4 Ra2 32.a6 b6 33.Rf2 Ra3
+34.Kg2 Bf6 35.Qe2 Qg6 36.Rf3 Kc8 37.Qb2 Ra4 38.Qc2 Ra5 39.Rbf1 Ra3
+40.Qb2 Ra4 41.Qf2 Bh4 42.Rh1 Bd8 43.Qe2 Nf6 44.Rh8 Kc7 45.Qb2 Nd7
+46.Rf5 Qg7 47.Rfh5 Rb4 48.Qf2 Rb3 49.R5h6 Nf6 50.Qf5 Rb2+ 51.Kf3 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.04"]
+[Round "02"]
+[White "Diogenes"]
+[Black "Diep"]
+[Result "0-1"]
+
+1.e4 d5 2.exd5 Qxd5 3.Nc3 Qa5 4.d4 c6 5.Nf3 Bf5 6.Bd2 e6 7.Bc4 Nd7
+8.O-O Qc7 9.Nh4 Bg6 10.Nxg6 hxg6 11.h3 O-O-O 12.Bg5 Be7 13.Ne4 Ngf6
+14.c3 Nb6 15.Bxf6 gxf6 16.Bb3 f5 17.Nd2 g5 18.Nf3 g4 19.hxg4 fxg4
+20.Ne5 Nd7 21.Qe2 Nxe5 22.dxe5 Rh5 23.Qxg4 Rdh8 24.g3 Qxe5 25.Rad1 Qf6
+26.Qe4 Bc5 27.Bc4 Rh3 28.Rd3 Rh2 29.Rd4 Bxd4 30.cxd4 Qh6 0-1
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.04"]
+[Round "02"]
+[White "XXXXII"]
+[Black "Shredder"]
+[Result "0-1"]
+
+1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 Nc6 6.Bg5 e6 7.Qd2 a6
+8.O-O-O h6 9.Be3 Nxd4 10.Bxd4 b5 11.Qe3 Bd7 12.e5 Ng4 13.Qg3 dxe5
+14.Bxe5 Nxe5 15.Qxe5 Qg5+ 16.Qxg5 hxg5 17.Ne4 Bc6 18.Nxg5 Bc5
+19.Rd2 Ke7 20.Kd1 Bd5 21.h4 f6 22.Nf3 Bxa2 23.Kc1 Bd5 24.Ne1 Rac8
+25.Kb1 Rhd8 26.Bd3 b4 27.h5 b3 28.c3 Rd6 29.h6 gxh6 30.Rxh6 Be4
+31.Rh3 e5 32.Kc1 Rcd8 33.Kb1 Bg6 34.Rg3 Bf5 35.Rf3 Be6 36.Rg3 e4
+37.Rg7+ Kf8 38.Rc7 e3 39.fxe3 Bxe3 40.Rd1 Bg4 0-1
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.04"]
+[Round "02"]
+[White "Ikarus"]
+[Black "Isichess"]
+[Result "1-0"]
+
+1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Be2 e6 7.O-O Nc6
+8.Nxc6 bxc6 9.Qd3 Be7 10.Qg3 O-O 11.Be3 e5 12.h3 Kh8 13.Rad1 Be6 14.b3 Nd7
+15.Bg4 Rb8 16.Bxe6 fxe6 17.Qg4 Rf6 18.Qe2 Ra8 19.Bg5 Rf8 20.Bc1 d5
+21.Qg4 Rf6 22.Bd2 Rg6 23.Qf3 Bc5 24.Kh1 Rf6 25.Qg4 Qe8 26.f3 Be7
+27.h4 a5 28.Na4 Ba3 29.h5 h6 30.Bc3 Qe7 31.Qh3 Kg8 32.Be1 g5
+33.Bg3 Raf8 34.Rfe1 R6f7 35.Re3 Qd6 36.Red3 Qe7 37.Rc3 Qd6 38.Bf2 Rg7
+39.Be3 Nf6 40.Qh2 d4 41.Bxd4 exd4 42.e5 Qd5 43.exf6 Rxf6 44.Rcd3 Rf4
+45.Nc3 Qf5 46.g4 Qf8 47.Ne2 Rxf3 48.Nxd4 Rf1+ 49.Rxf1 Qxf1+ 50.Qg1 Qf4
+51.Qd1 Qe4+ 52.Qf3 Qe1+ 53.Kg2 Rf7 54.Qe2 Qxe2+ 55.Nxe2 e5 56.Rd8+ Rf8
+57.Rxf8+ Kxf8 58.Ng3 Kf7 59.Kf3 Ke6 60.Ke4 Bf8 61.Nf5 Kf6 62.Ne3 Bb4
+63.c3 Bxc3 64.Nf5 Bd4 65.Nxh6 Bf2 66.Nf5 Bc5 67.h6 Kg6 68.Kxe5 Ba3
+69.Nd4 c5 70.Nf5 Bb4 71.Ke4 Kh7 72.Ke5 Kg6 73.Ne7+ Kxh6 74.Nc6 Kg7
+75.Nxb4 cxb4 76.Ke6 Kg6 77.Ke5 Kf7 78.Kf5 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.04"]
+[Round "02"]
+[White "Gromit"]
+[Black "Gandalf"]
+[Result "0-1"]
+
+1.d4 Nf6 2.Bg5 Ne4 3.Bh4 g5 4.f3 c5 5.fxe4 gxh4 6.e3 Nc6 7.Nf3 Bg7 8.c3 Qb6
+9.b3 d6 10.a4 Bg4 11.Bb5 a6 12.Be2 Bxf3 13.gxf3 Qa5 14.Rg1 Bh6 15.Kf2 cxd4
+16.cxd4 f5 17.exf5 Qxf5 18.Na3 Rf8 19.Qd3 Qh3 20.Nc2 O-O-O 21.Qxh7 Nxd4
+22.exd4 Qxh2+ 23.Rg2 Qf4 24.Rag1 h3 25.Rg4 Qd2 26.Rh1 Rxf3+
+27.Kxf3 Rf8+ 28.Kg3 Qxe2 29.Kh4 Qf2+ 30.Kh5 Rf6 31.Qe4 Bf8 32.Rg6 Rf4
+33.Qe6+ Kb8 34.Rxh3 Qxc2 35.Rh1 Rxd4 36.Rh3 Rf4 37.Rg8 Qc5+ 38.Rg5 Qd4
+39.Rg6 Re4 40.Qg8 Qe5+ 41.Rg5 Qf6 42.Qh7 Rf4 43.Rh4 Rf1 44.a5 Qf3+
+45.Rgg4 Re1 46.Rh2 Re5+ 47.Kh4 Qf6+ 48.Kh3 Bh6 49.Qg8+ Ka7 50.Qc4 Qf3+
+51.Kh4 Bg7 52.Qd4+ Kb8 0-1
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.04"]
+[Round "03"]
+[White "SOS"]
+[Black "Nimzo98"]
+[Result "0-1"]
+
+1.d4 Nf6 2.c4 e6 3.e3 b6 4.Nf3 Bb7 5.Bd3 Be7 6.Nc3 d5 7.O-O O-O 8.Qe2 c5
+9.cxd5 exd5 10.Bd2 Ne4 11.Rfd1 Nd7 12.Be1 Qc7 13.dxc5 bxc5 14.Rac1 Ndf6
+15.b4 c4 16.Bc2 Rad8 17.Nd4 Ng5 18.a3 Ne6 19.Nf5 Bd6 20.f4 Be7
+21.Bh4 g6 22.Nb5 Qd7 23.Nxe7+ Qxe7 24.Nxa7 Ra8 25.Nb5 Bc6 26.a4 Bxb5
+27.axb5 Rfd8 28.Qf2 h6 29.Rf1 Kg7 30.e4 g5 31.fxg5 hxg5 32.Bg3 d4
+33.Be5 Nf4 34.Bxf4 gxf4 35.Qxf4 Nd7 36.Qg4+ Kf8 37.Qh5 f6 38.Bd1 Ne5
+39.Qh6+ Kf7 40.Rc2 Rf8 41.Rcf2 Ke6 42.Rf5 d3 43.Qh3 Kd6 44.Qe3 Kc7
+45.Qc5+ Qxc5+ 46.bxc5 c3 47.g3 c2 48.Bxc2 dxc2 49.Rc1 Ra3 50.Rxc2 Nf3+
+51.Rxf3 Rxf3 52.b6+ Kc6 53.Kg2 Rb3 54.Kf2 Re8 55.Kg2 Rxe4 56.Rf2 Re6
+57.h4 Kxc5 58.h5 Ree3 59.Rf5+ Kd4 60.g4 Re2+ 0-1
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.04"]
+[Round "03"]
+[White "P.ConNerS"]
+[Black "Shredder"]
+[Result "1-0"]
+
+1.e4 e5 2.Nf3 Nc6 3.d4 exd4 4.Nxd4 Nf6 5.Nxc6 bxc6 6.e5 Qe7 7.Qe2 Nd5
+8.c4 Ba6 9.b3 g6 10.g3 Bg7 11.Bb2 O-O 12.Nd2 Rae8 13.O-O-O Nb4
+14.a3 Nd5 15.Qf3 Nb6 16.Ne4 d5 17.Nf6+ Bxf6 18.exf6 Qd6 19.Qc3 Nd7
+20.Bg2 Re2 21.Bf3 Rxf2 22.Qe3 Rxb2 23.Kxb2 Qxf6+ 24.Qc3 Ne5 25.Be2 Rb8
+26.Ka2 dxc4 27.bxc4 Qe6 28.Rd4 c5 29.Rd5 Nd7 30.Rd2 Rb6 31.Rc1 Rd6
+32.Qa5 Rd4 33.Rdc2 Qc6 34.Qc3 Ne5 35.Qb3 Bc8 36.Qb5 Qxb5 37.cxb5 Be6+
+38.Ka1 c4 39.Kb2 h6 40.Kc3 c5 41.Rf1 Kg7 42.Rf4 Rd8 43.Rd2 Rxd2 44.Kxd2 f5
+45.Kc3 Kf6 46.a4 Ke7 47.a5 Kd7 48.Rf1 Kc7 49.Rb1 Bf7 50.b6+ axb6
+51.axb6+ Kb7 52.Rb5 Nd7 53.Bxc4 Ne5 54.Rxc5 Nxc4 55.Rc7+ Kxb6
+56.Rxf7 Ne5 57.Re7 Ng4 58.h3 Nf2 59.Kd4 f4 60.Re6+ Kb5 61.Rxg6 fxg3
+62.Rxg3 Kc6 63.h4 Kd6 64.Rg6+ Ke7 65.Rg2 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.04"]
+[Round "03"]
+[White "Diep"]
+[Black "Patzer"]
+[Result "1-0"]
+
+1.Nf3 d5 2.g3 c5 3.Bg2 Nc6 4.O-O Nf6 5.d3 e5 6.c4 dxc4 7.dxc4 Be6 8.Qb3 Qd7
+9.Bg5 Be7 10.Rd1 Bxc4 11.Rxd7 Bxb3 12.Rxe7+ Kxe7 13.axb3 h6 14.Be3 Nd7
+15.Nc3 Nd4 16.Ne1 a5 17.Bxb7 Ra7 18.Bg2 Nxb3 19.Rd1 Rd8 20.Nd3 f5
+21.Bh3 Rf8 22.Na4 Rc7 23.f4 e4 24.Nc1 Nxc1 25.Rxc1 g6 26.g4 Kd6 27.Kf2 Rc6
+28.gxf5 gxf5 29.Nc3 Ke7 30.Ra1 Rf7 31.Rxa5 Kf6 32.Na4 Rd6 33.Nxc5 Kg6
+34.Nxd7 Rdxd7 35.b4 Rd1 36.b5 Rd5 37.Ra6+ Rf6 38.b6 h5 39.b7 Rb5
+40.Bxf5+ Kxf5 41.Ra5 Rxa5 42.b8=Q Rd5 43.Qc8+ Re6 44.Qg8 Kf6
+45.Qf8+ Kg6 46.Bd4 e3+ 47.Kf3 Rxd4 48.f5+ Kh7 49.Qf7+ Kh8 50.fxe6 Rc4
+51.e7 Rc8 52.Qf6+ Kh7 53.Qf5+ Kh6 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.04"]
+[Round "03"]
+[White "Neurologic"]
+[Black "Gandalf"]
+[Result "1-0"]
+
+1.e4 c6 2.d4 d5 3.Nd2 Nd7 4.exd5 cxd5 5.Ngf3 e6 6.Bb5 Ngf6 7.Nb3 Bd6
+8.Bg5 O-O 9.O-O b6 10.Re1 Qc7 11.Rc1 Ne4 12.g3 Bb7 13.c4 Nxg5
+14.Nxg5 Qd8 15.Nxh7 Kxh7 16.c5 bxc5 17.dxc5 Bxc5 18.Nxc5 Nxc5
+19.Rxc5 Kg8 20.Qd4 Qb6 21.Bd3 Rac8 22.Qh4 g6 23.Rb5 Qc6 24.Rb3 Rc7
+25.Qf4 Qd7 26.Ra3 Bc6 27.Rc1 Rb7 28.Rac3 Rb6 29.Rc5 Rd8 30.Qf6 Rc8
+31.a4 Rc7 32.b4 Rc8 33.b5 Bb7 34.Rxc8+ Bxc8 35.a5 Rb8 36.Qe5 Ra8 37.Rc7 Qd8
+38.Bxg6 Bd7 39.Bd3 Be8 40.Rb7 Bd7 41.Qh5 Kg7 42.Qh7+ Kf6 43.Rxa7 Ke7
+44.Qh4+ f6 45.Rb7 Rb8 46.Bg6 e5 47.Qb4+ Ke6 48.f4 exf4 49.Ra7 Ra8
+50.Rxa8 Qxa8 51.gxf4 Qc8 52.b6 Bc6 53.f5+ Ke5 54.Qe7+ Kd4 55.Qxf6+ Kc5
+56.Qc3+ Kb5 57.Bh5 Ka6 58.Be2+ Kb7 59.Qc5 Qe8 60.a6+ 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.04"]
+[Round "03"]
+[White "Ikarus"]
+[Black "Comet"]
+[Result "1-0"]
+
+1.Nf3 d5 2.d4 Bg4 3.e3 Nf6 4.c4 Nc6 5.cxd5 Nxd5 6.Bb5 Qd6 7.O-O a6
+8.Bxc6+ Qxc6 9.e4 Nb6 10.Qd3 Bxf3 11.Qxf3 O-O-O 12.Be3 Qg6 13.d5 e6
+14.Bxb6 cxb6 15.Qf4 Bd6 16.e5 Bc5 17.b4 Bf8 18.d6 Kb8 19.Qd4 Rd7 20.Nd2 Be7
+21.Qxb6 Bg5 22.Nb3 Bd8 23.Qe3 f6 24.Nc5 Rf7 25.Rad1 Ka8 26.Nxe6 fxe5
+27.Qxe5 Rf6 28.Nc7+ Kb8 29.d7 Ka7 30.b5 Rb6 31.Qc5 Qe4 32.Rfe1 Qg4
+33.Ne6 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.04"]
+[Round "03"]
+[White "Diogenes"]
+[Black "XXXXII"]
+[Result "0-1"]
+
+1.e4 e6 2.d4 d5 3.exd5 exd5 4.Bd3 Bd6 5.Nf3 Nc6 6.O-O Bg4 7.c3 Nge7
+8.Re1 Qd7 9.Nbd2 O-O-O 10.Nb3 Kb8 11.Nc5 Bxc5 12.dxc5 d4 13.cxd4 Nxd4
+14.Ne5 Bxd1 15.Nxd7+ Rxd7 16.Rxd1 Rhd8 17.Re1 Nc8 18.Bb1 Ne2+
+19.Kf1 Nxc1 20.Rxc1 Rd2 21.b3 Rb2 22.Kg1 h6 23.Rf1 Rd5 24.Rc1 Re2
+25.h3 Rdd2 26.Rf1 Ne7 27.a4 g6 28.Ra3 a5 29.h4 Nc6 30.Ra1 Nd4
+31.Ra3 Rb2 32.Bd3 Red2 33.Bb1 Ne2+ 34.Kh2 Nc3 35.Ra1 Rxb3 36.c6 b6
+37.Kg1 Rd4 38.g3 Rxb1 39.Raxb1 Nxb1 40.Rxb1 Rxa4 0-1
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.04"]
+[Round "03"]
+[White "Isichess"]
+[Black "Gromit"]
+[Result "1-0"]
+
+1.e4 c5 2.Nf3 d6 3.d4 Nf6 4.Nc3 cxd4 5.Nxd4 g6 6.Be3 Bg7 7.f3 O-O 8.Qd2 Nc6
+9.O-O-O d5 10.exd5 Nxd5 11.Nxc6 bxc6 12.Bd4 Bxd4 13.Qxd4 Qc7 14.Bc4 e5
+15.Qd2 Nb6 16.Bb3 c5 17.Bd5 1-0
+
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.05"]
+[Round "04"]
+[White "Nimzo98"]
+[Black "P.ConNerS"]
+[Result "1/2-1/2"]
+
+1.e4 c5 2.Nf3 e6 3.d4 cxd4 4.Nxd4 a6 5.Nc3 Qc7 6.Be2 b5 7.O-O Bb7 8.Re1 Nc6
+9.Nxc6 dxc6 10.e5 Rd8 11.Bd3 c5 12.Bg5 Be7 13.Qh5 c4 14.Be4 b4
+15.Nd1 g6 16.Qh4 Rd4 17.Bxe7 Nxe7 18.c3 g5 19.Qg4 bxc3 20.bxc3 Rxe4
+21.Rxe4 Bxe4 22.Qxe4 O-O 23.Ne3 Qa5 24.Nxc4 Qxc3 25.Rd1 Ng6 26.h3 Rc8
+27.Nb6 Qc6 28.Qxc6 Rxc6 29.Nd7 Kg7 30.Rd2 Rc1+ 31.Kh2 Re1 32.Nb8 a5
+33.Nc6 a4 34.Rd4 Rc1 35.Nd8 a3 36.Rd3 Nxe5 37.Rxa3 Rc2 38.Kg1 g4
+39.Nb7 gxh3 40.gxh3 Kf6 41.Nd6 Ke7 42.Nb5 Rc1+ 43.Kg2 Kf6 44.Nd6 Rd1
+45.Ne4+ Kg7 46.Ra7 Re1 47.Nc5 Kg6 48.a4 Ra1 49.Rb7 h5 50.Rb5 Nc6 51.Rb6 Ne7
+52.Rb5 Nd5 53.Kg3 Ra2 54.h4 Kf5 55.Ra5 Ke5 56.f3 Kd4 57.Ne4 Ne3 58.Rb5 Nf5+
+59.Kf4 Nxh4 60.Rxh5 e5+ 61.Kg3 Nxf3 62.Nd6 e4 63.Kf4 Nd2 64.Nb5+ Kd3
+65.Rd5+ Kc4 66.Rd7 Rxa4 67.Rxd2 Kxb5 68.Rd7 f6 69.Rf7 Kb6 70.Rxf6+ Kc5
+71.Re6 e3+ 1/2-1/2
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.05"]
+[Round "04"]
+[White "Diep"]
+[Black "SOS"]
+[Result "1-0"]
+
+1.Nf3 Nf6 2.g3 d5 3.Bg2 Bf5 4.O-O e6 5.d3 Bd6 6.c4 c6 7.Nc3 O-O 8.cxd5 exd5
+9.Bg5 Be7 10.Qb3 Bc8 11.Rae1 Nbd7 12.e4 Nc5 13.Qc2 Ne6 14.Bd2 b6
+15.exd5 cxd5 16.Nh4 Bc5 17.Qb1 a5 18.a3 Re8 19.h3 g6 20.b4 axb4 21.axb4 Bf8
+22.Nf3 Bb7 23.Rc1 Bg7 24.Be3 Nh5 25.Rfe1 f5 26.Bd2 Qd6 27.Qc2 Re7 28.Qb3 f4
+29.g4 Nf6 30.Nb5 Qd7 31.Rxe6 Qxe6 32.Nc7 Qd6 33.Nxa8 Bxa8 34.b5 Re8
+35.Qa4 d4 36.Qxd4 Qxd4 37.Nxd4 Nxg4 38.hxg4 Bxg2 39.Kxg2 Bxd4
+40.Bxf4 Re2 41.Rc8+ Kf7 42.Rc4 Bxf2 43.Kf3 Rb2 44.Rc7+ Kg8 45.Bc1 Ra2
+46.Bh6 Bd4 47.Ke4 Bg1 48.Rg7+ Kh8 49.Rf7 Ra4+ 50.Ke5 Ra8 51.Rd7 Kg8
+52.d4 Re8+ 53.Kd5 Be3 54.Bg7 Bg5 55.Be5 Rd8 56.Rxd8+ Bxd8 57.Ke6 h5
+58.gxh5 gxh5 59.Kd7 Bg5 60.Kc7 h4 61.Kxb6 Kf7 62.Kc6 Bf6 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.05"]
+[Round "04"]
+[White "Shredder"]
+[Black "Neurologic"]
+[Result "1-0"]
+
+1.c4 Nf6 2.Nc3 e5 3.Nf3 Nc6 4.g3 d5 5.cxd5 Nxd5 6.d3 Be7 7.Bg2 Be6
+8.Nxd5 Qxd5 9.O-O Qd7 10.Be3 Rd8 11.Qa4 O-O 12.Rfc1 Bd5 13.Bxa7 Nxa7
+14.Qxa7 Bd6 15.Qa5 c5 16.Nd2 Bxg2 17.Kxg2 Be7 18.Qb6 Qd5+ 19.Kg1 f5
+20.Nc4 Rf7 21.Na5 Rd7 22.Qb5 f4 23.Nb3 Rf6 24.Nd2 Rf8 25.a4 Rdd8 26.Ne4 f3
+27.exf3 Kh8 28.Rc3 Rxf3 29.Nxc5 b6 30.Qxb6 Qd4 31.Rf1 Rdf8 32.Rc4 Rxf2
+33.Rxd4 Rxf1+ 34.Kg2 exd4 35.Nd7 R1f2+ 36.Kh3 Rd8 37.Qxd4 Rf6
+38.Qa7 Rh6+ 39.Kg2 Re6 40.Qc7 Re8 41.Ne5 h6 42.Kh3 Kh7 43.Nc6 Bf6 44.b4 Re2
+45.Qd7 Rf8 46.Qf5+ g6 47.Qd7+ Bg7 48.Nd4 Ref2 49.Ne6 R8f7 50.Qe8 Bc3
+51.b5 Ba5 52.d4 R2f3 53.d5 R3f5 54.d6 Bb6 55.d7 Rh5+ 56.Kg4 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.05"]
+[Round "04"]
+[White "Gandalf"]
+[Black "Ikarus"]
+[Result "1-0"]
+
+1.e4 e5 2.Nf3 Nc6 3.d4 exd4 4.Nxd4 Nf6 5.Nxc6 bxc6 6.Nc3 Bb4 7.Bd3 d5
+8.exd5 cxd5 9.O-O O-O 10.Bg5 Be6 11.Ne2 h6 12.Bh4 Bd6 13.Nd4 c5
+14.Nf5 c4 15.Nxd6 cxd3 16.Nb5 dxc2 17.Qxc2 Bd7 18.Nd6 Rb8 19.Rfd1 Rb4
+20.Bg3 Rb6 21.Qc3 Be6 22.Qa3 Qd7 23.Nc4 Rb7 24.f3 Qb5 25.Na5 Rb6 26.Nb3 Ra6
+27.Qc5 Qb6 28.Qxb6 Rxb6 29.Bf2 Rb7 30.Rac1 Re8 31.Bd4 Nh5 32.g3 Bh3
+33.Rc5 Be6 34.Ra5 Ree7 35.Nc5 Rbc7 36.Nd3 Rb7 37.b3 g5 38.g4 Nf4 39.Bf6 Re8
+40.Nxf4 gxf4 41.Rd2 Kf8 42.Kf2 Rc8 43.Ra6 Rd8 44.Be5 Kg8 45.Bxf4 Kh7
+46.Rd4 Rdd7 47.Rda4 Kg6 48.Bd6 Rd8 49.Rxa7 Rxa7 50.Rxa7 d4 51.Bc5 d3
+52.Be3 h5 53.Ra6 hxg4 54.fxg4 f6 55.h3 Kf7 56.Ra4 Rh8 57.Ra7+ Kg6 58.Kg3 f5
+59.Ra6 Kf7 60.g5 Rd8 61.Bd2 Ke7 62.h4 Rd4 63.h5 Rg4+ 64.Kf2 Re4 65.Ra7+ Kd8
+66.h6 Re2+ 67.Kg3 Rxd2 68.h7 f4+ 69.Kxf4 Rh2 70.h8=Q+ Rxh8 71.Ra8+ Ke7
+72.Rxh8 Kd7 73.Ke3 Bf5 74.a4 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.05"]
+[Round "04"]
+[White "Patzer"]
+[Black "XXXXII"]
+[Result "1-0"]
+
+1.d4 Nf6 2.Bg5 Ne4 3.Bh4 c5 4.d5 g6 5.Nd2 Nxd2 6.Qxd2 Bg7 7.O-O-O d6
+8.e4 O-O 9.f4 Qb6 10.c3 e6 11.Bc4 exd5 12.Bxd5 Bg4 13.Nf3 Nc6 14.h3 Bd7
+15.f5 Ne5 16.Be7 Rfe8 17.f6 Bc6 18.Nxe5 dxe5 19.Qg5 Bxd5 20.exd5 Rxe7
+21.fxe7 Qd6 22.Kc2 Re8 23.a3 Rxe7 24.Rhf1 f5 25.Qg3 Rd7 26.Qe3 Rd8 27.g4 f4
+28.Qd3 Bf6 29.b3 Rc8 30.Qb5 Rb8 31.b4 cxb4 32.Qxb4 Qd7 33.d6 Re8 34.Rd5 Rc8
+35.Rd3 Qc6 36.d7 Rd8 37.Rfd1 Kg7 38.Rd5 g5 39.Kb3 e4 40.Rd6 Qc7
+41.Rxf6 Kxf6 42.Rd6+ 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.05"]
+[Round "04"]
+[White "Comet"]
+[Black "Isichess"]
+[Result "1/2-1/2"]
+
+1.c4 c6 2.e4 d5 3.exd5 cxd5 4.cxd5 Qxd5 5.Nc3 Qd6 6.d4 Nf6 7.Nf3 e6
+8.Bc4 Nc6 9.O-O Be7 10.Nb5 Qd8 11.Bf4 O-O 12.Nc7 Rb8 13.d5 Nh5 14.Nxe6 fxe6
+15.Bxb8 Nxb8 16.dxe6 Nc6 17.Re1 Nf4 18.g3 Qxd1 19.Raxd1 Na5 20.Bd5 Nxd5
+21.Rxd5 Nc6 22.Nd4 Nb4 23.Ra5 Re8 24.Rxa7 Bc5 25.Ra4 Na6 26.Re5 Bxd4
+27.Rxd4 Bxe6 28.f4 g6 29.Rd6 Nc7 30.h4 Kf7 31.h5 Rc8 32.Kg2 Bg4 33.Rb6 Rb8
+34.hxg6+ hxg6 35.Kf2 Bd7 36.Rc5 Ne6 37.Rc3 Ke7 38.a3 Ba4 39.Rc4 Bd7
+40.Ke3 Kf8 41.g4 Re8 42.f5 gxf5 43.gxf5 Nc7+ 44.Kd4 Nb5+ 45.Kd5 Bc6+
+46.Rcxc6 Rd8+ 47.Ke5 bxc6 48.Rxc6 Re8+ 49.Re6 Rc8 50.Rb6 Rc5+
+51.Ke4 Nc7 52.b4 Rc1 53.Rb7 Ne8 54.Ra7 Nf6+ 55.Ke5 Ng4+ 56.Kf4 Nf6
+57.b5 Re1 58.a4 Nd5+ 59.Kf3 Rb1 60.Ke4 Nc3+ 61.Ke3 Nxa4 62.Rxa4 Rxb5
+63.Ke4 Kf7 64.Kf4 Rb2 65.Re4 Rf2+ 66.Ke5 Rf1 1/2-1/2
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.05"]
+[Round "04"]
+[White "Gromit"]
+[Black "Diogenes"]
+[Result "1-0"]
+
+1.g3 d5 2.Bg2 c6 3.Nf3 Bg4 4.b3 e6 5.Ne5 Bf5 6.O-O Bd6 7.d4 Ne7 8.Nd2 f6
+9.Nd3 O-O 10.e4 dxe4 11.Nxe4 Bxe4 12.Bxe4 Nd7 13.Nf4 Bxf4 14.Bxf4 e5
+15.dxe5 fxe5 16.Bg5 h6 17.Qg4 Nf6 18.Qe6+ Rf7 19.Bxf6 gxf6 20.Rad1 Qf8
+21.Rd7 Rb8 22.f4 Kh8 23.fxe5 f5 24.Rxf5 Rxf5 25.Rxe7 Qxe7 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.05"]
+[Round "05"]
+[White "Nimzo98"]
+[Black "Diep"]
+[Result "1/2-1/2"]
+
+1.e4 e5 2.Nf3 d6 3.d4 Nd7 4.Bc4 c6 5.O-O Be7 6.dxe5 dxe5 7.Ng5 Bxg5
+8.Qh5 Qe7 9.Bxg5 Ngf6 10.Qe2 O-O 11.Nd2 Rd8 12.a4 a5 13.Qe3 h6
+14.Bh4 Nf8 15.Rad1 Ng6 16.Nf3 Bg4 17.Bg3 Nh5 18.Rxd8+ Rxd8 19.Qb6 Bxf3
+20.gxf3 Ra8 21.Rd1 Nhf4 22.c3 Nh4 23.Kf1 Nxf3 24.Qe3 Ng5 25.Bxf4 exf4
+26.Qxf4 Qxe4 27.Bxf7+ Kf8 28.Qxe4 Nxe4 29.Rd7 Nc5 30.Rc7 Rd8 31.b4 axb4
+32.cxb4 Rd7 33.Rxd7 Nxd7 34.Bg6 Ke7 35.b5 cxb5 36.axb5 Kd6 37.f4 Nf6
+38.Bd3 Nd5 39.f5 Kc5 40.Kf2 Nc3 41.Ke3 Nxb5 42.Ke4 Nd4 43.Ke5 Nf3+
+44.Ke6 b5 45.Bxb5 Kxb5 46.Kf7 Nxh2 47.Kxg7 Ng4 48.f6 1/2-1/2
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.05"]
+[Round "05"]
+[White "P.ConNerS"]
+[Black "Patzer"]
+[Result "0-1"]
+
+1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.Nf3 Bg7
+8.Be2 O-O 9.O-O Re8 10.Nd2 Nbd7 11.a4 Ne5 12.Ra3 g5 13.Qc2 Qe7
+14.Nb3 h6 15.Bd2 Bg4 16.f3 Bh5 17.Raa1 a6 18.Be3 Nh7 19.Rae1 Rac8 20.a5 Qd8
+21.Ra1 Qe7 22.Rfe1 Nd7 23.Nd2 f5 24.Bf2 f4 25.Qa4 Ne5 26.Rf1 g4
+27.fxg4 Bxg4 28.Qb3 h5 29.Rae1 Rf8 30.Ncb1 Ng5 31.Bh4 Bxe2 32.Bxg5 Qxg5
+33.Rxe2 f3 34.Ref2 Rb8 35.Na3 h4 36.Nc2 h3 37.g3 b5 38.axb6 Ng4 39.Nxf3 Qd8
+40.Rd2 Qxb6 41.Qxb6 Rxb6 42.Nce1 c4 43.e5 Bh6 44.Rc2 Ne3 45.exd6 Nxc2
+46.Nxc2 Rxd6 47.Nfd4 Rxf1+ 48.Kxf1 Rxd5 49.Kf2 Bc1 50.b4 Rd6 51.Kf1 Bh6
+52.Ke1 Rd7 53.Kf2 Bg5 54.Nf3 c3 55.Ke2 Be7 56.Ke3 Bd8 57.Kf2 Re7 58.Ng5 Re5
+59.Nf3 Bb6+ 60.Kf1 Re7 61.Ng5 Re8 62.Nf3 Kh8 63.Na1 Kg7 64.Nc2 Kh6
+65.Na1 Kh5 66.Nb3 Kg4 67.Nfd4 Bxd4 0-1
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.05"]
+[Round "05"]
+[White "Gandalf"]
+[Black "Shredder"]
+[Result "1-0"]
+
+1.e4 e5 2.Bc4 Bc5 3.Qg4 Qf6 4.Nf3 Nc6 5.Qg3 d6 6.d3 Qg6 7.Qxg6 fxg6
+8.c3 Bd7 9.b4 Bb6 10.Nbd2 Nf6 11.O-O Rf8 12.Bb2 O-O-O 13.a4 a6
+14.b5 axb5 15.axb5 Na7 16.d4 Kb8 17.dxe5 dxe5 18.Ba3 Rh8 19.Rab1 Bg4
+20.Rfe1 Bh5 21.Rb2 Ba5 22.Rc2 Nc8 23.h4 Rd7 24.Be6 Rd3 25.Bb2 Rhd8
+26.Nc4 Bxf3 27.gxf3 Bb6 28.Bxc8 Kxc8 29.Nxe5 Rd2 30.Re2 Rxe2
+31.Rxe2 Nh5 32.Rc2 Bc5 33.Bc1 Be7 34.Ra2 Rd1+ 35.Kg2 Kb8 36.Bd2 Bd6
+37.f4 Nf6 38.f3 Nh5 39.Be3 Rb1 40.c4 Rb3 41.Bc1 Be7 42.Bd2 Bb4
+43.Kf2 Be7 44.Ke2 Ng3+ 45.Kd1 Nf1 46.Bc1 Ne3+ 47.Ke2 Ng2 48.c5 c6
+49.bxc6 Kc7 50.cxb7 Kxb7 51.c6+ Kb8 52.Nd7+ Kc8 53.Ra8+ Kc7
+54.Ra7+ Kxc6 55.Ne5+ Kd6 56.Nc4+ Kc5 57.Rc7+ Kb5 58.Nd2 Re3+ 59.Kf2 Bc5
+60.Kxg2 Rc3 61.Rb7+ Bb6 62.Bb2 Rc2 63.Rxb6+ Kxb6 64.Bd4+ Kc6 65.Be3 Kd7
+66.Kf2 Ke6 67.Ke2 Kf7 68.Kd1 Rb2 69.Bd4 Ra2 70.Bc3 Kg8 71.Kc1 Kf7
+72.Kb1 Ra7 73.Kc2 Ra2+ 74.Kb3 Ra8 75.Nc4 Rd8 76.Kc2 Kf8 77.Nb6 Kf7
+78.Be5 Re8 79.Kd3 Rd8+ 80.Ke2 Kf8 81.Bc3 Kf7 82.Bb2 Rb8 83.Bd4 Rb7
+84.Kd3 Ke6 85.Ke3 Kf7 86.Kd2 Rc7 87.Nd5 Rc4 88.Bb2 Ra4 89.Kd3 Ra2
+90.Kc3 Ra8 91.Kc4 Rc8+ 92.Kd3 Rb8 93.Kc2 Rc8+ 94.Bc3 Ra8 95.Ne3 Ra2+
+96.Bb2 Ra5 97.Nd5 Ra7 98.Kb3 Rb7+ 99.Nb4 Rb5 100.Be5 Rc5 101.Nd3 Rb5+
+102.Kc2 Kf8 103.Nf2 Rc5+ 104.Kd3 Rc1 105.Bc3 Rg1 106.Kd4 Rg3
+107.Ke3 Rg2 108.Nd3 Rh2 109.Be1 Ke7 110.Bf2 Rh1 111.e5 Ra1 112.Ke4 Ra2
+113.Be1 Re2+ 114.Kd5 Re3 115.Bb4+ Ke8 116.Ne1 Re2 117.Ke6 Rh2
+118.Be7 Rd2 119.h5 Rd7 120.Bd6 gxh5 121.Ng2 Rb7 122.f5 h6 123.Nh4 Rd7
+124.Ng6 Rd8 125.Nh8 Rd7 126.f6 gxf6 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.05"]
+[Round "05"]
+[White "Ikarus"]
+[Black "SOS"]
+[Result "1-0"]
+
+1.e4 d5 2.exd5 Nf6 3.Bb5+ Bd7 4.Bc4 Bg4 5.f3 Bc8 6.Nc3 Nbd7 7.d3 Nb6
+8.Nge2 Nxc4 9.dxc4 c6 10.Bf4 Qb6 11.Qd4 Qxb2 12.Nb5 Qxa1+ 13.Qxa1 cxb5
+14.Qd4 bxc4 15.Qxc4 Bd7 16.Qc7 b5 17.Qb7 Rc8 18.O-O e6 19.d6 Nd5
+20.Rd1 Nxf4 21.Nxf4 Rxc2 22.Nd3 Bxd6 23.Ne5 Rc7 24.Qb8+ Ke7
+25.Qxc7 Bxc7 26.Rxd7+ Kf6 27.Ng4+ Kg6 28.Rxc7 f6 29.Rxa7 Rd8 30.Nf2 f5
+31.Rb7 Rd2 32.Rxb5 Rxa2 33.Nd3 Kf6 34.Rb6 Ra1+ 35.Kf2 Ra2+ 36.Kg3 Ra5
+37.Nf4 Re5 38.h4 g6 39.Rb7 h5 40.Nh3 Re3 41.Ng5 Ke5 42.Nf7+ Kf6
+43.Nh8 e5 44.Rb6+ Kg7 45.Nxg6 f4+ 46.Kf2 Kh7 47.g3 Rc3 48.gxf4 exf4
+49.Nxf4 Rc5 50.Rg6 Rc2+ 51.Kg3 Rc1 52.Rg5 Rg1+ 53.Kf2 Rc1 54.Nxh5 Rc6
+55.f4 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.05"]
+[Round "05"]
+[White "Comet"]
+[Black "Neurologic"]
+[Result "1-0"]
+
+1.e4 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.05"]
+[Round "05"]
+[White "Diogenes"]
+[Black "Isichess"]
+[Result "0-1"]
+
+1.d4 Nf6 2.c4 e6 3.Nf3 b6 4.a3 Bb7 5.Nc3 d5 6.cxd5 Nxd5 7.Bd2 Nd7 8.Qc2 c5
+9.Nxd5 exd5 10.dxc5 bxc5 11.e3 Be7 12.Bd3 g6 13.Bc3 O-O 14.O-O d4
+15.exd4 Bxf3 16.gxf3 Bd6 17.f4 Bxf4 18.Be4 cxd4 19.Bxa8 Qh4 20.f3 dxc3
+21.Be4 cxb2 22.Rad1 Rb8 23.Rfe1 Nf6 24.Bd3 Qh5 25.Qg2 Nd5 26.Rb1 Bd6
+27.Be4 Bxa3 28.Qg3 Rb6 29.Bxd5 Qxd5 30.Qg4 Rb3 31.Rf1 Bc5+ 32.Kg2 h5
+33.Qf4 Rb4 34.Qc7 Kg7 35.Kh1 Kh7 36.Qa5 0-1
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.05"]
+[Round "05"]
+[White "XXXXII"]
+[Black "Gromit"]
+[Result "1-0"]
+
+1.d4 f5 2.g3 Nf6 3.Bg2 g6 4.Nh3 d5 5.O-O Ne4 6.Nd2 Bg7 7.Nxe4 fxe4 8.c4 c6
+9.Nf4 e6 10.Bh3 Qd6 11.Qb3 O-O 12.Bd2 Na6 13.cxd5 cxd5 14.Rac1 Re8
+15.Rc2 b6 16.Rfc1 Bd7 17.e3 Rab8 18.Bf1 b5 19.Be2 g5 20.Nh5 Bh8 21.Ba5 Rf8
+22.Qa3 Qxa3 23.bxa3 Rf7 24.Rc6 Bxc6 25.Rxc6 Nc7 26.Rxc7 Rxc7
+27.Bxc7 Rc8 28.Bd6 Rc1+ 29.Kg2 Rc2 30.Bxb5 Rxa2 31.h4 h6 32.Be8 Rb2
+33.hxg5 hxg5 34.Bb4 Rb3 35.g4 Rb2 36.Be7 Rb8 37.Bg6 Rb3 38.Bxg5 Rxa3
+39.Be7 Ra5 40.Be8 Bg7 41.Nf4 e5 42.Bb4 Ra1 43.Bc3 Ra3 44.Nxd5 exd4
+45.exd4 a5 46.Bb5 Kh8 47.Bc4 Kh7 48.Kg1 Kg6 49.Kf1 Bh8 50.Bb5 Bg7
+51.Ke2 Bh6 52.Bc4 Bc1 53.Ke1 Bg5 54.Kf1 Bc1 55.Ke2 Bg5 56.Ke1 a4 57.Ke2 Bh4
+58.Bd2 Rf3 59.Be3 a3 60.Nb4 Rf8 61.Nc6 Ra8 62.Ba2 Ra6 63.d5 Bf6 64.Nb8 Ra8
+65.Nd7 Bg7 66.Nb6 Rd8 67.Nc4 Ra8 68.d6 Bc3 69.Kd1 Bf6 70.Nb6 Rd8 71.d7 Bg5
+72.Bc5 Rh8 73.Nc4 Bf6 74.Bb6 Rb8 75.Bc7 Ra8 76.Ke2 Kg5 77.Ne3 Rh8
+78.Nd5 Bd8 79.Be5 Rf8 80.Nc7 Kxg4 81.Ne6 Rg8 82.Nxd8 Rxd8 83.Bf6 Rf8
+84.Ke3 Kf5 85.d8=Q Rxd8 86.Bxd8 Ke5 87.Be7 Kf5 88.f4 exf3 89.Kxf3 Ke5
+90.Bxa3 Kd4 91.Kf4 Kd3 92.Ke5 Ke3 93.Bc4 Kf3 94.Bc5 Kg4 95.Be2+ Kg3
+96.Kf5 Kh3 97.Kf4 Kg2 98.Kg4 Kh2 99.Bf1 Kh1 100.Kf3 Kh2 101.Kf2 Kh1
+102.Bg2+ Kh2 103.Bd6# 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.06"]
+[Round "06"]
+[White "Nimzo98"]
+[Black "Ikarus"]
+[Result "1/2-1/2"]
+
+1.d4 Nf6 2.c4 e6 3.Nf3 b6 4.g3 Bb7 5.Bg2 Be7 6.O-O O-O 7.Nc3 Ne4 8.Qc2 Nxc3
+9.Qxc3 c5 10.Rd1 d6 11.b3 Bf6 12.Bb2 Qc7 13.Qc2 Nd7 14.e4 Rae8
+15.Rd2 e5 16.dxc5 Nxc5 17.Re1 a5 18.Re3 Ra8 19.a4 Bc6 20.Rd1 Be7 21.Ne1 Qb7
+22.Bc3 Rfe8 23.h4 Rad8 24.Rd2 Qa8 25.Kh2 g5 26.h5 g4 27.Rd1 Bg5
+28.Re2 f6 29.Bd2 Bxd2 30.Rdxd2 Qb7 31.Kg1 Qf7 32.Qd1 Rd7 33.h6 Red8
+34.Rb2 Qh5 35.Qd2 Kh8 36.Nc2 Rc8 37.Rb1 Qf7 38.Ree1 Rcd8 39.b4 Nxa4
+40.Ne3 Qg6 41.Nf5 axb4 42.Rxb4 Ra7 43.Rd1 Qg8 44.Qe1 Rad7 45.Rd2 Ra7
+46.Ng7 Rdd7 47.Qe2 Qf8 48.Qxg4 d5 49.Qe6 Rd6 50.Qg4 d4 51.Qh5 Bd7 52.Ra2 d3
+53.Nf5 Be8 54.Qg4 Rd8 55.Rxb6 d2 56.Bf3 Rad7 57.Qg7+ Qxg7 58.hxg7+ Kg8
+59.Rxf6 d1=Q+ 60.Kh2 Qd6 61.Nxd6 Rxd6 62.Rf8+ Kxg7 63.Rxe8 Rxe8 64.Rxa4 Rd2
+65.Kg2 Rc8 66.Bh5 Rc6 67.Kf1 Kf6 68.Be8 Rb6 69.Ra7 Rbb2 70.Rf7+ Ke6
+71.Rf3 Kd6 72.Bf7 Kc5 73.Rf5 Kd4 74.Bd5 Rbc2 75.Kg2 Re2 76.Rf3 h5
+77.Rf6 Rb2 78.Rf5 Red2 79.Rf8 Rdc2 80.Rf3 Kc5 81.Rf5 Re2 82.Rxh5 Rxf2+
+83.Kh3 Kd4 84.Kh4 Rf1 85.Kg5 Rg2 86.Rh3 Rf3 87.Kg4 Ra3 88.Kf5 Rf2+
+89.Kg4 Rff3 90.Kh4 Rfc3 91.Kg4 Ra7 92.Kf5 Rf3+ 93.Kg4 Ke3 94.Kg5 Rg7+
+95.Kh6 Rgxg3 96.Rxg3 Rxg3 97.c5 Kd4 98.c6 Rc3 99.Kg5 Kc5 100.Kf5 Kd6
+101.Kg4 Rc1 102.Kf3 Rg1 103.Ke2 Rg3 104.Kd2 Kc7 105.Ke2 Rc3
+106.Kd2 Rh3 107.Ke2 Rg3 108.Kf2 Rc3 109.Ke2 Rc2+ 110.Kd3 Rc5
+111.Kd2 Ra5 112.Kc3 Ra1 113.Kc4 Ra3 114.Kc5 Ra4 115.Be6 Ra5+
+116.Kb4 Ra1 117.Kc5 Ra4 118.Bd7 Ra5+ 119.Kb4 Ra2 120.Kc5 Rd2
+121.Bf5 Rd6 122.Bg4 Rd4 123.Bf5 Rd2 124.Bd7 Rd1 125.Bf5 Rd4
+126.Bh7 Rd3 127.Bf5 Ra3 128.Be6 Ra7 129.Bf5 Ra5+ 130.Kb4 Ra1
+131.Kc5 Ra7 132.Be6 Ra8 133.Bf5 Rb8 134.Be6 Rb6 135.Bd7 Ra6
+136.Kb5 Ra3 137.Kc5 Ra2 138.Bf5 {adjudicated} 1/2-1/2
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.06"]
+[Round "06"]
+[White "Diep"]
+[Black "P.ConNerS"]
+[Result "0-1"]
+
+1.d4 d5 2.Nf3 Nf6 3.e3 e6 4.Be2 c5 5.O-O Nc6 6.b3 cxd4 7.exd4 Be7 8.c4 O-O
+9.Bb2 b6 10.Nc3 dxc4 11.bxc4 Bb7 12.Qd2 Na5 13.Ne5 Nd7 14.Nxd7 Qxd7
+15.Nd1 Rfd8 16.Ne3 Qc7 17.Bc3 Rac8 18.Bxa5 bxa5 19.Rad1 Bd6 20.g3 Be7
+21.Qd3 Bc5 22.Qc3 Bb4 23.Qb3 Rb8 24.d5 Bc5 25.dxe6 fxe6 26.Rxd8+ Rxd8
+27.Bg4 Re8 28.Qb5 Re7 29.Rd1 a6 30.Qb3 Bc6 31.Qc2 Qe5 32.Ng2 Re8 33.Nf4 g5
+34.Qe2 Qxe2 35.Nxe2 e5 36.Nc1 Rf8 37.Rd2 Kg7 38.Kf1 Be3 39.Rc2 Be8
+40.Nb3 Bg6 41.Rb2 a4 42.Ke1 Bb6 43.Nc1 Rf6 44.f3 h5 45.Bh3 Be3 46.Rb7+ Kh6
+47.Ne2 g4 48.fxg4 Bf2+ 49.Kd2 Rd6+ 50.Kc3 Be1+ 51.Kb2 Rd2+ 52.Kc1 Rxe2
+53.gxh5 Kxh5 54.Rb2 Re4 55.Bf1 Bc3 56.Re2 Kg4 57.Rxe4+ Bxe4 58.Kd1 Bb4
+59.Kc1 Bf3 0-1
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.06"]
+[Round "06"]
+[White "Patzer"]
+[Black "Gandalf"]
+[Result "1/2-1/2"]
+
+1.e4 c5 2.Nf3 Nc6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 d6 6.Bc4 Bg4 7.Nxc6 bxc6
+8.Qd3 g6 9.O-O Bg7 10.f3 Bd7 11.Kh1 O-O 12.Bd2 Rb8 13.b3 d5 14.Ba6 e5
+15.Na4 Re8 16.Rad1 Qe7 17.Bg5 Be6 18.Bh4 h6 19.Qe2 dxe4 20.Bxf6 Bxf6
+21.Qxe4 Bd5 22.Qe3 e4 23.f4 Qc7 24.f5 Bg5 25.Qc5 Be7 26.Qc3 Bd6 27.Qe3 gxf5
+28.Qxh6 Be6 29.Qg5+ Kf8 30.Nb2 Be7 31.Qh6+ Kg8 32.Nc4 Rbd8 33.Rde1 Bb4
+34.Re3 Bf8 35.Qh5 Bg7 36.Ree1 Rd5 37.a4 Bc3 38.Qg5+ Kf8 39.Rb1 Qd8
+40.Qe3 Bd4 41.Qf4 Qb8 42.Qh4 f6 43.c3 Bxc3 44.Ne3 Kg7 45.Nxd5 cxd5
+46.Qf2 Ba5 47.Rbc1 Rh8 48.h3 Bb6 49.Qd2 Qg3 50.Qc3 Qe5 51.a5 Qxc3
+52.Rxc3 Bxa5 53.b4 Bxb4 54.Rc6 Kf7 55.Rb1 Rb8 56.Rc7+ Kg6 57.Rxa7 Bc5
+58.Rxb8 Bxa7 59.Rb7 Bf2 60.Re7 Bg8 61.Re8 Bf7 62.Rd8 d4 63.Bb5 f4 64.Bc6 f5
+65.Bb5 Be6 66.h4 d3 67.Rd6 Kf7 68.Bxd3 exd3 69.Rxd3 Bxh4 70.Kg1 Kf6
+71.Rd2 Ke5 72.Re2+ Kd6 73.Rb2 Bd5 74.Rb6+ Ke5 75.Rb5 Be7 76.Ra5 Bb4
+77.Rb5 Bd6 78.Ra5 Be7 79.Kf2 Bb4 80.Rb5 Bc3 81.Kg1 Ke4 82.Kh2 Be5
+83.Kh1 Kd4 84.Kg1 f3 85.gxf3 Bxf3 86.Kf2 Ke4 87.Rxe5+ Kxe5 88.Kxf3 Kd4
+89.Kf4 1/2-1/2
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.06"]
+[Round "06"]
+[White "IsiChess"]
+[Black "Shredder"]
+[Result "0-1"]
+
+1.c4 c5 2.Nc3 g6 3.g3 Bg7 4.Nf3 Nc6 5.Bg2 e5 6.O-O Nge7 7.a3 d6 8.Rb1 a5
+9.d3 O-O 10.Bd2 Rb8 11.Qa4 Bd7 12.Rfc1 Nd4 13.Qd1 Bc6 14.e3 Nxf3+
+15.Bxf3 Bxf3 16.Qxf3 Qd7 17.b4 axb4 18.axb4 Rfd8 19.Be1 cxb4
+20.Nd5 Nxd5 21.Qxd5 b5 22.Bxb4 Bf8 23.e4 bxc4 24.dxc4 Qb7 25.Qd3 Qa6
+26.Ra1 Qc6 27.Ba5 Rdc8 28.Bd2 Rb6 29.Ra2 Qd7 30.Rca1 Rbc6 31.Rc2 f5
+32.f3 Qe6 33.Ra4 Bg7 34.Rc1 R6c7 35.Kg2 Bf8 36.Rc2 fxe4 37.fxe4 Rc6
+38.Kg1 Rc5 39.Be3 R5c7 40.Qb3 Rf7 41.Rd2 Rf3 42.Kg2 Rf6 43.Rf2 Rxf2+
+44.Kxf2 Qe8 45.Ra7 Rb8 46.Qa2 Kh8 47.Bg5 Qc6 48.Kf3 Bg7 49.Be7 g5 50.h3 h5
+51.Qc2 Rb4 52.Bxg5 Rxc4 53.Qb1 Rc3+ 54.Kg2 Rc2+ 55.Kf3 Qc4 56.Qe1 Qd3+
+57.Be3 d5 58.Ra8+ Bf8 59.Ra4 Qb5 60.Ra8 dxe4+ 61.Kxe4 Qc6+ 62.Kf5 Qxa8
+63.Qd1 Qc8+ 64.Kxe5 Bg7+ 0-1
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.06"]
+[Round "06"]
+[White "XXXXII"]
+[Black "Comet"]
+[Result "1-0"]
+
+1.e4 e5 2.Nf3 Nc6 3.d4 exd4 4.Nxd4 Bc5 5.Nb3 Bb6 6.a4 Qh4 7.Qe2 Nf6
+8.a5 Nd4 9.Nxd4 Bxd4 10.Ra4 c5 11.c3 Be5 12.g3 Qh5 13.Qxh5 Nxh5
+14.Be2 g6 15.O-O d6 16.Rd1 Be6 17.Ra3 Ke7 18.f4 Bg7 19.f5 Bc8 20.Bxh5 gxh5
+21.Bg5+ Bf6 22.Bxf6+ Kxf6 23.Rxd6+ Ke7 24.Rd5 Bd7 25.Rxc5 Rac8 26.Rxc8 Rxc8
+27.Kf2 Rg8 28.c4 h4 29.Rd3 Bc6 30.Nc3 hxg3+ 31.hxg3 Rg5 32.Nd5+ Kd6
+33.Nb4+ Kc5 34.Nxc6 Kxc6 35.b4 Kc7 36.c5 a6 37.Rd6 h5 38.Rf6 Rg7 39.Kf3 Rh7
+40.e5 Rg7 41.e6 fxe6 42.Rxe6 Kd7 43.Rb6 Kc7 44.c6 bxc6 45.Rxa6 Rg5
+46.Ra7+ Kd6 47.f6 Rf5+ 48.Kg2 Rxf6 49.Rh7 Re6 50.a6 Re8 51.a7 Ra8
+52.Kh3 Kd5 53.Kh4 Kc4 54.Rb7 Kd5 55.Kxh5 Rh8+ 56.Kg5 Ra8 57.Kg6 Ke6
+58.g4 Ke5 59.g5 Kf4 60.Kf6 c5 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.06"]
+[Round "06"]
+[White "SOS"]
+[Black "Gromit"]
+[Result "1-0"]
+
+1.c4 c5 2.g3 Nf6 3.Bg2 Nc6 4.Nc3 g6 5.e3 d6 6.d4 Bf5 7.Nge2 Bg7 8.h3 O-O
+9.d5 Na5 10.b3 Nxc4 11.bxc4 Qb6 12.g4 Ne4 13.Bd2 Qb2 14.Rc1 Qxd2+
+15.Qxd2 Nxd2 16.Kxd2 Bd7 17.Rb1 b6 18.Rb3 Rac8 19.g5 Rb8 20.h4 e6
+21.h5 exd5 22.Nxd5 Rfd8 23.Ndc3 Kf8 24.Ra3 Ra8 25.hxg6 hxg6 26.Rb3 b5
+27.cxb5 c4 28.Rbb1 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.06"]
+[Round "06"]
+[White "Neurologic"]
+[Black "Diogenes"]
+[Result "1-0"]
+
+1.c4 e5 2.g3 Nf6 3.Bg2 c6 4.d4 exd4 5.Qxd4 d5 6.Nf3 Be7 7.cxd5 cxd5
+8.O-O Nc6 9.Qa4 O-O 10.Be3 Ne4 11.Nc3 Nxc3 12.bxc3 Na5 13.Ne5 Bf6
+14.f4 Bxe5 15.fxe5 b6 16.Qf4 Bb7 17.Rad1 Rc8 18.Bd4 Nc4 19.Bh3 Rc7
+20.e6 Bc8 21.Be5 Nxe5 22.Qxe5 f6 23.Qh5 Rxc3 24.Bf5 g6 25.Bxg6 Qe7
+26.Bf7+ Kh8 27.Qh6 Bb7 28.Rxf6 Rc7 29.Rdf1 Rcc8 30.Rg6 Rg8 1-0
+
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.07"]
+[Round "07"]
+[White "Shredder"]
+[Black "Nimzo98"]
+[Result "1-0"]
+
+1.d4 Nf6 2.c4 e6 3.Nf3 b6 4.a3 Ba6 5.Qc2 Bb7 6.Nc3 c5 7.e4 cxd4 8.Nxd4 Bc5
+9.Nb3 Nc6 10.Bg5 h6 11.Bh4 Nd4 12.Nxd4 Bxd4 13.Bd3 Qb8 14.O-O Be5
+15.Bxf6 Bxf6 16.f4 d6 17.Rac1 a5 18.Qf2 Bc6 19.b3 a4 20.b4 O-O
+21.Qe3 Rc8 22.Rfd1 Rd8 23.Kh1 Ra7 24.Bc2 Be8 25.Kg1 Rc8 26.Bd3 Bc6
+27.Re1 Re7 28.Rc2 Rcc7 29.Rb1 Ra7 30.Rd1 Rec7 31.Ne2 Rd7 32.Ng3 Bd8
+33.Nh5 g6 34.Ng3 Bf6 35.Ne2 Kg7 36.Nd4 Bxd4 37.Qxd4+ Kg8 38.f5 Qd8
+39.fxe6 fxe6 40.Rf1 e5 41.Qe3 Kg7 42.Rcf2 Ra8 43.Rf6 Rb7 44.Qh3 Qxf6
+45.Rxf6 Kxf6 46.Qxh6 Re8 47.g4 Rf7 48.g5+ Ke7 49.Qxg6 Bd7 50.Qh5 Rg8
+51.Qh6 Be6 52.Be2 Rgg7 53.g6 Rg8 54.h4 Rf4 55.h5 Rxe4 56.Qg5+ Kd7
+57.Qg2 Rh4 58.Qb7+ Kd8 59.Qxb6+ Ke7 60.Qc7+ Kf6 61.Qxd6 Rh8 62.c5 Re4
+63.Qa6 Rh4 64.Qxa4 R4xh5 65.Bxh5 Rxh5 66.b5 Rh6 67.b6 Rxg6+ 68.Kf1 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.07"]
+[Round "07"]
+[White "P.ConNerS"]
+[Black "Gandalf"]
+[Result "1-0"]
+
+1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 g6 5.Nc3 Nf6 6.Be3 Bg7 7.f3 Nc6 8.Bc4 Qb6
+9.O-O O-O 10.Bb3 Be6 11.Na4 Qa5 12.Nxe6 fxe6 13.Bxe6+ Kh8 14.c4 Ne8
+15.Rc1 Nc7 16.Bh3 Rad8 17.a3 Qa6 18.Rf2 Ne5 19.b3 Nc6 20.Rfc2 b6 21.Bg4 Ne5
+22.Bh3 Nc6 23.Kh1 Rfe8 24.Rd2 Rf8 25.Qc2 Ra8 26.b4 Ne5 27.f4 Nf7 28.b5 Qb7
+29.Rcd1 Kg8 30.Bd7 Nd8 31.Bg4 Qb8 32.e5 dxe5 33.f5 h5 34.Bf3 gxf5
+35.Bxa8 Nxa8 36.Rd7 e6 37.Qe2 f4 38.Bf2 Nf7 39.Qxh5 e4 40.Bd4 e5 41.Bc3 e3
+42.Bb4 e2 43.Qxe2 Rd8 44.Qh5 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.07"]
+[Round "07"]
+[White "Diep"]
+[Black "Ikarus"]
+[Result "0-1"]
+
+1.d4 Nf6 2.c4 e6 3.Nc3 d5 4.Bg5 Nbd7 5.e3 Be7 6.Nf3 O-O 7.Rc1 c6 8.Bd3 dxc4
+9.Bxc4 Nd5 10.Bxe7 Qxe7 11.O-O Nxc3 12.Rxc3 e5 13.dxe5 Nxe5
+14.Nxe5 Qxe5 15.Qb3 Qe7 16.Rd1 Bf5 17.e4 Bg6 18.Re3 Rfd8 19.Rde1 a5
+20.a3 b5 21.Be2 Qe5 22.g3 Qc5 23.e5 Rd2 24.Bf3 Bf5 25.Qc3 Qxc3 26.bxc3 Rc8
+27.Rd1 Rxd1+ 28.Bxd1 Rd8 29.Bf3 c5 30.Kf1 Rd2 31.Ke1 Ra2 32.Bc6 Rxa3
+33.Bxb5 Ra1+ 34.Kd2 Ra2+ 35.Ke1 a4 36.Bd3 Be6 37.Re4 Bb3 38.Bb5 h6
+39.h4 a3 0-1
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.07"]
+[Round "07"]
+[White "Neurologic"]
+[Black "Patzer"]
+[Result "0-1"]
+
+1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.cxd5 exd5 5.Bg5 Nbd7 6.e3 c6 7.Bd3 Be7
+8.Nf3 Nf8 9.O-O Ng6 10.Rc1 O-O 11.Qc2 Be6 12.Kh1 Qc7 13.Bf5 Rae8 14.a3 Qd8
+15.Rfe1 Ng4 16.Bxe6 fxe6 17.Bxe7 Qxe7 18.h3 Nh6 19.b4 e5 20.dxe5 Nxe5
+21.Nxe5 Qxe5 22.Rf1 Nf5 23.Na4 Nd6 24.Nc5 Qe7 25.Qa4 Kh8 26.Qxa7 Ra8
+27.Qb6 Rxa3 28.e4 dxe4 29.b5 e3 30.fxe3 Nf5 31.Rxf5 Rxf5 32.Qxb7 Qxb7
+33.Nxb7 Rxb5 34.Nd6 Rb4 35.Rxc6 h6 36.Rc8+ Kh7 37.Rc7 Ra5 38.Kh2 Rd5
+39.Ne8 Re5 40.Nd6 Kg6 41.e4 h5 42.g4 hxg4 43.hxg4 Rb3 44.Rc2 Rd3 45.Rc6 Kh7
+46.Nf7 Ra5 47.Rd6 Re3 48.Rd2 Rxe4 49.Kg3 Kg6 50.Nh8+ Kg5 51.Nf7+ Kf6
+52.Rf2+ Ke7 53.Nh8 Rg5 54.Rf4 Rxf4 55.Kxf4 Kf6 0-1
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.07"]
+[Round "07"]
+[White "Diogenes"]
+[Black "SOS"]
+[Result "0-1"]
+
+1.d4 Nf6 2.c4 e6 3.Nf3 Bb4+ 4.Bd2 Qe7 5.g3 Nc6 6.Bg2 Bxd2+ 7.Nbxd2 d6
+8.O-O a5 9.e4 e5 10.dxe5 dxe5 11.Qb3 O-O 12.Rad1 b6 13.Qe3 Bb7
+14.Nb1 Qb4 15.b3 a4 16.Ne1 axb3 17.axb3 Nd4 18.Nd2 Qc3 19.Qd3 Rfd8
+20.Kh1 Qb2 21.Qe3 Ng4 22.Qg5 Nxb3 23.Nef3 Nxd2 24.Rxd2 Rxd2 25.Nxd2 Nf6
+26.Kg1 h6 27.Qe3 Ra3 28.Qe1 Rd3 29.Nb1 Qd4 30.Qb4 Nxe4 31.Qa4 Nxg3
+32.Qe8+ Kh7 33.Bxb7 0-1
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.07"]
+[Round "07"]
+[White "Isichess"]
+[Black "XXXXII"]
+[Result "1-0"]
+
+1.c4 c5 2.Nc3 Nc6 3.g3 g6 4.Bg2 Bg7 5.Nf3 e5 6.O-O Nge7 7.a3 O-O 8.d3 d6
+9.Bd2 f6 10.e3 Bg4 11.Qa4 Qd7 12.Qc2 h6 13.Rab1 Rad8 14.b4 cxb4 15.axb4 Bh3
+16.Bxh3 Qxh3 17.b5 Nb8 18.Qa2 Nc8 19.Nd5 Qh5 20.Nh4 Rf7 21.Ra1 f5
+22.Qa5 Rdf8 23.Bc3 g5 24.Ng2 Nd7 25.Qa3 Nf6 26.Nxf6+ Bxf6 27.Bb4 Rd8
+28.e4 fxe4 29.dxe4 Qe2 30.Ne3 Bg7 31.Ra2 Qf3 32.Qd3 Rfd7 33.Ra3 Qh5
+34.f3 Kh8 35.Kg2 Qg6 36.Nf5 Qf7 37.Rfa1 Qg6 38.Kg1 d5 39.cxd5 Bf8
+40.Qc3 Qb6+ 41.Kg2 Bxb4 42.Qxb4 1-0
+
+[Event "8th IPCCC"]
+[Site "Paderborn, GER"]
+[Date "1999.02.07"]
+[Round "07"]
+[White "Gromit"]
+[Black "Comet"]
+[Result "1/2-1/2"]
+
+1.c4 c5 2.Nf3 Nf6 3.d4 cxd4 4.Nxd4 b6 5.Nc3 Bb7 6.f3 e6 7.e4 d6 8.Be2 a6
+9.O-O Be7 10.Bg5 Nbd7 11.Qd2 O-O 12.Rad1 Qc7 13.b3 Rfc8 14.Rc1 Qc5
+15.Be3 Qa5 16.a4 Rab8 17.g4 h5 18.g5 Nh7 19.f4 g6 20.Nc2 d5
+21.exd5 exd5 22.Nxd5 Re8 23.Qxa5 bxa5 24.Nxe7+ Rxe7 25.Rfe1 Ba8 26.Bd2 Nc5
+27.Na1 Nf8 28.Bxa5 Nfe6 29.Bf1 Nxb3 30.Nxb3 Rxb3 31.c5 Bc6 32.Bxa6 Ra7
+33.Bc4 Rb2 34.Bxe6 Rxa5 35.Bh3 Rxa4 36.Red1 Raa2 37.Ra1 Rxh2
+38.Rxa2 Rxa2 39.Rd6 Be4 40.Rd4 Ra1+ 41.Kf2 Bh1 42.Rd8+ Kg7 43.f5 gxf5
+44.Bxf5 Rc1 45.Rc8 Rc3 46.Bd7 h4 47.c6 Rc2+ 48.Kg1 Be4 49.Kf1 Bg2+
+50.Kg1 Be4 51.Kf1 Bg2+ 52.Kg1 Bd5 53.Kf1 Kg6 54.Ke1 Kxg5 55.Kd1 Bb3
+56.Ke1 f5 57.c7 f4 58.Ba4 Bxa4 59.Rg8+ Kf5 60.c8=Q+ Rxc8 61.Rxc8 Bd7
+62.Rh8 Kg5 63.Rg8+ Kf6 64.Rf8+ Ke5 65.Kf2 Ke4 66.Rd8 Be6 67.Re8 Kd5
+68.Kf3 1/2-1/2
