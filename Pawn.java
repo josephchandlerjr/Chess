@@ -3,7 +3,7 @@
 */
 public class Pawn extends ChessPiece
 {
-	int direction;
+	private int direction;
 
 	public Pawn(String color)
 	{

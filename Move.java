@@ -6,7 +6,10 @@ public class Move
 {
 	Square from;
 	Square to;
+	Square enPassantCapture;
 	boolean isCastle = false;
+	boolean enPassant = false;
+	boolean twoRowPawnMove = false;
 	String castleSide;
 	Move move2; // castling has second move
 	
@@ -34,6 +37,29 @@ public class Move
 	        	
 
 
+	}
+	/**
+	 * third constructor to be used for en passant 
+	 * @param f from Square in first move
+	 * @param t to Square in first move 
+	 * @param enPassantCapture square captured in en passant move
+	 */
+	public Move (Square f, Square t, Square enPassantCapture)
+	{
+		enPassant = true;
+		this.from = from;
+		this.to = to;
+		this.enPassantCapture = enPassantCapture;
+	}
+
+	public void markAsTwoRowPawnMove()
+	{
+		twoRowPawnMove = true;
+	}
+
+	public boolean isTwoRowPawnMove()
+	{
+		return twoRowPawnMove;
 	}
 
 }

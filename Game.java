@@ -114,7 +114,79 @@ public class Game
 			return true;
 			
 		}
+		else if (from.getPiece() instanceof Pawn && isTwoRowPawnMove(from,to))
+		 
+		{
+                        ChessPiece piece = from.getPiece();
+			board.setPiece(to.getRow(),to.getCol(), piece);
+			from.setPiece(null);
+			Move move = new Move(from,to);
+			move.markAsTwoRowPawnMove();
+			scoreSheet.addMove(move);
+			return true;
+		}
+		else if (from.getPiece() instanceof Pawn && isEnPassant(from,to))
+		{
+
+			Pawn piece = (Pawn)(from.getPiece());
+			board.setPiece(to.getRow(),to.getCol(), piece);
+			from.setPiece(null);
+			Square squareToCapture = board.getSquare(to.getRow() - piece.getDirection(),to.getCol());
+			squareToCapture.setPiece(null);
+			Move enPassantMove = new Move(from, to, squareToCapture);
+			scoreSheet.addMove(enPassantMove);
+			return true;
+		}
 		return false;
+	}
+	public boolean isTwoRowPawnMove(Square from,Square to)
+	{
+		Pawn piece = (Pawn)(from.getPiece());
+		int direction = piece.getDirection();
+		int fromRow = from.getRow();
+		int fromCol = from.getCol();
+		int toRow = to.getRow();
+		int toCol = to.getCol();
+
+
+		if(fromCol == toCol                 &&      // advance two rows, first move only
+		   fromRow + 2 * direction == toRow &&
+		   !to.isOccupied()                 &&
+		   !scoreSheet.contains(from)         )
+		 {
+			 return true;
+		 }
+		return false;
+	}
+
+	public boolean isEnPassant(Square from,Square to)
+	{
+		// last move must be two square pawn move
+		// last move must have ended next to from square
+		// to move move be diagonal and 'behind' last move to square
+
+		 int fromRow = from.getRow();
+		 int fromCol = from.getCol();
+		 int toRow = to.getRow();
+		 int toCol = to.getCol();
+
+		 Pawn piece = (Pawn)(from.getPiece());
+		 String myColor = piece.getColor();
+		 int direction = piece.getDirection();
+
+		 Move lastMove = scoreSheet.lastMove();
+
+		 if (lastMove.isTwoRowPawnMove()    &&  //only after pawn jumps past another pawn
+	             fromRow + direction == toRow   &&
+	             Math.abs(toCol - fromCol) == 1 &&  // diagonal is row+direction and col+-1  
+		     !to.isOccupied()               &&  // not true diagonal capture cause no piece there
+		     lastMove.to == board.getSquare(to.getRow() - direction, to.getCol())) //'behind' last move
+		 {
+			 return true;
+
+		 }
+		 return false;
+
 	}
 	
 	/**
@@ -168,17 +240,11 @@ public class Game
 		 }
 		 else if(fromCol+1 == toCol           &&
 		         fromRow + direction == toRow &&
-			 board.isOccupiedByOpponent(to, myColor)       ) // capture diagnonal // capture diagonal
+			 board.isOccupiedByOpponent(to, myColor)       ) // capture diagnonal 
 		 {
 			 return true;
 		 }
-		 else if(fromCol == toCol                 &&      // advance two rows, first move only
-	                 fromRow + 2 * direction == toRow &&
-		         !to.isOccupied()                 &&
-		       	 !scoreSheet.contains(from)         )
-		 {
-			 return true;
-		 }
+
 		 return false;
 	 }
 	 public boolean isValidRookMove(Square from, Square to)
