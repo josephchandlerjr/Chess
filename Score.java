@@ -56,5 +56,10 @@ public class Score
 		}
 		return result;
 	}
+
+	public Move lastMove()
+	{
+		return moves.get(moves.size()-1);
+	}
 }
 
