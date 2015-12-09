@@ -634,5 +634,14 @@ public class Game
 		 return true;
 
 	 }
-	 
+	/**
+	 * translates algebraic chess notation into something this program can understand and excutes move
+	 * @param notation to translate
+	 * @return Move object representing move
+	 */ 
+	 public void translateAlgebraic(String notation)
+	 {
+
+
+	 } 
 }

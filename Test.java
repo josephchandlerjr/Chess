@@ -1,5 +1,7 @@
 
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.io.EOFException;
 
 
 /** 
@@ -17,14 +19,15 @@ public class Test
 	/**
 	 * runs tests
 	 */
-	public static void main(String[] args)
+	public static void main(String[] args) throws java.io.FileNotFoundException
 	{
+
 		if ( args.length > 0 && args[0].equals("-v"))
 		{ 
 			VERBOSE = true;
 		}
 		Game g = new Game();
-		System.out.println("Testing");
+		System.out.println("Testing...");
 
 	        if (testMoves(g, testBoards, testBoardMoves))
 		{
@@ -35,7 +38,17 @@ public class Test
 			System.out.println("Tests Failed");
 		}
 
-		
+		System.out.println("now testing PGNFile...");
+		PGNFile file = new PGNFile(".\\Paderborn\\Paderborn (1991).pgn");
+		ArrayList<ArrayList<String>> games = file.getGames();
+		for (ArrayList<String> game : games)
+		{
+			for (String move : game)
+			{
+				System.out.println(move);
+			}
+			System.out.println("End of Game");
+		}
 
 	}
 	/**
