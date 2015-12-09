@@ -11,22 +11,22 @@ public class NotationTranslator
 {
 
 	// regular expressions
-	private static String pieceToMove = "(( )|([a-h])|( [a-h])|( [1-8]))?".replaceAll(" ", "[KQRNBS]");
-	private static String castleKS    = "^(\\d+\\.)?O-O[\\?!#]*$";
-	private static String castleQS   = "^(\\d+\\.)?O-O-O[\\?!#]*$";
-        private static String simpleMove = "^(\\d+\\.)?"+pieceToMove+"[a-h][1-8]\\+?[\\?!#]*$";
-	private static String capture = "^(\\d+\\.)?"+pieceToMove+"x[a-h][1-8]\\+?[\\?!#]*$";
-	private static String promotion ="^(\\d+\\.)?[a-h][1-8]=[KQRNBS]\\+?[\\?!#]*$";
-	private static String result = "(1-0)|(0-1)|(1/2-1/2)";
+	static String pieceToMove = "(( )|([a-h])|( [a-h])|( [1-8]))?".replaceAll(" ", "[KQRNBS]");
+	static String castleKS    = "^(\\d+\\.)?O-O[\\?!#]*$";
+	static String castleQS   = "^(\\d+\\.)?O-O-O[\\?!#]*$";
+        static String simpleMove = "^(\\d+\\.)?"+pieceToMove+"[a-h][1-8]\\+?[\\?!#]*$";
+	static String capture = "^(\\d+\\.)?"+pieceToMove+"x[a-h][1-8]\\+?[\\?!#]*$";
+	static String promotion ="^(\\d+\\.)?[a-h][1-8]=[KQRNBS]\\+?[\\?!#]*$";
+	static String result = "(1-0)|(0-1)|(1/2-1/2)";
 
 	//Patterns
 	
-	private static Pattern simpleRx = Pattern.compile(simpleMove);
-	private static Pattern captureRx = Pattern.compile(capture);
-	private static Pattern promotionRx = Pattern.compile(promotion);
-	private static Pattern castleKSRx = Pattern.compile(castleKS);
-	private static Pattern castleQSRx= Pattern.compile(castleQS);
-	private static Pattern resultRx = Pattern.compile(result);
+	static Pattern simpleRx = Pattern.compile(simpleMove);
+	static Pattern captureRx = Pattern.compile(capture);
+	static Pattern promotionRx = Pattern.compile(promotion);
+	static Pattern castleKSRx = Pattern.compile(castleKS);
+	static Pattern castleQSRx= Pattern.compile(castleQS);
+	static Pattern resultRx = Pattern.compile(result);
 
 
 	/**

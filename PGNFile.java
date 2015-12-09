@@ -18,30 +18,9 @@ public class PGNFile
 	int moveIndex = 0;
 
 
-	// regular expressions for parsing
-	String pieceToMove = "(( )|([a-h])|( [a-h])|( [1-8]))?".replaceAll(" ", "[KQRNBS]");
-	String castleKS    = "^(\\d+\\.)?O-O[\\?!#]*$";
-	String castleQS   = "^(\\d+\\.)?O-O-O[\\?!#]*$";
-        String simpleMove = "^(\\d+\\.)?"+pieceToMove+"[a-h][1-8]\\+?[\\?!#]*$";
-	String capture = "^(\\d+\\.)?"+pieceToMove+"x[a-h][1-8]\\+?[\\?!#]*$";
-	String promotion ="^(\\d+\\.)?[a-h][1-8]=[KQRNBS]\\+?[\\?!#]*$";
-	String result = "(1-0)|(0-1)|(1/2-1/2)";
-	
-
-	
-
-	
-	//new instance variables
-
 
 	public PGNFile(String fileName) throws java.io.FileNotFoundException 
 	{
-		Pattern simpleRx = Pattern.compile(simpleMove);
-		Pattern captureRx = Pattern.compile(capture);
-		Pattern promotionRx = Pattern.compile(promotion);
-		Pattern castleKSRx = Pattern.compile(castleKS);
-		Pattern castleQSRx= Pattern.compile(castleQS);
-		Pattern resultRx = Pattern.compile(result);
 		in = new Scanner(new FileReader(fileName));
 		boolean inTagPair = false;
 		boolean inComment = false;
@@ -58,12 +37,12 @@ public class PGNFile
 			
 			if (!inTagPair && !inComment)
 			{
-			Matcher matchSimple = simpleRx.matcher(token);	
-			Matcher matchCapture = captureRx.matcher(token);	
-			Matcher matchPromotion= promotionRx.matcher(token);	
-			Matcher matchCKS = castleKSRx.matcher(token);
-			Matcher matchCQS = castleQSRx.matcher(token);
-			Matcher matchResult = resultRx.matcher(token);
+			Matcher matchSimple = NotationTranslator.simpleRx.matcher(token);	
+			Matcher matchCapture = NotationTranslator.captureRx.matcher(token);	
+			Matcher matchPromotion= NotationTranslator.promotionRx.matcher(token);	
+			Matcher matchCKS = NotationTranslator.castleKSRx.matcher(token);
+			Matcher matchCQS = NotationTranslator.castleQSRx.matcher(token);
+			Matcher matchResult = NotationTranslator.resultRx.matcher(token);
 			if (matchSimple.find())
 			{System.out.printf("%s is simple\n",token);}
 			else if (matchCapture.find()){System.out.printf("%s is capture\n",token);}
