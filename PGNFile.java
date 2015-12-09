@@ -14,10 +14,9 @@ public class PGNFile
 {
 	Scanner in;
 	ArrayList<ArrayList<String>> games = new ArrayList<ArrayList<String>>();
-	int gamesIndex = -1;
+	int gamesIndex = 0;
 	int moveIndex = 0;
 
-	ArrayList<ArrayList<String[][]>> gameParseTrees = new ArrayList<ArrayList<String[][]>>();
 
 	// regular expressions for parsing
 	String pieceToMove = "(( )|([a-h])|( [a-h])|( [1-8]))?".replaceAll(" ", "[KQRNBS]");
@@ -65,7 +64,8 @@ public class PGNFile
 			Matcher matchCKS = castleKSRx.matcher(token);
 			Matcher matchCQS = castleQSRx.matcher(token);
 			Matcher matchResult = resultRx.matcher(token);
-			if (matchSimple.find()){System.out.printf("%s is simple\n",token);}
+			if (matchSimple.find())
+			{System.out.printf("%s is simple\n",token);}
 			else if (matchCapture.find()){System.out.printf("%s is capture\n",token);}
 			else if (matchPromotion.find()){System.out.printf("%s is promotion\n",token);}
 			else if (matchCKS.find()){System.out.printf("%s is CKS\n",token);}
