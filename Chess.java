@@ -25,6 +25,8 @@ public class Chess
 	public static void main(String[] args)
 	{
 		//runs the show
+		//constructs a game, whiteIO and blackIO
+		//
 	}
 
 	/**
