@@ -37,12 +37,12 @@ public class PGNFile
 			
 			if (!inTagPair && !inComment)
 			{
-			Matcher matchSimple = NotationTranslator.simpleRx.matcher(token);	
-			Matcher matchCapture = NotationTranslator.captureRx.matcher(token);	
-			Matcher matchPromotion= NotationTranslator.promotionRx.matcher(token);	
-			Matcher matchCKS = NotationTranslator.castleKSRx.matcher(token);
-			Matcher matchCQS = NotationTranslator.castleQSRx.matcher(token);
-			Matcher matchResult = NotationTranslator.resultRx.matcher(token);
+			Matcher matchSimple = Chess.simpleRegex.matcher(token);	
+			Matcher matchCapture = Chess.captureRegex.matcher(token);	
+			Matcher matchPromotion= Chess.promotionRegex.matcher(token);	
+			Matcher matchCKS = Chess.castleKSRegex.matcher(token);
+			Matcher matchCQS = Chess.castleQSRegex.matcher(token);
+			Matcher matchResult = Chess.resultRegex.matcher(token);
 			if (matchSimple.find())
 			{System.out.printf("%s is simple\n",token);}
 			else if (matchCapture.find()){System.out.printf("%s is capture\n",token);}
