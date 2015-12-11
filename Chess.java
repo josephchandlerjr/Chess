@@ -7,20 +7,71 @@ public class Chess
 	private static String pieceToMove = "(( )|([a-h])|( [a-h])|( [1-8]))?".replaceAll(" ", "[KQRNBS]");
 	private static String castleKS    = "^(\\d+\\.)?O-O[\\?!#]*$";
 	private static String castleQS   = "^(\\d+\\.)?O-O-O[\\?!#]*$";
-        private static String simpleMove = "^(\\d+\\.)?"+pieceToMove+"[a-h][1-8]\\+?[\\?!#]*$";
-	private static String capture = "^(\\d+\\.)?"+pieceToMove+"x[a-h][1-8]\\+?[\\?!#]*$";
-	private static String promotion ="^(\\d+\\.)?[a-h][1-8]=[KQRNBS]\\+?[\\?!#]*$";
-	private static String result = "(1-0)|(0-1)|(1/2-1/2)";
+	private static String result = "^(1-0)|(0-1)|(1/2-1/2)$";
+
+	// new regex versions
+	// these are for moves to empty squares
+	
+	private static String RANK = "([1-8])";
+	private static String FILE = "([a-h])";
+	private static String PIECE = "([KQNBRS])";
+	private static String SQUARE = "("+FILE+RANK+")";
+	private static String PIECEFILESQUARE = 
+		              "^(?:\\d+\\.)?PF%S%[+!?#]*$".replace("P",PIECE).replace("F",FILE).replace("%S%",SQUARE);
+
+	private static String PIECEFILE = 
+		              "^(?:\\d+\\.)?PF[+!\\?#]*$".replace("P",PIECE).replace("F",FILE);
+	private static String PIECERANK = 
+		              "^(?:\\d+\\.)?P%R%[+!\\?#]*$".replace("P",PIECE).replace("%R%",RANK);
+	private static String PIECERANKSQUARE = 
+		              "^(?:\\d+\\.)?P%R%%S%[+!\\?#]*$".replace("P",PIECE).replace("%R%",RANK).replace("%S%",SQUARE);
+	private static String PIECESQUARE = 
+		              "^(?:\\d+\\.)?P%S%[+!\\?#]*$".replace("P",PIECE).replace("%S%",SQUARE);
+
+	private static String FILESQUARE = 
+		              "^(?:\\d+\\.)?F%S%[+!\\?#]*$".replace("F",FILE).replace("%S%",SQUARE);
+	private static String RANKSQUARE = 
+		              "^(?:\\d+\\.)?%R%%S%[+!\\?#]*$".replace("%R%",RANK).replace("%S%",SQUARE);
+	private static String PAWNSQUARE = 
+		              "^(?:\\d+\\.)?%S%[+!\\?#]*$".replace("%S%",SQUARE);
+	//these are for captures
+	private static String PIECECAPTURESQUARE = 
+		              "^(?:\\d+\\.)?Px%S%[+!\\?#]*$".replace("P",PIECE).replace("%S%",SQUARE);
+	private static String PIECEFILECAPTURESQUARE = 
+		              "^(?:\\d+\\.)?PFx%S%[+!\\?#]*$".replace("P",PIECE).replace("F",FILE).replace("%S%",SQUARE);
+	private static String PIECERANKCAPTURESQUARE = 
+		              "^(?:\\d+\\.)?P%R%x%S%[+!\\?#]*$".replace("P",PIECE).replace("%R%",RANK).replace("%S%",SQUARE);
+	private static String PIECEFILERANKCAPTURESQUARE = 
+		"^(?:\\d+\\.)?PF%R%x%S%[+!\\?#]*$".replace("P",PIECE).replace("F",FILE).replace("%R%",RANK).replace("%S%",SQUARE);
+	private static String RANKCAPTURESQUARE= 
+		              "^(?:\\d+\\.)?%R%x%S%[+!\\?#]*$".replace("%R%",RANK).replace("%S%",SQUARE);
+	private static String FILECAPTURESQUARE= 
+		              "^(?:\\d+\\.)?Fx%S%[+!\\?#]*$".replace("F",FILE).replace("%S%",SQUARE);
+	private static String SQUAREPROMOTION= 
+		              "^(?:\\d+\\.)?%S%=P[+!\\?#]*$".replace("%S%",SQUARE).replace("P",PIECE);
+	private static String FILEPROMOTION= 
+		              "^(?:\\d+\\.)?F=P[+!\\?#]*$".replace("F",FILE).replace("P",PIECE);
 
 	//Patterns can be used elsewhere most notably in PGNFile
 	
-	static Pattern simpleRegex = Pattern.compile(simpleMove);
-	static Pattern captureRegex = Pattern.compile(capture);
-	static Pattern promotionRegex = Pattern.compile(promotion);
 	static Pattern castleKSRegex = Pattern.compile(castleKS);
 	static Pattern castleQSRegex= Pattern.compile(castleQS);
 	static Pattern resultRegex = Pattern.compile(result);
-
+	//new Pattern objs
+	static Pattern PIECEFILESQUARERegex = Pattern.compile(PIECEFILESQUARE);
+	static Pattern PIECERANKSQUARERegex = Pattern.compile(PIECERANKSQUARE);
+	static Pattern PIECESQUARERegex = Pattern.compile(PIECESQUARE);
+	static Pattern FILESQUARERegex = Pattern.compile(FILESQUARE);
+	static Pattern RANKSQUARERegex = Pattern.compile(RANKSQUARE);
+	static Pattern PAWNSQUARERegex = Pattern.compile(PAWNSQUARE);
+	static Pattern PIECECAPTURESQUARERegex = Pattern.compile(PIECECAPTURESQUARE); 
+	static Pattern PIECEFILECAPTURESQUARERegex = Pattern.compile(PIECEFILECAPTURESQUARE); 
+	static Pattern PIECERANKCAPTURESQUARERegex = Pattern.compile(PIECERANKCAPTURESQUARE); 
+	static Pattern PIECEFILERANKCAPTURESQUARERegex = Pattern.compile(PIECEFILERANKCAPTURESQUARE); 
+	static Pattern RANKCAPTURESQUARERegex = Pattern.compile(RANKCAPTURESQUARE); 
+	static Pattern FILECAPTURESQUARERegex = Pattern.compile(FILECAPTURESQUARE); 
+	static Pattern SQUAREPROMOTIONRegex = Pattern.compile(SQUAREPROMOTION);
+	static Pattern FILEPROMOTIONRegex = Pattern.compile(FILEPROMOTION);
 
 	public static void main(String[] args)
 	{
@@ -38,27 +89,6 @@ public class Chess
 	public int[] translateNotation(String notation, String color)
 	{
 		//Matchers
-		Matcher matchSimple = simpleRegex.matcher(notation);	
-		Matcher matchCapture = captureRegex.matcher(notation);	
-		Matcher matchPromotion= promotionRegex.matcher(notation);	
-		Matcher matchCKS = castleKSRegex.matcher(notation);
-		Matcher matchCQS = castleQSRegex.matcher(notation);
-		Matcher matchResult = resultRegex.matcher(notation);	
-
-		if (matchSimple.find())
-		{System.out.printf("%s is simple\n",notation);}
-		else if (matchCapture.find())
-		{System.out.printf("%s is capture\n",notation);}
-		else if (matchPromotion.find())
-		{System.out.printf("%s is promotion\n",notation);}
-		else if (matchCKS.find())
-		{System.out.printf("%s is CKS\n",notation);}
-		else if (matchCQS.find())
-		{System.out.printf("%s is CQS\n",notation);}
-		else if (matchResult.find())
-		{System.out.printf("%s is result\n",notation);}
-		else 
-		{System.out.printf("%s --> NO IDEA\n",notation);}
 		return new int[4];
 	}
 }
