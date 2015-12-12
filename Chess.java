@@ -5,13 +5,13 @@ public class Chess
 {
 	// regular expressions
 	private static String pieceToMove = "(( )|([a-h])|( [a-h])|( [1-8]))?".replaceAll(" ", "[KQRNBS]");
-	private static String castleKS    = "^(\\d+\\.)?O-O[\\?!#]*$";
-	private static String castleQS   = "^(\\d+\\.)?O-O-O[\\?!#]*$";
 	private static String result = "^(1-0)|(0-1)|(1/2-1/2)$";
 
 	// new regex versions
 	// these are for moves to empty squares
 	
+	private static String CASTLEKS    = "^(\\d+\\.)?O-O[\\?!#]*$";
+	private static String CASTLEQS   = "^(\\d+\\.)?O-O-O[\\?!#]*$";
 	private static String RANK = "([1-8])";
 	private static String FILE = "([a-h])";
 	private static String PIECE = "([KQNBRS])";
@@ -54,8 +54,8 @@ public class Chess
 
 	//Patterns can be used elsewhere most notably in PGNFile
 	
-	static Pattern castleKSRegex = Pattern.compile(castleKS);
-	static Pattern castleQSRegex= Pattern.compile(castleQS);
+	static Pattern CASTLEKSRegex = Pattern.compile(CASTLEKS);
+	static Pattern CASTLEQSRegex= Pattern.compile(CASTLEQS);
 	static Pattern resultRegex = Pattern.compile(result);
 	//new Pattern objs
 	static Pattern PIECEFILESQUARERegex = Pattern.compile(PIECEFILESQUARE);

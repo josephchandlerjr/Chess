@@ -37,8 +37,8 @@ public class PGNFile
 			
 			if (!inTagPair && !inComment)
 			{
-			Matcher matchCKS = Chess.castleKSRegex.matcher(token);
-			Matcher matchCQS = Chess.castleQSRegex.matcher(token);
+			Matcher CASTLEKS = Chess.CASTLEKSRegex.matcher(token);
+			Matcher CASTLEQS = Chess.CASTLEQSRegex.matcher(token);
 			Matcher matchResult = Chess.resultRegex.matcher(token);
 			
 			// test
@@ -64,121 +64,69 @@ public class PGNFile
 
 			if(PIECEFILESQUARE.find())
 			{
-				System.out.printf("%s IS PIECEFILESQUARE\n",token);
-				System.out.printf("group 1 is %s\n",PIECEFILESQUARE.group(1));
-				System.out.printf("group 2 is %s\n",PIECEFILESQUARE.group(2));
-				System.out.printf("group 3 is %s\n",PIECEFILESQUARE.group(3));
-				System.out.printf("group 4 is %s\n",PIECEFILESQUARE.group(4));
-				System.out.printf("group 5 is %s\n",PIECEFILESQUARE.group(5));
+				show(token,"PIECEFILESQUARE",PIECEFILESQUARE);
 			}
 			else if(PIECESQUARE.find())
 			{
-				System.out.printf("%s IS PIECESQUARE\n",token);
-				System.out.printf("group 1 is %s\n",PIECESQUARE.group(1));
-				System.out.printf("group 2 is %s\n",PIECESQUARE.group(2));
-				System.out.printf("group 3 is %s\n",PIECESQUARE.group(3));
-				System.out.printf("group 4 is %s\n",PIECESQUARE.group(4));
+				show(token,"PIECESQUARE",PIECESQUARE);
 			}
 			else if(PIECERANKSQUARE.find())
 			{
-				System.out.printf("%s IS PIECERANKSQUARE\n", token);
-				System.out.printf("group 1 is %s\n",PIECERANKSQUARE.group(1));
-				System.out.printf("group 2 is %s\n",PIECERANKSQUARE.group(2));
-				System.out.printf("group 3 is %s\n",PIECERANKSQUARE.group(3));
-				System.out.printf("group 4 is %s\n",PIECERANKSQUARE.group(4));
-				System.out.printf("group 5 is %s\n",PIECERANKSQUARE.group(5));
+				show(token,"PIECERANKSQUARE",PIECERANKSQUARE);
 			}
 			else if(FILESQUARE.find())
 			{
-				System.out.printf("%s IS FILESQUARE\n", token);
-				System.out.printf("group 1 is %s\n",FILESQUARE.group(1));
-				System.out.printf("group 2 is %s\n",FILESQUARE.group(2));
-				System.out.printf("group 3 is %s\n",FILESQUARE.group(3));
-				System.out.printf("group 4 is %s\n",FILESQUARE.group(4));
+				show(token,"FILESQUARE",FILESQUARE);
 			}
 			else if(RANKSQUARE.find())
 			{
-				System.out.printf("%s IS RANKSQUARE\n",token);
-				System.out.printf("group 1 is %s\n",RANKSQUARE.group(1));
-				System.out.printf("group 2 is %s\n",RANKSQUARE.group(2));
-				System.out.printf("group 3 is %s\n",RANKSQUARE.group(3));
-				System.out.printf("group 4 is %s\n",RANKSQUARE.group(4));
+				show(token,"RANKSQUARE",RANKSQUARE);
 			}
 			else if(PAWNSQUARE.find())
 			{
-				System.out.printf("%s IS PAWNSQUARE\n",token);
-				System.out.printf("group 1 is %s\n",PAWNSQUARE.group(1));
-				System.out.printf("group 2 is %s\n",PAWNSQUARE.group(2));
-				System.out.printf("group 3 is %s\n",PAWNSQUARE.group(3));
+				show(token,"PAWNSQUARE",PAWNSQUARE);
 			}
-
 			else if(PIECECAPTURESQUARE.find())
 			{
-				System.out.printf("%s IS PIECECAPTURESQUARE\n",token);
-				for (int group=0; group < PIECECAPTURESQUARE.groupCount();group++)
-				{
-					System.out.printf("group %d is %s\n",group+1,PIECECAPTURESQUARE.group(group+1));
-				}
+				show(token,"PIECECAPTURESQUARE",PIECECAPTURESQUARE);
 			}
 			else if(PIECEFILECAPTURESQUARE.find())
 			{
-				System.out.printf("%s IS PIECEFILECAPTURESQUARE\n",token);
-				for (int group=0; group < PIECEFILECAPTURESQUARE.groupCount();group++)
-				{
-					System.out.printf("group %d is %s\n",group+1,PIECEFILECAPTURESQUARE.group(group+1));
-				}
+				show(token,"PIECEFILECAPTURESQUARE",PIECEFILECAPTURESQUARE);
 			}
 			else if(FILECAPTURESQUARE.find())
 			{
-				System.out.printf("%s IS FILECAPTURESQUARE \n", token);
-				for (int group=0; group < FILECAPTURESQUARE.groupCount();group++)
-				{
-					System.out.printf("group %d is %s\n",group+1,FILECAPTURESQUARE.group(group+1));
-				}
+				show(token,"FILECAPTURESQUARE",FILECAPTURESQUARE);
 			}
 			else if(PIECERANKCAPTURESQUARE.find())
 			{
-				System.out.printf("%s IS PIECERANKCAPTURESQUARE \n",token);
-				for (int group=0; group < PIECERANKCAPTURESQUARE.groupCount();group++)
-				{
-					System.out.printf("group %d is %s\n",group+1,PIECERANKCAPTURESQUARE.group(group+1));
-				}
+				show(token,"PIECERANKCAPTURESQUARE",PIECERANKCAPTURESQUARE);
 			}
 			else if(RANKCAPTURESQUARE.find())
 			{
-				System.out.printf("%s IS RANKCAPTURESQUARE \n", token);
-				for (int group=0; group < RANKCAPTURESQUARE.groupCount();group++)
-				{
-					System.out.printf("group %d is %s\n",group+1,RANKCAPTURESQUARE.group(group+1));
-				}
+				show(token,"RANKCAPTURESQUARE",RANKCAPTURESQUARE);
 			}
 			else if(PIECEFILERANKCAPTURESQUARE.find())
 			{
-				System.out.printf("%s IS PIECEFILERANKCAPTURESQUARE \n",token);
-				for (int group=0; group < PIECEFILERANKCAPTURESQUARE.groupCount();group++)
-				{
-					System.out.printf("group %d is %s\n",group+1,PIECEFILERANKCAPTURESQUARE.group(group+1));
-				}
+				show(token,"PIECEFILERANKCAPTURESQUARE",PIECEFILERANKCAPTURESQUARE);
 			}
-			else if (SQUAREPROMOTION.find())
+			else if(SQUAREPROMOTION.find())
 			{
-				System.out.printf("%s IS SQUAREPROMOTION\n", token);
-				for (int group=0; group < SQUAREPROMOTION.groupCount();group++)
-				{
-					System.out.printf("group %d is %s\n",group+1,SQUAREPROMOTION.group(group+1));
-				}
+				show(token,"SQUAREPROMOTION",SQUAREPROMOTION);
 			}
-			else if (FILEPROMOTION.find())
+			else if(FILEPROMOTION.find())
 			{
-				System.out.printf("%s IS FILEPROMOTION\n", token);
-				for (int group=0; group < FILEPROMOTION.groupCount();group++)
-				{
-					System.out.printf("group %d is %s\n",group+1,FILEPROMOTION.group(group+1));
-				}
+				show(token,"FILEPROMOTION",FILEPROMOTION);
 			}
-			else if (matchCKS.find()){System.out.printf("%s is CKS\n",token);}
-			else if (matchCQS.find()){System.out.printf("%s is CQS\n",token);}
-			else if (matchResult.find()){System.out.printf("%s is result\n",token);}
+			else if (CASTLEKS.find())
+			{
+				show(token,"CASTLEKS",CASTLEKS);
+			}
+			else if (CASTLEQS.find())
+			{
+				show(token,"CASTLEQS",CASTLEQS);
+			}
+			else if (matchResult.find()){System.out.printf("%s: result\n",token);}
 			else {System.out.printf("%s --> NO IDEA\n",token);}
 	
 		
@@ -211,5 +159,14 @@ public class PGNFile
 	public ArrayList<ArrayList<String>> getGames()
 	{
 		return games;
+	}
+
+	private void show(String token, String ID, Matcher match)
+	{
+		System.out.printf("%s is a %s\n", token, ID);
+		for (int group=0; group < match.groupCount()+1;group++)
+		{
+			System.out.printf("group#%d: %s\n",group,match.group(group));
+		}
 	}
 }
