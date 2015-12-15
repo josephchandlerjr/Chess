@@ -1,3 +1,4 @@
+import java.io.Console;
 import java.util.ArrayList;
 
 public class Chess
@@ -21,6 +22,7 @@ public class Chess
 		
 		white = new IOHelper(games.get(0));
 		black = white;
+		play();
 
 		while(true)
 		{
@@ -33,6 +35,43 @@ public class Chess
 
 
 		}
+	}
+	public void play()
+	{
+		Console console = System.console();
+		if (console == null) {
+		    System.err.println("No console.");
+		    System.exit(1);
+		}
+		boolean whiteHasMoved = false;
+		boolean blackHasMoved = false;
+		while (true) 
+		{
+			
+			game.board.display();
+			while(!whiteHasMoved)
+			{
+				blackHasMoved=false;
+				game.board.display();
+				String whiteResponse = console.readLine("%nEnter your move, white: ");
+				ChessNotation whiteMove =new ChessNotation(whiteResponse);
+				if(move("WHITE",whiteMove))
+				{ whiteHasMoved=true;}
+	
+			}
+
+			game.board.display();
+			while(!blackHasMoved)
+			{
+				whiteHasMoved=false;
+				String blackResponse = console.readLine("%nEnter your move, black: ");
+				ChessNotation blackMove =new ChessNotation(blackResponse);
+				if(move("BLACK",blackMove))
+				{ blackHasMoved=true;}
+	
+			}
+		}
+
 	}
 
 	/**
