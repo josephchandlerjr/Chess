@@ -56,9 +56,13 @@ public class Score
 		}
 		return result;
 	}
-
+	/**
+	 * gets last move in score sheet
+	 * @return last Move instance recorded or null if score sheet is empty
+	 */
 	public Move lastMove()
 	{
+		if (moves.size() == 0) { return null;}
 		return moves.get(moves.size()-1);
 	}
 }

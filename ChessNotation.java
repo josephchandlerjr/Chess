@@ -23,11 +23,13 @@ public class ChessNotation
 		validateAndCapture(notation);
 
 	}
+	public String getNotation() { return notation;}
 	public String getPieceToMove() { return pieceToMove;}
 	public String getFileToMove() { return fileToMove;}
 	public String getRankToMove() { return rankToMove;}
 	public String getFileDestination() { return fileDestination;}
 	public String getRankDestination() { return rankDestination;}
+	public String getPromoteTo() { return promoteTo;}
 	/**
 	 * tells you if the notation fed to constructor was valid chess notation
 	 * @return true if valid else false

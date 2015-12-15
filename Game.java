@@ -176,7 +176,8 @@ public class Game
 
 		 Move lastMove = scoreSheet.lastMove();
 
-		 if (lastMove.isTwoRowPawnMove()    &&  //only after pawn jumps past another pawn
+		 if (lastMove != null               &&
+		     lastMove.isTwoRowPawnMove()    &&  //only after pawn jumps past another pawn
 	             fromRow + direction == toRow   &&
 	             Math.abs(toCol - fromCol) == 1 &&  // diagonal is row+direction and col+-1  
 		     !to.isOccupied()               &&  // not true diagonal capture cause no piece there
@@ -392,7 +393,9 @@ public class Game
 		 {
 			 for (Square to : board.board[row])
 			 {
-				 if (isValidMove(from, to))
+				 if (isValidMove(from, to) ||
+				    (from.getPiece() instanceof Pawn && isTwoRowPawnMove(from,to)) ||
+				    (from.getPiece() instanceof Pawn && isEnPassant(from,to)))
 				 {
 					 result.add(to);
 				 }
