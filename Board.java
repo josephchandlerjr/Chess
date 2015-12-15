@@ -19,6 +19,16 @@ public class Board
 	{
 		this.board = board;
 	}
+
+	private Square[] getRow(int row)
+	{
+		return board[row];
+	}
+	private Square[] getColumn(int col)
+	{
+		return board[col];
+	}
+
 	/**
 	 * gets a square from the board
 	 * @param row row square you want lies on
@@ -165,6 +175,18 @@ public class Board
 	{
 		return s.isOccupied() && s.getPiece().getColor().equals(myColor);
 
+	}	
+	/**
+	 * finds if a particular square is occupied by piece of give color and type
+	 * @param s square we are examining
+	 * @param color color of piece we are looking for 
+	 * @param rep string rep of piece per PGN, for example "N" is a knight, "K" a king
+	 * @return true if square has such a piece on it else false
+	 */
+	public boolean isOccupiedByPiece(Square s, String color, String rep)
+	{
+		String fullRep = color.substring(0,1) + rep;
+		return s.isOccupied() && s.getPiece().toString().equals(fullRep);
 	}
 	/**
 	 * takes two pieces on same row, column, or diagonal and tells if there are pieces between them

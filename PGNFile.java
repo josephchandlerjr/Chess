@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class PGNFile	
 {
 	Scanner in;
-	ArrayList<ArrayList<String>> games = new ArrayList<ArrayList<String>>();
+	ArrayList<ArrayList<ChessNotation>> games = new ArrayList<ArrayList<ChessNotation>>();
 	int gamesIndex = 0;
 	int moveIndex = 0;
 
@@ -19,7 +19,8 @@ public class PGNFile
 	{
 		in = new Scanner(new FileReader(fileName));
 		int gamesIx = 0;
-		games.add(gamesIx, new ArrayList<String>());
+		games.add(gamesIx, new ArrayList<ChessNotation>());
+		boolean inTagOrComment = false;
 		while (in.hasNext())
 		{
 			String token = in.next();
@@ -27,30 +28,43 @@ public class PGNFile
 
 			if(notation.isValid())
 			{
-				if (notation.isEndGameMarker())
-				{ 
-					gamesIx++;
-					games.add(gamesIx, new ArrayList<String>());
-				}
-				else
+				games.get(gamesIx).add(notation);
+			}
+			else if (notation.isEndGameMarker())
+			{ 
+				gamesIx++;
+				games.add(gamesIx, new ArrayList<ChessNotation>());
+			}
+			else
+			{
+				String first = token.substring(0,1);
+				String last = token.substring(token.length()-1,token.length());
+				if(first.equals("[") | first.equals("{") )
 				{
-					int dot = token.indexOf(".");
-					if(dot != -1 )
+					inTagOrComment = true;
+				}
+				else if (last.equals("]") | last.equals("}"))
+				{
+					inTagOrComment = false;
+				}
+				else 
+				{
+					if (!inTagOrComment)
 					{
-						token = token.substring(dot+1,token.length());
+						System.out.printf("%s is an unacceptable token\n",token);
 					}
-					games.get(gamesIx).add(token);
 				}
 			}
+
 
 
 		}
 	}
 	/**
-	 * returns ArrayList of ArrayLists of String elements, each a game from this file
-	 * @return ArrayList<ArrayList<string>> , each a game
+	 * returns ArrayList of ArrayLists of ChessNotation elements 
+	 * @return ArrayList of games, each game is an ArrayList of ChessNotation elements
 	 */
-	public ArrayList<ArrayList<String>> getGames()
+	public ArrayList<ArrayList<ChessNotation>> getGames()
 	{
 		return games;
 	}

@@ -21,7 +21,6 @@ public class Test
 	 */
 	public static void main(String[] args) throws java.io.FileNotFoundException
 	{
-
 		if ( args.length > 0 && args[0].equals("-v"))
 		{ 
 			VERBOSE = true;
@@ -40,10 +39,10 @@ public class Test
 
 		System.out.println("now testing PGNFile...");
 		PGNFile file = new PGNFile(".\\Paderborn\\Paderborn (1991).pgn");
-		ArrayList<ArrayList<String>> games = file.getGames();
-		for (ArrayList<String> game : games)
+		ArrayList<ArrayList<ChessNotation>> games = file.getGames();
+		for (ArrayList<ChessNotation> game : games)
 		{
-			for (String move : game)
+			for (ChessNotation move : game)
 			{
 				System.out.println(move);
 			}

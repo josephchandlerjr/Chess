@@ -6,7 +6,7 @@ public class ChessPiece
 	//instance variables
 	private String color; 
 	private String strRep;
-
+	private String ID;
         /** initializes chess piece with row, column, color and string representation
 	 * @param color "WHITE" or "BLACK" 
 	 * @param rep string representation to be used
@@ -18,6 +18,7 @@ public class ChessPiece
 			System.out.printf("%s is an invalid color\n", color);
 		}
 		this.color = color;
+		this.ID = rep;
 		strRep = color.substring(0,1) + rep;
 		
 	}
@@ -33,11 +34,19 @@ public class ChessPiece
 
 	/**
 	 * gets color of piece
-	 * @return the color of piece, 0=white, 1=black
+	 * @return the color of piece, "WHITE" or "BLACK"
 	 */
 	public String getColor()
 	{
 		return color;
+	}
+	/**
+	 * gets string id for given piece
+	 * @return ID instance variable
+	 */
+	public String getID()
+	{
+		return this.ID;
 	}
 
 }

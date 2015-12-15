@@ -188,7 +188,6 @@ public class Game
 		 return false;
 
 	}
-	
 	/**
 	 * checks if a move is valid
 	 * @param from  piece to be moved is on
