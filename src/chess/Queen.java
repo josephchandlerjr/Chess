@@ -1,3 +1,5 @@
+package chess;
+
 /**
  * represents a Queen chess piece
  */

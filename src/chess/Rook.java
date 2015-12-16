@@ -1,3 +1,5 @@
+package chess;
+
 /** 
  * represents a rook chess piece
  */

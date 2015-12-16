@@ -1,3 +1,4 @@
+package chess;
 /**
  * represents a bishop chess piece
  */

@@ -1,40 +1,23 @@
+package chess;
+
 import java.io.Console;
 import java.util.ArrayList;
 
 public class Chess
 {
 	Game game;
-	IOHelper white;
-	IOHelper black;
+
 	public static void main(String[] args) throws java.io.FileNotFoundException
 	{
 		//runs the show
 		//constructs a game, whiteIO and blackIO
 		Chess chess = new Chess();
+		chess.play();
 	}
 
 	public Chess() throws java.io.FileNotFoundException
 	{
 		game = new Game();
-
-		PGNFile file = new PGNFile(".\\Paderborn\\Paderborn (1991).pgn");
-		ArrayList<ArrayList<ChessNotation>> games = file.getGames();
-		
-		white = new IOHelper(games.get(0));
-		black = white;
-		play();
-
-		while(true)
-		{
-			ChessNotation whiteMove =  white.next();
-			if(whiteMove == null) { break;}
-			System.out.println(move("WHITE",whiteMove));
-			ChessNotation blackMove =  black.next();
-			if(blackMove == null) { break;}
-			System.out.println(move("BLACK",blackMove));
-
-
-		}
 	}
 	public void play()
 	{

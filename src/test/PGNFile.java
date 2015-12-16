@@ -1,9 +1,13 @@
 // for now just want to get moves for testing. later make this more robust. perhaps use ANTLR
 
+package test;
+
 import java.util.Scanner;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import chess.ChessNotation;
 
 /**
  * class representation of a .pgn file

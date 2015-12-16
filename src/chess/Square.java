@@ -1,3 +1,5 @@
+package chess;
+
 /** 
  * represents a square on the chess board
  */

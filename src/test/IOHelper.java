@@ -1,4 +1,7 @@
+package test;
+
 import java.util.ArrayList;
+import chess.ChessNotation;
 
 public class IOHelper
 {

@@ -1,3 +1,5 @@
+package chess;
+
 /**
  * represents the king chess piece
  */

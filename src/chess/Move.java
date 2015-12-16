@@ -1,3 +1,5 @@
+package chess;
+
 /** 
  * represents a move for the score sheet
  * a move is an array of Move objects
