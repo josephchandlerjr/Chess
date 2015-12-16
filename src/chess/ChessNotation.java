@@ -137,6 +137,7 @@ public class ChessNotation
 		else if(FILECAPTURESQUARE.find())
 		{
 			valid = true;
+			pieceToMove = "P";
 			fileToMove =      FILECAPTURESQUARE.group(1);
 			fileDestination = FILECAPTURESQUARE.group(2);
 			rankDestination = FILECAPTURESQUARE.group(3);
@@ -154,6 +155,7 @@ public class ChessNotation
 		else if(RANKCAPTURESQUARE.find())
 		{
 			valid = true;
+			pieceToMove = "P";
 			rankToMove =      RANKCAPTURESQUARE.group(1);
 			fileDestination = RANKCAPTURESQUARE.group(2);
 			rankDestination = RANKCAPTURESQUARE.group(3);
@@ -237,34 +239,34 @@ public class ChessNotation
 
 	// regular expressions
 	private final String NUM = "(?:\\d+\\.)";
-	private final String END = "[\\?!#]*";
+	private final String END = "[\\+\\?!#]*";
 
         //these are for castling	
-	private final String CASTLEKS    = String.format("^%s?O-O[\\?!#]*$",NUM);
-	private final String CASTLEQS   =  String.format("^%s?O-O-O[\\?!#]*$",NUM);
+	private final String CASTLEKS    = String.format("^%s?O-O%s$",NUM,END);
+	private final String CASTLEQS   =  String.format("^%s?O-O-O%s$",NUM,END);
 	// these are for moves to empty squares
 	private final String RANK = "([1-8])";
 	private final String FILE = "([a-h])";
 	private final String PIECE = "([KQNBRS])";
 	private final String SQUARE = "(?:"+FILE+RANK+")";
-	private final String PIECEFILESQUARE = String.format("^%s?%s%s%s[+!?#]*$",NUM,PIECE,FILE,SQUARE);
-	private final String PIECEFILE = String.format("^%s?%s%s[+!\\?#]*$",NUM,PIECE,FILE);
-	private final String PIECERANK = String.format("^%s?%s%s[+!\\?#]*$",NUM,PIECE,RANK);
-	private final String PIECERANKSQUARE = String.format("^%s?%s%s%s[+!\\?#]*$",NUM,PIECE,RANK,SQUARE);
-	private final String PIECESQUARE = String.format("^%s?%s%s[+!\\?#]*$",NUM,PIECE,SQUARE);
-	private final String FILESQUARE = String.format("^%s?%s%s[+!\\?#]*$",NUM,FILE,SQUARE);
-	private final String RANKSQUARE = String.format("^%s?%s%s[+!\\?#]*$",NUM,RANK,SQUARE);
-	private final String PAWNSQUARE = String.format("^%s?%s[+!\\?#]*$",NUM,SQUARE);
+	private final String PIECEFILESQUARE = String.format("^%s?%s%s%s%s$",NUM,PIECE,FILE,SQUARE,END);
+	private final String PIECEFILE = String.format("^%s?%s%s%s$",NUM,PIECE,FILE,END);
+	private final String PIECERANK = String.format("^%s?%s%s%s$",NUM,PIECE,RANK,END);
+	private final String PIECERANKSQUARE = String.format("^%s?%s%s%s%s$",NUM,PIECE,RANK,SQUARE,END);
+	private final String PIECESQUARE = String.format("^%s?%s%s%s$",NUM,PIECE,SQUARE,END);
+	private final String FILESQUARE = String.format("^%s?%s%s%s$",NUM,FILE,SQUARE,END);
+	private final String RANKSQUARE = String.format("^%s?%s%s%s$",NUM,RANK,SQUARE,END);
+	private final String PAWNSQUARE = String.format("^%s?%s%s$",NUM,SQUARE,END);
 
 	//these are for captures
-	private final String PIECECAPTURESQUARE = String.format("^%s?%sx%s[+!\\?#]*$",NUM,PIECE,SQUARE);
-	private final String PIECEFILECAPTURESQUARE = String.format("^%s?%s%sx%s[+!\\?#]*$",NUM,PIECE,FILE,SQUARE);
-	private final String PIECERANKCAPTURESQUARE = String.format("^%s?%s%sx%s[+!\\?#]*$",NUM,PIECE,RANK,SQUARE);
-	private final String PIECEFILERANKCAPTURESQUARE = String.format("^%s?%s%s%sx%s[+!\\?#]*$",NUM,PIECE,FILE,RANK,SQUARE);
-	private final String RANKCAPTURESQUARE= String.format("^%s?%sx%s[+!\\?#]*$",NUM,RANK,SQUARE);
-	private final String FILECAPTURESQUARE= String.format("^%s?%sx%s[+!\\?#]*$",NUM,FILE,SQUARE);
-	private final String SQUAREPROMOTION= String.format("^%s?%s=%s[+!\\?#]*$",NUM,SQUARE,PIECE);
-	private final String FILEPROMOTION= String.format("^%s?%s=%s[+!\\?#]*$",NUM,FILE,PIECE);
+	private final String PIECECAPTURESQUARE = String.format("^%s?%sx%s%s$",NUM,PIECE,SQUARE,END);
+	private final String PIECEFILECAPTURESQUARE = String.format("^%s?%s%sx%s%s$",NUM,PIECE,FILE,SQUARE,END);
+	private final String PIECERANKCAPTURESQUARE = String.format("^%s?%s%sx%s%s$",NUM,PIECE,RANK,SQUARE,END);
+	private final String PIECEFILERANKCAPTURESQUARE = String.format("^%s?%s%s%sx%s%s$",NUM,PIECE,FILE,RANK,SQUARE,END);
+	private final String RANKCAPTURESQUARE= String.format("^%s?%sx%s%s$",NUM,RANK,SQUARE,END);
+	private final String FILECAPTURESQUARE= String.format("^%s?%sx%s%s$",NUM,FILE,SQUARE,END);
+	private final String SQUAREPROMOTION= String.format("^%s?%s=%s%s$",NUM,SQUARE,PIECE,END);
+	private final String FILEPROMOTION= String.format("^%s?%s=%s%s$",NUM,FILE,PIECE,END);
 
 	private final String RESULT = "(^1-0$)|(^0-1$)|(^1/2-1/2$)";
 	private final Pattern RESULTRegex = Pattern.compile(RESULT);

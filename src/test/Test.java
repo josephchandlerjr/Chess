@@ -1,11 +1,8 @@
 package test;
 
 
-import java.util.Arrays;
 import java.util.ArrayList;
-import java.io.EOFException;
-import java.util.ArrayList;
-
+import java.io.File;
 import chess.Chess;
 import chess.ChessNotation;
 
@@ -23,26 +20,35 @@ public class Test
 	 */
 	public static void main(String[] args) throws java.io.FileNotFoundException
 	{
+		File folder = new File("C:\\Users\\AGNESI\\Chess\\src\\test\\resources");
+		File[] testFiles = folder.listFiles();
+
 		IOHelper white;
 		IOHelper black;
-		PGNFile file = new PGNFile("C:\\Users\\AGNESI\\Chess\\src\\test\\resources\\Paderborn (1991).pgn");
-		ArrayList<ArrayList<ChessNotation>> games = file.getGames();
-
-		for (ArrayList<ChessNotation> game : games)
+		for(File testFile : testFiles)
 		{
-			
-			white = new IOHelper(game);
-			black = white;
+			System.out.printf("Testing from file %s...\n",testFile.getName());
+			PGNFile file = new PGNFile(testFile.getPath());
+			ArrayList<ArrayList<ChessNotation>> games = file.getGames();
 
-			Chess c = new Chess();
-			while(true)
+			for (ArrayList<ChessNotation> game : games)
 			{
-				ChessNotation whiteMove =  white.next();
-				if(whiteMove == null) { break;}
-				System.out.println(c.move("WHITE",whiteMove));
-				ChessNotation blackMove =  black.next();
-				if(blackMove == null) { break;}
-				System.out.println(c.move("BLACK",blackMove));
+				
+				white = new IOHelper(game);
+				black = white;
+
+				Chess c = new Chess();
+				while(true)
+				{
+					c.displayBoard();
+					ChessNotation whiteMove =  white.next();
+					if(whiteMove == null) { break;}
+					System.out.println(c.move("WHITE",whiteMove));
+					c.displayBoard();
+					ChessNotation blackMove =  black.next();
+					if(blackMove == null) { break;}
+					System.out.println(c.move("BLACK",blackMove));
+				}
 			}
 		}
 	}

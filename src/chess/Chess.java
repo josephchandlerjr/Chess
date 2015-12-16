@@ -19,6 +19,10 @@ public class Chess
 	{
 		game = new Game();
 	}
+	public void displayBoard()
+	{
+		game.board.display();
+	}
 	public void play()
 	{
 		Console console = System.console();
@@ -85,6 +89,11 @@ public class Chess
 			Square from = getFromSquare(color, to, notation); 
 			if (from == null) 
 			{ 
+			if ((notation.getFileDestination().equals("c")) && 
+			   (notation.getRankDestination().equals("2")))
+			{
+				System.out.println("from returned null");
+			}
 				return false;
 			}
 			
@@ -139,6 +148,13 @@ public class Chess
 				}
 			}	
 		}
+			if ((notation.getFileDestination().equals("c")) && 
+			   (notation.getRankDestination().equals("2")))
+			{
+				System.out.println("after initial purge");
+				for (Square c : candidates)
+				{System.out.println(c);}
+			}
 
 		if (candidates.size() == 1) { return candidates.get(0);} // maybe we're done
 	        else if (candidates.size() == 0) 
@@ -163,6 +179,13 @@ public class Chess
 				}
 			}
 		}
+			if ((notation.getFileDestination().equals("c")) && 
+			   (notation.getRankDestination().equals("2")))
+			{
+				System.out.println("after file purge");
+				for (Square c : candidates)
+				{System.out.println(c);}
+			}
 
 		if (candidates.size() == 1) { return candidates.get(0);} // maybe we're done
 	        else if (candidates.size() == 0) { return null;}	
@@ -170,7 +193,12 @@ public class Chess
 		//if given the rank of piece to move lets reduce candidates further
 		if (!notation.getRankToMove().equals(""))
 		{
-			int row = "12345678".indexOf(notation.getRankToMove());
+			int row = "87654321".indexOf(notation.getRankToMove());
+			if ((notation.getFileDestination().equals("d")) && 
+			   (notation.getRankDestination().equals("5")))
+			{
+				System.out.printf("row of notation is %s\n", row);
+			}
 			for (int i=0; i < candidates.size();)
 			{
 				Square s = candidates.get(i);
@@ -184,6 +212,13 @@ public class Chess
 				}
 			}
 		}
+			if ((notation.getFileDestination().equals("c")) && 
+			   (notation.getRankDestination().equals("2")))
+			{
+				System.out.println("after rank purge");
+				for (Square c : candidates)
+				{System.out.println(c);}
+			}
 
 		if (candidates.size() == 1) { return candidates.get(0);} // maybe we're done
 	        else if (candidates.size() == 0) 
@@ -209,6 +244,14 @@ public class Chess
 				}
 			}	
 		}
+			if ((notation.getFileDestination().equals("c")) && 
+			   (notation.getRankDestination().equals("2")))
+			{
+				System.out.println("after piece  purge");
+				for (Square c : candidates)
+				{System.out.println(c);}
+			}
+		
 		//remove candidates who's piece can't move to the toSquare
 		for (int i=0; i < candidates.size();)
 		{
@@ -227,6 +270,13 @@ public class Chess
 				i++;
 			};
 		}
+			if ((notation.getFileDestination().equals("c")) && 
+			   (notation.getRankDestination().equals("2")))
+			{
+				System.out.println("after get all moves purge");
+				for (Square c : candidates)
+				{System.out.println(c);}
+			}
 		
 		//if not just one candidate now then is invalid move request
 		if (candidates.size() == 1) { return candidates.get(0);}

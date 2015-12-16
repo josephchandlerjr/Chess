@@ -150,10 +150,13 @@ public class Game
 		int toRow = to.getRow();
 		int toCol = to.getCol();
 
+	        	
 
 		if(fromCol == toCol                 &&      // advance two rows, first move only
 		   fromRow + 2 * direction == toRow &&
 		   !to.isOccupied()                 &&
+		   !to.isOccupied()                 &&
+		   !board.piecesBetween(from,to)    &&
 		   !scoreSheet.contains(from)         )
 		 {
 			 return true;
