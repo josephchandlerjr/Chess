@@ -70,10 +70,7 @@ public class ChessNotation
 
 	        Matcher FILECAPTURESQUAREPROMOTION = FILECAPTURESQUAREPROMOTIONRegex.matcher(token);  
 		Matcher RANKCAPTURESQUAREPROMOTION =RANKCAPTURESQUAREPROMOTIONRegex.matcher(token);  
-		Matcher PIECEFILECAPTURESQUAREPROMOTION =PIECEFILECAPTURESQUAREPROMOTIONRegex.matcher(token);  
-		Matcher PIECERANKCAPTURESQUAREPROMOTION =PIECERANKCAPTURESQUAREPROMOTIONRegex.matcher(token); 
-		Matcher PIECEFILERANKCAPTURESQUAREPROMOTION = 
-			PIECEFILERANKCAPTURESQUAREPROMOTIONRegex.matcher(token);  
+		Matcher FILERANKCAPTURESQUAREPROMOTION =FILERANKCAPTURESQUAREPROMOTIONRegex.matcher(token);  
 
 
 		//end test
@@ -209,6 +206,43 @@ public class ChessNotation
 			promoteTo =       FILEPROMOTION.group(4);
 			label = "FILEPROMOTION";
 		}
+		else if (FILECAPTURESQUAREPROMOTION.find())
+		{
+			valid = true;
+			promotion = true;
+			pieceToMove = "P";
+			fileToMove =      FILECAPTURESQUAREPROMOTION.group(1);
+			fileDestination = FILECAPTURESQUAREPROMOTION.group(2);
+			rankDestination = FILECAPTURESQUAREPROMOTION.group(3);
+			promoteTo =       FILECAPTURESQUAREPROMOTION.group(4);
+			label = "FILEPROMOTION";
+					
+		}
+		else if (RANKCAPTURESQUAREPROMOTION.find()) 
+		{
+			valid = true;
+			promotion = true;
+			pieceToMove = "P";
+			rankToMove =      RANKCAPTURESQUAREPROMOTION.group(1);
+			fileDestination = RANKCAPTURESQUAREPROMOTION.group(2);
+			rankDestination = RANKCAPTURESQUAREPROMOTION.group(3);
+			promoteTo =       RANKCAPTURESQUAREPROMOTION.group(4);
+			label = "FILEPROMOTION";
+
+		}
+		else if (FILERANKCAPTURESQUAREPROMOTION.find()) 
+		{
+			valid = true;
+			promotion = true;
+			pieceToMove = "P";
+			fileToMove =      FILERANKCAPTURESQUAREPROMOTION.group(1);
+			rankToMove =      FILERANKCAPTURESQUAREPROMOTION.group(2);
+			fileDestination = FILERANKCAPTURESQUAREPROMOTION.group(3);
+			rankDestination = FILERANKCAPTURESQUAREPROMOTION.group(4);
+			promoteTo =       FILERANKCAPTURESQUAREPROMOTION.group(5);
+			label = "FILEPROMOTION";
+
+		}
 		else if (CASTLEKS.find())
 		{
 			valid = true;
@@ -226,18 +260,6 @@ public class ChessNotation
 			endGameMarker = true;
 			label = "RESULT";
 		}
-		else if (FILECAPTURESQUAREPROMOTION.find())
-		{}
-		else if (RANKCAPTURESQUAREPROMOTION.find()) 
-		{}
-		else if (PIECEFILECAPTURESQUAREPROMOTION.find()) 
-		{}
-		else if (PIECERANKCAPTURESQUAREPROMOTION.find()) 
-		{}
-		else if (PIECEFILERANKCAPTURESQUAREPROMOTION.find()) 
-		{}
-
-
 	}
 
 	/**
@@ -267,7 +289,7 @@ public class ChessNotation
 
 
 	// regular expressions
-	private final String NUM = "(?:\\d+\\.)";
+	private final String NUM = "(?:(?:\\d+\\s?\\.\\s?)|\\.?)";
 	private final String END = "[\\+\\?!#]*";
 
         //these are for castling	
@@ -300,12 +322,8 @@ public class ChessNotation
 		             String.format("^%s?%sx%s=%s%s$",NUM,FILE,SQUARE,PIECE,END);
 	private final String RANKCAPTURESQUAREPROMOTION =
 		             String.format("^%s?%sx%s=%s%s$",NUM,RANK,SQUARE,PIECE,END);
-	private final String PIECEFILECAPTURESQUAREPROMOTION =
-		             String.format("^%s?%s%sx%s=%s%s$",NUM,PIECE,FILE,SQUARE,PIECE,END);
-	private final String PIECERANKCAPTURESQUAREPROMOTION =
-		             String.format("^%s?%s%sx%s=%s%s$",NUM,PIECE,RANK,SQUARE,PIECE,END);
-	private final String PIECEFILERANKCAPTURESQUAREPROMOTION =
-		             String.format("^%s?%s%s%sx%s=%s%s$",NUM,PIECE,FILE,RANK,SQUARE,PIECE,END);
+	private final String FILERANKCAPTURESQUAREPROMOTION =
+		             String.format("^%s?%s%sx%s=%s%s$",NUM,FILE,RANK,SQUARE,PIECE,END);
 
 
 	private final String RESULT = "(^1-0$)|(^0-1$)|(^1/2-1/2$)";
@@ -331,11 +349,6 @@ public class ChessNotation
 
 	private final Pattern FILECAPTURESQUAREPROMOTIONRegex = Pattern.compile(FILECAPTURESQUAREPROMOTION);
 	private final Pattern RANKCAPTURESQUAREPROMOTIONRegex = Pattern.compile(RANKCAPTURESQUAREPROMOTION);
-	private final Pattern PIECEFILECAPTURESQUAREPROMOTIONRegex = 
-		Pattern.compile(PIECEFILECAPTURESQUAREPROMOTION);
-	private final Pattern PIECERANKCAPTURESQUAREPROMOTIONRegex = 
-		Pattern.compile(PIECERANKCAPTURESQUAREPROMOTION);
-	private final Pattern PIECEFILERANKCAPTURESQUAREPROMOTIONRegex = 
-		Pattern.compile(PIECEFILERANKCAPTURESQUAREPROMOTION);
+	private final Pattern FILERANKCAPTURESQUAREPROMOTIONRegex = Pattern.compile(FILERANKCAPTURESQUAREPROMOTION);
 		             
 }
