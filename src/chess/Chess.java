@@ -89,8 +89,8 @@ public class Chess
 			Square from = getFromSquare(color, to, notation); 
 			if (from == null) 
 			{ 
-			if ((notation.getFileDestination().equals("c")) && 
-			   (notation.getRankDestination().equals("2")))
+			if ((notation.getFileDestination().equals("g")) && 
+			   (notation.getRankDestination().equals("5")))
 			{
 				System.out.println("from returned null");
 			}
@@ -148,8 +148,8 @@ public class Chess
 				}
 			}	
 		}
-			if ((notation.getFileDestination().equals("c")) && 
-			   (notation.getRankDestination().equals("2")))
+			if ((notation.getFileDestination().equals("g")) && 
+			   (notation.getRankDestination().equals("5")))
 			{
 				System.out.println("after initial purge");
 				for (Square c : candidates)
@@ -166,9 +166,19 @@ public class Chess
 		if (!notation.getFileToMove().equals(""))
 		{
 			int col = "abcdefgh".indexOf(notation.getFileToMove());
+			if ((notation.getFileDestination().equals("g")) && 
+			   (notation.getRankDestination().equals("5")))
+			{
+				System.out.printf("col to move is %d\n", col);
+			}
 			for (int i=0; i < candidates.size();)
 			{
 				Square s = candidates.get(i);
+			if ((notation.getFileDestination().equals("g")) && 
+			   (notation.getRankDestination().equals("5")))
+			{
+				System.out.printf("this square has col %d\n", s.getCol());
+			}
 				if (s.getCol() != col)
 				{
 					candidates.remove(i);
@@ -179,8 +189,8 @@ public class Chess
 				}
 			}
 		}
-			if ((notation.getFileDestination().equals("c")) && 
-			   (notation.getRankDestination().equals("2")))
+			if ((notation.getFileDestination().equals("g")) && 
+			   (notation.getRankDestination().equals("5")))
 			{
 				System.out.println("after file purge");
 				for (Square c : candidates)
@@ -194,7 +204,7 @@ public class Chess
 		if (!notation.getRankToMove().equals(""))
 		{
 			int row = "87654321".indexOf(notation.getRankToMove());
-			if ((notation.getFileDestination().equals("d")) && 
+			if ((notation.getFileDestination().equals("g")) && 
 			   (notation.getRankDestination().equals("5")))
 			{
 				System.out.printf("row of notation is %s\n", row);
@@ -212,8 +222,8 @@ public class Chess
 				}
 			}
 		}
-			if ((notation.getFileDestination().equals("c")) && 
-			   (notation.getRankDestination().equals("2")))
+			if ((notation.getFileDestination().equals("g")) && 
+			   (notation.getRankDestination().equals("5")))
 			{
 				System.out.println("after rank purge");
 				for (Square c : candidates)
@@ -244,8 +254,8 @@ public class Chess
 				}
 			}	
 		}
-			if ((notation.getFileDestination().equals("c")) && 
-			   (notation.getRankDestination().equals("2")))
+			if ((notation.getFileDestination().equals("g")) && 
+			   (notation.getRankDestination().equals("5")))
 			{
 				System.out.println("after piece  purge");
 				for (Square c : candidates)
@@ -270,8 +280,8 @@ public class Chess
 				i++;
 			};
 		}
-			if ((notation.getFileDestination().equals("c")) && 
-			   (notation.getRankDestination().equals("2")))
+			if ((notation.getFileDestination().equals("g")) && 
+			   (notation.getRankDestination().equals("5")))
 			{
 				System.out.println("after get all moves purge");
 				for (Square c : candidates)
