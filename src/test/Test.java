@@ -27,27 +27,30 @@ public class Test
 		IOHelper black;
 		for(File testFile : testFiles)
 		{
-			System.out.printf("Testing from file %s...\n",testFile.getName());
-			PGNFile file = new PGNFile(testFile.getPath());
-			ArrayList<ArrayList<ChessNotation>> games = file.getGames();
-
-			for (ArrayList<ChessNotation> game : games)
+			if (testFile.getName().endsWith(".pgn"))
 			{
-				
-				white = new IOHelper(game);
-				black = white;
+				System.out.printf("Testing from file %s...\n",testFile.getName());
+				PGNFile file = new PGNFile(testFile.getPath());
+				ArrayList<ArrayList<ChessNotation>> games = file.getGames();
 
-				Chess c = new Chess();
-				while(true)
+				for (ArrayList<ChessNotation> game : games)
 				{
-					c.displayBoard();
-					ChessNotation whiteMove =  white.next();
-					if(whiteMove == null) { break;}
-					System.out.println(c.move("WHITE",whiteMove));
-					c.displayBoard();
-					ChessNotation blackMove =  black.next();
-					if(blackMove == null) { break;}
-					System.out.println(c.move("BLACK",blackMove));
+					
+					white = new IOHelper(game);
+					black = white;
+
+					Chess c = new Chess();
+					while(true)
+					{
+						c.displayBoard();
+						ChessNotation whiteMove =  white.next();
+						if(whiteMove == null) { break;}
+						System.out.println(c.move("WHITE",whiteMove));
+						c.displayBoard();
+						ChessNotation blackMove =  black.next();
+						if(blackMove == null) { break;}
+						System.out.println(c.move("BLACK",blackMove));
+					}
 				}
 			}
 		}

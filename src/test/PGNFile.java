@@ -25,43 +25,36 @@ public class PGNFile
 		int gamesIx = 0;
 		games.add(gamesIx, new ArrayList<ChessNotation>());
 		boolean inTagOrComment = false;
+
 		while (in.hasNext())
 		{
 			String token = in.next();
-			ChessNotation notation = new ChessNotation(token);
+			String first = token.substring(0,1);
+			String last = token.substring(token.length()-1,token.length());
 
-			if(notation.isValid())
+			if(first.equals("[") || first.equals("{") )
 			{
-				games.get(gamesIx).add(notation);
+				inTagOrComment = true;
 			}
-			else if (notation.isEndGameMarker())
-			{ 
-				gamesIx++;
-				games.add(gamesIx, new ArrayList<ChessNotation>());
-			}
-			else
+			if (last.equals("]") || last.equals("}"))
 			{
-				String first = token.substring(0,1);
-				String last = token.substring(token.length()-1,token.length());
-				if(first.equals("[") | first.equals("{") )
-				{
-					inTagOrComment = true;
-				}
-				else if (last.equals("]") | last.equals("}"))
-				{
-					inTagOrComment = false;
-				}
-				else 
-				{
-					if (!inTagOrComment)
-					{
-						System.out.printf("%s is an unacceptable token\n",token);
-					}
-				}
+				inTagOrComment = false;
 			}
 
+			if (!inTagOrComment)
+			{
+				ChessNotation notation = new ChessNotation(token);
 
-
+				if(notation.isValid())
+				{
+					games.get(gamesIx).add(notation);
+				}
+				else if (notation.isEndGameMarker())
+				{ 
+					gamesIx++;
+					games.add(gamesIx, new ArrayList<ChessNotation>());
+				}
+			}
 		}
 	}
 	/**
