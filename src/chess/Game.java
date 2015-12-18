@@ -80,24 +80,21 @@ public class Game
 		board.setPiece(7, 4, new King("WHITE"));	
 		initWK = board.getSquare(7,4);
 	}
-
-	/**moves a piece
-	 * @param curRow current row of piece to be moved
-	 * @param curCol current column of piece to be moved
-	 * @param newRow row of new position
-	 * @param newCol column of new position
-	 * @return true if move is made, false if not a valid move
+	/** controller for game, used by Chess object housing this game
+	 * @param color color of player who's turn it is
+	 * @param description string description of action to take place
+	 * @param from square to move from, may be null if not needed
+	 * @param to square to move to, may be null if not needed
 	 */
-	public boolean movePiece(int curRow, int curCol, int newRow, int newCol)
-	{ 
-		if (board.isOffBoard(newRow,newCol))
-		{ return false;}
-		Square fromSquare = board.getSquare(curRow,curCol);
-		Square toSquare = board.getSquare(newRow,newCol);
-		
-		return movePiece(fromSquare,toSquare);
-		
+	public boolean takeAction(String color, String description, Square from, Square to)
+	{
+		// first check if valid
+		// then check if would put king of players color in check
+		// then execute
+		// then update if puts other player in check or is checkmate
+		return false;
 	}
+
 	/**moves a piece
 	 * @param from  piece to be moved is on
 	 * @param to  piece is to be moved to 
@@ -320,7 +317,8 @@ public class Game
 		 Board boardAfterMove = altBoard(moves);
 		 if (!ignoreCheckRule && kingInCheck(to,boardAfterMove)) 
 		 { 
-			 return false;} 
+			 return false;
+		 } 
 		 
 		 int fromRow = from.getRow();
 		 int fromCol = from.getCol();
