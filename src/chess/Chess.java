@@ -70,61 +70,37 @@ public class Chess
 	public boolean move(String color, ChessNotation notation)
 	{
 		System.out.println(notation.getNotation());
+
+		Square from = null;
+		Square to = null;
+		Move move;
 		if(notation.isValid())
 		{
-			if (notation.isCastleKS()  ){ return game.castle(color, "KING");}
+			if (! (notation.isCastleKS() || notation.isCastleQS())) //if castle don't need to/from
+			{       
+				//so not a castle must be traditional move with from and to squares
+				int destinationColumn = "abcdefgh".indexOf(notation.getFileDestination());
+				//my index goes over and down not over and up
+				int destinationRow = "87654321".indexOf(notation.getRankDestination());
+				
+				//should always have to square in notation
+				assert destinationColumn != -1;
+				assert destinationRow != -1;
 
-			if (notation.isCastleQS()  ){ return game.castle(color, "QUEEN");}
+				to = game.board.getSquare(destinationRow,destinationColumn);
+				from = getFromSquare(color, to, notation); 
+				if (from == null) 
+				{ 
 
-			//so not a castle must be traditional move with from and to squares
-			int destinationColumn = "abcdefgh".indexOf(notation.getFileDestination());
-			//my index goes over and down not over and up
-			int destinationRow = "87654321".indexOf(notation.getRankDestination());
-			
-			//should always have to square in notation
-			assert destinationColumn != -1;
-			assert destinationRow != -1;
-
-			Square to = game.board.getSquare(destinationRow,destinationColumn);
-			Square from = getFromSquare(color, to, notation); 
-			if (from == null) 
-			{ 
-			if ((notation.getFileDestination().equals("e")) && 
-			   (notation.getRankDestination().equals("1")))
-			{
-				System.out.println("from returned null");
+					return false;
+			        }
 			}
-				return false;
-			}
-			
-			boolean isValidMove = game.movePiece(from, to);
-			if (isValidMove)
-			{
-				ChessPiece piece;
-				if (notation.isPromotion() )
-				{
-					if (notation.getPromoteTo().equals("Q"))
-					{ piece = new Queen(color);} 
-					else if (notation.getPromoteTo().equals("R"))
-					{ piece = new Rook(color);} 
-					else if (notation.getPromoteTo().equals("N"))
-					{ piece =  new Knight(color);} 
-					else if (notation.getPromoteTo().equals("B"))
-					{ piece = new Bishop(color);} 
-					else 
-					{ return false;}
-					
-					game.board.setPiece(to.getRow(),to.getCol(), piece);
-				}
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-
+			move = new Move(notation, color, from, to);
+			game.takeAction(move);
+			return true;
 		}
 		return false;
+
 	}
 	/**
 	 * finds Square piece to be moved from
@@ -148,13 +124,6 @@ public class Chess
 				}
 			}	
 		}
-			if ((notation.getFileDestination().equals("e")) && 
-			   (notation.getRankDestination().equals("1")))
-			{
-				System.out.println("after initial purge");
-				for (Square c : candidates)
-				{System.out.println(c);}
-			}
 
 		if (candidates.size() == 1) { return candidates.get(0);} // maybe we're done
 	        else if (candidates.size() == 0) 
@@ -166,19 +135,11 @@ public class Chess
 		if (!notation.getFileToMove().equals(""))
 		{
 			int col = "abcdefgh".indexOf(notation.getFileToMove());
-			if ((notation.getFileDestination().equals("e")) && 
-			   (notation.getRankDestination().equals("1")))
-			{
-				System.out.printf("col to move is %d\n", col);
-			}
+
 			for (int i=0; i < candidates.size();)
 			{
 				Square s = candidates.get(i);
-			if ((notation.getFileDestination().equals("e")) && 
-			   (notation.getRankDestination().equals("1")))
-			{
-				System.out.printf("this square has col %d\n", s.getCol());
-			}
+
 				if (s.getCol() != col)
 				{
 					candidates.remove(i);
@@ -189,13 +150,7 @@ public class Chess
 				}
 			}
 		}
-			if ((notation.getFileDestination().equals("e")) && 
-			   (notation.getRankDestination().equals("1")))
-			{
-				System.out.println("after file purge");
-				for (Square c : candidates)
-				{System.out.println(c);}
-			}
+
 
 		if (candidates.size() == 1) { return candidates.get(0);} // maybe we're done
 	        else if (candidates.size() == 0) { return null;}	
@@ -204,11 +159,6 @@ public class Chess
 		if (!notation.getRankToMove().equals(""))
 		{
 			int row = "87654321".indexOf(notation.getRankToMove());
-			if ((notation.getFileDestination().equals("e")) && 
-			   (notation.getRankDestination().equals("1")))
-			{
-				System.out.printf("row of notation is %s\n", row);
-			}
 			for (int i=0; i < candidates.size();)
 			{
 				Square s = candidates.get(i);
@@ -222,13 +172,6 @@ public class Chess
 				}
 			}
 		}
-			if ((notation.getFileDestination().equals("e")) && 
-			   (notation.getRankDestination().equals("1")))
-			{
-				System.out.println("after rank purge");
-				for (Square c : candidates)
-				{System.out.println(c);}
-			}
 
 		if (candidates.size() == 1) { return candidates.get(0);} // maybe we're done
 	        else if (candidates.size() == 0) 
@@ -254,13 +197,7 @@ public class Chess
 				}
 			}	
 		}
-			if ((notation.getFileDestination().equals("e")) && 
-			   (notation.getRankDestination().equals("1")))
-			{
-				System.out.println("after piece  purge");
-				for (Square c : candidates)
-				{System.out.println(c);}
-			}
+
 		
 		//remove candidates who's piece can't move to the toSquare
 		for (int i=0; i < candidates.size();)
@@ -280,13 +217,7 @@ public class Chess
 				i++;
 			};
 		}
-			if ((notation.getFileDestination().equals("e")) && 
-			   (notation.getRankDestination().equals("1")))
-			{
-				System.out.println("after get all moves purge");
-				for (Square c : candidates)
-				{System.out.println(c);}
-			}
+
 		
 		//if not just one candidate now then is invalid move request
 		if (candidates.size() == 1) { return candidates.get(0);}

@@ -1,0 +1,66 @@
+Move.java:9: error: cannot find symbol
+	Square from;
+	^
+  symbol:   class Square
+  location: class Move
+Move.java:10: error: cannot find symbol
+	Square to;
+	^
+  symbol:   class Square
+  location: class Move
+Move.java:11: error: cannot find symbol
+	Square enPassantCapture;
+	^
+  symbol:   class Square
+  location: class Move
+Move.java:16: error: cannot find symbol
+	ChessNotation notation;
+	^
+  symbol:   class ChessNotation
+  location: class Move
+Move.java:20: error: cannot find symbol
+	public Move(ChessNotation notation, String color, Square from, Square to)
+	            ^
+  symbol:   class ChessNotation
+  location: class Move
+Move.java:20: error: cannot find symbol
+	public Move(ChessNotation notation, String color, Square from, Square to)
+	                                                  ^
+  symbol:   class Square
+  location: class Move
+Move.java:20: error: cannot find symbol
+	public Move(ChessNotation notation, String color, Square from, Square to)
+	                                                               ^
+  symbol:   class Square
+  location: class Move
+Move.java:57: error: cannot find symbol
+	private int rowDifference(Square A, Square B)
+	                          ^
+  symbol:   class Square
+  location: class Move
+Move.java:57: error: cannot find symbol
+	private int rowDifference(Square A, Square B)
+	                                    ^
+  symbol:   class Square
+  location: class Move
+Move.java:63: error: cannot find symbol
+	private int colDifference(Square A, Square B)
+	                          ^
+  symbol:   class Square
+  location: class Move
+Move.java:63: error: cannot find symbol
+	private int colDifference(Square A, Square B)
+	                                    ^
+  symbol:   class Square
+  location: class Move
+Move.java:69: error: cannot find symbol
+	private boolean isDiagonal(Square A, Square B)
+	                           ^
+  symbol:   class Square
+  location: class Move
+Move.java:69: error: cannot find symbol
+	private boolean isDiagonal(Square A, Square B)
+	                                     ^
+  symbol:   class Square
+  location: class Move
+13 errors

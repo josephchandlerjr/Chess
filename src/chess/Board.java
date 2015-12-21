@@ -7,8 +7,6 @@ import java.util.ArrayList;
 public class Board
 {
 	Square[][] board;
-	Square whiteKingsSquare;
-	Square blackKingsSquare;
 	
 
 	public Board()
@@ -28,6 +26,28 @@ public class Board
 	private Square[] getColumn(int col)
 	{
 		return board[col];
+	}
+	/**
+	 * gets all squares with a piece of given color on it
+	 * @param color of pieces we are looking for
+	 * @return ArrayList of squares
+	 */
+	public ArrayList<Square> getSquaresByPieceColor(String color)
+	{
+		ArrayList<Square> result = new ArrayList<Square>();
+		for (Square[] row : board)
+		{
+			for (Square s : row)
+			{
+				if (s.isOccupied() && s.getPiece().getColor().equals(color))
+				{
+					result.add(s);
+				}
+				
+			}
+
+		}
+		return result;
 	}
 
 	/**
@@ -50,12 +70,6 @@ public class Board
 	{
 		Square square = board[row][col];
 		square.setPiece(piece);
-		if (piece instanceof King)
-		{ 
-			String color = piece.getColor();
-			if (color.equals("BLACK"))      { blackKingsSquare = square;}
-			else if (color.equals("WHITE")) { whiteKingsSquare = square;}
-		}
 
 	}
 	/**
@@ -174,7 +188,19 @@ public class Board
 	 */
 	public boolean isOccupiedByPieceOfSameColor(Square s, String myColor)
 	{
-		return s.isOccupied() && s.getPiece().getColor().equals(myColor);
+
+		boolean result;
+
+		if (!s.isOccupied())
+		{ 
+			return false;
+		}
+		else
+		{
+			result =s.getPiece().getColor().equals(myColor); 
+		}
+
+		return result;
 
 	}	
 	/**
@@ -279,32 +305,5 @@ public class Board
 
 		 return Math.abs(colDiff) == Math.abs(rowDiff);
 	}
-	/** 
-	 * makes copy of this board object
-	 * @return new Board object which is copy of this board object
-	 */
-	public Board copy()
-	{
-		Square[][] newArray = new Square[8][8];
-		for (int row=0; row < 8; row++)
-		{
-			for (int col=0; col < 8; col++)
-			{
-				newArray[row][col] = board[row][col].copy();
-			}
-		}
-		
-	        Board newBoard = new Board(newArray);	
-		int whiteKingRow = whiteKingsSquare.getRow();
-		int whiteKingCol = whiteKingsSquare.getCol();
 
-		int blackKingRow = blackKingsSquare.getRow();
-		int blackKingCol = blackKingsSquare.getCol();
-
-		newBoard.whiteKingsSquare = newBoard.getSquare(whiteKingRow,whiteKingCol);
-		newBoard.blackKingsSquare = newBoard.getSquare(blackKingRow,blackKingCol);
-
-		return newBoard;
-
-	}
 }

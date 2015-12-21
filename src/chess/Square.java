@@ -9,6 +9,7 @@ public class Square
 	private int row;
 	private int col;
 	private ChessPiece piece;
+	private ChessPiece previousPiece;
 	/**
 	 * create new square
 	 * @param color color of square
@@ -22,12 +23,17 @@ public class Square
 		this.col = col;
 		this.piece = null;
 	}
+	public ChessPiece getPreviousPiece()
+	{
+		return previousPiece;
+	}
 	/**
 	 * places piece on this square
 	 * @param piece ChessPiece object to put on this square
 	 */
 	public void setPiece(ChessPiece piece)
 	{
+		this.previousPiece = this.piece;
 		this.piece = piece;
 	}
 	/**

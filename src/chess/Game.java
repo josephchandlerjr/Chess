@@ -19,6 +19,10 @@ public class Game
 	Square initWQR;
 	Square initBKR;
 	Square initBQR;
+	boolean blackCheck = false; //true if black king in check
+	boolean whiteCheck = false;
+	boolean blackCheckmate = false; //true if black king in checkmate
+	boolean whiteCheckmate = false;
 	
 	public Game()
 	{
@@ -57,7 +61,6 @@ public class Game
 		initWQR = board.getSquare(7,0);
 		board.setPiece(7, 7, new Rook("WHITE"));
 		initWKR = board.getSquare(7,7);
-
 		//knights
 		board.setPiece(0, 1, new Knight("BLACK"));
 		board.setPiece(0, 6, new Knight("BLACK"));
@@ -80,74 +83,149 @@ public class Game
 		board.setPiece(7, 4, new King("WHITE"));	
 		initWK = board.getSquare(7,4);
 	}
-	/** controller for game, used by Chess object housing this game
-	 * @param color color of player who's turn it is
-	 * @param description string description of action to take place
-	 * @param from square to move from, may be null if not needed
-	 * @param to square to move to, may be null if not needed
-	 */
-	public boolean takeAction(String color, String description, Square from, Square to)
-	{
-		// first check if valid
-		// then check if would put king of players color in check
-		// then execute
-		// then update if puts other player in check or is checkmate
-		return false;
-	}
 
+	/** controller for game, used by Chess object housing this game
+	 * @param move Move object containing all info it needs
+	 * @return true if move is executed else false
+	 */
+	public boolean takeAction(Move move)
+	{
+
+		//save old board to easily revert back if move puts players king in check
+		if(move.isCastle())
+		{
+			boolean validMove = isValidCastle(move.getColor(), move.getCastleSide());
+			if(!validMove){return false;}
+			//must add kingInCheck check here
+			castle(move.getColor(),move.getCastleSide());
+		}
+		else if(move.isEnPassant())
+		{
+			boolean validMove = isValidEnPassant(move);
+                        if(!validMove){return false;}
+			moveEnPassant(move);
+		}
+		else if (move.isTwoRowPawnMove())
+		{
+			boolean validMove = isValidTwoRowPawnMove(move);
+                        if(!validMove){return false;}
+			movePawnTwoRows(move);
+		}
+		else
+		{
+			boolean validMove = isValidMove(move);
+                        if(!validMove){return false;}
+			movePiece(move);
+
+
+		}
+
+
+		if(move.isPromotion())
+		{
+			int toRow = move.getTo().getRow();
+			int toCol = move.getTo().getCol();
+			board.setPiece(toRow,toCol,move.getPromoteTo());
+
+		}
+		
+		scoreSheet.addMove(move);
+		if(kingInCheck("BLACK")){System.out.println("black king in check");}
+		if(kingInCheck("WHITE")){System.out.println("white king in check");}
+
+	
+		//see if opponents king in check
+		return true;
+	}
+	/** determines if given player can castle on given side
+	 * @param color the color of current player
+	 * @param side the side she wishes to castle on
+	 * @return true if is valid to castle else false
+	 */
+	private boolean isValidCastle(String color, String side)
+	{
+		 if (color.equals("WHITE"))
+		 {
+			 if (side.equals("KING"))
+			 {
+				 return whiteCanCastleKingSide();
+
+			 }
+			 else if(side.equals("QUEEN"))
+			 {
+				 return whiteCanCastleQueenSide();
+			 }
+		 }
+		 else if (color.equals("BLACK"))
+		 {
+			 if (side.equals("KING"))
+			 {
+				 return blackCanCastleKingSide();
+			 }
+			 else if(side.equals("QUEEN"))
+			 {
+				 return blackCanCastleQueenSide();
+			 }
+		 }
+		 return false;
+	}
 	/**moves a piece
-	 * @param from  piece to be moved is on
-	 * @param to  piece is to be moved to 
+	 * @param move move object
 	 * @return true if move is made, false if not a valid move
 	 */
-	public boolean movePiece(Square from, Square to)
+	public void movePiece(Move move)
 	{
+		Square from = move.getFrom();
+		Square to = move.getTo();
 
-                
-		if (isValidMove(from,to)) 
-		{
-			ChessPiece piece = from.getPiece();
-			board.setPiece(to.getRow(),to.getCol(), piece);
-			from.setPiece(null);
-			scoreSheet.addMove(from,to);
-			return true;
-			
-		}
-		else if (from.getPiece() instanceof Pawn && isTwoRowPawnMove(from,to))
-		 
-		{
-                        ChessPiece piece = from.getPiece();
-			board.setPiece(to.getRow(),to.getCol(), piece);
-			from.setPiece(null);
-			Move move = new Move(from,to);
-			move.markAsTwoRowPawnMove();
-			scoreSheet.addMove(move);
-			return true;
-		}
-		else if (from.getPiece() instanceof Pawn && isEnPassant(from,to))
-		{
+		ChessPiece piece = from.getPiece();
+		to.setPiece(piece);
+		from.setPiece(null);
 
-			Pawn piece = (Pawn)(from.getPiece());
-			board.setPiece(to.getRow(),to.getCol(), piece);
-			from.setPiece(null);
-			Square squareToCapture = board.getSquare(to.getRow() - piece.getDirection(),to.getCol());
-			squareToCapture.setPiece(null);
-			Move enPassantMove = new Move(from, to, squareToCapture);
-			scoreSheet.addMove(enPassantMove);
-			return true;
-		}
-		return false;
 	}
-	public boolean isTwoRowPawnMove(Square from,Square to)
+	public void unMovePiece(Move move)
 	{
+		Square from = move.getFrom();
+		Square to = move.getTo();
+		from.setPiece(from.getPreviousPiece());
+		to.setPiece(to.getPreviousPiece());
+
+	}
+	public void movePawnTwoRows(Move move)
+	{
+		Square from = move.getFrom();
+		Square to = move.getTo();
+
+		Pawn piece = (Pawn)(from.getPiece());
+		board.setPiece(to.getRow(),to.getCol(), piece);
+		from.setPiece(null);
+	}
+
+	public void moveEnPassant(Move move)
+	{
+
+		Square from = move.getFrom();
+		Square to = move.getTo();
+		
+		Pawn piece = (Pawn)(from.getPiece());
+		board.setPiece(to.getRow(),to.getCol(), piece);
+		from.setPiece(null);
+		Square squareToCapture = board.getSquare(from.getRow(),to.getCol());
+		squareToCapture.setPiece(null);
+	}
+	public boolean isValidTwoRowPawnMove(Move move)
+	{
+		if(!(move.getFrom().getPiece() instanceof Pawn)){return false;}
+
+		Square from = move.getFrom();
+		Square to = move.getTo();
+
 		Pawn piece = (Pawn)(from.getPiece());
 		int direction = piece.getDirection();
 		int fromRow = from.getRow();
 		int fromCol = from.getCol();
 		int toRow = to.getRow();
 		int toCol = to.getCol();
-
-	        	
 
 		if(fromCol == toCol                 &&      // advance two rows, first move only
 		   fromRow + 2 * direction == toRow &&
@@ -161,11 +239,16 @@ public class Game
 		return false;
 	}
 
-	public boolean isEnPassant(Square from,Square to)
+	public boolean isValidEnPassant(Move move)
 	{
 		// last move must be two square pawn move
 		// last move must have ended next to from square
 		// to move move be diagonal and 'behind' last move to square
+
+		if(!(move.getFrom().getPiece() instanceof Pawn)){return false;}
+
+		Square from = move.getFrom();
+		Square to = move.getTo();
 
 		 int fromRow = from.getRow();
 		 int fromCol = from.getCol();
@@ -183,7 +266,7 @@ public class Game
 	             fromRow + direction == toRow   &&
 	             Math.abs(toCol - fromCol) == 1 &&  // diagonal is row+direction and col+-1  
 		     !to.isOccupied()               &&  // not true diagonal capture cause no piece there
-		     lastMove.to == board.getSquare(to.getRow() - direction, to.getCol())) //'behind' last move
+		     lastMove.getTo() == board.getSquare(to.getRow() - direction, to.getCol())) //'behind' last move
 		 {
 			 return true;
 
@@ -197,12 +280,16 @@ public class Game
 	 * @param to  piece will be moved to
 	 * @return true if move is valid else false
 	 */
-	 public boolean isValidMove(Square from, Square to)
+	 public boolean isValidMove(Move move)
 	 {
+		 Square from = move.getFrom();
+		 Square to = move.getTo();
+
 		 if (from == to){ return false;}
 	        	
 		 if (!from.isOccupied()) // can't move a piece that isn't there
 		 { return false;} 
+		 
 
 		 if (board.isOccupiedByPieceOfSameColor(to, from.getPiece().getColor()))
 		 { return false;}
@@ -213,7 +300,7 @@ public class Game
 		 if (p instanceof Knight){ return isValidKnightMove(from, to);}
 		 if (p instanceof Bishop){ return isValidBishopMove(from, to);}
 		 if (p instanceof Queen){ return isValidQueenMove(from, to);}
-		 if (p instanceof King){ return isValidKingMove(from, to, false);}
+		 if (p instanceof King){ return isValidKingMove(from, to);}
 		 return false;
 	 }
 	 public boolean isValidPawnMove(Square from, Square to)
@@ -298,28 +385,9 @@ public class Game
 	  * @param ignoreCheckRule if this is true it doesn't ensure move doesn't put king in check
 	  * @return true if move is valid else false;
 	  */
-	 public boolean isValidKingMove(Square from, Square to, boolean ignoreCheckRule)
+	 public boolean isValidKingMove(Square from, Square to)
 	 {    
 
-		 // need duplicate logic here when called directly from kingInCheck
-		 if (from == to){ return false;}
-	        	
-		 if (!from.isOccupied()) // can't move a piece that isn't there
-		 { return false;} 
-
-		 if (board.isOccupiedByPieceOfSameColor(to, from.getPiece().getColor()))
-		 { return false;}
-
-		 //ignoreCheckRule only set to false when called from within KingInCheck to prevent recursion
-		 Move move1 = new Move(from,to);
-		 Move move2 = new Move(null, from);
-		 Move[] moves = {move1, move2};
-		 Board boardAfterMove = altBoard(moves);
-		 if (!ignoreCheckRule && kingInCheck(to,boardAfterMove)) 
-		 { 
-			 return false;
-		 } 
-		 
 		 int fromRow = from.getRow();
 		 int fromCol = from.getCol();
 		 int toRow = to.getRow();
@@ -328,62 +396,45 @@ public class Game
 		 int colDiff = toCol - fromCol;
 		 int rowDiff = toRow - fromRow;
 
-		 
-		 
 		 return Math.abs(colDiff) <= 1 && Math.abs(rowDiff) <= 1; 
 		 
 		 
 	 }
-	 /** tests if king is in check, if explicit board given will use it
-	  * @param kingsLoc kings Square, if board given will get Square of same row/col on it instead implicitly
-	  * @param board if Board object given will use it instead of game board, if null will ignore param
-	  * @return true if king is on kingsLoc is in check else false 
-	  */
-	 public boolean kingInCheck(Square kingsLoc, Board board)
+	 private Square findKing(String color)
 	 {
-
-		 if (board == null){ board = this.board;}
-		 Square kingsLocation = board.getSquare(kingsLoc.getRow(),kingsLoc.getCol());
-		 for (int row=0; row < 8; row++)
+		 Square result = null;
+		 for (Square[] row : board.board)
 		 {
-			 for (Square from : board.board[row])
+			 for (Square sqr : row)
 			 {
-				 if (from.isOccupied())
+				 if (sqr.isOccupied())
 				 {
-					 ChessPiece piece = from.getPiece();
-					 if (piece instanceof King)
+					
+					 ChessPiece p = sqr.getPiece();
+					 if(p instanceof King && p.getColor().equals(color))
 					 {
-						 if(isValidKingMove(from,kingsLocation,true))
-						 {
-							 return true;
-						 }
-
-					 }
-					 else if(isValidMove(from, kingsLocation))
-				         {
-
-						 return true;
-					 }
+						 result = sqr;
+					 }	
 				 }
 			 }
 		 }
-
+		 return result;
+	 }
+	 public boolean kingInCheck(String color)
+	 {
+		 Square kingLoc = findKing(color);
+		 for (Square opponentSquare : board.getSquaresByPieceColor(board.otherColor(color)))
+		 {
+			 ChessPiece piece = opponentSquare.getPiece();
+			 boolean moveValid =isValidMove(new Move(color,opponentSquare, kingLoc));  
+			 if(moveValid)
+			 {
+				 return true;
+			 }
+		 }
 		 return false;
 	 }
-	 /** finds out if black king is in check
-	  * @return true if black king is in check else false
-	  */
-	 public boolean blackKingInCheck()
-	 {
-		 return kingInCheck(board.blackKingsSquare, null);
-	 }
-	 /** finds out if white king is in check
-	  * @return true if white king is in check else false
-	  */
-	 public boolean whiteKingInCheck()
-	 {
-		 return kingInCheck(board.whiteKingsSquare, null);
-	 }
+
 	 /** 
 	  * finds all squares that are valid moves from a given starting square
 	  * @param from Square we are moving from
@@ -391,16 +442,24 @@ public class Game
 	  */
 	 public ArrayList<Square> getAllMoves(Square from)
 	 {
+		 String color = from.getPiece().getColor();
 		 ArrayList<Square> result = new ArrayList<Square>();
-		 for (int row=0; row < 8; row++)
+		 for (Square[] row : board.board)
 		 {
-			 for (Square to : board.board[row])
+			 for (Square to : row)
 			 {
-				 if (isValidMove(from, to) ||
-				    (from.getPiece() instanceof Pawn && isTwoRowPawnMove(from,to)) ||
-				    (from.getPiece() instanceof Pawn && isEnPassant(from,to)))
+				 Move move = new Move(color,from, to);
+				 if (isValidTwoRowPawnMove(move)||isValidEnPassant(move)) 
 				 {
 					 result.add(to);
+				 }
+				 if(isValidMove(move))
+				 {
+					 movePiece(move);
+					 boolean invalid = kingInCheck(move.getColor());
+					 unMovePiece(move);
+					 if(!invalid)
+					 {result.add(to);} 
 				 }
 			 }
 		 }
@@ -414,29 +473,31 @@ public class Game
 	  */
 	 public boolean colorInCheckmate(String color)
 	 {
-		 if (color.equals("WHITE"))
-		 {
-			 if(!whiteKingInCheck()){return false;}
-		 }
-		 else
-		 {
-			 if(!blackKingInCheck()){return false;}
-		 }
-		 Square kingsLocation = board.whiteKingsSquare;
-		 if (color.equals("BLACK"))
-		 { kingsLocation = board.blackKingsSquare; }
-		 ArrayList<Square> validMoves = getAllMoves(kingsLocation);
+		 if (!kingInCheck(color)){return false;}
 
-		 for (int row=0; row < 8; row++)
+		 ChessNotation notation = new ChessNotation("");
+
+		 Square kingsLocation = findKing(color);
+		 ArrayList<Square> validMoves = getAllMoves(kingsLocation);
+		 String opponent = board.otherColor(color);
+
+		 for (Square kingMove : validMoves)
 		 {
-			 for (Square to : board.board[row])
+			 for (int row=0; row < 8; row++)
 			 {
-				 Move move1 = new Move(kingsLocation, to);
-				 Move move2 = new Move(null, kingsLocation);
-				 Move[] moves = {move1, move2};
-				 Board boardAfter = altBoard(moves);
-				 if (isValidMove(kingsLocation, to) && !kingInCheck(to, boardAfter));
-				 { return false;}
+				 for (int col=0; col < 8; col++)
+				 {
+					 Square from = board.getSquare(row,col);
+					 if (from.isOccupied() && from.getPiece().getColor().equals(opponent))
+					 {
+						 Move move = new Move(opponent, from, kingMove);
+						 if(isValidMove(move))
+						 {
+							 return false;
+						 }
+					 }
+
+				 }
 			 }
 		 }
 		 return true;
@@ -459,31 +520,6 @@ public class Game
 		 return colorInCheckmate("WHITE");
 	 }
 
-	/**
-	 * gets a copy of the current board with addition of moves given
-	 * @param moves array of Moves objects, if element contains null Square reference implies to us null piece
-	 * @return copy of current board object with moves applied
-	 */ 
-	 public Board altBoard(Move[] moves)
-	 {
-	         Board newBoard = board.copy();
-		 for (Move move : moves)
-		 { 
-			 ChessPiece piece;
-			 //direct access to newBoard here, maybe change later
-			 if (move.from == null)
-			 {
-				 piece = null;
-			 }
-			 else
-			 {
-				 piece = move.from.getPiece();
-			 }
-
-			 newBoard.setPiece(move.to.getRow(),move.to.getCol(), piece);
-		 } 
-		 return newBoard;
-	 } 
 	 /**
 	  * determines if white can castle king side
 	  * @return true if white can castle king side else false
@@ -549,22 +585,6 @@ public class Game
 		 if (board.piecesBetween(initR,initK))
 		 { return false;}
 
-		 //does not put king in check
-		 Square newKingSqr = board.getSquare(initK.getRow(), initK.getCol() + kingShift);
-		 Square newRookSqr = board.getSquare(initR.getRow(), initR.getCol() + rookShift);
-
-		 Move moveKing = new Move(initK, newKingSqr);
-                 Move makeInitKingNull = new Move(null, initK);
-		 Move moveRook = new Move(initR,newRookSqr);
-		 Move makeInitRookNull = new Move(null, initR);
-		 Move[] moves = {moveKing,makeInitKingNull,moveRook,makeInitRookNull};
-
-		 Board newBoard = altBoard(moves);
-
-		 if (kingInCheck(newKingSqr, newBoard))
-		 { return false;}
-
-
 		 return true;
 
 	 } 
@@ -572,11 +592,10 @@ public class Game
 	  * castles
 	  * @param color of side to castle, is either "BLACK" or "WHITE"
 	  * @param side to castle on, is either "KING" or "QUEEN"
-	  * @return true if castle, false if was invalid move
 	  */
-	 public boolean castle(String color, String side)
+	 public void castle(String color, String side)
 	 {
-		 
+
 		 // to make compiler happy
 		 Square initK = null;
 		 Square initR = null;
@@ -589,7 +608,6 @@ public class Game
 
 			 if (side.equals("KING"))
 			 {
-				 if (!whiteCanCastleKingSide()){return false;}
 				 initR = initWKR;
 				 kingShift = 2;
 				 rookShift = -2;
@@ -597,7 +615,6 @@ public class Game
 			 }
 			 else if(side.equals("QUEEN"))
 			 {
-				 if (!whiteCanCastleQueenSide()){return false;}
 				 initR = initWQR;
 				 kingShift = -2;
 				 rookShift = 3;
@@ -610,14 +627,12 @@ public class Game
 
 			 if (side.equals("KING"))
 			 {
-				 if (!blackCanCastleKingSide()){return false;}
 				 initR = initBKR;
 				 kingShift = 2;
 				 rookShift = -2;
 			 }
 			 else if(side.equals("QUEEN"))
 			 {
-				 if (!blackCanCastleQueenSide()){return false;}
 				 initR = initBQR;
 				 kingShift = -2;
 				 rookShift = 3;
@@ -626,6 +641,7 @@ public class Game
 		 Square newKingSqr = board.getSquare(initK.getRow(), initK.getCol() + kingShift);
 		 Square newRookSqr = board.getSquare(initR.getRow(), initR.getCol() + rookShift);
 
+
 		 ChessPiece king = initK.getPiece();
 		 ChessPiece rook = initR.getPiece();
 		 initK.setPiece(null);
@@ -633,10 +649,7 @@ public class Game
 		 newKingSqr.setPiece(king);
 		 newRookSqr.setPiece(rook);
 
-		 Move castle = new Move(side, initK, newKingSqr, initR, newRookSqr);
-		 scoreSheet.addMove(castle);
 
-		 return true;
 
 	 }
 	/**

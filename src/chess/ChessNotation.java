@@ -66,18 +66,10 @@ public class ChessNotation
 
 		Matcher RESULT = RESULTRegex.matcher(token);
 
-//start test matcher
 
 	        Matcher FILECAPTURESQUAREPROMOTION = FILECAPTURESQUAREPROMOTIONRegex.matcher(token);  
 		Matcher RANKCAPTURESQUAREPROMOTION =RANKCAPTURESQUAREPROMOTIONRegex.matcher(token);  
 		Matcher FILERANKCAPTURESQUAREPROMOTION =FILERANKCAPTURESQUAREPROMOTIONRegex.matcher(token);  
-
-
-		//end test
-
-
-
-
 
 
 		if(PIECEFILESQUARE.find())

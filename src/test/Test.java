@@ -45,11 +45,11 @@ public class Test
 						c.displayBoard();
 						ChessNotation whiteMove =  white.next();
 						if(whiteMove == null) { break;}
-						System.out.println(c.move("WHITE",whiteMove));
+						System.out.printf("MOVE IS %s\n",c.move("WHITE",whiteMove));
 						c.displayBoard();
 						ChessNotation blackMove =  black.next();
 						if(blackMove == null) { break;}
-						System.out.println(c.move("BLACK",blackMove));
+						System.out.printf("MOVE IS %s\n",c.move("BLACK",blackMove));
 					}
 				}
 			}

@@ -14,12 +14,6 @@ public class Score
 		moves = new ArrayList<Move>();
 	}
 
-	public void addMove(Square from, Square to)
-	{
-		Move move = new Move(from,to);
-		moves.add(move);
-	}
-
 	public void addMove(Move move)
 	{
 		moves.add(move);
@@ -34,30 +28,11 @@ public class Score
 	{
 		for (Move move : moves)
 		{
-			if (move.to == square || move.from == square){ return true;}
+			if (move.getTo() == square || move.getFrom() == square){ return true;}
 		}
 		return false;
 	}
 
-	/**
-	 * returns score sheet as integer array
-	 * @return int[][] in form of {rowfrom, columnfrom, rowto, columnto}
-	 */
-	public int[][] toIntArray()
-	{
-		int[][] result = new int[moves.size()][4];
-		for (int i=0; i < moves.size(); i++)
-		{
-			Square from = moves.get(i).from;
-			Square to = moves.get(i).to;
-			result[i][0] = from.getRow(); 
-			result[i][1] = from.getCol(); 
-			result[i][2] = to.getRow();
-			result[i][3] = to.getCol(); 
-
-		}
-		return result;
-	}
 	/**
 	 * gets last move in score sheet
 	 * @return last Move instance recorded or null if score sheet is empty
