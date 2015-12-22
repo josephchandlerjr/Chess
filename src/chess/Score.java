@@ -1,13 +1,14 @@
 package chess;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * represents score sheet
  */
 public class Score
 {
-	ArrayList<Move> moves; 
+	List<Move> moves; 
 
 	public Score()
 	{

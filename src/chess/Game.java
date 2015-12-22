@@ -1,6 +1,7 @@
 package chess;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Arrays;
 
 /** 
@@ -487,12 +488,12 @@ public class Game
 	 /** 
 	  * finds all squares that are valid moves from a given starting square
 	  * @param from Square we are moving from
-	  * @return ArrayList of Square elements which are valid moves from starting point
+	  * @return List of Square elements which are valid moves from starting point
 	  */
-	 public ArrayList<Square> getAllMoves(Square from)
+	 public List<Square> getAllMoves(Square from)
 	 {
 		 String color = from.getPiece().getColor();
-		 ArrayList<Square> result = new ArrayList<Square>();
+		 List<Square> result = new ArrayList<Square>();
 		 for (Square[] row : board.board)
 		 {
 			 for (Square to : row)
@@ -527,7 +528,7 @@ public class Game
 		 ChessNotation notation = new ChessNotation("");
 
 		 Square kingsLocation = findKing(color);
-		 ArrayList<Square> validMoves = getAllMoves(kingsLocation);
+		 List<Square> validMoves = getAllMoves(kingsLocation);
 		 String opponent = board.otherColor(color);
 
 		 for (Square kingMove : validMoves)

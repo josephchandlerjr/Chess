@@ -1,14 +1,15 @@
 package test;
 
 import java.util.ArrayList;
+import java.util.List;
 import chess.ChessNotation;
 
 public class IOHelper
 {
-	ArrayList<ChessNotation> notations;
+	List<ChessNotation> notations;
 	int currentIx = 0;
 	
-	public IOHelper(ArrayList<ChessNotation> notations)
+	public IOHelper(List<ChessNotation> notations)
 	{
 		this.notations = notations;
 	}

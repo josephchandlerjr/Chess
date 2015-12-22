@@ -1,5 +1,6 @@
 package chess;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * represents a chess game board
@@ -42,11 +43,11 @@ public class Board
 	/**
 	 * gets all squares with a piece of given color on it
 	 * @param color of pieces we are looking for
-	 * @return ArrayList of squares
+	 * @return List of squares
 	 */
-	public ArrayList<Square> getSquaresByPieceColor(String color)
+	public List<Square> getSquaresByPieceColor(String color)
 	{
-		ArrayList<Square> result = new ArrayList<Square>();
+		List<Square> result = new ArrayList<Square>();
 		for (Square[] row : board)
 		{
 			for (Square s : row)
@@ -235,7 +236,7 @@ public class Board
 	 */
 	public boolean piecesBetween(Square from, Square to)
 	{
-		ArrayList<Square> squares = squaresBetween(from, to);
+		List<Square> squares = squaresBetween(from, to);
 		for (Square square : squares)
 		{
 			if (square.isOccupied())
@@ -252,9 +253,9 @@ public class Board
 	 * @param to another Square on board
 	 * @return array of Square objects between the two give Squares
 	 */
-	public ArrayList<Square> squaresBetween(Square from, Square to)
+	public List<Square> squaresBetween(Square from, Square to)
 	 {       
-		 ArrayList<Square> result = new ArrayList<Square>();
+		 List<Square> result = new ArrayList<Square>();
 		 int fromRow = from.getRow();
 		 int fromCol = from.getCol();
 		 int toRow = to.getRow();

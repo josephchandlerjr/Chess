@@ -2,6 +2,7 @@ package chess;
 
 import java.io.Console;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Chess
 {
@@ -109,9 +110,9 @@ public class Chess
 	 */
 	public Square getFromSquare(String color, Square toSquare, ChessNotation notation)
 	{
-		//ArrayList of potentials, idea is to wittle it down by given criteria
+		//List of potentials, idea is to wittle it down by given criteria
 		//initially is every square on board that is occupied by piece of players same color
-		ArrayList<Square> candidates = new ArrayList<Square>();
+		List<Square> candidates = new ArrayList<Square>();
 		for (Square[] row : game.board.board)
 		{
 			for (Square s : row)
@@ -200,7 +201,7 @@ public class Chess
 		//remove candidates who's piece can't move to the toSquare
 		for (int i=0; i < candidates.size();)
 		{
-			ArrayList<Square> possibleMoves = game.getAllMoves(candidates.get(i));
+			List<Square> possibleMoves = game.getAllMoves(candidates.get(i));
 			boolean isPossibleMove = false;
 			for (Square sqr : possibleMoves)
 			{

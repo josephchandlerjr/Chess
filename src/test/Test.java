@@ -2,6 +2,7 @@ package test;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import java.io.File;
 import chess.Chess;
 import chess.ChessNotation;
@@ -31,9 +32,9 @@ public class Test
 			{
 				System.out.printf("Testing from file %s...\n",testFile.getName());
 				PGNFile file = new PGNFile(testFile.getPath());
-				ArrayList<ArrayList<ChessNotation>> games = file.getGames();
+				List<List<ChessNotation>> games = file.getGames();
 
-				for (ArrayList<ChessNotation> game : games)
+				for (List<ChessNotation> game : games)
 				{
 					
 					white = new IOHelper(game);

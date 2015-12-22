@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.io.File;
 //import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Arrays;
 
 import chess.ChessNotation;
@@ -16,7 +17,7 @@ import chess.ChessNotation;
 public class PGNFile	
 {
 	Scanner in;
-	ArrayList<ArrayList<ChessNotation>> games = new ArrayList<ArrayList<ChessNotation>>();
+	List<List<ChessNotation>> games = new ArrayList<List<ChessNotation>>();
 	int gamesIndex = 0;
 	int moveIndex = 0;
 
@@ -49,10 +50,10 @@ public class PGNFile
 		}
 	}
 	/**
-	 * returns ArrayList of ArrayLists of ChessNotation elements 
-	 * @return ArrayList of games, each game is an ArrayList of ChessNotation elements
+	 * returns List of Lists of ChessNotation elements 
+	 * @return List of games, each game is an List of ChessNotation elements
 	 */
-	public ArrayList<ArrayList<ChessNotation>> getGames()
+	public List<List<ChessNotation>> getGames()
 	{
 		return games;
 	}
