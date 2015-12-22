@@ -96,8 +96,23 @@ public class Game
 		{
 			boolean validMove = isValidCastle(move.getColor(), move.getCastleSide());
 			if(!validMove){return false;}
-			//must add kingInCheck check here
-			castle(move.getColor(),move.getCastleSide());
+
+			//ok let's go ahead and castle
+			Square[] unMoveParams = castle(move.getColor(),move.getCastleSide());
+			if(unMoveParams == null)
+			{return false;}
+			//now see if king is in check
+			boolean invalid = kingInCheck(move.getColor());
+			if(invalid)
+			{
+				Square initK = unMoveParams[0];
+				Square newK =  unMoveParams[1];
+				Square initR = unMoveParams[2];
+				Square newR =  unMoveParams[3];
+				unCastle(initK,newK,initR,newR);
+				return false;
+			}
+
 		}
 		else if(move.isEnPassant())
 		{
@@ -626,17 +641,16 @@ public class Game
 	  * castles
 	  * @param color of side to castle, is either "BLACK" or "WHITE"
 	  * @param side to castle on, is either "KING" or "QUEEN"
+	  * @return 4 square array of [initial king's pos, new king's pos, initial rook's position, new rook pos
 	  */
-	 public void castle(String color, String side)
+	 public Square[] castle(String color, String side)
 	 {
-
 		 // to make compiler happy
 		 Square initK = null;
 		 Square initR = null;
-		 int kingShift = 0;
-		 int rookShift = 0 ;
 		 Square newKingSqr = null;
 		 Square newRookSqr = null;
+		 Square intermediarySquare = null; //the square king must pass through
 
 		 if (color.equals("WHITE"))
 		 {
@@ -645,18 +659,16 @@ public class Game
 			 if (side.equals("KING"))
 			 {
 				 initR = initWKR;
-	
 				 newKingSqr = initK.E.E;
 				 newRookSqr = initR.W.W;
-	
-
+				 intermediarySquare = initK.E; 
 			 }
 			 else if(side.equals("QUEEN"))
 			 {
 				 initR = initWQR;
 				 newKingSqr = initK.W.W;
 				 newRookSqr = initR.E.E.E;
-				 
+				 intermediarySquare = initK.W; 
 			 }
 		 }
 		 else if (color.equals("BLACK"))
@@ -666,9 +678,9 @@ public class Game
 			 if (side.equals("KING"))
 			 {
 				 initR = initBKR;
-				
 				 newKingSqr = initK.E.E;
 				 newRookSqr = initR.W.W;
+				 intermediarySquare = initK.E; 
  
 			 }
 			 else if(side.equals("QUEEN"))
@@ -676,9 +688,20 @@ public class Game
 				 initR = initBQR;
 				 newKingSqr = initK.W.W;
 				 newRookSqr = initR.E.E.E;
-
+				 intermediarySquare = initK.W; 
 			 }
 		 }
+
+		 //before castling let's see if king will pass through check on way to destination	
+		 Move oneSqr = new Move(color, initK, intermediarySquare);
+		 movePiece(oneSqr);
+		 boolean invalid = kingInCheck(color);
+		 unMovePiece(oneSqr);
+		 if (invalid)
+		 {
+			 return null;
+		 }
+			
 
 		 ChessPiece king = initK.getPiece();
 		 ChessPiece rook = initR.getPiece();
@@ -686,9 +709,22 @@ public class Game
 		 initR.setPiece(null);
 		 newKingSqr.setPiece(king);
 		 newRookSqr.setPiece(rook);
-
-
-
+		 
+		 Square[] result = {initK, newKingSqr, initR, newRookSqr};
+		 return result;
+	 }
+	 /** reverses a castle
+	  * @param initK initial position of king prior to castling
+	  * @param newKingSqr position of king after castle
+	  * @param initR initial position of rook prior to castling
+	  * @param newRookSqr position of rook after castle
+	  */
+	 private void unCastle(Square initK, Square newKingSqr,Square initR,Square newRookSqr)
+	 {
+		 newKingSqr.setPiece(null);
+		 newRookSqr.setPiece(null);
+		 initK.setPiece(initK.getPreviousPiece());
+		 initR.setPiece(initR.getPreviousPiece());
 	 }
 	/**
 	 * translates algebraic chess notation into something this program can understand and excutes move

@@ -69,9 +69,6 @@ public class Chess
 	 */	
 	public boolean move(String color, ChessNotation notation)
 	{
-		System.out.printf("%s's move\n",color);
-		System.out.println(notation.getNotation());
-
 		Square from = null;
 		Square to = null;
 		Move move;
@@ -97,8 +94,8 @@ public class Chess
 			        }
 			}
 			move = new Move(notation, color, from, to);
-			game.takeAction(move);
-			return true;
+			boolean result = game.takeAction(move);
+			return result;
 		}
 		return false;
 
