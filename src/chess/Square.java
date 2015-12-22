@@ -10,6 +10,11 @@ public class Square
 	private int col;
 	private ChessPiece piece;
 	private ChessPiece previousPiece;
+	public Square N = null;
+	public Square S = null;
+	public Square E = null;
+	public Square W = null;
+
 	/**
 	 * create new square
 	 * @param color color of square

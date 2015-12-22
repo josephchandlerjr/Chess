@@ -22,6 +22,23 @@ public class Board
 	{
 		return board[col];
 	}
+	public void setDirectionalVar()
+	{	
+		//set N, S, E, W instance variables on each Square
+		for (Square[] r : board)
+		{
+			for (Square sqr : r)
+			{
+				int row = sqr.getRow();
+				int col = sqr.getCol(); 
+				
+				if(!isOffBoard(row-1, col)){sqr.N = getSquare(row-1,col);}
+				if(!isOffBoard(row+1, col)){sqr.S = getSquare(row+1,col);}
+				if(!isOffBoard(row, col+1)){sqr.E = getSquare(row,col+1);}
+				if(!isOffBoard(row, col-1)){sqr.W = getSquare(row,col-1);}
+			}
+		}
+	}	
 	/**
 	 * gets all squares with a piece of given color on it
 	 * @param color of pieces we are looking for

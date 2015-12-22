@@ -29,7 +29,8 @@ public class Game
 		board = new Board();
 		scoreSheet = new Score();
 		initializeBoard();
-		
+		board.setDirectionalVar();
+
 	}
 	/**
 	 * creates all ChessPiece objects and inserts them in board array
