@@ -14,11 +14,6 @@ public class Board
 		board = new Square[8][8];
 	}
 
-	public Board(Square[][] board)
-	{
-		this.board = board;
-	}
-
 	private Square[] getRow(int row)
 	{
 		return board[row];
