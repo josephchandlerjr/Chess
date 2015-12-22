@@ -168,8 +168,12 @@ public class Game
 		}
 		
 		scoreSheet.addMove(move);
-		if(kingInCheck("BLACK")){System.out.println("black king in check");}
-		if(kingInCheck("WHITE")){System.out.println("white king in check");}
+		if(kingInCheck("BLACK")){blackCheck = true;}
+		else                    {blackCheck = false;}
+		if(kingInCheck("WHITE")){whiteCheck = true;}
+		else                    {whiteCheck = false;}
+
+
 
 	
 		//see if opponents king in check
