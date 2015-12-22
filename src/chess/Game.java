@@ -104,18 +104,36 @@ public class Game
 			boolean validMove = isValidEnPassant(move);
                         if(!validMove){return false;}
 			moveEnPassant(move);
+			boolean invalid = kingInCheck(move.getColor());
+			if(invalid)
+			{
+				unMoveEnPassant(move);
+				return false;
+			};
 		}
 		else if (move.isTwoRowPawnMove())
 		{
 			boolean validMove = isValidTwoRowPawnMove(move);
                         if(!validMove){return false;}
 			movePawnTwoRows(move);
+			boolean invalid = kingInCheck(move.getColor());
+			if(invalid)
+			{
+				unMovePawnTwoRows(move);
+				return false;
+			};
 		}
 		else
 		{
 			boolean validMove = isValidMove(move);
                         if(!validMove){return false;}
 			movePiece(move);
+			boolean invalid = kingInCheck(move.getColor());
+			if(invalid)
+			{
+				unMovePiece(move);
+				return false;
+			};
 
 
 		}
@@ -191,6 +209,12 @@ public class Game
 		to.setPiece(to.getPreviousPiece());
 
 	}
+
+	public void unMovePawnTwoRows(Move move)
+	{
+		unMovePiece(move);
+	}
+
 	public void movePawnTwoRows(Move move)
 	{
 		Square from = move.getFrom();
@@ -199,6 +223,16 @@ public class Game
 		Pawn piece = (Pawn)(from.getPiece());
 		board.setPiece(to.getRow(),to.getCol(), piece);
 		from.setPiece(null);
+	}
+	public void unMoveEnPassant(Move move)
+	{
+		Square from = move.getFrom();
+		Square to = move.getTo();
+
+		unMovePiece(move);
+		Square captured = board.getSquare(from.getRow(),to.getCol());
+		captured.setPiece(captured.getPreviousPiece());
+
 	}
 
 	public void moveEnPassant(Move move)

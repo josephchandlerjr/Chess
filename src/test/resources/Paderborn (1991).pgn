@@ -8,7 +8,7 @@
 [ECO "C95"]
 [Opening "Ruy Lopez: closed, Breyer, Gligoric variation"]
 
-1.e4 e5  2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5
+1.e4 e5 {5.40x(256P)} 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5
 7.Bb3 d6 8.c3 O-O 9.h3 Nb8 10.d4 Nbd7 11.Nbd2 Bb7 12.d5 c6 13.dxc6 Bxc6
 14.a4 Nc5 15.Qc2 Nxb3 16.Qxb3 bxa4 17.Qc4 Qd7 18.Qd3 Rfc8 19.Nh4 Bd8
 20.Rd1 Bb6 21.Qe2 Bc5 22.Nf5 Kh8 23.Qf3 Rab8 24.Re1 Qe6 25.Rd1 d5
@@ -35,7 +35,7 @@
 21.c4 dxc4 22.Qxc4 b5 23.Qe2 Nc5 24.Nd4 a5 25.Rc1 Qc8 26.Rge1 Qa8
 27.Qd2 Qa6 28.Nf3 Nb7 29.e7 Rf7 30.Ne5 Bxe5 31.Qd7 Qa8 32.Rxe5 c5
 33.Kg3 Qb8 34.Kg2 Qa8 35.Kg1 Rf3 36.Qd5+ Rf7 37.Re3 h6 38.Rf3 Nd6
-39.Qxa8 Rxa8 40.Rxf7  1-0
+39.Qxa8 Rxa8 40.Rxf7 {time} 1-0
 
 [Event "1st IPCCC"]
 [Site "Paderborn GER"]
@@ -430,7 +430,7 @@
 40.Kh1 Bc5 41.Bxc5 bxc5 42.Kg2 Qc7 43.Kf3 Kh6 44.Kg4 Qe7 45.Kxf4 Qh4+
 46.Ke3 Qxh3+ 47.Kd2 Qf5 48.Qxf5 gxf5 49.Kd3 Kg5 50.Kc4 Kf4 51.Kxc5 Kf3
 52.Kd5 Kxf2 53.Ke5 Ke3 54.Kxf5 Kd4 55.Ke6 Kc3 56.Kd5 a6 57.Kc5 Kb2
-
+{ From this moment on white plays from a database. }
 58.a4 Kxb3 59.a5 Ka4 60.Kb6 Kb4 61.Kxa6 Kc5 62.Kb7 Kb5 63.a6 Kc5 64.a7 Kd6
 65.a8=Q Kc5 66.Kc7 Kd4 67.Qf3 Kc4 68.Kc6 1-0
 

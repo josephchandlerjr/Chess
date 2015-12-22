@@ -3,7 +3,8 @@
 package test;
 
 import java.util.Scanner;
-import java.io.FileReader;
+import java.io.File;
+//import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -21,7 +22,11 @@ public class PGNFile
 
 	public PGNFile(String fileName) throws java.io.FileNotFoundException 
 	{
-		in = new Scanner(new FileReader(fileName));
+		String content = new Scanner(new File(fileName)).useDelimiter("\\Z").next();
+		content = content.replaceAll("\\[[^\\]]*\\]","");
+		content = content.replaceAll("\\{[^\\}]*\\}","");
+		content = content.replaceAll("\\([^\\)]*\\)","");
+		in = new Scanner(content);
 		int gamesIx = 0;
 		games.add(gamesIx, new ArrayList<ChessNotation>());
 		boolean inTagOrComment = false;
@@ -29,31 +34,17 @@ public class PGNFile
 		while (in.hasNext())
 		{
 			String token = in.next();
-			String first = token.substring(0,1);
-			String last = token.substring(token.length()-1,token.length());
 
-			if(first.equals("[") || first.equals("{") )
+			ChessNotation notation = new ChessNotation(token);
+
+			if(notation.isValid())
 			{
-				inTagOrComment = true;
+				games.get(gamesIx).add(notation);
 			}
-			if (last.equals("]") || last.equals("}"))
-			{
-				inTagOrComment = false;
-			}
-
-			if (!inTagOrComment)
-			{
-				ChessNotation notation = new ChessNotation(token);
-
-				if(notation.isValid())
-				{
-					games.get(gamesIx).add(notation);
-				}
-				else if (notation.isEndGameMarker())
-				{ 
-					gamesIx++;
-					games.add(gamesIx, new ArrayList<ChessNotation>());
-				}
+			else if (notation.isEndGameMarker())
+			{ 
+				gamesIx++;
+				games.add(gamesIx, new ArrayList<ChessNotation>());
 			}
 		}
 	}

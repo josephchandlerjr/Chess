@@ -69,6 +69,7 @@ public class Chess
 	 */	
 	public boolean move(String color, ChessNotation notation)
 	{
+		System.out.printf("%s's move\n",color);
 		System.out.println(notation.getNotation());
 
 		Square from = null;
