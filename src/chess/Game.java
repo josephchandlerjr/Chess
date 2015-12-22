@@ -394,6 +394,7 @@ public class Game
 	 */
 	 private boolean isValidPawnMove(Square from, Square to)
 	 { 
+		 if(!(from.getPiece() instanceof Pawn)){return false;}
 		 int fromRow = from.getRow();
 		 int fromCol = from.getCol();
 		 int toRow = to.getRow();
@@ -563,7 +564,8 @@ public class Game
 	 }
 
 	 /** 
-	  * finds all squares that are valid moves from a given starting square
+	  * finds all squares that are valid moves from a given starting square, normal
+	  * moves only not en passant, two row piece moves, or castling
 	  * @param from Square we are moving from
 	  * @return List of Square elements which are valid moves from starting point
 	  */
@@ -601,34 +603,42 @@ public class Game
 	 private boolean colorInCheckmate(String color)
 	 {
 		 if (!kingInCheck(color)){return false;}
+		 //find player pieces
 
-		 ChessNotation notation = new ChessNotation("");
-
-		 Square kingsLocation = findKing(color);
-		 List<Square> validMoves = getAllMoves(kingsLocation);
-		 String opponent = board.otherColor(color);
-
-		 for (Square kingMove : validMoves)
+		 List<Square> squares = board.getSquaresByPieceColor(color);
+		 for (Square from : squares)
 		 {
-			 for (int row=0; row < 8; row++)
+			 for (Square[] row : board.board)
 			 {
-				 for (int col=0; col < 8; col++)
+				 for (Square to : row)
 				 {
-					 Square from = board.getSquare(row,col);
-					 if (from.isOccupied() && from.getPiece().getColor().equals(opponent))
+					 Move move = new Move(color, from, to);
+					 if(isValidMove(move))
 					 {
-						 Move move = new Move(opponent, from, kingMove);
-						 if(isValidMove(move))
-						 {
-							 return false;
-						 }
+						 movePiece(move);
+						 boolean inCheck = kingInCheck(color);
+						 unMovePiece(move);
+						 if(!inCheck){return false;}
+					 }
+					 else if(isValidEnPassant(move))
+					 {
+						 moveEnPassant(move);
+						 boolean inCheck  = kingInCheck(color);
+						 unMoveEnPassant(move);
+						 if(!inCheck){return false;}
+					 }
+					 else if(isValidTwoRowPawnMove(move))
+					 {
+						 movePawnTwoRows(move);
+						 boolean inCheck = kingInCheck(color);
+						 unMovePawnTwoRows(move);
+						 if(!inCheck){return false;}
 					 }
 
-				 }
+				 } 
 			 }
 		 }
 		 return true;
-
 	 }
 
 	 /**
