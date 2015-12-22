@@ -25,6 +25,10 @@ public class Game
 	boolean blackCheckmate = false; //true if black king in checkmate
 	boolean whiteCheckmate = false;
 	
+	/**
+	 * constructor
+	 * creates board,scoresheet, initializes board and it's squares
+	 */
 	public Game()
 	{
 		board = new Board();
@@ -203,9 +207,8 @@ public class Game
 		 }
 		 return false;
 	}
-	/**moves a piece
+	/**moves a piece, used for 'normal' moves not en passant, two row pawn moves, or castling
 	 * @param move move object
-	 * @return true if move is made, false if not a valid move
 	 */
 	public void movePiece(Move move)
 	{
@@ -215,8 +218,11 @@ public class Game
 		ChessPiece piece = from.getPiece();
 		to.setPiece(piece);
 		from.setPiece(null);
-
 	}
+	/** 
+	 * undos a change made by movePiece method
+	 * @param move Move object describing original move
+	 */
 	public void unMovePiece(Move move)
 	{
 		Square from = move.getFrom();
@@ -226,11 +232,18 @@ public class Game
 
 	}
 
+	/**
+	 * undos changes made by movePawnTwoRows method
+	 * @param move Move object describing original move
+	 */ 
 	public void unMovePawnTwoRows(Move move)
 	{
 		unMovePiece(move);
 	}
 
+	/** makes two row pawn move
+	 * @param move Move object describing move
+	 */
 	public void movePawnTwoRows(Move move)
 	{
 		Square from = move.getFrom();
@@ -240,6 +253,10 @@ public class Game
 		board.setPiece(to.getRow(),to.getCol(), piece);
 		from.setPiece(null);
 	}
+	/** 
+	 * undos a change made by moveEnPassant method
+	 * @param move Move object describing original move
+	 */
 	public void unMoveEnPassant(Move move)
 	{
 		Square from = move.getFrom();
@@ -251,6 +268,9 @@ public class Game
 
 	}
 
+	/** makes en passant
+	 * @param move Move object describing move
+	 */
 	public void moveEnPassant(Move move)
 	{
 
@@ -263,6 +283,11 @@ public class Game
 		Square squareToCapture = board.getSquare(from.getRow(),to.getCol());
 		squareToCapture.setPiece(null);
 	}
+	/**
+	 * determines if a two row pawn move is a valid move
+	 * @param move Move object describing move
+	 * @return true if is valid move else false
+	 */
 	public boolean isValidTwoRowPawnMove(Move move)
 	{
 		if(!(move.getFrom().getPiece() instanceof Pawn)){return false;}
@@ -289,6 +314,11 @@ public class Game
 		return false;
 	}
 
+	/**
+	 * determines if en passant is a valid move
+	 * @param move Move object describing move
+	 * @return true if is valid move else false
+	 */
 	public boolean isValidEnPassant(Move move)
 	{
 		// last move must be two square pawn move
@@ -325,10 +355,9 @@ public class Game
 
 	}
 	/**
-	 * checks if a move is valid
-	 * @param from  piece to be moved is on
-	 * @param to  piece will be moved to
-	 * @return true if move is valid else false
+	 * determines if a move is a valid move
+	 * @param move Move object describing move
+	 * @return true if is valid move else false
 	 */
 	 public boolean isValidMove(Move move)
 	 {
@@ -353,6 +382,12 @@ public class Game
 		 if (p instanceof King){ return isValidKingMove(from, to);}
 		 return false;
 	 }
+	/**
+	 * determines if a pawn is a valid move
+	 * @param from square moving from
+	 * @param to square moving to
+	 * @return true if is valid move else false
+	 */
 	 public boolean isValidPawnMove(Square from, Square to)
 	 { 
 		 int fromRow = from.getRow();
@@ -386,6 +421,12 @@ public class Game
 
 		 return false;
 	 }
+	/**
+	 * determines if a rook move is a valid move
+	 * @param from square moving from
+	 * @param to square moving to
+	 * @return true if is valid move else false
+	 */
 	 public boolean isValidRookMove(Square from, Square to)
 	 {       
 
@@ -398,6 +439,12 @@ public class Game
 		 return true;
 
 	 }
+	/**
+	 * determines if a Knight is a valid move
+	 * @param from square moving from
+	 * @param to square moving to
+	 * @return true if is valid move else false
+	 */
          public boolean isValidKnightMove(Square from, Square to)
 	 { 
 		 int fromRow = from.getRow();
@@ -414,6 +461,12 @@ public class Game
 		 return false;
 		 
 	 }
+	/**
+	 * determines if a bishop is a valid move
+	 * @param from square moving from
+	 * @param to square moving to
+	 * @return true if is valid move else false
+	 */
 	 public boolean isValidBishopMove(Square from, Square to)
 	 { 
 		 ChessPiece piece= from.getPiece();
@@ -424,17 +477,25 @@ public class Game
 		 if (board.piecesBetween(from, to)){ return false;}
 		 return true;
 	 }
+
+	/**
+	 * determines if a queen is a valid move
+	 * @param from square moving from
+	 * @param to square moving to
+	 * @return true if is valid move else false
+	 */
 	 public boolean isValidQueenMove(Square from, Square to)
 	 {
 		 return isValidRookMove(from,to) || isValidBishopMove(from,to);
 	 }
-	 /**
-	  * determines if a given move is a valid move for a king
-	  * @param from Square you are moving from
-	  * @param to Square you are moving to
-	  * @param ignoreCheckRule if this is true it doesn't ensure move doesn't put king in check
-	  * @return true if move is valid else false;
-	  */
+
+	
+	/**
+	 * determines if a pawn is a valid move
+	 * @param from square moving from
+	 * @param to square moving to
+	 * @return true if is valid move else false
+	 */
 	 public boolean isValidKingMove(Square from, Square to)
 	 {    
 
@@ -450,6 +511,13 @@ public class Game
 		 
 		 
 	 }
+
+	/**
+	 * determines if a king is a valid move
+	 * @param from square moving from
+	 * @param to square moving to
+	 * @return true if is valid move else false
+	 */
 	 private Square findKing(String color)
 	 {
 		 Square result = null;
@@ -470,6 +538,11 @@ public class Game
 		 }
 		 return result;
 	 }
+	/**
+	 * determines if a king is in check
+	 * @param color color of king
+	 * @return true if is valid move else false
+	 */
 	 public boolean kingInCheck(String color)
 	 {
 		 Square kingLoc = findKing(color);
@@ -642,7 +715,8 @@ public class Game
 	  * castles
 	  * @param color of side to castle, is either "BLACK" or "WHITE"
 	  * @param side to castle on, is either "KING" or "QUEEN"
-	  * @return 4 square array of [initial king's pos, new king's pos, initial rook's position, new rook pos
+	  * @return 4 square array of [initial king's pos, new king's pos, initial rook's position, new rook pos]
+	  * @return null if is no possible to castle because king would pass through check
 	  */
 	 public Square[] castle(String color, String side)
 	 {

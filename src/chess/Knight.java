@@ -5,6 +5,10 @@ package chess;
  */
 public class Knight extends ChessPiece
 {
+	/**
+	 * constructor
+	 * @param color either string "BLACK" or "WHITE"
+	 */
 	public Knight(String color)
 	{
 		super(color, "N");

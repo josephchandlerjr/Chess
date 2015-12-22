@@ -19,12 +19,17 @@ public class ChessNotation
 	private String rankDestination  = "";
 	private String label = "";
 
+	/**
+	 * constructor
+	 * @param notation algebraic chess notation
+	 */
 	public ChessNotation(String notation)
 	{
 		this.notation = notation;
 		validateAndCapture(notation);
 
 	}
+	//getters
 	public String getNotation() { return notation;}
 	public String getPieceToMove() { return pieceToMove;}
 	public String getFileToMove() { return fileToMove;}
@@ -32,6 +37,7 @@ public class ChessNotation
 	public String getFileDestination() { return fileDestination;}
 	public String getRankDestination() { return rankDestination;}
 	public String getPromoteTo() { return promoteTo;}
+
 	/**
 	 * tells you if the notation fed to constructor was valid chess notation
 	 * @return true if valid else false
@@ -40,8 +46,8 @@ public class ChessNotation
 	{
 		return valid;
 	}
-	/** identifies token and sets appropriate flags as well as logging capturing groups in regex
-	 * @param token string that may or may not be valid chess notation
+	/** identifies token and sets appropriate flags as well as logging capturing groups from regex
+	 * @param token algebraic chess notation
 	 */
 	public void validateAndCapture(String token)
 	{
@@ -255,7 +261,7 @@ public class ChessNotation
 	}
 
 	/**
-	 * tells you if notation is a game result
+	 * tells you if notation is a game result marking end of game itself
 	 * @return true if is end of game else false
 	 */
 	public boolean isEndGameMarker()
@@ -278,6 +284,7 @@ public class ChessNotation
 	{
 		return this.notation;
 	}
+
 
 
 	// regular expressions

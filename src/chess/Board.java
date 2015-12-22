@@ -4,25 +4,26 @@ import java.util.List;
 
 /**
  * represents a chess game board
+ * the Board object encapsulates the board itself - represented
+ * by a 2D array of Square objects - as well as methods that manipulate
+ * and/or analyze the board
  */
 public class Board
 {
 	Square[][] board;
 	
-
+	/**
+	 * constructor
+	 */
 	public Board()
 	{
 		board = new Square[8][8];
 	}
-
-	private Square[] getRow(int row)
-	{
-		return board[row];
-	}
-	private Square[] getColumn(int col)
-	{
-		return board[col];
-	}
+	
+	/**
+	 * sets all the directional variables on the Square objects
+	 * in the 2D array representing the board
+	 */
 	public void setDirectionalVar()
 	{	
 		//set N, S, E, W instance variables on each Square
@@ -64,7 +65,7 @@ public class Board
 	}
 
 	/**
-	 * gets a square from the board
+	 * gets a Square from the board
 	 * @param row row square you want lies on
 	 * @param col column square you want lies on
 	 * @return Square instance you asked for
@@ -74,7 +75,7 @@ public class Board
 		return board[row][col];
 	}
         /**
-	 * assigns a given Square with a give ChessPiece
+	 * puts a piece on square
 	 * @param row row of square
 	 * @param col column of square
 	 * @param piece ChessPiece to assign
@@ -86,17 +87,17 @@ public class Board
 
 	}
 	/**
-	 * gets a square from the board
-	 * @param row row square you want lies on
-	 * @param col column square you want lies on
-	 * @return Square instance you asked for
+	 * adds a Square object to the board array
+	 * @param color color of square, either "BLACK" or "WHITE"
+	 * @param row row the square will lie on
+	 * @param col column square will lies on
 	 */
 	public void setSquare(String color, int row, int col)
 	{
 		board[row][col] = new Square(color,row,col);
 	}
 	
-	/** gets a 2D array representing board
+	/** gets a 2D array of String elements representing board
 	 * @return String array representing pieces on the board
 	 */
 	public String[][] toStringArray()
@@ -123,8 +124,9 @@ public class Board
 	}
 
 	/**
-	 * returns string representation of board given
-	 * is static method to be used by any 2D string array
+	 * returns string representation of board a given,
+	 * is static method to be used with any 2D string array
+	 * of string elements
 	 * @param board a 2D array of String elements
 	 * @return string representing current state of board
 	 */
@@ -171,7 +173,7 @@ public class Board
 	 }
 
 	/**
-	 * return opposite color
+	 * return opponents color
 	 * @param myColor can be String BLACK or WHITE
 	 * @return if WHITE is give as param return BLACK else WHITE
 	 */

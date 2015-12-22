@@ -5,11 +5,13 @@ package chess;
  */
 public class ChessPiece
 {
-	//instance variables
 	private String color; 
 	private String strRep;
 	private String ID;
-        /** initializes chess piece with row, column, color and string representation
+
+        /** 
+	 * constructor
+	 * initializes chess piece with color and string representation
 	 * @param color "WHITE" or "BLACK" 
 	 * @param rep string representation to be used
 	 */

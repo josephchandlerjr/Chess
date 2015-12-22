@@ -8,6 +8,10 @@ public class Chess
 {
 	Game game;
 
+	/**
+	 * main entry point which constructs a Game object and calls play()
+	 * @param args is not used
+	 */
 	public static void main(String[] args) throws java.io.FileNotFoundException
 	{
 		//runs the show
@@ -16,14 +20,25 @@ public class Chess
 		chess.play();
 	}
 
+	/**
+	 * constructor
+	 */
 	public Chess() throws java.io.FileNotFoundException
 	{
 		game = new Game();
 	}
+	
+	/**
+	 * prints copy of game to std out
+	 */
 	public void displayBoard()
 	{
 		game.board.display();
 	}
+	
+	/**
+	 * plays game in console
+	 */
 	public void play()
 	{
 		Console console = System.console();
@@ -63,7 +78,7 @@ public class Chess
 	}
 
 	/**
-	 * translates algebraic chess notation into an game moves
+	 * translates algebraic chess notation into game moves
 	 * @param color color who's turn it is to move
 	 * @param notation ChessNotation to translate
 	 * @return true if move executed else false

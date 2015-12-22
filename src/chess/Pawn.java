@@ -7,6 +7,10 @@ public class Pawn extends ChessPiece
 {
 	private int direction;
 
+	/**
+	 * constructor
+	 * @param color either string "BLACK" or "WHITE"
+	 */
 	public Pawn(String color)
 	{
 		super(color, "P");
