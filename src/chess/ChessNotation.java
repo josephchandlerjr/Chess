@@ -49,7 +49,7 @@ public class ChessNotation
 	/** identifies token and sets appropriate flags as well as logging capturing groups from regex
 	 * @param token algebraic chess notation
 	 */
-	public void validateAndCapture(String token)
+	private void validateAndCapture(String token)
 	{
 		Matcher CASTLEKS = CASTLEKSRegex.matcher(token);
 		Matcher CASTLEQS = CASTLEQSRegex.matcher(token);
@@ -260,10 +260,6 @@ public class ChessNotation
 		}
 	}
 
-	/**
-	 * tells you if notation is a game result marking end of game itself
-	 * @return true if is end of game else false
-	 */
 	public boolean isEndGameMarker()
 	{
 		return endGameMarker;

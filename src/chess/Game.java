@@ -210,7 +210,7 @@ public class Game
 	/**moves a piece, used for 'normal' moves not en passant, two row pawn moves, or castling
 	 * @param move move object
 	 */
-	public void movePiece(Move move)
+	private void movePiece(Move move)
 	{
 		Square from = move.getFrom();
 		Square to = move.getTo();
@@ -223,7 +223,7 @@ public class Game
 	 * undos a change made by movePiece method
 	 * @param move Move object describing original move
 	 */
-	public void unMovePiece(Move move)
+	private void unMovePiece(Move move)
 	{
 		Square from = move.getFrom();
 		Square to = move.getTo();
@@ -236,7 +236,7 @@ public class Game
 	 * undos changes made by movePawnTwoRows method
 	 * @param move Move object describing original move
 	 */ 
-	public void unMovePawnTwoRows(Move move)
+	private void unMovePawnTwoRows(Move move)
 	{
 		unMovePiece(move);
 	}
@@ -244,7 +244,7 @@ public class Game
 	/** makes two row pawn move
 	 * @param move Move object describing move
 	 */
-	public void movePawnTwoRows(Move move)
+	private void movePawnTwoRows(Move move)
 	{
 		Square from = move.getFrom();
 		Square to = move.getTo();
@@ -257,7 +257,7 @@ public class Game
 	 * undos a change made by moveEnPassant method
 	 * @param move Move object describing original move
 	 */
-	public void unMoveEnPassant(Move move)
+	private void unMoveEnPassant(Move move)
 	{
 		Square from = move.getFrom();
 		Square to = move.getTo();
@@ -271,7 +271,7 @@ public class Game
 	/** makes en passant
 	 * @param move Move object describing move
 	 */
-	public void moveEnPassant(Move move)
+	private void moveEnPassant(Move move)
 	{
 
 		Square from = move.getFrom();
@@ -288,7 +288,7 @@ public class Game
 	 * @param move Move object describing move
 	 * @return true if is valid move else false
 	 */
-	public boolean isValidTwoRowPawnMove(Move move)
+	private boolean isValidTwoRowPawnMove(Move move)
 	{
 		if(!(move.getFrom().getPiece() instanceof Pawn)){return false;}
 
@@ -319,7 +319,7 @@ public class Game
 	 * @param move Move object describing move
 	 * @return true if is valid move else false
 	 */
-	public boolean isValidEnPassant(Move move)
+	private boolean isValidEnPassant(Move move)
 	{
 		// last move must be two square pawn move
 		// last move must have ended next to from square
@@ -359,7 +359,7 @@ public class Game
 	 * @param move Move object describing move
 	 * @return true if is valid move else false
 	 */
-	 public boolean isValidMove(Move move)
+	 private boolean isValidMove(Move move)
 	 {
 		 Square from = move.getFrom();
 		 Square to = move.getTo();
@@ -388,7 +388,7 @@ public class Game
 	 * @param to square moving to
 	 * @return true if is valid move else false
 	 */
-	 public boolean isValidPawnMove(Square from, Square to)
+	 private boolean isValidPawnMove(Square from, Square to)
 	 { 
 		 int fromRow = from.getRow();
 		 int fromCol = from.getCol();
@@ -427,7 +427,7 @@ public class Game
 	 * @param to square moving to
 	 * @return true if is valid move else false
 	 */
-	 public boolean isValidRookMove(Square from, Square to)
+	 private boolean isValidRookMove(Square from, Square to)
 	 {       
 
 		 ChessPiece piece= from.getPiece();
@@ -445,7 +445,7 @@ public class Game
 	 * @param to square moving to
 	 * @return true if is valid move else false
 	 */
-         public boolean isValidKnightMove(Square from, Square to)
+         private boolean isValidKnightMove(Square from, Square to)
 	 { 
 		 int fromRow = from.getRow();
 		 int fromCol = from.getCol();
@@ -467,7 +467,7 @@ public class Game
 	 * @param to square moving to
 	 * @return true if is valid move else false
 	 */
-	 public boolean isValidBishopMove(Square from, Square to)
+	 private boolean isValidBishopMove(Square from, Square to)
 	 { 
 		 ChessPiece piece= from.getPiece();
 		 String myColor = piece.getColor();
@@ -484,7 +484,7 @@ public class Game
 	 * @param to square moving to
 	 * @return true if is valid move else false
 	 */
-	 public boolean isValidQueenMove(Square from, Square to)
+	 private boolean isValidQueenMove(Square from, Square to)
 	 {
 		 return isValidRookMove(from,to) || isValidBishopMove(from,to);
 	 }
@@ -496,7 +496,7 @@ public class Game
 	 * @param to square moving to
 	 * @return true if is valid move else false
 	 */
-	 public boolean isValidKingMove(Square from, Square to)
+	 private boolean isValidKingMove(Square from, Square to)
 	 {    
 
 		 int fromRow = from.getRow();
@@ -543,7 +543,7 @@ public class Game
 	 * @param color color of king
 	 * @return true if is valid move else false
 	 */
-	 public boolean kingInCheck(String color)
+	 private boolean kingInCheck(String color)
 	 {
 		 Square kingLoc = findKing(color);
 		 for (Square opponentSquare : board.getSquaresByPieceColor(board.otherColor(color)))
@@ -594,7 +594,7 @@ public class Game
 	  * @param color color of side we are testing
 	  * @return true if given colors king is in checkmate else false
 	  */
-	 public boolean colorInCheckmate(String color)
+	 private boolean colorInCheckmate(String color)
 	 {
 		 if (!kingInCheck(color)){return false;}
 
@@ -630,7 +630,7 @@ public class Game
 	  * finds out if black king is in checkmate
 	  * @return true if black king is in checkmate else false
 	  */
-	 public boolean blackInCheckmate()
+	 private boolean blackInCheckmate()
 	 {
 		 return colorInCheckmate("BLACK");
 	 }
@@ -638,7 +638,7 @@ public class Game
 	  * finds out if white king is in checkmate
 	  * @return true if white king is in checkmate else false
 	  */
-	 public boolean whiteInCheckmate()
+	 private boolean whiteInCheckmate()
 	 {
 		 return colorInCheckmate("WHITE");
 	 }
@@ -647,7 +647,7 @@ public class Game
 	  * determines if white can castle king side
 	  * @return true if white can castle king side else false
 	  */
-	 public boolean whiteCanCastleKingSide()
+	 private boolean whiteCanCastleKingSide()
 	 {
 		 return canCastle(initWK, initWKR, "KING");
 
@@ -656,7 +656,7 @@ public class Game
 	  * determines if black can castle king side
 	  * @return true if black can castle king side else false
 	  */
-	 public boolean blackCanCastleKingSide()
+	 private boolean blackCanCastleKingSide()
 	 {
 
 		 return canCastle(initBK, initBKR, "KING");
@@ -667,7 +667,7 @@ public class Game
 	  * determines if white can castle queen side
 	  * @return true if white can castle queen side else false
 	  */
-	 public boolean whiteCanCastleQueenSide()
+	 private boolean whiteCanCastleQueenSide()
 	 {
 		 return canCastle(initWK, initWQR, "QUEEN");
 	 }
@@ -675,7 +675,7 @@ public class Game
 	  * determines if black can castle queen side
 	  * @return true if black can castle queen side else false
 	  */
-	 public boolean blackCanCastleQueenSide()
+	 private boolean blackCanCastleQueenSide()
 	 {
 
 		 return canCastle(initBK, initBQR, "QUEEN");
@@ -687,7 +687,7 @@ public class Game
 	  * @param initR initial Square of rook
 	  * @return true if side can castle  side else false
 	  */
-	 public boolean canCastle(Square initK, Square initR, String side)
+	 private boolean canCastle(Square initK, Square initR, String side)
 	 {
 		 int kingShift = 8;
 		 int rookShift = 8; 
@@ -718,7 +718,7 @@ public class Game
 	  * @return 4 square array of [initial king's pos, new king's pos, initial rook's position, new rook pos]
 	  * @return null if is no possible to castle because king would pass through check
 	  */
-	 public Square[] castle(String color, String side)
+	 private Square[] castle(String color, String side)
 	 {
 		 // to make compiler happy
 		 Square initK = null;
@@ -801,14 +801,4 @@ public class Game
 		 initK.setPiece(initK.getPreviousPiece());
 		 initR.setPiece(initR.getPreviousPiece());
 	 }
-	/**
-	 * translates algebraic chess notation into something this program can understand and excutes move
-	 * @param notation to translate
-	 * @return Move object representing move
-	 */ 
-	 public void translateAlgebraic(String notation)
-	 {
-
-
-	 } 
 }

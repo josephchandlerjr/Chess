@@ -167,7 +167,7 @@ public class Board
 	  * checks if a row,column combination is off of the 8x8 board
 	  * @return if row,column combination if off board else false
 	  */
-	 public boolean isOffBoard(int row, int col)
+	 private boolean isOffBoard(int row, int col)
 	 {
 		 return row > 7 || row < 0 || col > 7 || col < 0;
 	 }

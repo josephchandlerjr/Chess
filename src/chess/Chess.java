@@ -39,7 +39,7 @@ public class Chess
 	/**
 	 * plays game in console
 	 */
-	public void play()
+	private void play()
 	{
 		Console console = System.console();
 		if (console == null) {
@@ -123,7 +123,7 @@ public class Chess
 	 * @param notation ChessNotation object describing move
 	 * @return Square object or null if no square found that matches notation aka an error
 	 */
-	public Square getFromSquare(String color, Square toSquare, ChessNotation notation)
+	private Square getFromSquare(String color, Square toSquare, ChessNotation notation)
 	{
 		//List of potentials, idea is to wittle it down by given criteria
 		//initially is every square on board that is occupied by piece of players same color
