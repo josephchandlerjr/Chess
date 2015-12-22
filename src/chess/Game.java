@@ -173,7 +173,8 @@ public class Game
 		if(kingInCheck("WHITE")){whiteCheck = true;}
 		else                    {whiteCheck = false;}
 
-
+		if(colorInCheckmate("BLACK")){System.out.println("BLACK in checkmate, WHITE wins");}
+		if(colorInCheckmate("WHITE")){System.out.println("WHITE in checkmate, BLACK wins");}
 
 	
 		//see if opponents king in check
