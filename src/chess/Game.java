@@ -630,22 +630,6 @@ public class Game
 		 return true;
 
 	 }
-	 /**
-	  * finds out if black king is in checkmate
-	  * @return true if black king is in checkmate else false
-	  */
-	 private boolean blackInCheckmate()
-	 {
-		 return colorInCheckmate("BLACK");
-	 }
-	 /**
-	  * finds out if white king is in checkmate
-	  * @return true if white king is in checkmate else false
-	  */
-	 private boolean whiteInCheckmate()
-	 {
-		 return colorInCheckmate("WHITE");
-	 }
 
 	 /**
 	  * determines if white can castle king side
