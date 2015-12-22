@@ -30,7 +30,6 @@ public class Game
 		scoreSheet = new Score();
 		initializeBoard();
 		board.setDirectionalVar();
-
 	}
 	/**
 	 * creates all ChessPiece objects and inserts them in board array
@@ -636,6 +635,8 @@ public class Game
 		 Square initR = null;
 		 int kingShift = 0;
 		 int rookShift = 0 ;
+		 Square newKingSqr = null;
+		 Square newRookSqr = null;
 
 		 if (color.equals("WHITE"))
 		 {
@@ -644,15 +645,17 @@ public class Game
 			 if (side.equals("KING"))
 			 {
 				 initR = initWKR;
-				 kingShift = 2;
-				 rookShift = -2;
+	
+				 newKingSqr = initK.E.E;
+				 newRookSqr = initR.W.W;
+	
 
 			 }
 			 else if(side.equals("QUEEN"))
 			 {
 				 initR = initWQR;
-				 kingShift = -2;
-				 rookShift = 3;
+				 newKingSqr = initK.W.W;
+				 newRookSqr = initR.E.E.E;
 				 
 			 }
 		 }
@@ -663,19 +666,19 @@ public class Game
 			 if (side.equals("KING"))
 			 {
 				 initR = initBKR;
-				 kingShift = 2;
-				 rookShift = -2;
+				
+				 newKingSqr = initK.E.E;
+				 newRookSqr = initR.W.W;
+ 
 			 }
 			 else if(side.equals("QUEEN"))
 			 {
 				 initR = initBQR;
-				 kingShift = -2;
-				 rookShift = 3;
+				 newKingSqr = initK.W.W;
+				 newRookSqr = initR.E.E.E;
+
 			 }
 		 }
-		 Square newKingSqr = board.getSquare(initK.getRow(), initK.getCol() + kingShift);
-		 Square newRookSqr = board.getSquare(initR.getRow(), initR.getCol() + rookShift);
-
 
 		 ChessPiece king = initK.getPiece();
 		 ChessPiece rook = initR.getPiece();

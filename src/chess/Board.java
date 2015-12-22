@@ -166,7 +166,7 @@ public class Board
 	  */
 	 public boolean isOffBoard(int row, int col)
 	 {
-		 return row > 7 || row < 0 || col > 7 || row < 0;
+		 return row > 7 || row < 0 || col > 7 || col < 0;
 	 }
 
 	/**
