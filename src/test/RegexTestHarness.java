@@ -1,4 +1,4 @@
-package chess;
+package test;
 
 import java.io.Console;
 import java.util.regex.Pattern;

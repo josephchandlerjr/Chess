@@ -43,14 +43,14 @@ public class Test
 					Chess c = new Chess();
 					while(true)
 					{
-						c.displayBoard();
+						//c.displayBoard();
 						ChessNotation whiteMove =  white.next();
 						if(whiteMove == null) { break;}
-						System.out.printf("MOVE IS %s\n",c.move("WHITE",whiteMove));
-						c.displayBoard();
+						System.out.printf("MOVE IS %s\n",c.executeMove("WHITE",whiteMove));
+						//c.displayBoard();
 						ChessNotation blackMove =  black.next();
 						if(blackMove == null) { break;}
-						System.out.printf("MOVE IS %s\n",c.move("BLACK",blackMove));
+						System.out.printf("MOVE IS %s\n",c.executeMove("BLACK",blackMove));
 					}
 				}
 			}

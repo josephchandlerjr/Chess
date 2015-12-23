@@ -9,7 +9,7 @@ public class Chess
 	Game game;
 
 	/**
-	 * main entry point which constructs a Game object and calls play()
+	 * main entry point which constructs a Game object and calls consolePlay()
 	 * @param args is not used
 	 */
 	public static void main(String[] args) throws java.io.FileNotFoundException
@@ -17,7 +17,7 @@ public class Chess
 		//runs the show
 		//constructs a game, whiteIO and blackIO
 		Chess chess = new Chess();
-		chess.play();
+		chess.consolePlay();
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class Chess
 	/**
 	 * plays game in console
 	 */
-	private void play()
+	private void consolePlay()
 	{
 		Console console = System.console();
 		if (console == null) {
@@ -58,7 +58,7 @@ public class Chess
 				game.board.display();
 				String whiteResponse = console.readLine("%nEnter your move, white: ");
 				ChessNotation whiteMove =new ChessNotation(whiteResponse);
-				if(move("WHITE",whiteMove))
+				if(executeMove("WHITE",whiteMove))
 				{ whiteHasMoved=true;}
 	
 			}
@@ -69,7 +69,7 @@ public class Chess
 				whiteHasMoved=false;
 				String blackResponse = console.readLine("%nEnter your move, black: ");
 				ChessNotation blackMove =new ChessNotation(blackResponse);
-				if(move("BLACK",blackMove))
+				if(executeMove("BLACK",blackMove))
 				{ blackHasMoved=true;}
 	
 			}
@@ -83,7 +83,7 @@ public class Chess
 	 * @param notation ChessNotation to translate
 	 * @return true if move executed else false
 	 */	
-	public boolean move(String color, ChessNotation notation)
+	public boolean executeMove(String color, ChessNotation notation)
 	{
 		Square from = null;
 		Square to = null;
@@ -92,10 +92,8 @@ public class Chess
 		{
 			if (! (notation.isCastleKS() || notation.isCastleQS())) //if castle don't need to/from
 			{       
-				//so not a castle must be traditional move with from and to squares
-				int destinationColumn = "abcdefgh".indexOf(notation.getFileDestination());
-				//my index goes over and down not over and up
-				int destinationRow = "87654321".indexOf(notation.getRankDestination());
+				int destinationColumn = ChessNotation.fileToColumn(notation.getFileDestination());
+				int destinationRow = ChessNotation.rankToRow(notation.getRankDestination());
 				
 				//should always have to square in notation
 				assert destinationColumn != -1;
@@ -148,7 +146,7 @@ public class Chess
 		//if given the file of piece to move lets reduce candidates further
 		if (!notation.getFileToMove().equals(""))
 		{
-			int col = "abcdefgh".indexOf(notation.getFileToMove());
+			int col = ChessNotation.fileToColumn(notation.getFileToMove());
 
 			for (int i=0; i < candidates.size();)
 			{
@@ -172,7 +170,7 @@ public class Chess
 		//if given the rank of piece to move lets reduce candidates further
 		if (!notation.getRankToMove().equals(""))
 		{
-			int row = "87654321".indexOf(notation.getRankToMove());
+			int row = ChessNotation.rankToRow(notation.getRankToMove());
 			for (int i=0; i < candidates.size();)
 			{
 				Square s = candidates.get(i);

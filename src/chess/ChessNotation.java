@@ -29,6 +29,50 @@ public class ChessNotation
 		validateAndCapture(notation);
 
 	}
+	
+	/**
+	 * static method that converts file notation of a-h to a a column number 0-7
+	 * @param file file to convert to integer
+	 * @return int value in range 0-7 representing column number
+	 */
+	public static int fileToColumn(String file)
+	{
+		int column = "abcdefgh".indexOf(file);
+		return column;
+	}
+
+	/**
+	 * static method that converts rank notation of 1-8 to a row number 0-7
+	 * @param rank rank to convert to integer
+	 * @return int value in range 0-7 representing row number
+	 */
+	public static int rankToRow(String rank)
+	{
+		int row = "87654321".indexOf(rank);
+		return row;
+	}
+
+	/**
+	 * static method that converts column number to file notation
+	 * @param column column number between 0-7
+	 * @return letter of corresponding file in range a-h
+	 */
+	public static String columnToFile(int column)
+	{
+		String file = "abcdefgh".substring(column,column+1);
+		return file;
+	}
+	/**
+	 * static method that converts row number to rank notation
+	 * @param row row number between 0-7
+	 * @return number of corresponding file in range 1-8
+	 */
+	public static String rowToRank(int row)
+	{
+		String file = "87654321".substring(row ,row+1);
+		return file;
+	}
+
 	//getters
 	public String getNotation() { return notation;}
 	public String getPieceToMove() { return pieceToMove;}
