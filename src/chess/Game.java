@@ -800,4 +800,9 @@ public class Game
 		 initK.setPiece(initK.getPreviousPiece());
 		 initR.setPiece(initR.getPreviousPiece());
 	 }
+
+	 public List<Square> getSquaresByPieceColor(String color)
+	 {
+		 return board.getSquaresByPieceColor(color);
+	 }
 }

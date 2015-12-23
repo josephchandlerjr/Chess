@@ -125,16 +125,20 @@ public class Chess
 	{
 		//List of potentials, idea is to wittle it down by given criteria
 		//initially is every square on board that is occupied by piece of players same color
-		List<Square> candidates = new ArrayList<Square>();
-		for (Square[] row : game.board.board)
+
+		List<Square> candidates = game.getSquaresByPieceColor(color);
+		int ix = 0;
+		while (ix < candidates.size())
 		{
-			for (Square s : row)
+			Square s = candidates.get(ix);
+			if (!s.isOccupied())
 			{
-				if (s.isOccupied() && s.getPieceColor().equals(color))
-				{
-					candidates.add(s);
-				}
-			}	
+				candidates.remove(s);
+			}
+			else
+			{
+				ix++;
+			}
 		}
 
 		if (candidates.size() == 1) { return candidates.get(0);} // maybe we're done
@@ -147,7 +151,6 @@ public class Chess
 		if (!notation.getFileToMove().equals(""))
 		{
 			int col = ChessNotation.fileToColumn(notation.getFileToMove());
-
 			for (int i=0; i < candidates.size();)
 			{
 				Square s = candidates.get(i);
@@ -162,7 +165,6 @@ public class Chess
 				}
 			}
 		}
-
 
 		if (candidates.size() == 1) { return candidates.get(0);} // maybe we're done
 	        else if (candidates.size() == 0) { return null;}	
