@@ -15,7 +15,7 @@ public class ListFilter
 	 * @param command command obj to get value from object
 	 * @return 
 	 */
-	public void filter(List<Square> list, Command command, int value) 
+	public static void filter(List<Square> list, Command<Square> command, int value) 
 	{
 		int i = 0;
 		while (i < list.size())

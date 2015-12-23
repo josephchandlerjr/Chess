@@ -153,23 +153,8 @@ public class Chess
 		if (!notation.getFileToMove().equals(""))
 		{
 			int col = ChessNotation.fileToColumn(notation.getFileToMove());
-			ListFilter filter = new ListFilter();
-			Command command = new GetCol();
-			filter.filter(candidates, command, col);
-			//int col = ChessNotation.fileToColumn(notation.getFileToMove());
-			//for (int i=0; i < candidates.size();)
-			//{
-		//		Square s = candidates.get(i);
-//
-//				if (s.getCol() != col)
-//				{
-//					candidates.remove(i);
-//				}
-//				else
-//				{
-//					i++;
-//				}
-//			}
+			Command<Square> command = new GetCol();
+			ListFilter.filter(candidates, command, col);
 		}
 
 
@@ -180,18 +165,9 @@ public class Chess
 		if (!notation.getRankToMove().equals(""))
 		{
 			int row = ChessNotation.rankToRow(notation.getRankToMove());
-			for (int i=0; i < candidates.size();)
-			{
-				Square s = candidates.get(i);
-				if (s.getRow() != row)
-				{
-					candidates.remove(i);
-				}
-				else
-				{
-					i++;
-				}
-			}
+			Command<Square> command = new GetRow();
+			ListFilter.filter(candidates, command, row);
+	
 		}
 
 		if (candidates.size() == 1) { return candidates.get(0);} // maybe we're done

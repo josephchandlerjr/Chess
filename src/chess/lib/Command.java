@@ -3,7 +3,7 @@ package chess.lib;
 import chess.Square;
 
 
-public interface Command
+public interface Command<S>
 {
-	public int execute(Square sqr);
+	public int execute(S data);
 }
