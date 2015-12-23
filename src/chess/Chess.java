@@ -4,6 +4,8 @@ import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
+import chess.lib.*;
+
 public class Chess
 {
 	Game game;
@@ -151,20 +153,25 @@ public class Chess
 		if (!notation.getFileToMove().equals(""))
 		{
 			int col = ChessNotation.fileToColumn(notation.getFileToMove());
-			for (int i=0; i < candidates.size();)
-			{
-				Square s = candidates.get(i);
-
-				if (s.getCol() != col)
-				{
-					candidates.remove(i);
-				}
-				else
-				{
-					i++;
-				}
-			}
+			ListFilter filter = new ListFilter();
+			Command command = new GetCol();
+			filter.filter(candidates, command, col);
+			//int col = ChessNotation.fileToColumn(notation.getFileToMove());
+			//for (int i=0; i < candidates.size();)
+			//{
+		//		Square s = candidates.get(i);
+//
+//				if (s.getCol() != col)
+//				{
+//					candidates.remove(i);
+//				}
+//				else
+//				{
+//					i++;
+//				}
+//			}
 		}
+
 
 		if (candidates.size() == 1) { return candidates.get(0);} // maybe we're done
 	        else if (candidates.size() == 0) { return null;}	
