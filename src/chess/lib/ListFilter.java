@@ -4,23 +4,25 @@ import java.util.List;
 import chess.lib.Command;
 import chess.Square;
 
-
-
-
-public class ListFilter
+/**
+ * filters elements out of a List
+ * @param <T> type of values to be compared in order to determine if list element should be removed
+ * @param <S> type of elements contained in List
+ */
+public class ListFilter<T,S>
 {
 	/**
-	 * removes elements from List if int derived from each element not equal to given int
-	 * @param value value to compare
-	 * @param command command obj to get value from object
-	 * @return 
+	 * filters out elements of a List based on parameters given
+	 * @param list List to filter
+	 * @param command function used to retrieve value from element of list to be examined
+	 * @param value value to be compared to result of calling command.execute
 	 */
-	public static void filter(List<Square> list, Command<Integer, Square> command, int value) 
+	public void filter(List<S> list, Command<T, S> command, T value) 
 	{
 		int i = 0;
 		while (i < list.size())
 		{
-			Integer toCompare = command.execute(list.get(i));	
+			T toCompare = command.execute(list.get(i));	
 			if (!toCompare.equals(value))
 			{list.remove(i);}
 			else
