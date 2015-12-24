@@ -157,7 +157,7 @@ public class Chess
 			Integer colAsInteger = new Integer(col);
 
 			Command<Integer,Square> command = new GetCol();
-			ListFilter<Integer,Square> filter = new ListFilter<Integer,Square>();
+			Lists<Integer,Square> filter = new Lists<Integer,Square>();
 			filter.filter(candidates, command, colAsInteger);
 		}
 
@@ -172,7 +172,7 @@ public class Chess
 			Integer rowAsInteger = new Integer(row);
 
 			Command<Integer,Square> command = new GetRow();
-			ListFilter<Integer,Square> filter = new ListFilter<Integer,Square>();
+			Lists<Integer,Square> filter = new Lists<Integer,Square>();
 			filter.filter(candidates, command, rowAsInteger);
 		}
 
@@ -186,7 +186,7 @@ public class Chess
 		if (!notation.getPieceToMove().equals(""))
 		{	
 			Command<String,Square> command = new GetPieceID();
-			ListFilter<String, Square> filter = new ListFilter<String,Square>();
+			Lists<String, Square> filter = new Lists<String,Square>();
 			filter.filter(candidates, command, notation.getPieceToMove());
 		}
 

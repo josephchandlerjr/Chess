@@ -9,7 +9,7 @@ import chess.Square;
  * @param <T> type of values to be compared in order to determine if list element should be removed
  * @param <S> type of elements contained in List
  */
-public class ListFilter<T,S>
+public class Lists<T,S>
 {
 	/**
 	 * filters out elements of a List based on parameters given
@@ -30,6 +30,7 @@ public class ListFilter<T,S>
 		}
 
 	}
+
 }
 
 
