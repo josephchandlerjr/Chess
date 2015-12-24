@@ -155,11 +155,11 @@ public class Chess
 			String file = notation.getFileToMove();
 			int col = ChessNotation.fileToColumn(file);
 			Integer colAsInteger = new Integer(col);
+
 			Command<Integer,Square> command = new GetCol();
 			ListFilter<Integer,Square> filter = new ListFilter<Integer,Square>();
 			filter.filter(candidates, command, colAsInteger);
 		}
-
 
 		if (candidates.size() == 1) { return candidates.get(0);} // maybe we're done
 	        else if (candidates.size() == 0) { return null;}	
@@ -170,10 +170,10 @@ public class Chess
 			String rank = notation.getRankToMove();
 			int row = ChessNotation.rankToRow(rank);
 			Integer rowAsInteger = new Integer(row);
+
 			Command<Integer,Square> command = new GetRow();
 			ListFilter<Integer,Square> filter = new ListFilter<Integer,Square>();
 			filter.filter(candidates, command, rowAsInteger);
-	
 		}
 
 		if (candidates.size() == 1) { return candidates.get(0);} // maybe we're done
@@ -185,11 +185,9 @@ public class Chess
 		//remove candidates that don't match piece
 		if (!notation.getPieceToMove().equals(""))
 		{	
-			
 			Command<String,Square> command = new GetPieceID();
 			ListFilter<String, Square> filter = new ListFilter<String,Square>();
 			filter.filter(candidates, command, notation.getPieceToMove());
-
 		}
 
 		
