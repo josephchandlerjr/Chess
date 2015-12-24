@@ -152,9 +152,11 @@ public class Chess
 		//if given the file of piece to move lets reduce candidates further
 		if (!notation.getFileToMove().equals(""))
 		{
-			int col = ChessNotation.fileToColumn(notation.getFileToMove());
-			Command<Square> command = new GetCol();
-			ListFilter.filter(candidates, command, col);
+			String file = notation.getFileToMove();
+			int col = ChessNotation.fileToColumn(file);
+			Integer colAsInteger = new Integer(col);
+			Command<Integer,Square> command = new GetCol();
+			ListFilter.filter(candidates, command, colAsInteger);
 		}
 
 
@@ -164,9 +166,11 @@ public class Chess
 		//if given the rank of piece to move lets reduce candidates further
 		if (!notation.getRankToMove().equals(""))
 		{
-			int row = ChessNotation.rankToRow(notation.getRankToMove());
-			Command<Square> command = new GetRow();
-			ListFilter.filter(candidates, command, row);
+			String rank = notation.getRankToMove();
+			int row = ChessNotation.rankToRow(rank);
+			Integer rowAsInteger = new Integer(row);
+			Command<Integer,Square> command = new GetRow();
+			ListFilter.filter(candidates, command, rowAsInteger);
 	
 		}
 

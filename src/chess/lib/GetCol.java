@@ -2,10 +2,10 @@ package chess.lib;
 
 import chess.Square;
 
-public class GetCol implements Command<Square>
+public class GetCol implements Command<Integer, Square>
 {
-	public int execute(Square data)
+	public Integer execute(Square data)
 	{
-		return data.getCol();
+		return new Integer(data.getCol());
 	}	
 }
