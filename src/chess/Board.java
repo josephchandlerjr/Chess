@@ -50,9 +50,18 @@ public class Board
 	 */
 	public List<Square> getSquaresByPieceColor(String color)
 	{
-	        Arrays<String,Square> selector = new Arrays<String, Square>();	
-		Command<String,Square> command = new GetPieceColor();
-		List<Square> result = selector.selectFrom2D(board,command,color);
+		List<Square> result = new ArrayList<Square>();
+		for (Square[] row : board)
+		{
+			for (Square s : row)
+			{
+				if(s.isOccupied() && s.getPiece().getColor().equals(color))
+				{
+					result.add(s);
+				}
+
+			}
+		}
 		return result; 
 	}
 

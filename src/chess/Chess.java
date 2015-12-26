@@ -156,9 +156,12 @@ public class Chess
 			int col = ChessNotation.fileToColumn(file);
 			Integer colAsInteger = new Integer(col);
 
-			Command<Integer,Square> command = new GetCol();
-			Lists<Integer,Square> filter = new Lists<Integer,Square>();
-			filter.filter(candidates, command, colAsInteger);
+			Command<Integer,Square> C = new GetCol();
+
+			ListFilter<Integer,Square> LF = 
+		        new ListFilter<Integer,Square>(candidates,C,colAsInteger);
+
+			candidates = LF.getNewList();
 		}
 
 		if (candidates.size() == 1) { return candidates.get(0);} // maybe we're done
@@ -171,9 +174,12 @@ public class Chess
 			int row = ChessNotation.rankToRow(rank);
 			Integer rowAsInteger = new Integer(row);
 
-			Command<Integer,Square> command = new GetRow();
-			Lists<Integer,Square> filter = new Lists<Integer,Square>();
-			filter.filter(candidates, command, rowAsInteger);
+			Command<Integer,Square> C = new GetRow();
+
+			ListFilter<Integer,Square> filter = 
+	                new ListFilter<Integer,Square>(candidates,C,rowAsInteger);
+			
+			candidates = filter.getNewList();
 		}
 
 		if (candidates.size() == 1) { return candidates.get(0);} // maybe we're done
@@ -185,9 +191,12 @@ public class Chess
 		//remove candidates that don't match piece
 		if (!notation.getPieceToMove().equals(""))
 		{	
-			Command<String,Square> command = new GetPieceID();
-			Lists<String, Square> filter = new Lists<String,Square>();
-			filter.filter(candidates, command, notation.getPieceToMove());
+			Command<String,Square> c = new GetPieceID();
+
+			ListFilter<String, Square> filter = 
+	                new ListFilter<String,Square>(candidates,c,notation.getPieceToMove());
+
+			candidates = filter.getNewList();
 		}
 
 		
