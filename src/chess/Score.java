@@ -43,5 +43,14 @@ public class Score
 		if (moves.size() == 0) { return null;}
 		return moves.get(moves.size()-1);
 	}
+	public String ToString()
+	{
+		String res = "";
+		for (Move move : moves)
+		{
+			res = res + move.getNotation() + "\n";
+		}
+		return res;
+	}
 }
 

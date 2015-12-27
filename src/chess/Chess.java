@@ -129,19 +129,6 @@ public class Chess
 		//initially is every square on board that is occupied by piece of players same color
 
 		List<Square> candidates = game.getSquaresByPieceColor(color);
-		int ix = 0;
-		while (ix < candidates.size())
-		{
-			Square s = candidates.get(ix);
-			if (!s.isOccupied())
-			{
-				candidates.remove(s);
-			}
-			else
-			{
-				ix++;
-			}
-		}
 
 		if (candidates.size() == 1) { return candidates.get(0);} // maybe we're done
 	        else if (candidates.size() == 0) 
@@ -154,14 +141,9 @@ public class Chess
 		{
 			String file = notation.getFileToMove();
 			int col = ChessNotation.fileToColumn(file);
-			Integer colAsInteger = new Integer(col);
 
-			Command<Integer,Square> C = new GetCol();
-
-			ListFilter<Integer,Square> LF = 
-		        new ListFilter<Integer,Square>(candidates,C,colAsInteger);
-
-			candidates = LF.getNewList();
+			candidates = ListFilter.filterByColumn(candidates, col);
+			
 		}
 
 		if (candidates.size() == 1) { return candidates.get(0);} // maybe we're done
@@ -172,14 +154,8 @@ public class Chess
 		{
 			String rank = notation.getRankToMove();
 			int row = ChessNotation.rankToRow(rank);
-			Integer rowAsInteger = new Integer(row);
 
-			Command<Integer,Square> C = new GetRow();
-
-			ListFilter<Integer,Square> filter = 
-	                new ListFilter<Integer,Square>(candidates,C,rowAsInteger);
-			
-			candidates = filter.getNewList();
+			candidates = ListFilter.filterByRow(candidates, row);
 		}
 
 		if (candidates.size() == 1) { return candidates.get(0);} // maybe we're done
@@ -191,12 +167,8 @@ public class Chess
 		//remove candidates that don't match piece
 		if (!notation.getPieceToMove().equals(""))
 		{	
-			Command<String,Square> c = new GetPieceID();
-
-			ListFilter<String, Square> filter = 
-	                new ListFilter<String,Square>(candidates,c,notation.getPieceToMove());
-
-			candidates = filter.getNewList();
+			String pieceToMove = notation.getPieceToMove();
+		        candidates = ListFilter.filterByPiece(candidates,notation.getPieceToMove());
 		}
 
 		

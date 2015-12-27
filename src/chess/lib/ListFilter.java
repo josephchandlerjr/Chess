@@ -35,6 +35,43 @@ public class ListFilter<T,S>
 	{
 		return newList;
 	}
+
+	public static List<Square> filterByColumn(List<Square> candidates, int col)
+	{
+		ListFilter<Integer,Square> LF = new ListFilter<Integer,Square>(candidates,
+				                                               new GetCol(),
+					                                       new Integer(col));
+		return LF.getNewList();
+	}
+
+	public static List<Square> filterByPiece(List<Square> candidates, String piece)
+	{
+
+		ListFilter<String, Square> LF = new ListFilter<String,Square>(candidates,
+				                                              new GetPieceID(),
+					                                      piece); 
+		return LF.getNewList();
+	}
+
+	public static List<Square> filterByPieceColor(List<Square> candidates, String color)
+	{
+
+		ListFilter<String, Square> LF = new ListFilter<String,Square>(candidates,
+				                                              new GetPieceColor(),
+					                                      color); 
+		return LF.getNewList();
+	}
+	public static List<Square> filterByRow(List<Square> candidates, int row)
+	{
+		Integer rowAsInteger = new Integer(row);
+		Command<Integer,Square> C = new GetRow();
+
+		ListFilter<Integer,Square> LF= 
+		new ListFilter<Integer,Square>(candidates,C,rowAsInteger);
+		
+		return LF.getNewList();
+	}
+
 }
 
 
