@@ -10,10 +10,10 @@ public class Square
 	private int col;
 	private ChessPiece piece;
 	private ChessPiece previousPiece;
-	public Square North = null;
-	public Square South = null;
-	public Square East = null;
-	public Square West = null;
+	public Square North;
+	public Square South;
+	public Square East;
+	public Square West;
 
 	/**
 	 * create new square

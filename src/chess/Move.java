@@ -9,10 +9,10 @@ public class Move
 	private Square from;
 	private Square to;
 	private Square enPassantCapture;
-	private boolean castle = false;
-	private boolean enPassant = false;
-	private boolean twoRowPawnMove = false;
-	private boolean promotion = false;
+	private boolean castle;
+	private boolean enPassant;
+	private boolean twoRowPawnMove;
+	private boolean promotion;
 	private String castleSide = "";
 	private ChessPiece promoteTo;
 	private String color;

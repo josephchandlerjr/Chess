@@ -6,12 +6,12 @@ import java.util.regex.Matcher;
 public class ChessNotation
 {
 	private String notation;
-	private boolean valid = false;
-	private boolean castleKS = false;
-	private boolean castleQS = false;
-	private boolean promotion = false;
+	private boolean valid;
+	private boolean castleKS;
+	private boolean castleQS;
+	private boolean promotion;
+	private boolean endGameMarker;
 	private String promoteTo = "";
-	private boolean endGameMarker = false;
 	private String pieceToMove = "";
 	private String fileToMove  = "";
 	private String rankToMove  = "";

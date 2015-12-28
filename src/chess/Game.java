@@ -20,10 +20,10 @@ public class Game
 	Square initWQR;
 	Square initBKR;
 	Square initBQR;
-	boolean blackCheck = false; //true if black king in check
-	boolean whiteCheck = false;
-	boolean blackCheckmate = false; //true if black king in checkmate
-	boolean whiteCheckmate = false;
+	boolean blackCheck; //true if black king in check
+	boolean whiteCheck;
+	boolean blackCheckmate; //true if black king in checkmate
+	boolean whiteCheckmate;
 	
 	/**
 	 * constructor
