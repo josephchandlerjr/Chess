@@ -1,7 +1,6 @@
 package chess.lib;
 
 import chess.Square;
-import chess.ChessPiece;
 
 public class GetPieceID implements Command<String, Square>
 {
