@@ -23,9 +23,8 @@ public class ListFilter<T,S>
 	public ListFilter(List<S> list, Command<T, S> command, T value) 
 	{
 		newList = new ArrayList<S>();
-		for (int i=0; i < list.size(); i++)
+		for (S element : list)
 		{
-			S element = list.get(i);
 			T toCompare = command.execute(element);	
 			if (toCompare.equals(value))
 			{newList.add(element);}

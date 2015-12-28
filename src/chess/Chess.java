@@ -14,7 +14,7 @@ public class Chess
 	 * main entry point which constructs a Game object and calls consolePlay()
 	 * @param args is not used
 	 */
-	public static void main(String[] args) throws java.io.FileNotFoundException
+	public static void main(String[] args)
 	{
 		//runs the show
 		//constructs a game, whiteIO and blackIO
@@ -25,13 +25,13 @@ public class Chess
 	/**
 	 * constructor
 	 */
-	public Chess() throws java.io.FileNotFoundException
+	public Chess()
 	{
 		game = new Game();
 	}
 	
 	/**
-	 * prints copy of game to std out
+	 * prints copy of game board to std out
 	 */
 	public void displayBoard()
 	{
@@ -57,11 +57,14 @@ public class Chess
 			while(!whiteHasMoved)
 			{
 				blackHasMoved=false;
-				game.board.display();
 				String whiteResponse = console.readLine("%nEnter your move, white: ");
 				ChessNotation whiteMove =new ChessNotation(whiteResponse);
 				if(executeMove("WHITE",whiteMove))
 				{ whiteHasMoved=true;}
+				if(game.whiteCheck)
+				{System.out.println("White in Check!");}
+				else if (game.whiteCheckmate)
+				{System.out.println("Checkmate! Black wins!");}
 	
 			}
 
@@ -73,6 +76,11 @@ public class Chess
 				ChessNotation blackMove =new ChessNotation(blackResponse);
 				if(executeMove("BLACK",blackMove))
 				{ blackHasMoved=true;}
+				if(game.blackCheck)
+				{System.out.println("black in Check!");}
+				else if (game.blackCheckmate)
+				{System.out.println("Checkmate! White wins!");}
+	
 	
 			}
 		}
@@ -91,11 +99,13 @@ public class Chess
 		Square to = null;
 		Move move;
 		if(notation.isValid())
-		{
-			if (! (notation.isCastleKS() || notation.isCastleQS())) //if castle don't need to/from
+		{       //if castle don't need to/from
+			if (! (notation.isCastleKS() || notation.isCastleQS())) 
 			{       
-				int destinationColumn = ChessNotation.fileToColumn(notation.getFileDestination());
-				int destinationRow = ChessNotation.rankToRow(notation.getRankDestination());
+				int destinationColumn = 
+			        ChessNotation.fileToColumn(notation.getFileDestination());
+				int destinationRow = 
+				ChessNotation.rankToRow(notation.getRankDestination());
 				
 				//should always have to square in notation
 				assert destinationColumn != -1;
@@ -105,7 +115,6 @@ public class Chess
 				from = getFromSquare(color, to, notation); 
 				if (from == null) 
 				{ 
-
 					return false;
 			        }
 			}
@@ -141,7 +150,6 @@ public class Chess
 		{
 			String file = notation.getFileToMove();
 			int col = ChessNotation.fileToColumn(file);
-
 			candidates = ListFilter.filterByColumn(candidates, col);
 			
 		}
@@ -154,7 +162,6 @@ public class Chess
 		{
 			String rank = notation.getRankToMove();
 			int row = ChessNotation.rankToRow(rank);
-
 			candidates = ListFilter.filterByRow(candidates, row);
 		}
 
@@ -170,7 +177,6 @@ public class Chess
 			String pieceToMove = notation.getPieceToMove();
 		        candidates = ListFilter.filterByPiece(candidates,notation.getPieceToMove());
 		}
-
 		
 		//remove candidates who's piece can't move to the toSquare
 		for (int i=0; i < candidates.size();)
@@ -190,7 +196,6 @@ public class Chess
 				i++;
 			};
 		}
-
 		
 		//if not just one candidate now then is invalid move request
 		if (candidates.size() == 1) { return candidates.get(0);}
