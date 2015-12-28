@@ -158,7 +158,6 @@ public class Game
 
 		}
 
-
 		if(move.isPromotion())
 		{
 			int toRow = move.getTo().getRow();
@@ -733,16 +732,16 @@ public class Game
 			 if (side.equals("KING"))
 			 {
 				 initR = initWKR;
-				 newKingSqr = initK.E.E;
-				 newRookSqr = initR.W.W;
-				 intermediarySquare = initK.E; 
+				 newKingSqr = initK.East.East;
+				 newRookSqr = initR.West.West;
+				 intermediarySquare = initK.East; 
 			 }
 			 else if(side.equals("QUEEN"))
 			 {
 				 initR = initWQR;
-				 newKingSqr = initK.W.W;
-				 newRookSqr = initR.E.E.E;
-				 intermediarySquare = initK.W; 
+				 newKingSqr = initK.West.West;
+				 newRookSqr = initR.East.East.East;
+				 intermediarySquare = initK.West; 
 			 }
 		 }
 		 else if (color.equals("BLACK"))
@@ -752,17 +751,17 @@ public class Game
 			 if (side.equals("KING"))
 			 {
 				 initR = initBKR;
-				 newKingSqr = initK.E.E;
-				 newRookSqr = initR.W.W;
-				 intermediarySquare = initK.E; 
+				 newKingSqr = initK.East.East;
+				 newRookSqr = initR.West.West;
+				 intermediarySquare = initK.East; 
  
 			 }
 			 else if(side.equals("QUEEN"))
 			 {
 				 initR = initBQR;
-				 newKingSqr = initK.W.W;
-				 newRookSqr = initR.E.E.E;
-				 intermediarySquare = initK.W; 
+				 newKingSqr = initK.West.West;
+				 newRookSqr = initR.East.East.East;
+				 intermediarySquare = initK.West; 
 			 }
 		 }
 

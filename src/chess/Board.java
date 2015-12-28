@@ -28,7 +28,7 @@ public class Board
 	 */
 	public void setDirectionalVar()
 	{	
-		//set N, S, E, W instance variables on each Square
+		//set North, South, East, West instance variables on each Square
 		for (Square[] r : board)
 		{
 			for (Square sqr : r)
@@ -36,10 +36,10 @@ public class Board
 				int row = sqr.getRow();
 				int col = sqr.getCol(); 
 				
-				if(!isOffBoard(row-1, col)){sqr.N = getSquare(row-1,col);}
-				if(!isOffBoard(row+1, col)){sqr.S = getSquare(row+1,col);}
-				if(!isOffBoard(row, col+1)){sqr.E = getSquare(row,col+1);}
-				if(!isOffBoard(row, col-1)){sqr.W = getSquare(row,col-1);}
+				if(!isOffBoard(row-1, col)){sqr.North = getSquare(row-1,col);}
+				if(!isOffBoard(row+1, col)){sqr.South = getSquare(row+1,col);}
+				if(!isOffBoard(row, col+1)){sqr.East = getSquare(row,col+1);}
+				if(!isOffBoard(row, col-1)){sqr.West = getSquare(row,col-1);}
 			}
 		}
 	}	
