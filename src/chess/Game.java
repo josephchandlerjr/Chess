@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class Game
 {
 	//instance variables
-	Board board;
+	private Board board;
 	Score scoreSheet;
 	// intial locations of pieces involved in castling
 	Square initWK;
@@ -87,6 +87,11 @@ public class Game
 		initBK = board.getSquare(0,4);
 		board.setPiece(7, 4, new King("WHITE"));	
 		initWK = board.getSquare(7,4);
+	}
+
+	public Square[][] getBoard()
+	{
+		return board.getBoard();
 	}
 
 	/** controller for game, used by Chess object housing this game
@@ -517,7 +522,7 @@ public class Game
 	 private Square findKing(String color)
 	 {
 		 Square result = null;
-		 for (Square[] row : board.board)
+		 for (Square[] row : getBoard())
 		 {
 			 for (Square sqr : row)
 			 {
@@ -542,7 +547,7 @@ public class Game
 	 private boolean kingInCheck(String color)
 	 {
 		 Square kingLoc = findKing(color);
-		 for (Square opponentSquare : board.getSquaresByPieceColor(board.otherColor(color)))
+		 for (Square opponentSquare : getSquaresByPieceColor(board.otherColor(color)))
 		 {
 			 ChessPiece piece = opponentSquare.getPiece();
 			 boolean moveValid =isValidMove(new Move(color,opponentSquare, kingLoc));  
@@ -564,7 +569,7 @@ public class Game
 	 {
 		 String color = from.getPiece().getColor();
 		 List<Square> result = new ArrayList<Square>();
-		 for (Square[] row : board.board)
+		 for (Square[] row : getBoard())
 		 {
 			 for (Square to : row)
 			 {
@@ -596,10 +601,10 @@ public class Game
 		 if (!kingInCheck(color)){return false;}
 		 //find player pieces
 
-		 List<Square> squares = board.getSquaresByPieceColor(color);
+		 List<Square> squares = getSquaresByPieceColor(color);
 		 for (Square from : squares)
 		 {
-			 for (Square[] row : board.board)
+			 for (Square[] row : getBoard())
 			 {
 				 for (Square to : row)
 				 {
@@ -625,7 +630,6 @@ public class Game
 						 unMovePawnTwoRows(move);
 						 if(!inCheck){return false;}
 					 }
-
 				 } 
 			 }
 		 }
@@ -795,4 +799,15 @@ public class Game
 	 {
 		 return board.getSquaresByPieceColor(color);
 	 }
+
+	 public Square getSquare(int row, int col)
+	 {
+		 return board.getSquare(row, col);
+	 }
+
+	 public void display()
+	 {
+		 board.display();
+	 }
+
 }

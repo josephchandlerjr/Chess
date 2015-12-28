@@ -1,10 +1,8 @@
 package chess;
 
 import java.io.Console;
-import java.util.ArrayList;
 import java.util.List;
-
-import chess.lib.*;
+import chess.lib.ListFilter;
 
 public class Chess
 {
@@ -35,7 +33,7 @@ public class Chess
 	 */
 	public void displayBoard()
 	{
-		game.board.display();
+		game.display();
 	}
 	
 	/**
@@ -53,7 +51,7 @@ public class Chess
 		while (true) 
 		{
 			
-			game.board.display();
+			displayBoard();
 			while(!whiteHasMoved)
 			{
 				blackHasMoved=false;
@@ -68,7 +66,7 @@ public class Chess
 	
 			}
 
-			game.board.display();
+			displayBoard();
 			while(!blackHasMoved)
 			{
 				whiteHasMoved=false;
@@ -111,7 +109,7 @@ public class Chess
 				assert destinationColumn != -1;
 				assert destinationRow != -1;
 
-				to = game.board.getSquare(destinationRow,destinationColumn);
+				to = game.getSquare(destinationRow,destinationColumn);
 				from = getFromSquare(color, to, notation); 
 				if (from == null) 
 				{ 
@@ -136,6 +134,7 @@ public class Chess
 	{
 		//List of potentials, idea is to wittle it down by given criteria
 		//initially is every square on board that is occupied by piece of players same color
+
 
 		List<Square> candidates = game.getSquaresByPieceColor(color);
 

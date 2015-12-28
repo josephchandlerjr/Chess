@@ -12,7 +12,7 @@ import chess.lib.*;
  */
 public class Board
 {
-	Square[][] board;
+	private Square[][] board;
 	
 	/**
 	 * constructor
@@ -50,19 +50,11 @@ public class Board
 	 */
 	public List<Square> getSquaresByPieceColor(String color)
 	{
-		List<Square> result = new ArrayList<Square>();
-		for (Square[] row : board)
-		{
-			for (Square s : row)
-			{
-				if(s.isOccupied() && s.getPiece().getColor().equals(color))
-				{
-					result.add(s);
-				}
-
-			}
-		}
-		return result; 
+		return ArrayFilter.filterByPieceColor(board, color);
+	}
+	public Square[][] getBoard()
+	{
+		return board;
 	}
 
 	/**
