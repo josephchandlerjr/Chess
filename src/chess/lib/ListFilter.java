@@ -39,7 +39,7 @@ public class ListFilter<T,S>
 	{
 		ListFilter<Integer,Square> LF = new ListFilter<Integer,Square>(candidates,
 				                                               new GetCol(),
-					                                       new Integer(col));
+									       col);//autoboxing
 		return LF.getNewList();
 	}
 
@@ -62,12 +62,10 @@ public class ListFilter<T,S>
 	}
 	public static List<Square> filterByRow(List<Square> candidates, int row)
 	{
-		Integer rowAsInteger = new Integer(row);
-		Command<Integer,Square> C = new GetRow();
 
-		ListFilter<Integer,Square> LF= 
-		new ListFilter<Integer,Square>(candidates,C,rowAsInteger);
-		
+		ListFilter<Integer,Square> LF= new ListFilter<Integer,Square>(candidates,
+				                                              new GetRow(),
+					                                      row);
 		return LF.getNewList();
 	}
 
