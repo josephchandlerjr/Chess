@@ -95,8 +95,6 @@ public class Game
 	 */
 	public boolean takeAction(Move move)
 	{
-
-		//save old board to easily revert back if move puts players king in check
 		if(move.isCastle())
 		{
 			boolean validMove = isValidCastle(move.getColor(), move.getCastleSide());
@@ -117,7 +115,6 @@ public class Game
 				unCastle(initK,newK,initR,newR);
 				return false;
 			}
-
 		}
 		else if(move.isEnPassant())
 		{
@@ -154,8 +151,6 @@ public class Game
 				unMovePiece(move);
 				return false;
 			};
-
-
 		}
 
 		if(move.isPromotion())
@@ -175,8 +170,6 @@ public class Game
 		if(colorInCheckmate("BLACK")){System.out.println("BLACK in checkmate, WHITE wins");}
 		if(colorInCheckmate("WHITE")){System.out.println("WHITE in checkmate, BLACK wins");}
 
-	
-		//see if opponents king in check
 		return true;
 	}
 	/** determines if given player can castle on given side
@@ -277,7 +270,6 @@ public class Game
 	 */
 	private void moveEnPassant(Move move)
 	{
-
 		Square from = move.getFrom();
 		Square to = move.getTo();
 		
@@ -349,11 +341,10 @@ public class Game
 		     lastMove.isTwoRowPawnMove()    &&  //only after pawn jumps past another pawn
 	             fromRow + direction == toRow   &&
 	             Math.abs(toCol - fromCol) == 1 &&  // diagonal is row+direction and col+-1  
-		     !to.isOccupied()               &&  // not true diagonal capture cause no piece there
+		     !to.isOccupied()               &&  // not true diagonal capture bc no piece there
 		     lastMove.getTo() == board.getSquare(to.getRow() - direction, to.getCol())) //'behind' last move
 		 {
 			 return true;
-
 		 }
 		 return false;
 
