@@ -20,10 +20,10 @@ public class Game
 	Square initWQR;
 	Square initBKR;
 	Square initBQR;
-	boolean blackCheck; //true if black king in check
-	boolean whiteCheck;
-	boolean blackCheckmate; //true if black king in checkmate
-	boolean whiteCheckmate;
+	private boolean blackCheck; //true if black king in check
+	private boolean whiteCheck;
+	private boolean blackCheckmate; //true if black king in checkmate
+	private boolean whiteCheckmate;
 	
 	/**
 	 * constructor
@@ -35,6 +35,25 @@ public class Game
 		scoreSheet = new Score();
 		initializeBoard();
 		board.setDirectionalVar();
+	}
+
+	public boolean isInCheck(String color)
+	{	
+		if(color.equals("BLACK"))
+		{
+			return blackCheck;
+		}
+		return whiteCheck;
+	}
+
+	public boolean hasWon(String color)
+	{
+		String opponent = board.otherColor(color);
+		if (opponent.equals("BLACK"))
+		{
+			return blackCheckmate;
+		}
+		return whiteCheckmate;
 	}
 	/**
 	 * creates all ChessPiece objects and inserts them in board array
@@ -172,8 +191,8 @@ public class Game
 		if(kingInCheck("WHITE")){whiteCheck = true;}
 		else                    {whiteCheck = false;}
 
-		if(colorInCheckmate("BLACK")){System.out.println("BLACK in checkmate, WHITE wins");}
-		if(colorInCheckmate("WHITE")){System.out.println("WHITE in checkmate, BLACK wins");}
+		if(colorInCheckmate("BLACK")){blackCheckmate = true;}
+		if(colorInCheckmate("WHITE")){whiteCheckmate = true;}
 
 		return true;
 	}

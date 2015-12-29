@@ -48,41 +48,39 @@ public class Chess
 		}
 		boolean whiteHasMoved = false;
 		boolean blackHasMoved = false;
+		String p1 = "WHITE";
+		String p2 = "BLACK";
 		while (true) 
 		{
 			
-			displayBoard();
-			while(!whiteHasMoved)
-			{
-				blackHasMoved=false;
-				String whiteResponse = console.readLine("%nEnter your move, white: ");
-				ChessNotation whiteMove =new ChessNotation(whiteResponse);
-				if(executeMove("WHITE",whiteMove))
-				{ whiteHasMoved=true;}
-				if(game.whiteCheck)
-				{System.out.println("White in Check!");}
-				else if (game.whiteCheckmate)
-				{System.out.println("Checkmate! Black wins!");}
-	
-			}
-
-			displayBoard();
-			while(!blackHasMoved)
-			{
-				whiteHasMoved=false;
-				String blackResponse = console.readLine("%nEnter your move, black: ");
-				ChessNotation blackMove =new ChessNotation(blackResponse);
-				if(executeMove("BLACK",blackMove))
-				{ blackHasMoved=true;}
-				if(game.blackCheck)
-				{System.out.println("black in Check!");}
-				else if (game.blackCheckmate)
-				{System.out.println("Checkmate! White wins!");}
-	
-	
-			}
+			turn(p1,p2,console);
+			String temp = p1;
+			p1 = p2;
+			p2 = temp;
 		}
 
+	}
+	public void turn(String player, String opponent, Console console)
+	{
+		boolean hasMoved = false;
+		displayBoard();
+		while(!hasMoved)
+		{
+			String request = String.format("%nEnter your move, %s: ",player);
+			String blackResponse = console.readLine(request);
+			ChessNotation move = new ChessNotation(blackResponse);
+			if(executeMove(player, move))
+			{ hasMoved = true;}
+			if (game.hasWon(player))
+			{
+				System.out.printf("Checkmate! %s wins!\n",player);
+				System.exit(1);
+			}
+			else if(game.isInCheck(opponent))
+			{
+				System.out.printf("%s in Check!\n",opponent);
+			}
+		}
 	}
 
 	/**
