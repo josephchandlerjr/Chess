@@ -746,16 +746,16 @@ public class Game
 			 if (side.equals("KING"))
 			 {
 				 initR = initWKR;
-				 newKingSqr = initK.East.East;
-				 newRookSqr = initR.West.West;
-				 intermediarySquare = initK.East; 
+				 newKingSqr = initK.east().east();
+				 newRookSqr = initR.west().west();
+				 intermediarySquare = initK.east(); 
 			 }
 			 else if(side.equals("QUEEN"))
 			 {
 				 initR = initWQR;
-				 newKingSqr = initK.West.West;
-				 newRookSqr = initR.East.East.East;
-				 intermediarySquare = initK.West; 
+				 newKingSqr = initK.west().west();
+				 newRookSqr = initR.east().east().east();
+				 intermediarySquare = initK.west(); 
 			 }
 		 }
 		 else if (color.equals("BLACK"))
@@ -765,17 +765,17 @@ public class Game
 			 if (side.equals("KING"))
 			 {
 				 initR = initBKR;
-				 newKingSqr = initK.East.East;
-				 newRookSqr = initR.West.West;
-				 intermediarySquare = initK.East; 
+				 newKingSqr = initK.east().east();
+				 newRookSqr = initR.west().west();
+				 intermediarySquare = initK.east(); 
  
 			 }
 			 else if(side.equals("QUEEN"))
 			 {
 				 initR = initBQR;
-				 newKingSqr = initK.West.West;
-				 newRookSqr = initR.East.East.East;
-				 intermediarySquare = initK.West; 
+				 newKingSqr = initK.west().west();
+				 newRookSqr = initR.east().east().east();
+				 intermediarySquare = initK.west(); 
 			 }
 		 }
 

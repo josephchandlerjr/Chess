@@ -10,15 +10,13 @@ import chess.lib.*;
  * by a 2D array of Square objects - as well as methods that manipulate
  * and/or analyze the board
  */
-public class Board
-{
+public class Board {
 	private Square[][] board;
 	
 	/**
 	 * constructor
 	 */
-	public Board()
-	{
+	public Board() {
 		board = new Square[8][8];
 	}
 	
@@ -26,20 +24,17 @@ public class Board
 	 * sets all the directional variables on the Square objects
 	 * in the 2D array representing the board
 	 */
-	public void setDirectionalVar()
-	{	
-		//set North, South, East, West instance variables on each Square
-		for (Square[] r : board)
-		{
-			for (Square sqr : r)
-			{
+	public void setDirectionalVar() {	
+		//set NORTH, SOUTH, EAST, WEST instance variables on each Square
+		for (Square[] r : board) {
+			for (Square sqr : r) {
 				int row = sqr.getRow();
 				int col = sqr.getCol(); 
 				
-				if(!isOffBoard(row-1, col)){sqr.North = getSquare(row-1,col);}
-				if(!isOffBoard(row+1, col)){sqr.South = getSquare(row+1,col);}
-				if(!isOffBoard(row, col+1)){sqr.East = getSquare(row,col+1);}
-				if(!isOffBoard(row, col-1)){sqr.West = getSquare(row,col-1);}
+				if(!isOffBoard(row-1, col)){sqr.setNORTH(getSquare(row-1,col));}
+				if(!isOffBoard(row+1, col)){sqr.setSOUTH(getSquare(row+1,col));}
+				if(!isOffBoard(row, col+1)){sqr.setEAST(getSquare(row,col+1));}
+				if(!isOffBoard(row, col-1)){sqr.setWEST(getSquare(row,col-1));}
 			}
 		}
 	}	
@@ -48,12 +43,10 @@ public class Board
 	 * @param color of pieces we are looking for
 	 * @return List of squares
 	 */
-	public List<Square> getSquaresByPieceColor(String color)
-	{
+	public List<Square> getSquaresByPieceColor(String color) {
 		return ArrayFilter.filterByPieceColor(board, color);
 	}
-	public Square[][] getBoard()
-	{
+	public Square[][] getBoard() {
 		return board;
 	}
 
@@ -63,8 +56,7 @@ public class Board
 	 * @param col column square you want lies on
 	 * @return Square instance you asked for
 	 */
-	public Square getSquare(int row, int col)
-	{
+	public Square getSquare(int row, int col) {
 		return board[row][col];
 	}
         /**
@@ -73,11 +65,9 @@ public class Board
 	 * @param col column of square
 	 * @param piece ChessPiece to assign
 	 */
-	public void setPiece(int row, int col, ChessPiece piece)
-	{
+	public void setPiece(int row, int col, ChessPiece piece) {
 		Square square = board[row][col];
 		square.setPiece(piece);
-
 	}
 	/**
 	 * adds a Square object to the board array
@@ -85,21 +75,17 @@ public class Board
 	 * @param row row the square will lie on
 	 * @param col column square will lies on
 	 */
-	public void setSquare(String color, int row, int col)
-	{
+	public void setSquare(String color, int row, int col) {
 		board[row][col] = new Square(color,row,col);
 	}
 	
 	/** gets a 2D array of String elements representing board
 	 * @return String array representing pieces on the board
 	 */
-	public String[][] toStringArray()
-	{
+	public String[][] toStringArray() {
 		String[][] res = new String[board.length][board[0].length];
-		for (int r=0; r < board.length;r++)
-		{
-			for (int c=0; c < board[0].length; c++)
-			{
+		for (int r=0; r < board.length;r++) {
+			for (int c=0; c < board[0].length; c++) {
 				res[r][c] = board[r][c].toString();
 			}
 		} 
@@ -109,10 +95,8 @@ public class Board
 	 /** returns string representation of board
 	 * @return string representing current state of board
 	 */
-	public String toString()
-	{
+	public String toString() {
 		String[][] asStringArray = toStringArray();
-
 		return toString(asStringArray);
 	}
 
@@ -123,21 +107,16 @@ public class Board
 	 * @param board a 2D array of String elements
 	 * @return string representing current state of board
 	 */
-	public static String toString(String[][] board)
-	{
+	public static String toString(String[][] board) {
 		String horizontalLine = "-- -- -- -- -- -- -- --";
 		String res = horizontalLine + "\n";
-		for (int r=0; r < board.length;r++)
-		{
+		for (int r=0; r < board.length;r++) {
 			res = res + "|";
-			for (int c=0; c < board[0].length; c++)
-			{
-				if(board[r][c] == null) 
-				{ 
+			for (int c=0; c < board[0].length; c++) {
+				if(board[r][c] == null) { 
 					res = res + "  |";
 				}
-				else 
-				{ 
+				else { 
 					res = res + board[r][c];
 					res = res + "|";
 				}
@@ -150,8 +129,7 @@ public class Board
         /**
 	 * display string representation of board
 	 */
-	public void display()
-	{
+	public void display() {
 		System.out.print(this);
 
 	}
@@ -160,8 +138,7 @@ public class Board
 	  * checks if a row,column combination is off of the 8x8 board
 	  * @return if row,column combination if off board else false
 	  */
-	 private boolean isOffBoard(int row, int col)
-	 {
+	 private boolean isOffBoard(int row, int col) {
 		 return row > 7 || row < 0 || col > 7 || col < 0;
 	 }
 
@@ -170,8 +147,7 @@ public class Board
 	 * @param myColor can be String BLACK or WHITE
 	 * @return if WHITE is give as param return BLACK else WHITE
 	 */
-	public String otherColor(String myColor)
-	{
+	public String otherColor(String myColor) {
 		if (myColor == "WHITE"){ return "BLACK";}
 		return "WHITE";
 	} 
@@ -182,8 +158,7 @@ public class Board
 	 * @param myColor a string either "BLACK" or "WHITE" which is your color
 	 * @return true if square given has an opponents piece on it else false
 	 */
-	public boolean isOccupiedByOpponent(Square s, String myColor)
-	{
+	public boolean isOccupiedByOpponent(Square s, String myColor) {
 		String opponentsColor = otherColor(myColor);
 		return s.isOccupied() && s.getPiece().getColor().equals(opponentsColor);
 	}
@@ -194,22 +169,15 @@ public class Board
 	 * @param myColor a string either "BLACK" or "WHITE" which is your color
 	 * @return true if square given has one of your pieces on it else false
 	 */
-	public boolean isOccupiedByPieceOfSameColor(Square s, String myColor)
-	{
-
+	public boolean isOccupiedByPieceOfSameColor(Square s, String myColor) {
 		boolean result;
-
-		if (!s.isOccupied())
-		{ 
+		if (!s.isOccupied()) { 
 			return false;
 		}
-		else
-		{
+		else {
 			result =s.getPiece().getColor().equals(myColor); 
 		}
-
 		return result;
-
 	}	
 	/**
 	 * finds if a particular square is occupied by piece of give color and type
@@ -218,8 +186,7 @@ public class Board
 	 * @param rep string rep of piece per PGN, for example "N" is a knight, "K" a king
 	 * @return true if square has such a piece on it else false
 	 */
-	public boolean isOccupiedByPiece(Square s, String color, String rep)
-	{
+	public boolean isOccupiedByPiece(Square s, String color, String rep) {
 		String fullRep = color.substring(0,1) + rep;
 		return s.isOccupied() && s.getPiece().toString().equals(fullRep);
 	}
@@ -229,13 +196,10 @@ public class Board
 	 * @param to another Square on board
 	 * @return true if there are occupied squares between Squares given else false 
 	 */
-	public boolean piecesBetween(Square from, Square to)
-	{
+	public boolean piecesBetween(Square from, Square to) {
 		List<Square> squares = squaresBetween(from, to);
-		for (Square square : squares)
-		{
-			if (square.isOccupied())
-			{
+		for (Square square : squares) {
+			if (square.isOccupied()) {
 				return true;
 			}
 		}
@@ -248,70 +212,62 @@ public class Board
 	 * @param to another Square on board
 	 * @return array of Square objects between the two give Squares
 	 */
-	public List<Square> squaresBetween(Square from, Square to)
-	 {       
-		 List<Square> result = new ArrayList<Square>();
-		 int fromRow = from.getRow();
-		 int fromCol = from.getCol();
-		 int toRow = to.getRow();
-		 int toCol = to.getCol();
+	public List<Square> squaresBetween(Square from, Square to) {       
 
-		 int rowStep;
-		 int colStep;
+		List<Square> result = new ArrayList<Square>();
+		int fromRow = from.getRow();
+		int fromCol = from.getCol();
+		int toRow = to.getRow();
+		int toCol = to.getCol();
+
+		int rowStep;
+		int colStep;
 		 
-		 if     (toRow > fromRow){ rowStep = 1;}
-		 else if(toRow < fromRow){ rowStep = -1;}
-		 else                    { rowStep = 0;}
+		if     (toRow > fromRow){ rowStep = 1;}
+		else if(toRow < fromRow){ rowStep = -1;}
+		else                    { rowStep = 0;}
                  
-		 if     (toCol > fromCol){ colStep = 1;}
-		 else if(toCol < fromCol){ colStep = -1;}
-		 else                    { colStep = 0;}	 
+		if     (toCol > fromCol){ colStep = 1;}
+		else if(toCol < fromCol){ colStep = -1;}
+		else                    { colStep = 0;}	 
 
-		 int col = fromCol + colStep;
-		 int row = fromRow + rowStep;
+		int col = fromCol + colStep;
+		int row = fromRow + rowStep;
 
-		 while (col != toCol || row != toRow)
-		 {	
-			 result.add(getSquare(row,col));
-			 col = col + colStep;
-			 row = row + rowStep;
-
-		 }
-		 
-		 return result;
-			 
+		while (col != toCol || row != toRow){	
+			result.add(getSquare(row,col));
+			col = col + colStep;
+			row = row + rowStep;
+		}
+		return result;
 	 }
-	public boolean areOnSameColumn(Square A, Square B)
-	 {       
-		 int fromCol = A.getCol();
-		 int toCol = B.getCol();
+	public boolean areOnSameColumn(Square A, Square B) {       
+		int fromCol = A.getCol();
+		int toCol = B.getCol();
 
-		 return fromCol == toCol;
-	 }
-	public boolean areOnSameRow(Square A, Square B)
-	 {       
-		 int fromRow = A.getRow();
-		 int toRow = B.getRow();
+		return fromCol == toCol;
+	}
+	public boolean areOnSameRow(Square A, Square B) {       
+		int fromRow = A.getRow();
+		int toRow = B.getRow();
 
-		 return fromRow == toRow;
-	 }
+		return fromRow == toRow;
+	}
 	/**
 	 * tests if two pieces are on same diagonal
 	 * @param A a Square
 	 * @param B a Square
 	 * @return true if A and B on the same diagonal else false
 	 */
-	public boolean areOnSameDiagonal(Square A, Square B)
-	{
-	         int fromCol = A.getCol();
-		 int toCol = B.getCol();
-		 int fromRow = A.getRow();
-		 int toRow = B.getRow();
+	public boolean areOnSameDiagonal(Square A, Square B) {
+		int fromCol = A.getCol();
+		int toCol = B.getCol();
+		int fromRow = A.getRow();
+		int toRow = B.getRow();
 
-		 int colDiff = toCol - fromCol;
-		 int rowDiff = toRow - fromRow;
+		int colDiff = toCol - fromCol;
+		int rowDiff = toRow - fromRow;
 
-		 return Math.abs(colDiff) == Math.abs(rowDiff);
+		return Math.abs(colDiff) == Math.abs(rowDiff);
 	}
-
 }

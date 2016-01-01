@@ -5,15 +5,17 @@ package chess;
  */
 public class Square
 {
-	private String color; //the string BLACK or WHITE
-	private int row;
-	private int col;
+	private final String color; //the string BLACK or WHITE
+	private final int ROW;
+	private final int COL;
 	private ChessPiece piece;
 	private ChessPiece previousPiece;
-	public Square North;
-	public Square South;
-	public Square East;
-	public Square West;
+	private Square NORTH;
+	private Square SOUTH;
+	private Square EAST;
+	private Square WEST;
+
+	
 
 	/**
 	 * create new square
@@ -24,10 +26,52 @@ public class Square
 	public Square(String color, int row, int col)
 	{
 		this.color = color;
-		this.row = row;
-		this.col = col;
+		this.ROW = row;
+		this.COL = col;
 		this.piece = null;
 	}
+
+	public void setNORTH(Square n){ NORTH = n;}
+	public void setSOUTH(Square s){ SOUTH = s;}
+	public void setEAST(Square e){ EAST = e;}
+	public void setWEST(Square w){ WEST = w;}
+	public Square north(){return NORTH;}
+	public Square south(){return SOUTH;}
+	public Square east(){return EAST;}
+	public Square west(){return WEST;}
+	public Square northEast(){
+		if(NORTH == null){
+			return null;
+		}
+		else{
+			return NORTH.EAST;
+		}
+	}
+	public Square northWest(){
+		if(NORTH == null){
+			return null;
+		}
+		else{
+			return NORTH.WEST;
+		}
+	}
+	public Square southWest(){
+		if(SOUTH == null){
+			return null;
+		}
+		else{
+			return SOUTH.WEST;
+		}
+	}
+	public Square southEast(){
+		if(SOUTH == null){
+			return null;
+		}
+		else{
+			return SOUTH.EAST;
+		}
+	}
+
 	public ChessPiece getPreviousPiece()
 	{
 		return previousPiece;
@@ -66,7 +110,7 @@ public class Square
 	 */
 	public int getRow()
 	{
-		return row;
+		return ROW;
 	}
 
 	/**
@@ -75,7 +119,7 @@ public class Square
 	 */
 	public int getCol()
 	{
-		return col;
+		return COL;
 	}
 
 	/**
@@ -111,7 +155,7 @@ public class Square
 	 */
 	public Square copy()
 	{
-		Square newSquare = new Square(color, row, col);
+		Square newSquare = new Square(color, ROW, COL);
 		newSquare.setPiece(piece);
 		return newSquare;
 	}

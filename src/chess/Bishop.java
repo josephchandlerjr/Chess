@@ -2,8 +2,7 @@ package chess;
 /**
  * represents a bishop chess piece
  */
-public class Bishop extends ChessPiece
-{
+public class Bishop extends ChessPiece {
 	/**
 	 * constructor
 	 * @param color either string "BLACK" or "WHITE"
@@ -12,7 +11,5 @@ public class Bishop extends ChessPiece
 	{
 		super(color, "B");
 	}
-	
-	
 }
 
