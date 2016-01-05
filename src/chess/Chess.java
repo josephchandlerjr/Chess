@@ -1,8 +1,12 @@
 package chess;
 
+import javax.swing.*;
+import java.awt.*;
+
 import java.io.Console;
 import java.util.List;
 import chess.lib.ListFilter;
+
 
 public class Chess {
 	Game game;

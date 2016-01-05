@@ -823,7 +823,7 @@ public class Game
 	 {
 		 return board.getSquare(row, col);
 	 }
-
+	 
 	 public void display()
 	 {
 		 board.display();

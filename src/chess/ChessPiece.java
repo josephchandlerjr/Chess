@@ -8,6 +8,7 @@ public class ChessPiece
 	private String color; 
 	private String strRep;
 	private String ID;
+	private String imageLocation;
 
         /** 
 	 * constructor
@@ -17,16 +18,45 @@ public class ChessPiece
 	 */
 	public ChessPiece(String color, String rep)
 	{
-		if (color.equals("BLACK") && color.equals("WHITE"))
-		{
-			System.out.printf("%s is an invalid color\n", color);
-		}
 		this.color = color;
 		this.ID = rep;
 		strRep = color.substring(0,1) + rep;
+
+
+		String imageColor = "";
+		String pieceName = "";
+		String base = ".\\src\\chess\\resources\\";	
+		if(color.equals("WHITE")){
+			imageColor = "White";
+		}
+		else {
+			imageColor = "Black";
+		}
+		
+		if(rep.equals("P")){
+			pieceName = "Pawn";
+		}
+		else if (rep.equals("R")){
+			pieceName = "Rook";
+		}
+		else if (rep.equals("N")){
+			pieceName = "Knight";
+		}
+		else if (rep.equals("B")){
+			pieceName = "Bishop";
+		}
+		else if (rep.equals("Q")){
+			pieceName = "Queen";
+		}
+		else if (rep.equals("K")){
+			pieceName = "King";
+		}
+		imageLocation = base + imageColor + pieceName + ".png";
 		
 	}
-	
+	public String getImageLocation(){
+		return imageLocation;
+	}
         /**
 	 * gets the string representation of piece
 	 * @return string representation of piece

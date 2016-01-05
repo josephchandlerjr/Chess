@@ -85,6 +85,10 @@ public class Square
 		this.previousPiece = this.piece;
 		this.piece = piece;
 	}
+
+	public String getColor(){
+		return color;
+	}
 	/**
 	 * gets piece on this square
 	 * @return piece on this square or null if there is none
