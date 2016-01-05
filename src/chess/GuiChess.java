@@ -34,7 +34,28 @@ public class GuiChess extends Chess{
 		GuiBoard gui = new GuiBoard();
 		gui.buildGui();
 	}
+	private void logFrom(String pieceID, String square) {
+		if(!pieceID.equals("P")){
+			from = pieceID;
+		}
+		from = from + square;
 
+	}
+	private void logTo(String square) {
+		to = square;
+		ChessNotation move = new ChessNotation(from+to);
+		from = "";
+		to = "";
+		if(executeMove(player, move)){
+			System.out.println("Good Move");
+			String temp = player;
+			player = opponent;
+			opponent = temp;
+			System.out.printf("it is %s's move\n",player);
+		}
+		else {System.out.printf("bad Move");}
+
+	}
 	private void logClick(String pieceID, String square) {
 		System.out.println(pieceID);
 		System.out.println(from);
@@ -83,6 +104,8 @@ public class GuiChess extends Chess{
 	}
 
 	class GuiBoard implements MouseListener {
+		MouseEvent lastEntered;
+
 		public void buildGui(){
 			JFrame frame = new JFrame();
 			jframe = frame;
@@ -106,7 +129,7 @@ public class GuiChess extends Chess{
 			frame.setVisible(true);
 
 		}
-		public void mouseClicked(MouseEvent e){
+		public String[] getSquareInfoFromMouseEvent(MouseEvent e) {
 			SquarePanel sp = (SquarePanel) (e.getComponent());
 			Square s = sp.square;
 			int r = s.getRow();
@@ -118,16 +141,32 @@ public class GuiChess extends Chess{
 			if (s.isOccupied()){
 				pieceID = s.getPiece().getID();
 			}
+			return new String[]{pieceID, file, rank};
+		}
+		public void mouseClicked(MouseEvent e){}
+		public void mouseEntered(MouseEvent e){
+			lastEntered = e;
+		}
+		public void mouseExited(MouseEvent e){}
+		public void mousePressed(MouseEvent e){
+			String[] pieceFileRank = getSquareInfoFromMouseEvent(e);
+			String pieceID = pieceFileRank[0];
+			String file = pieceFileRank[1];
+			String rank = pieceFileRank[2];
 
-			System.out.printf("%s,%s,says click me harder",file, rank);
-			System.out.printf(" - the piece is %s\n", pieceID);
-			logClick(pieceID, file+rank);
+			System.out.printf("%s %s is from\n",file,rank);
+			logFrom(pieceID, file+rank);
 			jframe.repaint();
 		}
-		public void mouseEntered(MouseEvent e){}
-		public void mouseExited(MouseEvent e){}
-		public void mousePressed(MouseEvent e){}
-		public void mouseReleased(MouseEvent e){}
+		public void mouseReleased(MouseEvent e){
+			String[] pieceFileRank = getSquareInfoFromMouseEvent(lastEntered);
+			String file = pieceFileRank[1];
+			String rank = pieceFileRank[2];
+
+			System.out.printf("%s %s is to\n",file,rank);
+			logTo(file+rank);
+			jframe.repaint();
+		}
 	}//end inner class
 }
 
@@ -140,7 +179,7 @@ class SquarePanel extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		if (square.getColor().equals("BLACK")){
-			g.setColor(Color.cyan);
+			g.setColor(new Color(102,51,0));
 		}
 		else {
 			g.setColor(Color.white);
