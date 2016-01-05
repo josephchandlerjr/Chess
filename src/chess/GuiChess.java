@@ -2,6 +2,7 @@ package chess;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 import java.io.Console;
 import java.util.List;
@@ -9,6 +10,11 @@ import chess.lib.ListFilter;
 
 
 public class GuiChess extends Chess{
+	String player = "WHITE";
+	String opponent = "BLACK";
+	String from = "";
+	String to = "";
+	JFrame jframe;
 
 	/**
 	 * main entry point which constructs a Game object and calls consolePlay()
@@ -18,7 +24,6 @@ public class GuiChess extends Chess{
 		//runs the show
 		//constructs a game, whiteIO and blackIO
 		GuiChess chess = new GuiChess();
-		chess.play();
 	}
 
 	/**
@@ -30,15 +35,57 @@ public class GuiChess extends Chess{
 		gui.buildGui();
 	}
 
-	public void play(){
+	private void logClick(String pieceID, String square) {
+		System.out.println(pieceID);
+		System.out.println(from);
+		System.out.println(pieceID.equals(""));
+		if(from.equals("") && !pieceID.equals("")){
+			if(!pieceID.equals("P")){
+				from = pieceID;
+			}
+			from = from + square;
+			System.out.printf("from is set to %s\n",from);
+			return;
+		}
+		to = square;
+		System.out.printf("to is set to %s\n",to);
+		System.out.printf("whole thing is set to %s\n",from+to);
+		ChessNotation move = new ChessNotation(from+to);
+		from = "";
+		to = "";
+		if(executeMove(player, move)){
+			System.out.println("Good Move");
+			String temp = player;
+			player = opponent;
+			opponent = temp;
+			System.out.printf("it is %s's move\n",player);
+		}
+		else {System.out.printf("bad Move");}
+
 	}
 
+	public void turn(String player, String opponent, Console console) {
+		boolean hasMoved = false;
+		while(!hasMoved) {
+			String request = String.format("%nEnter your move, %s: ",player);
+			String blackResponse = console.readLine(request);
+			ChessNotation move = new ChessNotation(blackResponse);
+			if(executeMove(player, move)){ 
+				hasMoved = true;}
+			if (game.hasWon(player)) {
+				System.out.printf("Checkmate! %s wins!\n",player);
+				System.exit(1);
+			}
+			else if(game.isInCheck(opponent)) {
+				System.out.printf("%s in Check!\n",opponent);
+			}
+		}
+	}
 
-
-	class GuiBoard {
-
+	class GuiBoard implements MouseListener {
 		public void buildGui(){
 			JFrame frame = new JFrame();
+			jframe = frame;
 			GridLayout grid = new GridLayout(8,8);
 			grid.setVgap(1);
 			grid.setHgap(1);
@@ -48,8 +95,10 @@ public class GuiChess extends Chess{
 
 			for (int row = 0; row < 8; row++){
 				for (int col = 0; col < 8; col++){
-					ButtonSquare button = new ButtonSquare(game.getSquare(row,col));
-					frame.getContentPane().add(button);
+					SquarePanel p = new SquarePanel(game.getSquare(row,col));
+					frame.getContentPane().add(p);
+					p.addMouseListener(this);
+					
 				}
 			}
 
@@ -57,13 +106,35 @@ public class GuiChess extends Chess{
 			frame.setVisible(true);
 
 		}
+		public void mouseClicked(MouseEvent e){
+			SquarePanel sp = (SquarePanel) (e.getComponent());
+			Square s = sp.square;
+			int r = s.getRow();
+			int c = s.getCol();
+			
+			String file = ChessNotation.columnToFile(c);
+			String rank = ChessNotation.rowToRank(r);
+			String pieceID = "";
+			if (s.isOccupied()){
+				pieceID = s.getPiece().getID();
+			}
+
+			System.out.printf("%s,%s,says click me harder",file, rank);
+			System.out.printf(" - the piece is %s\n", pieceID);
+			logClick(pieceID, file+rank);
+			jframe.repaint();
+		}
+		public void mouseEntered(MouseEvent e){}
+		public void mouseExited(MouseEvent e){}
+		public void mousePressed(MouseEvent e){}
+		public void mouseReleased(MouseEvent e){}
 	}//end inner class
 }
 
-class ButtonSquare extends JPanel {
+class SquarePanel extends JPanel {
 	Square square;
 
-	public ButtonSquare(Square s){
+	public SquarePanel(Square s){
 		square = s;
 	}
 
@@ -80,4 +151,5 @@ class ButtonSquare extends JPanel {
 			g.drawImage(image,10,10,this);
 		}
 	}
+
 }

@@ -63,6 +63,7 @@ public class Game
 		String squareColor = "WHITE";
 		for (int r=0; r < 8; r++)
 		{
+			squareColor = board.otherColor(squareColor);
 			for (int c=0; c < 8; c++)
 			{
 				board.setSquare(squareColor, r, c);

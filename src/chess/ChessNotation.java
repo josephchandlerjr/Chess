@@ -109,6 +109,8 @@ public class ChessNotation
 		Matcher PIECEFILECAPTURESQUARE  = PIECEFILECAPTURESQUARERegex.matcher(token);
 		Matcher PIECERANKCAPTURESQUARE = PIECERANKCAPTURESQUARERegex.matcher(token);
 		Matcher PIECEFILERANKCAPTURESQUARE = PIECEFILERANKCAPTURESQUARERegex.matcher(token);
+		Matcher PIECEFILERANKSQUARE = PIECEFILERANKSQUARERegex.matcher(token);
+		Matcher FILERANKSQUARE = FILERANKSQUARERegex.matcher(token);
 		Matcher RANKCAPTURESQUARE = RANKCAPTURESQUARERegex.matcher(token);
 		Matcher FILECAPTURESQUARE = FILECAPTURESQUARERegex.matcher(token);
 		Matcher SQUAREPROMOTION = SQUAREPROMOTIONRegex.matcher(token);
@@ -227,6 +229,26 @@ public class ChessNotation
 			rankDestination = PIECEFILERANKCAPTURESQUARE.group(5);
 			label = "PIECEFILERANKCAPTURESQUARE";
 		}
+		else if(FILERANKSQUARE.find())
+		{
+			valid = true;
+			pieceToMove = "P";
+			fileToMove =      FILERANKSQUARE.group(1);
+			rankToMove =      FILERANKSQUARE.group(2);
+			fileDestination = FILERANKSQUARE.group(3);
+			rankDestination = FILERANKSQUARE.group(4);
+			label = "FILERANKSQUARE";
+		}
+		else if(PIECEFILERANKSQUARE.find())
+		{
+			valid = true;
+			pieceToMove =     PIECEFILERANKSQUARE.group(1);
+			fileToMove =      PIECEFILERANKSQUARE.group(2);
+			rankToMove =      PIECEFILERANKSQUARE.group(3);
+			fileDestination = PIECEFILERANKSQUARE.group(4);
+			rankDestination = PIECEFILERANKSQUARE.group(5);
+			label = "PIECEFILERANKSQUARE";
+		}
 		else if(SQUAREPROMOTION.find())
 		{
 			valid = true;
@@ -340,6 +362,8 @@ public class ChessNotation
 	private final String PIECE = "([KQNBRS])";
 	private final String SQUARE = "(?:"+FILE+RANK+")";
 	private final String PIECEFILESQUARE = String.format("^%s?%s%s%s%s$",NUM,PIECE,FILE,SQUARE,END);
+	private final String PIECEFILERANKSQUARE = String.format("^%s?%s%s%s%s%s$",NUM,PIECE,FILE,RANK,SQUARE,END);
+	private final String FILERANKSQUARE = String.format("^%s?%s%s%s%s$",NUM,FILE,RANK,SQUARE,END);
 	private final String PIECEFILE = String.format("^%s?%s%s%s$",NUM,PIECE,FILE,END);
 	private final String PIECERANK = String.format("^%s?%s%s%s$",NUM,PIECE,RANK,END);
 	private final String PIECERANKSQUARE = String.format("^%s?%s%s%s%s$",NUM,PIECE,RANK,SQUARE,END);
@@ -372,6 +396,8 @@ public class ChessNotation
 	private final Pattern CASTLEKSRegex = Pattern.compile(CASTLEKS);
 	private final Pattern CASTLEQSRegex= Pattern.compile(CASTLEQS);
 	private final Pattern PIECEFILESQUARERegex = Pattern.compile(PIECEFILESQUARE);
+	private final Pattern PIECEFILERANKSQUARERegex = Pattern.compile(PIECEFILERANKSQUARE);
+	private final Pattern FILERANKSQUARERegex = Pattern.compile(FILERANKSQUARE);
 	private final Pattern PIECERANKSQUARERegex = Pattern.compile(PIECERANKSQUARE);
 	private final Pattern PIECESQUARERegex = Pattern.compile(PIECESQUARE);
 	private final Pattern FILESQUARERegex = Pattern.compile(FILESQUARE);

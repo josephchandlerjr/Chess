@@ -45,8 +45,6 @@ public class Chess {
 		    System.err.println("No console.");
 		    System.exit(1);
 		}
-		boolean whiteHasMoved = false;
-		boolean blackHasMoved = false;
 		String p1 = "WHITE";
 		String p2 = "BLACK";
 		while (true) {
@@ -55,7 +53,6 @@ public class Chess {
 			p1 = p2;
 			p2 = temp;
 		}
-
 	}
 	public void turn(String player, String opponent, Console console) {
 		boolean hasMoved = false;
@@ -66,6 +63,7 @@ public class Chess {
 			ChessNotation move = new ChessNotation(blackResponse);
 			if(executeMove(player, move)){ 
 				hasMoved = true;}
+			displayBoard();
 			if (game.hasWon(player)) {
 				System.out.printf("Checkmate! %s wins!\n",player);
 				System.exit(1);
