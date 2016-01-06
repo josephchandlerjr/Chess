@@ -13,7 +13,6 @@ public class GuiChess extends Chess{
 	String player = "WHITE";
 	String opponent = "BLACK";
 	String from = "";
-	String to = "";
 	JFrame jframe;
 
 	/**
@@ -39,50 +38,22 @@ public class GuiChess extends Chess{
 			from = pieceID;
 		}
 		from = from + square;
-
 	}
-	private void logTo(String square) {
-		to = square;
+
+	private void logTo(String to) {
 		ChessNotation move = new ChessNotation(from+to);
+		if ("Ke1c1Ke8c8".contains(from+to)){
+			move = new ChessNotation("O-O-O");
+		}
+		else if ("Ke1g1Ke8g8".contains(from+to)){
+			move = new ChessNotation("O-O");
+		}
 		from = "";
-		to = "";
 		if(executeMove(player, move)){
-			System.out.println("Good Move");
 			String temp = player;
 			player = opponent;
 			opponent = temp;
-			System.out.printf("it is %s's move\n",player);
 		}
-		else {System.out.printf("bad Move");}
-
-	}
-	private void logClick(String pieceID, String square) {
-		System.out.println(pieceID);
-		System.out.println(from);
-		System.out.println(pieceID.equals(""));
-		if(from.equals("") && !pieceID.equals("")){
-			if(!pieceID.equals("P")){
-				from = pieceID;
-			}
-			from = from + square;
-			System.out.printf("from is set to %s\n",from);
-			return;
-		}
-		to = square;
-		System.out.printf("to is set to %s\n",to);
-		System.out.printf("whole thing is set to %s\n",from+to);
-		ChessNotation move = new ChessNotation(from+to);
-		from = "";
-		to = "";
-		if(executeMove(player, move)){
-			System.out.println("Good Move");
-			String temp = player;
-			player = opponent;
-			opponent = temp;
-			System.out.printf("it is %s's move\n",player);
-		}
-		else {System.out.printf("bad Move");}
-
 	}
 
 	public void turn(String player, String opponent, Console console) {
@@ -121,13 +92,11 @@ public class GuiChess extends Chess{
 					SquarePanel p = new SquarePanel(game.getSquare(row,col));
 					frame.getContentPane().add(p);
 					p.addMouseListener(this);
-					
 				}
 			}
 
 			frame.setSize(8*70,8*70);
 			frame.setVisible(true);
-
 		}
 		public String[] getSquareInfoFromMouseEvent(MouseEvent e) {
 			SquarePanel sp = (SquarePanel) (e.getComponent());
