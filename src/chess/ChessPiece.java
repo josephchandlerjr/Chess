@@ -13,6 +13,8 @@ public class ChessPiece
 
 	public static final ChessPiece WHITEPAWN = new Pawn("WHITE");
 	public static final ChessPiece BLACKPAWN = new Pawn("BLACK");
+	public static final ChessPiece WHITEROOK= new Rook("WHITE");
+	public static final ChessPiece BLACKROOK= new Rook("BLACK");
 
         /** 
 	 * constructor
@@ -59,7 +61,7 @@ public class ChessPiece
 		
 	}
 	public int getDirection(){
-	       return 0;
+	       return 0; // only here so pawns can be cast as ChessPiece and still call this method
 	}	       
 	public String getImageLocation(){
 		return imageLocation;
@@ -95,6 +97,9 @@ public class ChessPiece
 	 */
 	public static boolean isPawn(ChessPiece piece){
 		return piece instanceof Pawn;
+	}
+	public static boolean isRook(ChessPiece piece){
+		return piece instanceof Rook;
 	}
 
 	
@@ -134,5 +139,21 @@ class Pawn extends ChessPiece
 		return direction;
 	}
 	
+}
+
+
+/** 
+ * represents a rook chess piece
+ */
+class Rook extends ChessPiece
+{
+	/**
+	 * constructor
+	 * @param color either string "BLACK" or "WHITE"
+	 */
+	public Rook(String color)
+	{
+		super(color, "R");
+	}
 }
 
