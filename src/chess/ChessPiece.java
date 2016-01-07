@@ -15,6 +15,8 @@ public class ChessPiece
 	public static final ChessPiece BLACKPAWN = new Pawn("BLACK");
 	public static final ChessPiece WHITEROOK= new Rook("WHITE");
 	public static final ChessPiece BLACKROOK= new Rook("BLACK");
+	public static final ChessPiece WHITEKNIGHT= new Knight("WHITE");
+	public static final ChessPiece BLACKKNIGHT= new Knight("BLACK");
 
         /** 
 	 * constructor
@@ -101,9 +103,9 @@ public class ChessPiece
 	public static boolean isRook(ChessPiece piece){
 		return piece instanceof Rook;
 	}
-
-	
-
+	public static boolean isKnight(ChessPiece piece){
+		return piece instanceof Knight;
+	}
 }
 
 
@@ -155,5 +157,22 @@ class Rook extends ChessPiece
 	{
 		super(color, "R");
 	}
+}
+
+
+/**
+ * represents the knight chess piece
+ */
+class Knight extends ChessPiece
+{
+	/**
+	 * constructor
+	 * @param color either string "BLACK" or "WHITE"
+	 */
+	public Knight(String color)
+	{
+		super(color, "N");
+	}
+	
 }
 

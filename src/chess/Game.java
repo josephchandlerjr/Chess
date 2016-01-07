@@ -87,10 +87,10 @@ public class Game
 		board.setPiece(7, 7, ChessPiece.WHITEROOK);
 		initWKR = board.getSquare(7,7);
 		//knights
-		board.setPiece(0, 1, new Knight("BLACK"));
-		board.setPiece(0, 6, new Knight("BLACK"));
-		board.setPiece(7, 1, new Knight("WHITE"));
-		board.setPiece(7, 6, new Knight("WHITE"));
+		board.setPiece(0, 1, ChessPiece.BLACKKNIGHT);
+		board.setPiece(0, 6, ChessPiece.BLACKKNIGHT);
+		board.setPiece(7, 1, ChessPiece.WHITEKNIGHT);
+		board.setPiece(7, 6, ChessPiece.WHITEKNIGHT);
 
 		//Bishops
 		board.setPiece(0, 2, new Bishop("BLACK"));
@@ -398,7 +398,7 @@ public class Game
 		 ChessPiece p = from.getPiece();
 		 if (ChessPiece.isPawn(p)){ return isValidPawnMove(from, to);}
 		 if (ChessPiece.isRook(p)){ return isValidRookMove(from, to);}
-		 if (p instanceof Knight){ return isValidKnightMove(from, to);}
+		 if (ChessPiece.isKnight(p)){ return isValidKnightMove(from, to);}
 		 if (p instanceof Bishop){ return isValidBishopMove(from, to);}
 		 if (p instanceof Queen){ return isValidQueenMove(from, to);}
 		 if (p instanceof King){ return isValidKingMove(from, to);}
