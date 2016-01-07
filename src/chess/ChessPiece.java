@@ -19,6 +19,11 @@ public class ChessPiece
 	public static final ChessPiece BLACKKNIGHT = new Knight("BLACK");
 	public static final ChessPiece WHITEBISHOP = new Bishop("WHITE");
 	public static final ChessPiece BLACKBISHOP = new Bishop("BLACK");
+	public static final ChessPiece WHITEQUEEN = new Queen("WHITE");
+	public static final ChessPiece BLACKQUEEN = new Queen("BLACK");
+
+
+	
         /** 
 	 * constructor
 	 * initializes chess piece with color and string representation
@@ -110,6 +115,9 @@ public class ChessPiece
 	public static boolean isBishop(ChessPiece piece){
 		return piece instanceof Bishop;
 	}
+	public static boolean isQueen(ChessPiece piece){
+		return piece instanceof Queen;
+	}
 }
 
 
@@ -191,6 +199,22 @@ class Bishop extends ChessPiece {
 	public Bishop(String color)
 	{
 		super(color, "B");
+	}
+}
+
+
+/**
+ * represents a Queen chess piece
+ */
+class Queen extends ChessPiece
+{
+	/**
+	 * constructor
+	 * @param color either string "BLACK" or "WHITE"
+	 */
+	public Queen(String color)
+	{
+		super(color, "Q");
 	}
 }
 

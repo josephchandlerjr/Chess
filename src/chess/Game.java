@@ -400,7 +400,7 @@ public class Game
 		 if (ChessPiece.isRook(p)){ return isValidRookMove(from, to);}
 		 if (ChessPiece.isKnight(p)){ return isValidKnightMove(from, to);}
 		 if (ChessPiece.isBishop(p)){ return isValidBishopMove(from, to);}
-		 if (p instanceof Queen){ return isValidQueenMove(from, to);}
+		 if (ChessPiece.isQueen(p)){ return isValidQueenMove(from, to);}
 		 if (p instanceof King){ return isValidKingMove(from, to);}
 		 return false;
 	 }
