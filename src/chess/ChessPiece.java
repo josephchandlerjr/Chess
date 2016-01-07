@@ -10,6 +10,10 @@ public class ChessPiece
 	private String ID;
 	private String imageLocation;
 
+
+	public static final ChessPiece WHITEPAWN = new Pawn("WHITE");
+	public static final ChessPiece BLACKPAWN = new Pawn("BLACK");
+
         /** 
 	 * constructor
 	 * initializes chess piece with color and string representation
@@ -54,6 +58,9 @@ public class ChessPiece
 		imageLocation = base + imageColor + pieceName + ".png";
 		
 	}
+	public int getDirection(){
+	       return 0;
+	}	       
 	public String getImageLocation(){
 		return imageLocation;
 	}
@@ -83,5 +90,49 @@ public class ChessPiece
 		return this.ID;
 	}
 
+	/**
+	 * tells you if a piece is a pawn or not
+	 */
+	public static boolean isPawn(ChessPiece piece){
+		return piece instanceof Pawn;
+	}
+
+	
+
+}
+
+
+/** 
+ * represents a pawn chess piece
+*/
+class Pawn extends ChessPiece
+{
+	private int direction;
+
+	/**
+	 * constructor
+	 * @param color either string "BLACK" or "WHITE"
+	 */
+	public Pawn(String color)
+	{
+		super(color, "P");
+		if (color.equals("BLACK"))
+		{
+			direction = 1;
+		}
+		else 
+		{
+			direction = -1;
+		}
+	}
+	/** 
+	 * gets direction pawn moves
+	 * @return 1 if pawn moves toward higher numbered rows or -1 if moving opposite direction
+	 */
+	public int getDirection()
+	{
+		return direction;
+	}
+	
 }
 

@@ -106,10 +106,9 @@ public class Chess {
 			return result;
 		}
 		return false;
-
 	}
 	/**
-	 * finds Square piece to be moved from
+	 * finds Square piece is to be moved from
 	 * @param color color of piece to move
 	 * @param toSquare square piece would be moved to
 	 * @param notation ChessNotation object describing move
@@ -118,8 +117,6 @@ public class Chess {
 	private Square getFromSquare(String color, Square toSquare, ChessNotation notation) {
 		//List of potentials, idea is to wittle it down by given criteria
 		//initially is every square on board that is occupied by piece of players same color
-
-
 		List<Square> candidates = game.getSquaresByPieceColor(color);
 
 		if (candidates.size() == 1) { 
@@ -176,7 +173,6 @@ public class Chess {
 				i++;
 			};
 		}
-		
 		//if not just one candidate now then is invalid move request
 		if (candidates.size() == 1) { 
 			return candidates.get(0);}

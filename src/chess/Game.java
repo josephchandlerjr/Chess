@@ -73,8 +73,8 @@ public class Game
 		//place pawns
 		for (int i=0; i < 8; i++)
 		{
-			board.setPiece(1, i, new Pawn("BLACK"));
-			board.setPiece(6, i, new Pawn("WHITE"));
+			board.setPiece(1, i, ChessPiece.BLACKPAWN);
+			board.setPiece(6, i, ChessPiece.WHITEPAWN);
 		}
 	        	
 		//rooks
@@ -271,7 +271,9 @@ public class Game
 		Square from = move.getFrom();
 		Square to = move.getTo();
 
-		Pawn piece = (Pawn)(from.getPiece());
+		//Pawn piece = (Pawn)(from.getPiece());
+		ChessPiece piece = from.getPiece();
+		assert ChessPiece.isPawn(piece);
 		board.setPiece(to.getRow(),to.getCol(), piece);
 		from.setPiece(null);
 	}
@@ -298,7 +300,7 @@ public class Game
 		Square from = move.getFrom();
 		Square to = move.getTo();
 		
-		Pawn piece = (Pawn)(from.getPiece());
+		ChessPiece piece = from.getPiece();
 		board.setPiece(to.getRow(),to.getCol(), piece);
 		from.setPiece(null);
 		Square squareToCapture = board.getSquare(from.getRow(),to.getCol());
@@ -311,12 +313,12 @@ public class Game
 	 */
 	private boolean isValidTwoRowPawnMove(Move move)
 	{
-		if(!(move.getFrom().getPiece() instanceof Pawn)){return false;}
+		if(!ChessPiece.isPawn(move.getFrom().getPiece())){return false;}
 
 		Square from = move.getFrom();
 		Square to = move.getTo();
 
-		Pawn piece = (Pawn)(from.getPiece());
+		ChessPiece piece = from.getPiece();
 		int direction = piece.getDirection();
 		int fromRow = from.getRow();
 		int fromCol = from.getCol();
@@ -346,7 +348,7 @@ public class Game
 		// last move must have ended next to from square
 		// to move move be diagonal and 'behind' last move to square
 
-		if(!(move.getFrom().getPiece() instanceof Pawn)){return false;}
+		if(!ChessPiece.isPawn(move.getFrom().getPiece())){return false;}
 
 		Square from = move.getFrom();
 		Square to = move.getTo();
@@ -394,7 +396,7 @@ public class Game
 		 { return false;}
 
 		 ChessPiece p = from.getPiece();
-		 if (p instanceof Pawn){ return isValidPawnMove(from, to);}
+		 if (ChessPiece.isPawn(p)){ return isValidPawnMove(from, to);}
 		 if (p instanceof Rook){ return isValidRookMove(from, to);}
 		 if (p instanceof Knight){ return isValidKnightMove(from, to);}
 		 if (p instanceof Bishop){ return isValidBishopMove(from, to);}
@@ -410,13 +412,13 @@ public class Game
 	 */
 	 private boolean isValidPawnMove(Square from, Square to)
 	 { 
-		 if(!(from.getPiece() instanceof Pawn)){return false;}
+		 if(!ChessPiece.isPawn(from.getPiece())){return false;}
 		 int fromRow = from.getRow();
 		 int fromCol = from.getCol();
 		 int toRow = to.getRow();
 		 int toCol = to.getCol();
 
-		 Pawn piece= (Pawn)(from.getPiece());
+		 ChessPiece piece= from.getPiece();
 		 String myColor = piece.getColor();
 		 int direction = piece.getDirection();
 
