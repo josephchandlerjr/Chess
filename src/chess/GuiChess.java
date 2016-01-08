@@ -78,8 +78,12 @@ public class GuiChess extends Chess{
 	}
 	class NewGameListener implements ActionListener {
 		public void actionPerformed(ActionEvent e){
+			System.out.println("here i am");
 			newGame();
 			gui.initialize();
+			player = "WHITE";
+			opponent = "BLACK";
+			guiFrame.repaint();
 		}
 	}
 
@@ -151,7 +155,11 @@ public class GuiChess extends Chess{
 					panels[row][col] = p;
 				}
 			}
-			frame.add(panel);
+			frame.getContentPane().add(BorderLayout.CENTER, panel);
+
+			JButton button = new JButton("New Game");
+			button.addActionListener(new NewGameListener());
+			frame.getContentPane().add(BorderLayout.EAST, button);
 
 			frame.setSize(8*70,8*70);
 			frame.setVisible(true);
