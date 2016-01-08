@@ -14,6 +14,7 @@ public class GuiChess extends Chess{
 	String opponent = "BLACK";
 	String from = "";
 	JFrame guiFrame;
+	GuiBoard gui;
 
 
 	/**
@@ -31,8 +32,9 @@ public class GuiChess extends Chess{
 	 */
 	public GuiChess(){
 		super();
-		GuiBoard gui = new GuiBoard();
-		gui.buildGui();
+		this.gui = new GuiBoard();
+		this.gui.build();
+		this.gui.initialize();
 	}
 	private void logFrom(String pieceID, String square) {
 		if(!pieceID.equals("P")){
@@ -76,6 +78,8 @@ public class GuiChess extends Chess{
 	}
 	class NewGameListener implements ActionListener {
 		public void actionPerformed(ActionEvent e){
+			newGame();
+			gui.initialize();
 		}
 	}
 
@@ -110,6 +114,7 @@ public class GuiChess extends Chess{
 			System.out.printf("%s %s is from\n",file,rank);
 			logFrom(pieceID, file+rank);
 			guiFrame.repaint();
+
 		}
 		public void mouseReleased(MouseEvent e){
 			String[] pieceFileRank = getSquareInfoFromMouseEvent(lastEntered);
@@ -119,11 +124,17 @@ public class GuiChess extends Chess{
 			System.out.printf("%s %s is to\n",file,rank);
 			logTo(file+rank);
 			guiFrame.repaint();
+			// for now if checkmate just start over
+			if(game.hasWon("BLACK") || game.hasWon("WHITE")){
+				newGame();
+				gui.initialize();
+			}
 		}
 	}//end inner class BoardListener
 
 	class GuiBoard {
-		public void buildGui(){
+		SquarePanel[][] panels = new SquarePanel[8][8];
+		public void build(){
 			JFrame frame = new JFrame();
 			guiFrame = frame;
 			GridLayout grid = new GridLayout(8,8);
@@ -134,9 +145,10 @@ public class GuiChess extends Chess{
 			BoardListener listener = new BoardListener();
 			for (int row = 0; row < 8; row++){
 				for (int col = 0; col < 8; col++){
-					SquarePanel p = new SquarePanel(game.getSquare(row,col));
+					SquarePanel p = new SquarePanel();
 					panel.add(p);
 					p.addMouseListener(listener);
+					panels[row][col] = p;
 				}
 			}
 			frame.add(panel);
@@ -144,13 +156,20 @@ public class GuiChess extends Chess{
 			frame.setSize(8*70,8*70);
 			frame.setVisible(true);
 		}
+		public void initialize(){
+			for (int row = 0; row < 8; row++){
+				for (int col = 0; col < 8; col++){
+					panels[row][col].setSquare(game.getSquare(row,col));
+				}
+			}
+		}
 	}//end inner class BuildGui
 }
 
 class SquarePanel extends JPanel {
 	Square square;
 
-	public SquarePanel(Square s){
+	public void setSquare(Square s){
 		square = s;
 	}
 
