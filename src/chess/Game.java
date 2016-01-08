@@ -99,13 +99,13 @@ public class Game
 		board.setPiece(7, 5, ChessPiece.WHITEBISHOP);
 
 		//Queens
-		board.setPiece(0, 3, new Queen("BLACK"));
-		board.setPiece(7, 3, new Queen("WHITE"));
+		board.setPiece(0, 3, ChessPiece.BLACKQUEEN);
+		board.setPiece(7, 3, ChessPiece.WHITEQUEEN);
 
 		//Kings
-		board.setPiece(0, 4, new King("BLACK"));
+		board.setPiece(0, 4, ChessPiece.BLACKKING);
 		initBK = board.getSquare(0,4);
-		board.setPiece(7, 4, new King("WHITE"));	
+		board.setPiece(7, 4, ChessPiece.WHITEKING);	
 		initWK = board.getSquare(7,4);
 	}
 
@@ -401,7 +401,7 @@ public class Game
 		 if (ChessPiece.isKnight(p)){ return isValidKnightMove(from, to);}
 		 if (ChessPiece.isBishop(p)){ return isValidBishopMove(from, to);}
 		 if (ChessPiece.isQueen(p)){ return isValidQueenMove(from, to);}
-		 if (p instanceof King){ return isValidKingMove(from, to);}
+		 if (ChessPiece.isKing(p)){ return isValidKingMove(from, to);}
 		 return false;
 	 }
 	/**
@@ -552,7 +552,7 @@ public class Game
 				 {
 					
 					 ChessPiece p = sqr.getPiece();
-					 if(p instanceof King && p.getColor().equals(color))
+					 if(ChessPiece.isKing(p) && p.getColor().equals(color))
 					 {
 						 result = sqr;
 					 }	
