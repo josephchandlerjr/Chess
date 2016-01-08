@@ -13,7 +13,8 @@ public class GuiChess extends Chess{
 	String player = "WHITE";
 	String opponent = "BLACK";
 	String from = "";
-	JFrame jframe;
+	JFrame guiFrame;
+
 
 	/**
 	 * main entry point which constructs a Game object and calls consolePlay()
@@ -73,31 +74,14 @@ public class GuiChess extends Chess{
 			}
 		}
 	}
-
-	class GuiBoard implements MouseListener {
-		MouseEvent lastEntered;
-
-		public void buildGui(){
-			JFrame frame = new JFrame();
-			jframe = frame;
-			GridLayout grid = new GridLayout(8,8);
-			grid.setVgap(1);
-			grid.setHgap(1);
-			JPanel panel = new JPanel(grid);
-			frame.setContentPane(panel);
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-			for (int row = 0; row < 8; row++){
-				for (int col = 0; col < 8; col++){
-					SquarePanel p = new SquarePanel(game.getSquare(row,col));
-					frame.getContentPane().add(p);
-					p.addMouseListener(this);
-				}
-			}
-
-			frame.setSize(8*70,8*70);
-			frame.setVisible(true);
+	class NewGameListener implements ActionListener {
+		public void actionPerformed(ActionEvent e){
 		}
+	}
+
+
+	class BoardListener implements MouseListener {
+		MouseEvent lastEntered;
 		public String[] getSquareInfoFromMouseEvent(MouseEvent e) {
 			SquarePanel sp = (SquarePanel) (e.getComponent());
 			Square s = sp.square;
@@ -125,7 +109,7 @@ public class GuiChess extends Chess{
 
 			System.out.printf("%s %s is from\n",file,rank);
 			logFrom(pieceID, file+rank);
-			jframe.repaint();
+			guiFrame.repaint();
 		}
 		public void mouseReleased(MouseEvent e){
 			String[] pieceFileRank = getSquareInfoFromMouseEvent(lastEntered);
@@ -134,9 +118,33 @@ public class GuiChess extends Chess{
 
 			System.out.printf("%s %s is to\n",file,rank);
 			logTo(file+rank);
-			jframe.repaint();
+			guiFrame.repaint();
 		}
-	}//end inner class
+	}//end inner class BoardListener
+
+	class GuiBoard {
+		public void buildGui(){
+			JFrame frame = new JFrame();
+			guiFrame = frame;
+			GridLayout grid = new GridLayout(8,8);
+			grid.setVgap(1);
+			grid.setHgap(1);
+			JPanel panel = new JPanel(grid);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			BoardListener listener = new BoardListener();
+			for (int row = 0; row < 8; row++){
+				for (int col = 0; col < 8; col++){
+					SquarePanel p = new SquarePanel(game.getSquare(row,col));
+					panel.add(p);
+					p.addMouseListener(listener);
+				}
+			}
+			frame.add(panel);
+
+			frame.setSize(8*70,8*70);
+			frame.setVisible(true);
+		}
+	}//end inner class BuildGui
 }
 
 class SquarePanel extends JPanel {
@@ -147,7 +155,7 @@ class SquarePanel extends JPanel {
 	}
 
 	public void paintComponent(Graphics g) {
-		if (square.getColor().equals("BLACK")){
+		if (square != null && square.getColor().equals("BLACK")){
 			g.setColor(new Color(102,51,0));
 		}
 		else {

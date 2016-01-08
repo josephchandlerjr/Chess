@@ -26,6 +26,11 @@ public class Chess {
 	 * constructor
 	 */
 	public Chess(){
+		newGame();
+	}
+
+
+	public void newGame(){
 		game = new Game();
 	}
 	
