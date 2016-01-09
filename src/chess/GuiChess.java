@@ -59,34 +59,16 @@ public class GuiChess extends Chess{
 		}
 	}
 
-	public void turn(String player, String opponent, Console console) {
-		boolean hasMoved = false;
-		while(!hasMoved) {
-			String request = String.format("%nEnter your move, %s: ",player);
-			String blackResponse = console.readLine(request);
-			ChessNotation move = new ChessNotation(blackResponse);
-			if(executeMove(player, move)){ 
-				hasMoved = true;}
-			if (game.hasWon(player)) {
-				System.out.printf("Checkmate! %s wins!\n",player);
-				System.exit(1);
-			}
-			else if(game.isInCheck(opponent)) {
-				System.out.printf("%s in Check!\n",opponent);
-			}
-		}
-	}
 	class NewGameListener implements ActionListener {
 		public void actionPerformed(ActionEvent e){
-			System.out.println("here i am");
 			newGame();
 			gui.initialize();
 			player = "WHITE";
 			opponent = "BLACK";
 			guiFrame.repaint();
+			gui.boardPanel.setEnabled(true);
 		}
 	}
-
 
 	class BoardListener implements MouseListener {
 		MouseEvent lastEntered;
@@ -115,7 +97,6 @@ public class GuiChess extends Chess{
 			String file = pieceFileRank[1];
 			String rank = pieceFileRank[2];
 
-			System.out.printf("%s %s is from\n",file,rank);
 			logFrom(pieceID, file+rank);
 			guiFrame.repaint();
 
@@ -125,49 +106,57 @@ public class GuiChess extends Chess{
 			String file = pieceFileRank[1];
 			String rank = pieceFileRank[2];
 
-			System.out.printf("%s %s is to\n",file,rank);
 			logTo(file+rank);
 			guiFrame.repaint();
-			// for now if checkmate just start over
+			// for now if checkmate just disable board 
 			if(game.hasWon("BLACK") || game.hasWon("WHITE")){
-				newGame();
-				gui.initialize();
+				gui.boardPanel.setEnabled(false);
 			}
 		}
 	}//end inner class BoardListener
 
 	class GuiBoard {
-		SquarePanel[][] panels = new SquarePanel[8][8];
+		SquarePanel[][] guiBoardSquares = new SquarePanel[8][8];
+		JPanel boardPanel;
+
 		public void build(){
-			JFrame frame = new JFrame();
-			guiFrame = frame;
+			guiFrame = new JFrame();
+			guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 			GridLayout grid = new GridLayout(8,8);
 			grid.setVgap(1);
 			grid.setHgap(1);
-			JPanel panel = new JPanel(grid);
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+			boardPanel = new JPanel(grid);
+			boardPanel.setPreferredSize(new Dimension(70*8,70*8));
+
 			BoardListener listener = new BoardListener();
 			for (int row = 0; row < 8; row++){
 				for (int col = 0; col < 8; col++){
 					SquarePanel p = new SquarePanel();
-					panel.add(p);
 					p.addMouseListener(listener);
-					panels[row][col] = p;
+					boardPanel.add(p);
+					guiBoardSquares[row][col] = p;
 				}
 			}
-			frame.getContentPane().add(BorderLayout.CENTER, panel);
+			guiFrame.getContentPane().add(BorderLayout.CENTER, boardPanel);
 
-			JButton button = new JButton("New Game");
-			button.addActionListener(new NewGameListener());
-			frame.getContentPane().add(BorderLayout.EAST, button);
+			JPanel buttonPanel = new JPanel();
+			buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 
-			frame.setSize(8*70,8*70);
-			frame.setVisible(true);
+			JButton newGameButton = new JButton("New Game");
+			newGameButton.addActionListener(new NewGameListener());
+			buttonPanel.add(newGameButton);
+			guiFrame.getContentPane().add(BorderLayout.EAST, buttonPanel);
+
+			//frame.setSize(9*70,9*70);
+			guiFrame.pack();
+			guiFrame.setVisible(true);
 		}
 		public void initialize(){
 			for (int row = 0; row < 8; row++){
 				for (int col = 0; col < 8; col++){
-					panels[row][col].setSquare(game.getSquare(row,col));
+					guiBoardSquares[row][col].setSquare(game.getSquare(row,col));
 				}
 			}
 		}
