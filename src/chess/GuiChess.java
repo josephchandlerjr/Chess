@@ -13,7 +13,6 @@ public class GuiChess extends Chess{
 	String player = "WHITE";
 	String opponent = "BLACK";
 	String from = "";
-	JFrame guiFrame;
 	GuiBoard gui;
 
 
@@ -65,7 +64,7 @@ public class GuiChess extends Chess{
 			gui.initialize();
 			player = "WHITE";
 			opponent = "BLACK";
-			guiFrame.repaint();
+			gui.frame.repaint();
 			gui.boardPanel.setEnabled(true);
 		}
 	}
@@ -98,7 +97,7 @@ public class GuiChess extends Chess{
 			String rank = pieceFileRank[2];
 
 			logFrom(pieceID, file+rank);
-			guiFrame.repaint();
+			gui.frame.repaint();
 
 		}
 		public void mouseReleased(MouseEvent e){
@@ -107,7 +106,7 @@ public class GuiChess extends Chess{
 			String rank = pieceFileRank[2];
 
 			logTo(file+rank);
-			guiFrame.repaint();
+			gui.frame.repaint();
 			// for now if checkmate just disable board 
 			if(game.hasWon("BLACK") || game.hasWon("WHITE")){
 				gui.boardPanel.setEnabled(false);
@@ -117,11 +116,12 @@ public class GuiChess extends Chess{
 
 	class GuiBoard {
 		SquarePanel[][] guiBoardSquares = new SquarePanel[8][8];
+		JFrame frame;
 		JPanel boardPanel;
 
 		public void build(){
-			guiFrame = new JFrame();
-			guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame = new JFrame();
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 			GridLayout grid = new GridLayout(8,8);
 			grid.setVgap(1);
@@ -139,7 +139,7 @@ public class GuiChess extends Chess{
 					guiBoardSquares[row][col] = p;
 				}
 			}
-			guiFrame.getContentPane().add(BorderLayout.CENTER, boardPanel);
+			frame.getContentPane().add(BorderLayout.CENTER, boardPanel);
 
 			JPanel buttonPanel = new JPanel();
 			buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
@@ -147,11 +147,11 @@ public class GuiChess extends Chess{
 			JButton newGameButton = new JButton("New Game");
 			newGameButton.addActionListener(new NewGameListener());
 			buttonPanel.add(newGameButton);
-			guiFrame.getContentPane().add(BorderLayout.EAST, buttonPanel);
+			frame.getContentPane().add(BorderLayout.EAST, buttonPanel);
 
 			//frame.setSize(9*70,9*70);
-			guiFrame.pack();
-			guiFrame.setVisible(true);
+			frame.pack();
+			frame.setVisible(true);
 		}
 		public void initialize(){
 			for (int row = 0; row < 8; row++){
