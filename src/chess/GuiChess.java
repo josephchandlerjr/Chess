@@ -129,6 +129,7 @@ public class GuiChess extends Chess{
 
 			boardPanel = new JPanel(grid);
 			boardPanel.setPreferredSize(new Dimension(70*8,70*8));
+		        boardPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
 			BoardListener listener = new BoardListener();
 			for (int row = 0; row < 8; row++){
