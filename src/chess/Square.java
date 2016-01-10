@@ -1,9 +1,12 @@
 package chess;
 
+import javax.swing.*;
+import java.awt.*;
+
 /** 
  * represents a square on the chess board
  */
-public class Square
+public class Square extends JPanel
 {
 	private final String color; //the string BLACK or WHITE
 	private final int ROW;
@@ -163,6 +166,20 @@ public class Square
 		newSquare.setPiece(piece);
 		return newSquare;
 	}
-
-	
+	/**
+	 * for gui
+	 */
+	public void paintComponent(Graphics g) {
+		if (getColor().equals("BLACK")){
+			g.setColor(new Color(102,51,0));
+		}
+		else {
+			g.setColor(Color.white);
+		}
+		g.fillRect(0,0,70,70);
+		if (isOccupied()) {
+			Image image = new ImageIcon(getPiece().getImageLocation()).getImage();	
+			g.drawImage(image,10,10,this);
+		}
+	}	
 }

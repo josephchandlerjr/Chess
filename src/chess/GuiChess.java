@@ -148,7 +148,7 @@ public class GuiChess extends Chess{
 		JPanel boardPanel;
 
 		public void build(){
-			frame = new JFrame();
+			frame = new JFrame("Look how far we've come!");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 			GridLayout grid = new GridLayout(8,8);
@@ -191,7 +191,9 @@ public class GuiChess extends Chess{
 		}
 	}//end inner class BuildGui
 }
-
+/**
+ * essentially a JPanel that points to a Square instance
+ */
 class SquarePanel extends JPanel {
 	Square square;
 
