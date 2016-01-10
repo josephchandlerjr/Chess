@@ -12,7 +12,9 @@ import chess.lib.ListFilter;
 public class GuiChess extends Chess{
 	String player = "WHITE";
 	String opponent = "BLACK";
-	String from = "";
+	String fromNotation = "";
+	Square fromSquare;
+	Square toSquare;
 	GuiBoard gui;
 
 
@@ -35,27 +37,42 @@ public class GuiChess extends Chess{
 		this.gui.build();
 		this.gui.initialize();
 	}
+	/**
+	 * translates algebraic chess notation into game moves
+	 * @param color color who's turn it is to move
+	 * @param notation ChessNotation to translate
+	 * @return true if move executed else false
+	 */	
+	public boolean executeMove(Move move) {
+		boolean result = game.takeAction(move);
+		return result;
+	}
 	private void logFrom(String pieceID, String square) {
 		if(!pieceID.equals("P")){
-			from = pieceID;
+			this.fromNotation = pieceID; 
 		}
-		from = from + square;
+		this.fromNotation = this.fromNotation + square;
 	}
 
-	private void logTo(String to) {
-		ChessNotation move = new ChessNotation(from+to);
-		if ("Ke1c1Ke8c8".contains(from+to)){
-			move = new ChessNotation("O-O-O");
+	private void logTo(String toNotation) {
+		ChessNotation notation = new ChessNotation(fromNotation+toNotation);
+		if ("Ke1c1Ke8c8".contains(fromNotation+toNotation)){
+			notation = new ChessNotation("O-O-O");
 		}
-		else if ("Ke1g1Ke8g8".contains(from+to)){
-			move = new ChessNotation("O-O");
+		else if ("Ke1g1Ke8g8".contains(fromNotation+toNotation)){
+			notation = new ChessNotation("O-O");
 		}
-		from = "";
-		if(executeMove(player, move)){
+
+		Move move = new Move(notation, player, fromSquare, toSquare);
+		if(executeMove(move)){
 			String temp = player;
 			player = opponent;
 			opponent = temp;
 		}
+		//reset instance variables on GuiChess, not sure if necessary...
+		this.fromNotation = "";
+		this.fromSquare = null;
+		this.toSquare = null;
 	}
 
 	class NewGameListener implements ActionListener {
@@ -71,9 +88,15 @@ public class GuiChess extends Chess{
 
 	class BoardListener implements MouseListener {
 		MouseEvent lastEntered;
-		public String[] getSquareInfoFromMouseEvent(MouseEvent e) {
+		/**
+		 * takes MouseEvent and returns square associated with SquarePanel from which it occured
+		 */
+		public Square squareFromEvent(MouseEvent e) {
 			SquarePanel sp = (SquarePanel) (e.getComponent());
-			Square s = sp.square;
+			return sp.square;
+		}
+		
+		public String[] getNotationFromSquare(Square s) {
 			int r = s.getRow();
 			int c = s.getCol();
 			
@@ -91,17 +114,22 @@ public class GuiChess extends Chess{
 		}
 		public void mouseExited(MouseEvent e){}
 		public void mousePressed(MouseEvent e){
-			String[] pieceFileRank = getSquareInfoFromMouseEvent(e);
+			Square from = squareFromEvent(e);
+			fromSquare = from;// set instance variable on GuiChess
+
+			String[] pieceFileRank = getNotationFromSquare(from);
 			String pieceID = pieceFileRank[0];
 			String file = pieceFileRank[1];
 			String rank = pieceFileRank[2];
 
 			logFrom(pieceID, file+rank);
 			gui.frame.repaint();
-
 		}
 		public void mouseReleased(MouseEvent e){
-			String[] pieceFileRank = getSquareInfoFromMouseEvent(lastEntered);
+			Square to = squareFromEvent(lastEntered);
+			toSquare = to; // set instance variable on GuiChess
+
+			String[] pieceFileRank = getNotationFromSquare(to);
 			String file = pieceFileRank[1];
 			String rank = pieceFileRank[2];
 
