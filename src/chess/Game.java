@@ -2,7 +2,6 @@ package chess;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Arrays;
 
 /** 
  * represents a chess game
@@ -114,6 +113,9 @@ public class Game
 		return board.getBoard();
 	}
 
+	public List<Square> filterBoard(int row, int col, String pieceColor, String piece) {
+		return board.filterBoard(row, col, pieceColor, piece);
+	}
 	/** controller for game, used by Chess object housing this game
 	 * @param move Move object containing all info it needs
 	 * @return true if move is executed else false

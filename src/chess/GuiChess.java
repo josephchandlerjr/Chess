@@ -6,7 +6,6 @@ import java.awt.event.*;
 
 import java.io.Console;
 import java.util.List;
-import chess.lib.ListFilter;
 
 
 public class GuiChess extends Chess{

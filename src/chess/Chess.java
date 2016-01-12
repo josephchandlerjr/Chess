@@ -5,7 +5,6 @@ import java.awt.*;
 
 import java.io.Console;
 import java.util.List;
-import chess.lib.ListFilter;
 
 public class Chess {
 	Game game;
@@ -119,48 +118,23 @@ public class Chess {
 	 * @return Square object or null if no square found that matches notation aka an error
 	 */
 	private Square getFromSquare(String color, Square toSquare, ChessNotation notation) {
-		//List of potentials, idea is to wittle it down by given criteria
-		//initially is every square on board that is occupied by piece of players same color
-		List<Square> candidates = game.getSquaresByPieceColor(color);
 
-		if (candidates.size() == 1) { 
-			return candidates.get(0);} // maybe we're done
-	        else if (candidates.size() == 0) { 
-			return null;
-		}	
+		int col = -1;
+		int row = -1;
+		String piece = notation.getPieceToMove();	
 
-		//if given the file of piece to move lets reduce candidates further
 		if (!notation.getFileToMove().equals("")) {
 			String file = notation.getFileToMove();
-			int col = ChessNotation.fileToColumn(file);
-			candidates = ListFilter.filterByColumn(candidates, col);
+			col = ChessNotation.fileToColumn(file);
 		}
-
-		if (candidates.size() == 1) { 
-			return candidates.get(0);} // maybe we're done
-	        else if (candidates.size() == 0) { 
-			return null;}	
-		
-		//if given the rank of piece to move lets reduce candidates further
 		if (!notation.getRankToMove().equals("")) {
 			String rank = notation.getRankToMove();
-			int row = ChessNotation.rankToRow(rank);
-			candidates = ListFilter.filterByRow(candidates, row);
+			row = ChessNotation.rankToRow(rank);
 		}
-
-		if (candidates.size() == 1) { 
-			return candidates.get(0);} // maybe we're done
-	        else if (candidates.size() == 0) { 
-			return null;
-		}	
-
-		//remove candidates that don't match piece
-		if (!notation.getPieceToMove().equals("")) {	
-			String pieceToMove = notation.getPieceToMove();
-		        candidates = ListFilter.filterByPiece(candidates,notation.getPieceToMove());
-		}
+		//filter by criteria
+		List<Square> candidates = game.filterBoard(row, col, color, piece);
 		
-		//remove candidates who's piece can't move to the toSquare
+		//now filter by move
 		for (int i=0; i < candidates.size();) {
 			List<Square> possibleMoves = game.getAllMoves(candidates.get(i));
 			boolean isPossibleMove = false;
@@ -177,11 +151,7 @@ public class Chess {
 				i++;
 			};
 		}
-		//if not just one candidate now then is invalid move request
-		if (candidates.size() == 1) { 
-			return candidates.get(0);}
-		else { 
-			return null;
-		}
+		
+		return candidates.get(0);
 	}
 }
