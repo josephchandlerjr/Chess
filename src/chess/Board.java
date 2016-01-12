@@ -270,4 +270,29 @@ public class Board {
 
 		return Math.abs(colDiff) == Math.abs(rowDiff);
 	}
+
+	/**
+	 * filters board by criteria given
+	 * @param row row square must reside on, -1 if criteria not to be used
+	 * @param col column square must reside on, -1 if criteria not to be used
+	 * @param pieceColor color of piece that must reside on square, "" if criteria not to be used
+	 * @param piece piece that must reside on square, null if criteria not to be used
+	 * @return List of Squares that meet criteria
+	 */
+	public List<Square> filterBoard(int row, int col, String pieceColor, ChessPiece piece) {
+		List<Square> result = new ArrayList<Square>();
+		for (Square[] boardRow : getBoard()){
+			for (Square sqr : boardRow){
+				if(row != -1 && sqr.getRow() != row){break;}
+				if(col != -1 && sqr.getCol() != col){break;}
+				if(sqr.isOccupied()){
+					ChessPiece p = sqr.getPiece();
+					if(piece != null && p != piece){break;}
+					if(!pieceColor.equals("") && !p.getColor().equals(pieceColor)){break;}
+				}
+				result.add(sqr);
+			}
+		}
+		return result;
+	}
 }
