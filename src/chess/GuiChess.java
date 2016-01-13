@@ -54,6 +54,10 @@ public class GuiChess extends Chess{
 	}
 
 	private void logTo(String toNotation) {
+		// make sure correct player is moving
+		if(!fromSquare.isOccupied() || !fromSquare.getPieceColor().equals(player)){
+			return;
+		}
 		ChessNotation notation = new ChessNotation(fromNotation+toNotation);
 		if ("Ke1c1Ke8c8".contains(fromNotation+toNotation)){
 			notation = new ChessNotation("O-O-O");
@@ -80,8 +84,8 @@ public class GuiChess extends Chess{
 			gui.initialize();
 			player = "WHITE";
 			opponent = "BLACK";
+			gui.status.setText(String.format("%s'S MOVE",player));
 			gui.frame.repaint();
-			gui.boardPanel.setEnabled(true);
 		}
 	}
 
@@ -134,12 +138,14 @@ public class GuiChess extends Chess{
 
 			logTo(file+rank);
 			gui.frame.repaint();
+			gui.status.setText(String.format("%s'S MOVE",player));
 			// for now if checkmate just disable board 
 			if(game.hasWon("BLACK")){
+				gui.status.setText("CHECKMATE! BLACK WINS!");
 
 			}
 			else if(game.hasWon("WHITE")){
-
+				gui.status.setText("CHECKMATE! WHITE WINS!");
 			}
 		}  
 	}//end inner class BoardListener
@@ -147,34 +153,36 @@ public class GuiChess extends Chess{
 	class GuiBoard {
 		SquarePanel[][] guiBoardSquares = new SquarePanel[8][8];
 		JFrame frame;
-		JPanel boardPanel;
+		JPanel board;
 		JLabel status;
 
 		public void build(){
 			frame = new JFrame("CHESS");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-			status = new JLabel("White's move");
+			status = new JLabel();
+			status.setText(String.format("%s'S MOVE",player));
+
 			frame.getContentPane().add(BorderLayout.NORTH, status);
 
 			GridLayout grid = new GridLayout(8,8);
 			grid.setVgap(1);
 			grid.setHgap(1);
 
-			boardPanel = new JPanel(grid);
-			boardPanel.setPreferredSize(new Dimension(70*8,70*8));
-		        boardPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+			board = new JPanel(grid);
+			board.setPreferredSize(new Dimension(70*8,70*8));
+		        board.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
 			BoardListener listener = new BoardListener();
 			for (int row = 0; row < 8; row++){
 				for (int col = 0; col < 8; col++){
 					SquarePanel p = new SquarePanel();
 					p.addMouseListener(listener);
-					boardPanel.add(p);
+					board.add(p);
 					guiBoardSquares[row][col] = p;
 				}
 			}
-			frame.getContentPane().add(BorderLayout.CENTER, boardPanel);
+			frame.getContentPane().add(BorderLayout.CENTER, board);
 
 			Box buttonBox = new Box(BoxLayout.Y_AXIS);
 
@@ -186,11 +194,7 @@ public class GuiChess extends Chess{
 			newButton.addActionListener(new NewGameListener());
 			buttonBox.add(newButton);
 
-			StatusPanel statusPanel  = new StatusPanel(); 
-			statusPanel.setPreferredSize(new Dimension(30,0));
-
 			frame.getContentPane().add(BorderLayout.EAST, buttonBox);
-			frame.getContentPane().add(BorderLayout.WEST, statusPanel);
 
 			frame.pack();
 			frame.setVisible(true);
@@ -203,24 +207,6 @@ public class GuiChess extends Chess{
 			}
 		}
 	}//end inner class BuildGui
-	class StatusPanel extends JPanel {
-		public void paintComponent(Graphics g) {
-			if (player.equals("BLACK")){
-				g.setColor(Color.green);
-				g.fillOval(0,10,15,15);
-				g.setColor(Color.red);
-				g.fillOval(0,getHeight()-15,15,15);
-			}
-			else{
-				g.setColor(Color.green);
-				g.fillOval(0,getHeight()-15,15,15);
-				g.setColor(Color.red);
-				g.fillOval(0,10,15,15);
-
-			}
-		}
-
-	}//end inner class StatusPanel
 }
 /**
  * essentially a JPanel that points to a Square instance
