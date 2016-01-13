@@ -148,10 +148,14 @@ public class GuiChess extends Chess{
 		SquarePanel[][] guiBoardSquares = new SquarePanel[8][8];
 		JFrame frame;
 		JPanel boardPanel;
+		JLabel status;
 
 		public void build(){
-			frame = new JFrame("Look how far we've come!");
+			frame = new JFrame("CHESS");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+			status = new JLabel("White's move");
+			frame.getContentPane().add(BorderLayout.NORTH, status);
 
 			GridLayout grid = new GridLayout(8,8);
 			grid.setVgap(1);
@@ -172,15 +176,22 @@ public class GuiChess extends Chess{
 			}
 			frame.getContentPane().add(BorderLayout.CENTER, boardPanel);
 
-			JPanel buttonPanel = new JPanel();
-			buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+			Box buttonBox = new Box(BoxLayout.Y_AXIS);
 
 			JButton newGameButton = new JButton("New Game");
 			newGameButton.addActionListener(new NewGameListener());
-			buttonPanel.add(newGameButton);
-			frame.getContentPane().add(BorderLayout.EAST, buttonPanel);
+			buttonBox.add(newGameButton);
 
-			//frame.setSize(9*70,9*70);
+			JButton newButton = new JButton("Suprise me");
+			newButton.addActionListener(new NewGameListener());
+			buttonBox.add(newButton);
+
+			StatusPanel statusPanel  = new StatusPanel(); 
+			statusPanel.setPreferredSize(new Dimension(30,0));
+
+			frame.getContentPane().add(BorderLayout.EAST, buttonBox);
+			frame.getContentPane().add(BorderLayout.WEST, statusPanel);
+
 			frame.pack();
 			frame.setVisible(true);
 		}
@@ -192,6 +203,24 @@ public class GuiChess extends Chess{
 			}
 		}
 	}//end inner class BuildGui
+	class StatusPanel extends JPanel {
+		public void paintComponent(Graphics g) {
+			if (player.equals("BLACK")){
+				g.setColor(Color.green);
+				g.fillOval(0,10,15,15);
+				g.setColor(Color.red);
+				g.fillOval(0,getHeight()-15,15,15);
+			}
+			else{
+				g.setColor(Color.green);
+				g.fillOval(0,getHeight()-15,15,15);
+				g.setColor(Color.red);
+				g.fillOval(0,10,15,15);
+
+			}
+		}
+
+	}//end inner class StatusPanel
 }
 /**
  * essentially a JPanel that points to a Square instance
