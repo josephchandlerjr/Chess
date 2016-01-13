@@ -3,6 +3,7 @@ package chess;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 
 import java.io.Console;
 import java.util.List;
@@ -88,6 +89,40 @@ public class GuiChess extends Chess{
 			gui.frame.repaint();
 		}
 	}
+	class ViewGameLogListener implements ActionListener {
+		public void actionPerformed(ActionEvent e){
+			String text = "";
+			try{
+				BufferedReader reader = new BufferedReader(new FileReader("GameLogs"));
+				String line = null;
+				while ((line = reader.readLine()) != null){
+					text = text + line + "\n";
+				}
+			}catch(Exception ex){
+				text = "couldn't read game log file";
+				ex.printStackTrace();
+			}finally{
+
+				JFrame frame = new JFrame("Game logs");
+				JTextArea textArea = new JTextArea(10,20);
+				textArea.setText(text);
+				textArea.setLineWrap(true);
+
+				JScrollPane scrollPane = new JScrollPane(textArea);
+				scrollPane.setVerticalScrollBarPolicy(
+						ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+				scrollPane.setHorizontalScrollBarPolicy(
+						ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+				frame.getContentPane().add(BorderLayout.CENTER,scrollPane);
+				frame.pack();
+				
+				frame.setVisible(true);
+			}
+
+				
+		}
+	}
 
 	class BoardListener implements MouseListener {
 		MouseEvent lastEntered;
@@ -139,13 +174,14 @@ public class GuiChess extends Chess{
 			logTo(file+rank);
 			gui.frame.repaint();
 			gui.status.setText(String.format("%s'S MOVE",player));
-			// for now if checkmate just disable board 
 			if(game.hasWon("BLACK")){
 				gui.status.setText("CHECKMATE! BLACK WINS!");
+				game.addResultToScoreSheet("BLACK");
 
 			}
 			else if(game.hasWon("WHITE")){
 				gui.status.setText("CHECKMATE! WHITE WINS!");
+				game.addResultToScoreSheet("WHITE");
 			}
 		}  
 	}//end inner class BoardListener
@@ -190,8 +226,8 @@ public class GuiChess extends Chess{
 			newGameButton.addActionListener(new NewGameListener());
 			buttonBox.add(newGameButton);
 
-			JButton newButton = new JButton("Suprise me");
-			newButton.addActionListener(new NewGameListener());
+			JButton newButton = new JButton("View Game Log");
+			newButton.addActionListener(new ViewGameLogListener());
 			buttonBox.add(newButton);
 
 			frame.getContentPane().add(BorderLayout.EAST, buttonBox);

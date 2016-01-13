@@ -9,6 +9,7 @@ import java.util.List;
 public class Score
 {
 	List<Move> moves; 
+	List<String> notations;
 
 	public Score()
 	{
@@ -18,6 +19,8 @@ public class Score
 	public void addMove(Move move)
 	{
 		moves.add(move);
+		notations.add(move.getNotation());
+
 	}
 
 	/**
@@ -33,7 +36,18 @@ public class Score
 		}
 		return false;
 	}
-
+	
+	public void addResult(String winner){
+		if(winner.equals("WHITE")){
+			notations.add("1-0");
+		}
+		else if(winner.equals("BLACK")){
+			notations.add("0-1");
+		}
+		else if(winner.equals("TIE")){
+			notations.add("1/2-1/2");
+		}
+	}
 	/**
 	 * gets last move in score sheet
 	 * @return last Move instance recorded or null if score sheet is empty

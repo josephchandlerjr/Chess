@@ -36,6 +36,10 @@ public class Game
 		board.setDirectionalVar();
 	}
 
+	public void addResultToScoreSheet(String winner){
+		scoreSheet.addResult(winner);
+	}
+
 	public boolean isInCheck(String color)
 	{	
 		if(color.equals("BLACK"))

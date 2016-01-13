@@ -24,6 +24,14 @@ public class Move
 		this.to = to;
 		this.color = color;
 	}
+
+	/**
+	 * constructor primarily for adding result, a lot let overhead so to speak
+	 */
+	public Move(ChessNotation notation) {
+		assert notation.isValid();
+		this.notation = notation.getNotation();
+	}
 	
 	/** new move constructor
 	 */
