@@ -146,10 +146,14 @@ public class GuiChess extends Chess{
 		SquarePanel[][] guiBoardSquares = new SquarePanel[8][8];
 		JFrame frame;
 		JPanel boardPanel;
+		JLabel status;
 
 		public void build(){
-			frame = new JFrame("Look how far we've come!");
+			frame = new JFrame("CHESS");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+			status = new JLabel("White's move");
+			frame.getContentPane().add(BorderLayout.NORTH, status);
 
 			GridLayout grid = new GridLayout(8,8);
 			grid.setVgap(1);
