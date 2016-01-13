@@ -6,7 +6,7 @@ import java.awt.event.*;
 import java.io.*;
 
 import java.io.Console;
-import java.util.List;
+import java.util.*;
 
 
 public class GuiChess extends Chess{
@@ -16,6 +16,9 @@ public class GuiChess extends Chess{
 	Square fromSquare;
 	Square toSquare;
 	GuiBoard gui;
+
+	String LOGFILE = "GameLogs";
+	Date date = new Date();
 
 
 	/**
@@ -91,9 +94,10 @@ public class GuiChess extends Chess{
 	}
 	class ViewGameLogListener implements ActionListener {
 		public void actionPerformed(ActionEvent e){
-			String text = "";
+			String text = "\n";
+			BufferedReader reader = null;
 			try{
-				BufferedReader reader = new BufferedReader(new FileReader("GameLogs"));
+				reader = new BufferedReader(new FileReader(LOGFILE));
 				String line = null;
 				while ((line = reader.readLine()) != null){
 					text = text + line + "\n";
@@ -102,6 +106,10 @@ public class GuiChess extends Chess{
 				text = "couldn't read game log file";
 				ex.printStackTrace();
 			}finally{
+				try{
+					reader.close();
+				}catch (Exception ex){
+				}
 
 				JFrame frame = new JFrame("Game logs");
 				JTextArea textArea = new JTextArea(10,20);
@@ -121,6 +129,25 @@ public class GuiChess extends Chess{
 			}
 
 				
+		}
+	}//end inner class ViewGameLogListener
+
+	public void writeLog(){
+		BufferedWriter writer = null;
+		try{
+			String gameLog = game.getGameLog();
+			System.out.println(gameLog);
+			writer = new BufferedWriter(new FileWriter(LOGFILE,true));
+			writer.write(String.format("%tc\n",date));
+			writer.write(gameLog);
+		}catch(Exception ex){
+			System.out.println("failed to write to gamelog");
+			ex.printStackTrace();
+		}finally{
+			try{
+			writer.close();
+			}catch (Exception ex){
+			}
 		}
 	}
 
@@ -177,11 +204,13 @@ public class GuiChess extends Chess{
 			if(game.hasWon("BLACK")){
 				gui.status.setText("CHECKMATE! BLACK WINS!");
 				game.addResultToScoreSheet("BLACK");
+				writeLog();
 
 			}
 			else if(game.hasWon("WHITE")){
 				gui.status.setText("CHECKMATE! WHITE WINS!");
 				game.addResultToScoreSheet("WHITE");
+				writeLog();
 			}
 		}  
 	}//end inner class BoardListener

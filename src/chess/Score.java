@@ -14,6 +14,7 @@ public class Score
 	public Score()
 	{
 		moves = new ArrayList<Move>();
+		notations = new ArrayList<String>();
 	}
 
 	public void addMove(Move move)
@@ -57,12 +58,12 @@ public class Score
 		if (moves.size() == 0) { return null;}
 		return moves.get(moves.size()-1);
 	}
-	public String ToString()
+	public String toString()
 	{
 		String res = "";
-		for (Move move : moves)
+		for (String notation : notations)
 		{
-			res = res + move.getNotation() + "\n";
+			res = res + notation + "\n";
 		}
 		return res;
 	}

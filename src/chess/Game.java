@@ -36,6 +36,10 @@ public class Game
 		board.setDirectionalVar();
 	}
 
+	public String getGameLog(){
+		return scoreSheet.toString();
+	}
+
 	public void addResultToScoreSheet(String winner){
 		scoreSheet.addResult(winner);
 	}
