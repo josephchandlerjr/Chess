@@ -9,6 +9,8 @@ import java.util.List;
 */ 
 public class Game
 {
+	String player = "WHITE";
+	String opponent = "BLACK";
 	//instance variables
 	private Board board;
 	Score scoreSheet;
@@ -204,6 +206,11 @@ public class Game
 
 		if(colorInCheckmate("BLACK")){blackCheckmate = true;}
 		if(colorInCheckmate("WHITE")){whiteCheckmate = true;}
+
+		//move completed so swap player and opponent colors
+		String temp = player;
+		player = opponent;
+		opponent = temp;
 
 		return true;
 	}

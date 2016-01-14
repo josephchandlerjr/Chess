@@ -10,8 +10,6 @@ import java.util.*;
 
 
 public class GuiChess extends Chess{
-	String player = "WHITE";
-	String opponent = "BLACK";
 	String fromNotation = "";
 	Square fromSquare;
 	Square toSquare;
@@ -19,6 +17,8 @@ public class GuiChess extends Chess{
 
 	String LOGFILE = "GameLogs";
 	Date date = new Date();
+
+	Game game;
 
 
 	/**
@@ -35,10 +35,13 @@ public class GuiChess extends Chess{
 	 * constructor
 	 */
 	public GuiChess(){
-		super();
+		game = new Game();
 		this.gui = new GuiBoard();
 		this.gui.build();
 		this.gui.initialize();
+	}
+	public void newGame(){
+		game = new Game();
 	}
 	/**
 	 * translates algebraic chess notation into game moves
@@ -59,7 +62,7 @@ public class GuiChess extends Chess{
 
 	private void logTo(String toNotation) {
 		// make sure correct player is moving
-		if(!fromSquare.isOccupied() || !fromSquare.getPieceColor().equals(player)){
+		if(!fromSquare.isOccupied() || !fromSquare.getPieceColor().equals(game.player)){
 			return;
 		}
 		ChessNotation notation = new ChessNotation(fromNotation+toNotation);
@@ -70,28 +73,66 @@ public class GuiChess extends Chess{
 			notation = new ChessNotation("O-O");
 		}
 
-		Move move = new Move(notation, player, fromSquare, toSquare);
-		if(executeMove(move)){
-			String temp = player;
-			player = opponent;
-			opponent = temp;
-		}
+		Move move = new Move(notation, game.player, fromSquare, toSquare);
+		executeMove(move);
+		
 		//reset instance variables on GuiChess, not sure if necessary...
 		this.fromNotation = "";
 		this.fromSquare = null;
 		this.toSquare = null;
+	}
+	/**
+	 * appends game results as algebraic notation to a file
+	 */
+	public void writeLog(){
+		BufferedWriter writer = null;
+		try{
+			String gameLog = game.getGameLog();
+			writer = new BufferedWriter(new FileWriter(LOGFILE,true));
+			writer.write(String.format("%tc\n",date));
+			writer.write(gameLog);
+		}catch(Exception ex){
+			System.out.println("failed to write to gamelog");
+			ex.printStackTrace();
+		}finally{
+			try{
+			writer.close();
+			}catch (Exception ex){
+			}
+		}
 	}
 
 	class NewGameListener implements ActionListener {
 		public void actionPerformed(ActionEvent e){
 			newGame();
 			gui.initialize();
-			player = "WHITE";
-			opponent = "BLACK";
-			gui.status.setText(String.format("%s'S MOVE",player));
+			gui.status.setText(String.format("%s'S MOVE",game.player));
 			gui.frame.repaint();
 		}
-	}
+	}// end inner class NewGameListener
+
+	class ResumeGameListener implements ActionListener {
+		public void actionPerformed(ActionEvent e){
+			ObjectInputStream is = null;
+			try{
+				is = new ObjectInputStream(new FileInputStream(new File("SavedGame.ser")));
+				game = (Game) is.readObject();
+				gui.initialize();
+				gui.status.setText(String.format("%s'S MOVE",game.player));
+				gui.frame.repaint();
+
+			}catch(Exception ex){
+				System.out.println("couldn't resume game");
+				ex.printStackTrace();
+			}finally{
+				try{
+					is.close();
+				}catch(Exception ex){
+				}
+			}
+		}
+	}//end inner class ResumeGameListener
+
 	class ViewGameLogListener implements ActionListener {
 		public void actionPerformed(ActionEvent e){
 			String text = "\n";
@@ -131,25 +172,6 @@ public class GuiChess extends Chess{
 				
 		}
 	}//end inner class ViewGameLogListener
-
-	public void writeLog(){
-		BufferedWriter writer = null;
-		try{
-			String gameLog = game.getGameLog();
-			System.out.println(gameLog);
-			writer = new BufferedWriter(new FileWriter(LOGFILE,true));
-			writer.write(String.format("%tc\n",date));
-			writer.write(gameLog);
-		}catch(Exception ex){
-			System.out.println("failed to write to gamelog");
-			ex.printStackTrace();
-		}finally{
-			try{
-			writer.close();
-			}catch (Exception ex){
-			}
-		}
-	}
 
 	class BoardListener implements MouseListener {
 		MouseEvent lastEntered;
@@ -200,7 +222,7 @@ public class GuiChess extends Chess{
 
 			logTo(file+rank);
 			gui.frame.repaint();
-			gui.status.setText(String.format("%s'S MOVE",player));
+			gui.status.setText(String.format("%s'S MOVE",game.player));
 			if(game.hasWon("BLACK")){
 				gui.status.setText("CHECKMATE! BLACK WINS!");
 				game.addResultToScoreSheet("BLACK");
@@ -226,7 +248,7 @@ public class GuiChess extends Chess{
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 			status = new JLabel();
-			status.setText(String.format("%s'S MOVE",player));
+			status.setText(String.format("%s'S MOVE",game.player));
 
 			frame.getContentPane().add(BorderLayout.NORTH, status);
 
@@ -271,7 +293,7 @@ public class GuiChess extends Chess{
 				}
 			}
 		}
-	}//end inner class BuildGui
+	}//end inner class GuiBoard
 }
 /**
  * essentially a JPanel that points to a Square instance
