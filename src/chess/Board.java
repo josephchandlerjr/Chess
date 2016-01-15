@@ -155,7 +155,7 @@ public class Board implements Serializable {
 	 * @return if WHITE is give as param return BLACK else WHITE
 	 */
 	public String otherColor(String myColor) {
-		if (myColor == "WHITE"){ return "BLACK";}
+		if (myColor.equals("WHITE")){ return "BLACK";}
 		return "WHITE";
 	} 
 

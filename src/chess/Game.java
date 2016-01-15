@@ -439,7 +439,6 @@ public class Game implements Serializable {
 		 String myColor = piece.getColor();
 		 int direction = piece.getDirection();
 
-
 		 if (fromCol == toCol         &&
 	         fromRow + direction == toRow &&
 		 !to.isOccupied()                       )// advance one row
