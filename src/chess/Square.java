@@ -2,11 +2,12 @@ package chess;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
 
 /** 
  * represents a square on the chess board
  */
-public class Square extends JPanel
+public class Square extends JPanel implements Serializable
 {
 	private final String color; //the string BLACK or WHITE
 	private final int ROW;

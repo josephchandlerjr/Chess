@@ -1,10 +1,10 @@
 package chess;
+import java.io.*;
 
 /**
  * represents a chess piece. This is superclass to all specific pieces: Pawn, Bishop, etc
  */
-public class ChessPiece
-{
+public class ChessPiece implements Serializable {
 	private String color; 
 	private String strRep;
 	private String ID;

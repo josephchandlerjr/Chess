@@ -1,11 +1,11 @@
 package chess;
+import java.io.*;
 
 /** 
  * represents a move for the score sheet
  * a move is an array of Move objects
  */
-public class Move
-{
+public class Move implements Serializable {
 	private Square from;
 	private Square to;
 	private Square enPassantCapture;

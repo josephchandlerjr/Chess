@@ -1,6 +1,7 @@
 package chess;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.*;
 
 /**
  * represents a chess game board
@@ -8,7 +9,7 @@ import java.util.List;
  * by a 2D array of Square objects - as well as methods that manipulate
  * and/or analyze the board
  */
-public class Board {
+public class Board implements Serializable {
 	private Square[][] board;
 	
 	/**

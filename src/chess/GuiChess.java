@@ -132,6 +132,24 @@ public class GuiChess extends Chess{
 			}
 		}
 	}//end inner class ResumeGameListener
+	
+	class SaveGameListener implements ActionListener {
+		public void actionPerformed(ActionEvent e){
+			ObjectOutputStream os = null;
+			try{
+				os = new ObjectOutputStream(new FileOutputStream(new File("SavedGame.ser")));
+				os.writeObject(game);
+			}catch(Exception ex){
+				System.out.println("couldn't save game");
+				ex.printStackTrace();
+			}finally{
+				try{
+					os.close();
+				}catch(Exception ex){
+				}
+			}
+		}
+	}//end inner class ResumeGameListener
 
 	class ViewGameLogListener implements ActionListener {
 		public void actionPerformed(ActionEvent e){
@@ -277,9 +295,17 @@ public class GuiChess extends Chess{
 			newGameButton.addActionListener(new NewGameListener());
 			buttonBox.add(newGameButton);
 
-			JButton newButton = new JButton("View Game Log");
-			newButton.addActionListener(new ViewGameLogListener());
-			buttonBox.add(newButton);
+			JButton viewGameLogButton = new JButton("View Game Log");
+			viewGameLogButton.addActionListener(new ViewGameLogListener());
+			buttonBox.add(viewGameLogButton);
+
+			JButton saveGameButton = new JButton("Save Game");
+			saveGameButton.addActionListener(new SaveGameListener());
+			buttonBox.add(saveGameButton);
+
+			JButton resumeGameButton = new JButton("Resume Game");
+			resumeGameButton.addActionListener(new ResumeGameListener());
+			buttonBox.add(resumeGameButton );
 
 			frame.getContentPane().add(BorderLayout.EAST, buttonBox);
 

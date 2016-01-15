@@ -2,13 +2,13 @@ package chess;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.*;
 
 /** 
  * represents a chess game
  * board is 2D array of  objects
 */ 
-public class Game
-{
+public class Game implements Serializable {
 	String player = "WHITE";
 	String opponent = "BLACK";
 	//instance variables

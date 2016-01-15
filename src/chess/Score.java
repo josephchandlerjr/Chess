@@ -2,12 +2,12 @@ package chess;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.*;
 
 /**
  * represents score sheet
  */
-public class Score
-{
+public class Score implements Serializable {
 	List<Move> moves; 
 	List<String> notations;
 
