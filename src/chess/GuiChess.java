@@ -21,9 +21,6 @@ public class GuiChess {
 
 	JList<String> promotionList;
 	JFrame promotionSelector;
-	String promoteTo;
-
-	Square lastDestination; //really just for promotion
 
 	Game game;
 
@@ -51,14 +48,23 @@ public class GuiChess {
 		game = new Game();
 	}
 	/**
-	 * translates algebraic chess notation into game moves
-	 * @param color color who's turn it is to move
-	 * @param notation ChessNotation to translate
-	 * @return true if move executed else false
+	 * executes move
 	 */	
-	public boolean executeMove(Move move) {
-		boolean result = game.takeAction(move);
-		return result;
+	public void executeMove(Move move) {
+		boolean isPawn = ChessPiece.isPawn(fromSquare.getPiece());
+		boolean executed = game.takeAction(move);
+		// check if we need to promote pawn
+		if (executed && isPawn){
+			int row = toSquare.getRow(); 
+			if( row == 0 || row == 7){
+				promotePawn(toSquare);
+				
+			}
+		}
+		//reset instance variables and record lastSquare we 
+		this.fromNotation = "";
+		this.fromSquare = null;
+		this.toSquare = null;
 	}
 	private void logFrom(String pieceID, String square) {
 		if(!pieceID.equals("P")){
@@ -82,34 +88,19 @@ public class GuiChess {
 		boolean isPawn = ChessPiece.isPawn(fromSquare.getPiece());
 
 		Move move = new Move(notation, game.player, fromSquare, toSquare);
-		//check for promotion;
-		if (executeMove(move)){
-			if(isPawn){
-				int row = toSquare.getRow(); 
-				if( row == 0 || row == 7){
-					promotePawn();
-					
-				}
-			}
-		}
-		
-		//reset instance variables on GuiChess, not sure if necessary...
-		this.fromNotation = "";
-		this.fromSquare = null;
-		this.lastDestination = toSquare;
-		this.toSquare = null;
+		executeMove(move);
 	}
 	/**
 	 * promotes a pawn
 	 */
-	private void promotePawn(){	
+	private void promotePawn(Square toSquare){	
 		promotionSelector = new JFrame("choose promotion");
 		String[] pieces = {"Queen","Rook","Knight","Bishop"};
 
 		promotionList = new JList<String>(pieces);
 		promotionList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		PromotionListener listener = new PromotionListener();
+		PromotionListener listener = new PromotionListener(toSquare);
 		promotionList.addListSelectionListener(listener);
 		
 		JScrollPane scroller = new JScrollPane(promotionList);
@@ -124,6 +115,8 @@ public class GuiChess {
 
 		promotionSelector.pack();
 		promotionSelector.setVisible(true);
+
+		gui.frame.setEnabled(false);
 	}
 
 	/**
@@ -157,29 +150,44 @@ public class GuiChess {
 	}// end inner class NewGameListener
 
 	class PromotionListener implements ListSelectionListener {
+		Square square;
+		public PromotionListener(Square square)
+		{
+			super();
+			this.square = square;
+		}
 		public void valueChanged(ListSelectionEvent lse){
 			if( !lse.getValueIsAdjusting()){
-				promoteTo = (String) promotionList.getSelectedValue(); 
+				String promoteTo = (String) promotionList.getSelectedValue(); 
+				if(square.getPieceColor().equals("WHITE")){	
+					if(promoteTo.equals("Queen")) { 
+						square.setPiece(ChessPiece.WHITEQUEEN);}
+					if(promoteTo.equals("Rook")) { 
+						square.setPiece(ChessPiece.WHITEROOK);}
+					if(promoteTo.equals("Bishop")) { 
+						square.setPiece(ChessPiece.WHITEBISHOP);}
+					if(promoteTo.equals("Knight")) { 
+						square.setPiece(ChessPiece.WHITEKNIGHT);}
+				}
+				else{
+					if(promoteTo.equals("Queen")) { 
+						square.setPiece(ChessPiece.BLACKQUEEN);}
+					if(promoteTo.equals("Rook")) { 
+						square.setPiece(ChessPiece.BLACKROOK);}
+					if(promoteTo.equals("Bishop")) { 
+						square.setPiece(ChessPiece.BLACKBISHOP);}
+					if(promoteTo.equals("Knight")) { 
+						square.setPiece(ChessPiece.BLACKKNIGHT);}
+				}
+				gui.frame.repaint();
 			}
 		}
 	}//end inner class PromotionListener
 
 	class ChoosePromotionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e){
-			if(lastDestination.getPieceColor().equals("WHITE")){	
-				if(promoteTo.equals("Queen")) { lastDestination.setPiece(ChessPiece.WHITEQUEEN);}
-				if(promoteTo.equals("Rook")) { lastDestination.setPiece(ChessPiece.WHITEROOK);}
-				if(promoteTo.equals("Bishop")) { lastDestination.setPiece(ChessPiece.WHITEBISHOP);}
-				if(promoteTo.equals("Knight")) { lastDestination.setPiece(ChessPiece.WHITEKNIGHT);}
-			}
-			else{
-				if(promoteTo.equals("Queen")) { lastDestination.setPiece(ChessPiece.BLACKQUEEN);}
-				if(promoteTo.equals("Rook")) { lastDestination.setPiece(ChessPiece.BLACKROOK);}
-				if(promoteTo.equals("Bishop")) { lastDestination.setPiece(ChessPiece.BLACKBISHOP);}
-				if(promoteTo.equals("Knight")) { lastDestination.setPiece(ChessPiece.BLACKKNIGHT);}
-			}
-			gui.frame.repaint();
-			promotionSelector.dispose();
+			gui.frame.setEnabled(true);
+		        promotionSelector.dispose();	
 		}
 	}// end inner class ChoosePromotionListener
 
@@ -300,7 +308,6 @@ public class GuiChess {
 			String rank = pieceFileRank[2];
 
 			logFrom(pieceID, file+rank);
-			gui.frame.repaint();
 		}
 		public void mouseReleased(MouseEvent e){
 			Square to = squareFromEvent(lastEntered);
