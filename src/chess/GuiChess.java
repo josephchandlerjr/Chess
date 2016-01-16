@@ -58,7 +58,6 @@ public class GuiChess {
 			int row = toSquare.getRow(); 
 			if( row == 0 || row == 7){
 				promotePawn(toSquare);
-				
 			}
 		}
 		//reset instance variables and record lastSquare we 
@@ -108,7 +107,7 @@ public class GuiChess {
 		scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 		JButton selectPromotion = new JButton("Promote");
-		selectPromotion.addActionListener(new ChoosePromotionListener());
+		selectPromotion.addActionListener(new PromoteButtonListener());
 		
 		promotionSelector.getContentPane().add(BorderLayout.CENTER,scroller);
 		promotionSelector.getContentPane().add(BorderLayout.SOUTH,selectPromotion);
@@ -184,12 +183,12 @@ public class GuiChess {
 		}
 	}//end inner class PromotionListener
 
-	class ChoosePromotionListener implements ActionListener {
+	class PromoteButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e){
 			gui.frame.setEnabled(true);
 		        promotionSelector.dispose();	
 		}
-	}// end inner class ChoosePromotionListener
+	}// end inner class PromoteButtonListener
 
 	class ResumeGameListener implements ActionListener {
 		public void actionPerformed(ActionEvent e){
