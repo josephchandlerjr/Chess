@@ -11,12 +11,9 @@ import java.util.*;
 
 
 public class GuiChess {
-	String fromNotation = "";
-	Square fromSquare;
-	Square toSquare;
 	GuiBoard gui;
 
-	String LOGFILE = "GameLogs";
+	String GAMELOGFILE = "GameLogs";
 	Date date = new Date();
 
 	JList<String> promotionList;
@@ -50,29 +47,8 @@ public class GuiChess {
 	/**
 	 * executes move
 	 */	
-	public void executeMove(Move move) {
-		boolean isPawn = ChessPiece.isPawn(fromSquare.getPiece());
-		boolean executed = game.takeAction(move);
-		// check if we need to promote pawn
-		if (executed && isPawn){
-			int row = toSquare.getRow(); 
-			if( row == 0 || row == 7){
-				promotePawn(toSquare);
-			}
-		}
-		//reset instance variables and record lastSquare we 
-		this.fromNotation = "";
-		this.fromSquare = null;
-		this.toSquare = null;
-	}
-	private void logFrom(String pieceID, String square) {
-		if(!pieceID.equals("P")){
-			this.fromNotation = pieceID; 
-		}
-		this.fromNotation = this.fromNotation + square;
-	}
-
-	private void logTo(String toNotation) {
+	public void executeMove(Square fromSquare, String fromNotation, String toNotation, Square toSquare) {
+		System.out.printf("%s,%s,%s,%s\n",fromSquare,fromNotation,toNotation,toSquare);
 		// make sure correct player is moving
 		if(!fromSquare.isOccupied() || !fromSquare.getPieceColor().equals(game.player)){
 			return;
@@ -84,11 +60,21 @@ public class GuiChess {
 		else if ("Ke1g1Ke8g8".contains(fromNotation+toNotation)){
 			notation = new ChessNotation("O-O");
 		}
-		boolean isPawn = ChessPiece.isPawn(fromSquare.getPiece());
 
 		Move move = new Move(notation, game.player, fromSquare, toSquare);
-		executeMove(move);
+
+		boolean executed = game.takeAction(move);
+		boolean isPawn = ChessPiece.isPawn(fromSquare.getPiece());
+ 
+		// check if we need to promote pawn
+		if (executed && isPawn){
+			int row = toSquare.getRow(); 
+			if( row == 0 || row == 7){
+				promotePawn(toSquare);
+			}
+		}
 	}
+
 	/**
 	 * promotes a pawn
 	 */
@@ -125,7 +111,7 @@ public class GuiChess {
 		BufferedWriter writer = null;
 		try{
 			String gameLog = game.getGameLog();
-			writer = new BufferedWriter(new FileWriter(LOGFILE,true));
+			writer = new BufferedWriter(new FileWriter(GAMELOGFILE,true));
 			writer.write(String.format("%tc\n",date));
 			writer.write(gameLog);
 		}catch(Exception ex){
@@ -235,7 +221,7 @@ public class GuiChess {
 			String text = "\n";
 			BufferedReader reader = null;
 			try{
-				reader = new BufferedReader(new FileReader(LOGFILE));
+				reader = new BufferedReader(new FileReader(GAMELOGFILE));
 				String line = null;
 				while ((line = reader.readLine()) != null){
 					text = text + line + "\n";
@@ -272,6 +258,9 @@ public class GuiChess {
 
 	class BoardListener implements MouseListener {
 		MouseEvent lastEntered;
+		String fromNotation = "";
+		Square fromSquare;
+		Square toSquare;
 		/**
 		 * takes MouseEvent and returns square associated with SquarePanel from which it occured
 		 */
@@ -306,7 +295,13 @@ public class GuiChess {
 			String file = pieceFileRank[1];
 			String rank = pieceFileRank[2];
 
-			logFrom(pieceID, file+rank);
+			//logFrom(pieceID, file+rank);
+
+			if(!pieceID.equals("P")){
+				this.fromNotation = pieceID; 
+			}
+			this.fromNotation = this.fromNotation + file+rank;
+			System.out.printf("%s  from\n",fromNotation);
 		}
 		public void mouseReleased(MouseEvent e){
 			Square to = squareFromEvent(lastEntered);
@@ -315,8 +310,14 @@ public class GuiChess {
 			String[] pieceFileRank = getNotationFromSquare(to);
 			String file = pieceFileRank[1];
 			String rank = pieceFileRank[2];
+			System.out.printf("%s is to\n",file+rank);
 
-			logTo(file+rank);
+			executeMove(fromSquare, fromNotation, file+rank, toSquare);
+
+			this.fromNotation = "";
+			this.fromSquare = null;
+			this.toSquare = null;
+
 			gui.frame.repaint();
 			gui.status.setText(String.format("%s'S MOVE",game.player));
 			if(game.hasWon("BLACK")){
