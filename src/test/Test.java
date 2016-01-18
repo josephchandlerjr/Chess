@@ -4,7 +4,7 @@ package test;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
-import chess.Chess;
+import chess.ConsoleChess;
 import chess.ChessNotation;
 
 /** 
@@ -40,7 +40,7 @@ public class Test
 					white = new IOHelper(game);
 					black = white;
 
-					Chess c = new Chess();
+					ConsoleChess c = new ConsoleChess();
 					while(true)
 					{
 						//c.displayBoard();
