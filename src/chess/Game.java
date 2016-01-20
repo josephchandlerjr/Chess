@@ -198,11 +198,8 @@ public class Game implements Serializable {
 
 		}
 		
-		scoreSheet.addMove(move);
-		if(kingInCheck("BLACK")){blackCheck = true;}
-		else                    {blackCheck = false;}
-		if(kingInCheck("WHITE")){whiteCheck = true;}
-		else                    {whiteCheck = false;}
+		scoreSheet.addMove(move);	
+		updateCheckStatus();
 
 		if(colorInCheckmate("BLACK")){blackCheckmate = true;}
 		if(colorInCheckmate("WHITE")){whiteCheckmate = true;}
@@ -213,6 +210,12 @@ public class Game implements Serializable {
 		opponent = temp;
 
 		return true;
+	}
+	public void updateCheckStatus(){
+		if(kingInCheck("BLACK")){blackCheck = true;}
+		else                    {blackCheck = false;}
+		if(kingInCheck("WHITE")){whiteCheck = true;}
+		else                    {whiteCheck = false;}
 	}
 	/** determines if given player can castle on given side
 	 * @param color the color of current player

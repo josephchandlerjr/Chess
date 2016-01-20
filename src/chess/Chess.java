@@ -20,6 +20,8 @@ public class Chess {
 	JFrame promotionSelector;
 
 	Game game;
+	boolean localGame = true;
+	String myColor = "WHITE";
 
 
 	/**
@@ -49,9 +51,12 @@ public class Chess {
 	 */	
 	public void executeMove(Square fromSquare, String fromNotation, String toNotation, Square toSquare) {
 		// make sure correct player is moving
-		if(!fromSquare.isOccupied() || !fromSquare.getPieceColor().equals(game.player)){
-			return;
-		}
+		if(!fromSquare.isOccupied()){ return;} //must be moving a piece
+		String pieceColor = fromSquare.getPieceColor();
+		
+		// must be piece of my color and must be my turn
+	        if(!pieceColor.equals(myColor) || !pieceColor.equals(game.player)){ return;} 
+		
 		ChessNotation notation = new ChessNotation(fromNotation+toNotation);
 		if ("Ke1c1Ke8c8".contains(fromNotation+toNotation)){
 			notation = new ChessNotation("O-O-O");
@@ -62,16 +67,49 @@ public class Chess {
 
 		Move move = new Move(notation, game.player, fromSquare, toSquare);
 
-		boolean executed = game.takeAction(move);
 		boolean isPawn = ChessPiece.isPawn(fromSquare.getPiece());
+		boolean executed = game.takeAction(move);
  
 		// check if we need to promote pawn
-		if (executed && isPawn){
-			int row = toSquare.getRow(); 
-			if( row == 0 || row == 7){
-				promotePawn(toSquare);
+		if (executed){
+			if(localGame){
+				myColor = game.player;
 			}
+			if(isPawn){
+				int row = toSquare.getRow(); 
+				if( row == 0 || row == 7){
+					promotePawn(toSquare);
+					game.updateCheckStatus();
+				}
+			}
+			gui.frame.repaint();
+			setStatus();
 		}
+		
+	}
+	/**
+	 * sets status label on gui
+	 */
+	public void setStatus(){
+		String message = "";
+		if(game.hasWon("BLACK")){
+			gui.status.setText("CHECKMATE! BLACK WINS!");
+			game.addResultToScoreSheet("BLACK");
+			writeLog();
+
+		}
+		else if(game.hasWon("WHITE")){
+			gui.status.setText("CHECKMATE! WHITE WINS!");
+			game.addResultToScoreSheet("WHITE");
+			writeLog();
+		}
+		else{
+			if (game.isInCheck("WHITE") || game.isInCheck("BLACK")){
+				message = message + "CHECK!";
+			}
+			gui.status.setText(String.format("%s %s'S MOVE",message, game.player));
+		}
+		
 	}
 
 	/**
@@ -182,6 +220,7 @@ public class Chess {
 				is = new ObjectInputStream(new FileInputStream(new File("SavedGame.ser")));
 				game = (Game) is.readObject();
 				gui.initialize();
+				myColor = game.player;
 				gui.status.setText(String.format("%s'S MOVE",game.player));
 				gui.frame.repaint();
 
@@ -315,19 +354,6 @@ public class Chess {
 			this.fromSquare = null;
 			this.toSquare = null;
 
-			gui.frame.repaint();
-			gui.status.setText(String.format("%s'S MOVE",game.player));
-			if(game.hasWon("BLACK")){
-				gui.status.setText("CHECKMATE! BLACK WINS!");
-				game.addResultToScoreSheet("BLACK");
-				writeLog();
-
-			}
-			else if(game.hasWon("WHITE")){
-				gui.status.setText("CHECKMATE! WHITE WINS!");
-				game.addResultToScoreSheet("WHITE");
-				writeLog();
-			}
 		}  
 	}//end inner class BoardListener
 
