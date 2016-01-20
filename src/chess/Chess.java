@@ -112,6 +112,14 @@ public class Chess {
 	}
 
 	/**
+	 * attempts to connect to play remote game
+	 */
+	public void requestRemoteGame(){
+		Thread thread = new Thread(new RemoteGame());
+		thread.run();
+	}
+
+	/**
 	 * promotes a pawn
 	 */
 	private void promotePawn(Square toSquare){	
@@ -293,6 +301,12 @@ public class Chess {
 		}
 	}//end inner class ViewGameLogListener
 
+	class RequestRemoteGameListener implements ActionListener {
+		public void actionPerformed(ActionEvent e){
+			requestRemoteGame();
+		}
+	}
+
 	class BoardListener implements MouseListener {
 		MouseEvent lastEntered;
 		String fromNotation = "";
@@ -408,6 +422,10 @@ public class Chess {
 			resumeGameButton.addActionListener(new ResumeGameListener());
 			buttonBox.add(resumeGameButton );
 
+			JButton remoteButton = new JButton("Request Remote Game");
+			remoteButton.addActionListener(new RequestRemoteGameListener());
+			buttonBox.add(remoteButton);
+
 			frame.getContentPane().add(BorderLayout.EAST, buttonBox);
 
 			frame.pack();
@@ -421,6 +439,13 @@ public class Chess {
 			}
 		}
 	}//end inner class GuiBoard
+
+	class RemoteGame implements Runnable {
+		public void run(){
+			Chess remoteGame = new Chess();
+			remoteGame.gui.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		}
+	}
 }
 /**
  * essentially a JPanel that points to a Square instance
