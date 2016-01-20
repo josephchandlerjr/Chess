@@ -85,7 +85,6 @@ public class Chess {
 			gui.frame.repaint();
 			setStatus();
 		}
-		
 	}
 	/**
 	 * sets status label on gui

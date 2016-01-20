@@ -7,4 +7,4 @@ makecommands
 *.swp
 classes*
 GameLogs
-
+*.ser
