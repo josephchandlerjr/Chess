@@ -6,9 +6,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
-import java.io.Console;
 import java.util.*;
 
+
+
+import java.net.*;
 
 public class Chess {
 	GuiBoard gui;
@@ -112,14 +114,6 @@ public class Chess {
 	}
 
 	/**
-	 * attempts to connect to play remote game
-	 */
-	public void requestRemoteGame(){
-		Thread thread = new Thread(new RemoteGame());
-		thread.run();
-	}
-
-	/**
 	 * promotes a pawn
 	 */
 	private void promotePawn(Square toSquare){	
@@ -174,6 +168,7 @@ public class Chess {
 			newGame();
 			gui.initialize();
 			gui.status.setText(String.format("%s'S MOVE",game.player));
+			myColor = game.player;
 			gui.frame.repaint();
 		}
 	}// end inner class NewGameListener
@@ -211,6 +206,8 @@ public class Chess {
 				gui.frame.repaint();
 			}
 		}
+
+
 	}//end inner class PromotionListener
 
 	class PromoteButtonListener implements ActionListener {
@@ -300,12 +297,6 @@ public class Chess {
 				
 		}
 	}//end inner class ViewGameLogListener
-
-	class RequestRemoteGameListener implements ActionListener {
-		public void actionPerformed(ActionEvent e){
-			requestRemoteGame();
-		}
-	}
 
 	class BoardListener implements MouseListener {
 		MouseEvent lastEntered;
@@ -422,10 +413,6 @@ public class Chess {
 			resumeGameButton.addActionListener(new ResumeGameListener());
 			buttonBox.add(resumeGameButton );
 
-			JButton remoteButton = new JButton("Request Remote Game");
-			remoteButton.addActionListener(new RequestRemoteGameListener());
-			buttonBox.add(remoteButton);
-
 			frame.getContentPane().add(BorderLayout.EAST, buttonBox);
 
 			frame.pack();
@@ -439,13 +426,8 @@ public class Chess {
 			}
 		}
 	}//end inner class GuiBoard
+	
 
-	class RemoteGame implements Runnable {
-		public void run(){
-			Chess remoteGame = new Chess();
-			remoteGame.gui.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		}
-	}
 }
 /**
  * essentially a JPanel that points to a Square instance
