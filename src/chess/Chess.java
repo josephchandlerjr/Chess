@@ -5,6 +5,7 @@ import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.net.*;
 
 import java.util.*;
 
@@ -21,6 +22,8 @@ public class Chess {
 	boolean localGame = true;
 	String myColor = "WHITE";
 
+	ObjectOutputStream oos;
+	ObjectInputStream ois;
 
 	/**
 	 * main entry point which constructs a Game object and calls consolePlay()
@@ -44,10 +47,41 @@ public class Chess {
 	public void newGame(){
 		game = new Game();
 	}
+	public void remoteSetup(){
+		System.out.println("SETTING UP");
+		newGame();
+		gui.initialize();
+		gui.status.setText(String.format("%s'S MOVE",game.player));
+		gui.frame.repaint();
+		localGame = false;
+		try{
+			Socket sock = new Socket("127.0.0.1",5000);
+			oos = new ObjectOutputStream(sock.getOutputStream());
+			ois = new ObjectInputStream(sock.getInputStream());  
+			System.out.println("GOT OOS AND OIN SET UP");
+			Color color = (Color)(ois.readObject());
+			if(color.equals(Color.WHITE)) {	
+				myColor = "WHITE";
+				System.out.println("SETTING COLOR TO WHITE");
+			}
+			else{
+				myColor = "BLACK";
+				System.out.println("SETTING COLOR TO BLACK");
+			}
+
+			Thread remoteMoveListener = new Thread(new RemoteMoveHandler());
+			remoteMoveListener.start();
+
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
+	}
 	/**
 	 * executes move
 	 */	
-	public void executeMove(Square fromSquare, String fromNotation, String toNotation, Square toSquare) {
+	public synchronized void executeMove(String myColor, Square fromSquare, String fromNotation, String toNotation, Square toSquare) {
+		System.out.println("in execute move");
 		// make sure correct player is moving
 		if(!fromSquare.isOccupied()){ return;} //must be moving a piece
 		String pieceColor = fromSquare.getPieceColor();
@@ -63,7 +97,7 @@ public class Chess {
 			notation = new ChessNotation("O-O");
 		}
 
-		Move move = new Move(notation, game.player, fromSquare, toSquare);
+		Move move = new Move(notation, myColor, fromSquare, toSquare);
 
 		boolean isPawn = ChessPiece.isPawn(fromSquare.getPiece());
 		boolean executed = game.takeAction(move);
@@ -72,6 +106,18 @@ public class Chess {
 		if (executed){
 			if(localGame){
 				myColor = game.player;
+			}
+			else {
+				try{
+					//fromRow,fromCol, fromNotion, toNotation, toSquare,fromSquare
+					int[] coord = {fromSquare.getRow(),fromSquare.getCol(),
+						       toSquare.getRow(), toSquare.getCol()};
+					String[] notations = {fromNotation,toNotation};
+					oos.writeObject(coord);
+					oos.writeObject(notations);
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
 			}
 			if(isPawn){
 				int row = toSquare.getRow(); 
@@ -83,6 +129,15 @@ public class Chess {
 			gui.frame.repaint();
 			setStatus();
 		}
+	}
+	public void remoteExecuteMove(int[] coord, String[] notations){
+		System.out.println("about to execute move");
+		executeMove(game.otherColor(myColor),
+			    game.getSquare(coord[0],coord[1]),
+	                    notations[0],
+			    notations[1],
+			    game.getSquare(coord[2],coord[3]));
+					   
 	}
 	/**
 	 * sets status label on gui
@@ -348,7 +403,7 @@ public class Chess {
 			String file = pieceFileRank[1];
 			String rank = pieceFileRank[2];
 
-			executeMove(fromSquare, fromNotation, file+rank, toSquare);
+			executeMove(myColor, fromSquare, fromNotation, file+rank, toSquare);
 
 			this.fromNotation = "";
 			this.fromSquare = null;
@@ -356,6 +411,31 @@ public class Chess {
 
 		}  
 	}//end inner class BoardListener
+
+	class RemoteGameListener implements ActionListener {
+		public void actionPerformed(ActionEvent e){
+			System.out.println("PUSHED BUTTON");
+			remoteSetup();
+		}
+	}//end inner class RemoteGameListener
+
+	class RemoteMoveHandler implements Runnable {
+		int[] coord = new int[2];
+		String[] notations = new String[2];
+		public void run(){
+			System.out.println("IN RemoteMoveHandler");
+			while(true){
+				try{
+					coord = (int[])(ois.readObject());
+					notations = (String[])(ois.readObject());
+					System.out.println("GOT coord and notations");
+					remoteExecuteMove(coord,notations);
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
+			}
+		}
+	}
 
 	class GuiBoard {
 		SquarePanel[][] guiBoardSquares = new SquarePanel[8][8];
@@ -408,6 +488,10 @@ public class Chess {
 			JButton resumeGameButton = new JButton("Resume Game");
 			resumeGameButton.addActionListener(new ResumeGameListener());
 			buttonBox.add(resumeGameButton );
+
+			JButton remoteButton = new JButton("Remote Game");
+			remoteButton.addActionListener(new RemoteGameListener());
+			buttonBox.add(remoteButton);
 
 			frame.getContentPane().add(BorderLayout.EAST, buttonBox);
 

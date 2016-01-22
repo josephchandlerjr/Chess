@@ -55,6 +55,10 @@ public class Game implements Serializable {
 		return whiteCheck;
 	}
 
+	public String otherColor(String color){
+		return board.otherColor(color);
+	}
+
 	public boolean hasWon(String color)
 	{
 		String opponent = board.otherColor(color);
