@@ -3,6 +3,7 @@ package chess;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
+import java.util.*;
 
 /** 
  * represents a square on the chess board
@@ -19,7 +20,6 @@ public class Square extends JPanel implements Serializable
 	private Square EAST;
 	private Square WEST;
 
-	
 
 	/**
 	 * create new square
@@ -144,6 +144,9 @@ public class Square extends JPanel implements Serializable
 	 */
 	public String getPieceColor()
 	{
+		if (piece == null){
+			return "";
+		}
 		return piece.getColor();
 	}
 
@@ -184,3 +187,4 @@ public class Square extends JPanel implements Serializable
 		}
 	}	
 }
+

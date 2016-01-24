@@ -20,7 +20,7 @@ public class Chess {
 
 	Game game;
 	boolean localGame = true;
-	String myColor = "WHITE";
+	private String myColor;
 
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
@@ -40,15 +40,22 @@ public class Chess {
 	 */
 	public Chess(){
 		game = new Game();
+		myColor = "WHITE";
 		this.gui = new GuiBoard();
 		this.gui.build();
 		this.gui.initialize();
 	}
+	/**
+	 * creates new game
+	 */ 
 	public void newGame(){
 		game = new Game();
 	}
+	/**
+	 * sets up networking for remote game, reads Color object from server to set player's color,
+	 * creates thread to listen for moves coming from other player via server
+	 */
 	public void remoteSetup(){
-		System.out.println("SETTING UP");
 		newGame();
 		gui.initialize();
 		gui.status.setText(String.format("%s'S MOVE",game.player));
@@ -58,17 +65,13 @@ public class Chess {
 			Socket sock = new Socket("127.0.0.1",5000);
 			oos = new ObjectOutputStream(sock.getOutputStream());
 			ois = new ObjectInputStream(sock.getInputStream());  
-			System.out.println("GOT OOS AND OIN SET UP");
 			Color color = (Color)(ois.readObject());
 			if(color.equals(Color.WHITE)) {	
 				myColor = "WHITE";
-				System.out.println("SETTING COLOR TO WHITE");
 			}
 			else{
 				myColor = "BLACK";
-				System.out.println("SETTING COLOR TO BLACK");
 			}
-
 			Thread remoteMoveListener = new Thread(new RemoteMoveHandler());
 			remoteMoveListener.start();
 
@@ -78,10 +81,9 @@ public class Chess {
 		
 	}
 	/**
-	 * executes move
+	 * executes a move
 	 */	
 	public synchronized void executeMove(String myColor, Square fromSquare, String fromNotation, String toNotation, Square toSquare) {
-		System.out.println("in execute move");
 		// make sure correct player is moving
 		if(!fromSquare.isOccupied()){ return;} //must be moving a piece
 		String pieceColor = fromSquare.getPieceColor();
@@ -105,7 +107,7 @@ public class Chess {
 		// check if we need to promote pawn
 		if (executed){
 			if(localGame){
-				myColor = game.player;
+				this.myColor = game.player; //was a bug, need to specifically set instance var
 			}
 			else {
 				try{
@@ -131,7 +133,6 @@ public class Chess {
 		}
 	}
 	public void remoteExecuteMove(int[] coord, String[] notations){
-		System.out.println("about to execute move");
 		executeMove(game.otherColor(myColor),
 			    game.getSquare(coord[0],coord[1]),
 	                    notations[0],
@@ -213,7 +214,9 @@ public class Chess {
 			}
 		}
 	}
-
+	/**
+	 * listens on button for new game requests and when button is pressed starts new game
+	 */
 	class NewGameListener implements ActionListener {
 		public void actionPerformed(ActionEvent e){
 			newGame();
@@ -224,6 +227,9 @@ public class Chess {
 		}
 	}// end inner class NewGameListener
 
+	/**
+	 * listens for changes to list of piece names, dynamically updating promotion of pawn
+	 */
 	class PromotionListener implements ListSelectionListener {
 		Square square;
 		public PromotionListener(Square square)
@@ -261,6 +267,10 @@ public class Chess {
 
 	}//end inner class PromotionListener
 
+	/**
+	 * listens for button push that signals the promotion of pawn and then closes window
+	 * no need to do more as pawn is is updated dynamically when selection on list is changed
+	 */
 	class PromoteButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e){
 			gui.frame.setEnabled(true);
@@ -414,7 +424,6 @@ public class Chess {
 
 	class RemoteGameListener implements ActionListener {
 		public void actionPerformed(ActionEvent e){
-			System.out.println("PUSHED BUTTON");
 			remoteSetup();
 		}
 	}//end inner class RemoteGameListener
@@ -423,12 +432,10 @@ public class Chess {
 		int[] coord = new int[2];
 		String[] notations = new String[2];
 		public void run(){
-			System.out.println("IN RemoteMoveHandler");
 			while(true){
 				try{
 					coord = (int[])(ois.readObject());
 					notations = (String[])(ois.readObject());
-					System.out.println("GOT coord and notations");
 					remoteExecuteMove(coord,notations);
 				}catch(Exception ex){
 					ex.printStackTrace();
