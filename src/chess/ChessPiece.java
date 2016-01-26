@@ -1,4 +1,5 @@
 package chess;
+
 import java.io.*;
 
 /**
@@ -41,7 +42,7 @@ public class ChessPiece implements Serializable {
 
 		String imageColor = "";
 		String pieceName = "";
-		String base = ".\\src\\chess\\resources\\";	
+		String base = ".\\chess\\resources\\";	
 		if(color.equals("WHITE")){
 			imageColor = "White";
 		}

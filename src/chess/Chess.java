@@ -480,7 +480,7 @@ public class Chess {
 
 			Box buttonBox = new Box(BoxLayout.Y_AXIS);
 
-			JButton newGameButton = new JButton("New Game");
+			JButton newGameButton = new JButton("New Local Game");
 			newGameButton.addActionListener(new NewGameListener());
 			buttonBox.add(newGameButton);
 
