@@ -8,6 +8,7 @@ import java.io.*;
 import java.net.*;
 
 import java.util.*;
+import javax.imageio.*;
 
 public class Chess {
 	GuiBoard gui;
@@ -535,7 +536,9 @@ class SquarePanel extends JPanel {
 		}
 		g.fillRect(0,0,70,70);
 		if (square.isOccupied()) {
-			Image image = new ImageIcon(square.getPiece().getImageLocation()).getImage();	
+			
+//			Image image = new ImageIcon(square.getPiece().getImageLocation()).getImage();	
+			Image image = new ImageIcon(getClass().getResource(square.getPiece().getImageLocation())).getImage(); 
 			g.drawImage(image,10,10,this);
 		}
 	}

@@ -1,6 +1,7 @@
 package chess;
 
 import java.io.*;
+import java.net.*;
 
 /**
  * represents a chess piece. This is superclass to all specific pieces: Pawn, Bishop, etc
@@ -42,7 +43,8 @@ public class ChessPiece implements Serializable {
 
 		String imageColor = "";
 		String pieceName = "";
-		String base = ".\\chess\\resources\\";	
+		//String base = ".\\chess\\resources\\";	
+		String base = "";	
 		if(color.equals("WHITE")){
 			imageColor = "White";
 		}
