@@ -538,7 +538,7 @@ class SquarePanel extends JPanel {
 		if (square.isOccupied()) {
 			
 			Image image = 
-		        new ImageIcon(getClass().getResource(square.getPiece().getImageLocation())).getImage(); 
+		        new ImageIcon(square.getPiece().getImageLocation()).getImage(); 
 
 			g.drawImage(image,10,10,this);
 		}

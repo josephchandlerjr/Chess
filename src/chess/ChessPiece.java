@@ -43,8 +43,8 @@ public class ChessPiece implements Serializable {
 
 		String imageColor = "";
 		String pieceName = "";
-		//String base = ".\\chess\\resources\\";	
-		String base = "";	
+		String base = ".\\chess\\resources\\";	
+	
 		if(color.equals("WHITE")){
 			imageColor = "White";
 		}
