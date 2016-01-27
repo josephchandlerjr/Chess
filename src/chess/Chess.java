@@ -59,9 +59,10 @@ public class Chess {
 	public void remoteSetup(){
 		newGame();
 		gui.initialize();
-		gui.status.setText(String.format("%s'S MOVE",game.player));
+		setStatus();
 		gui.frame.repaint();
 		localGame = false;
+		
 		try{
 			Socket sock = new Socket("127.0.0.1",5000);
 			oos = new ObjectOutputStream(sock.getOutputStream());
@@ -147,23 +148,30 @@ public class Chess {
 	public void setStatus(){
 		String message = "";
 		if(game.hasWon("BLACK")){
-			gui.status.setText("CHECKMATE! BLACK WINS!");
+			gui.setBlackLabel("CHECKMATE! YOU WIN!",true);
+			gui.setWhiteLabel("",true);
 			game.addResultToScoreSheet("BLACK");
 			writeLog();
-
 		}
 		else if(game.hasWon("WHITE")){
-			gui.status.setText("CHECKMATE! WHITE WINS!");
+			gui.setWhiteLabel("CHECKMATE! YOU WIN!",true);
+			gui.setBlackLabel("",true);
 			game.addResultToScoreSheet("WHITE");
 			writeLog();
 		}
-		else{
-			if (game.isInCheck("WHITE") || game.isInCheck("BLACK")){
-				message = message + "CHECK!";
+		else if (game.isInCheck("WHITE")){
+			gui.setWhiteLabel("In Check!",false);
+			gui.setBlackLabel("",false);
 			}
-			gui.status.setText(String.format("%s %s'S MOVE",message, game.player));
+			
+		else if (game.isInCheck("BLACK")){
+			gui.setBlackLabel("In Check!",false);
+			gui.setWhiteLabel("",false);
+			}
+		else{
+			gui.setBlackLabel("",false);
+			gui.setWhiteLabel("",false);
 		}
-		
 	}
 
 	/**
@@ -222,7 +230,7 @@ public class Chess {
 		public void actionPerformed(ActionEvent e){
 			newGame();
 			gui.initialize();
-			gui.status.setText(String.format("%s'S MOVE",game.player));
+			setStatus();
 			myColor = game.player;
 			gui.frame.repaint();
 		}
@@ -287,7 +295,7 @@ public class Chess {
 				game = (Game) is.readObject();
 				gui.initialize();
 				myColor = game.player;
-				gui.status.setText(String.format("%s'S MOVE",game.player));
+				setStatus();
 				gui.frame.repaint();
 
 			}catch(Exception ex){
@@ -449,16 +457,36 @@ public class Chess {
 		SquarePanel[][] guiBoardSquares = new SquarePanel[8][8];
 		JFrame frame;
 		JPanel board;
-		JLabel status;
+		JLabel blackStatus;
+		JLabel whiteStatus;
+
+		String blackPlayer = "Player 2:";
+		String whitePlayer = "Player 1:";
+
+		public void setWhiteLabel(String msg, boolean gameOver){
+			String msg2 = "";
+			if (!gameOver){ msg2 = String.format("%s'S MOVE",game.player);}
+			String message = String.format("%s White %s %s",whitePlayer,msg,msg2);
+			whiteStatus.setText(message);
+		}
+		public void setBlackLabel(String msg, boolean gameOver){
+			String msg2 = "";
+			if (!gameOver){ msg2 = String.format("%s'S MOVE",game.player);}
+			String message = String.format("%s Black %s %s",whitePlayer,msg,msg2);
+			blackStatus.setText(message);
+		}
 
 		public void build(){
 			frame = new JFrame("CHESS");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-			status = new JLabel();
-			status.setText(String.format("%s'S MOVE",game.player));
+			blackStatus = new JLabel();
+			whiteStatus = new JLabel();
 
-			frame.getContentPane().add(BorderLayout.NORTH, status);
+			setStatus();
+
+			frame.getContentPane().add(BorderLayout.NORTH, blackStatus);
+			frame.getContentPane().add(BorderLayout.SOUTH, whiteStatus);
 
 			GridLayout grid = new GridLayout(8,8);
 			grid.setVgap(1);
