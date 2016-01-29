@@ -19,6 +19,11 @@ public class Chess {
 	JList<String> promotionList;
 	JFrame promotionSelector;
 
+	JFrame remoteInformationFrame;
+	JTextField serverLocationField;
+	JTextField playerNameField;
+	final int PORTNUM = 5000;
+
 	Game game;
 	boolean localGame = true;
 	private String myColor;
@@ -52,34 +57,83 @@ public class Chess {
 	public void newGame(){
 		game = new Game();
 	}
+
+	public void getRemoteInformation(){
+		remoteInformationFrame = new JFrame();
+
+		JLabel locationLabel = new JLabel("Enter Server Location");
+		JLabel nameLabel = new JLabel("Enter Player Name");
+
+		serverLocationField = new JTextField("127.0.0.1");
+		serverLocationField.setMaximumSize(serverLocationField.getPreferredSize());
+		playerNameField = new JTextField("username");
+		serverLocationField.setMaximumSize(playerNameField.getPreferredSize());
+
+		JButton enterButton = new JButton("Enter");
+		enterButton.addActionListener(new RemoteInformationListener());
+
+	        Box labelBox = new Box(BoxLayout.Y_AXIS);
+		labelBox.add(locationLabel);
+		labelBox.add(nameLabel);
+
+
+		Box fieldBox = new Box(BoxLayout.Y_AXIS);
+		fieldBox.add(serverLocationField);
+		fieldBox.add(playerNameField);
+
+		Container contentPane = remoteInformationFrame.getContentPane();
+		contentPane.add(BorderLayout.WEST, labelBox);
+		contentPane.add(BorderLayout.EAST, fieldBox);
+		contentPane.add(BorderLayout.SOUTH, enterButton);
+
+		remoteInformationFrame.pack();
+		remoteInformationFrame.setVisible(true);
+
+		gui.frame.setEnabled(false);
+	}
 	/**
 	 * sets up networking for remote game, reads Color object from server to set player's color,
 	 * creates thread to listen for moves coming from other player via server
 	 */
-	public void remoteSetup(){
+	public void remoteSetup(String ServerAddr, String userName){
+
 		newGame();
-		gui.initialize();
-		setStatus();
-		gui.frame.repaint();
 		localGame = false;
+
+		gui.initialize();
+		gui.frame.repaint();
+
+		setStatus();
 		
 		try{
-			Socket sock = new Socket("127.0.0.1",5000);
+			Socket sock = new Socket(ServerAddr,PORTNUM);
 			oos = new ObjectOutputStream(sock.getOutputStream());
 			ois = new ObjectInputStream(sock.getInputStream());  
+			oos.writeObject(userName);
 			Color color = (Color)(ois.readObject());
 			if(color.equals(Color.WHITE)) {	
 				myColor = "WHITE";
+				String opponent = (String)(ois.readObject());
+			        gui.whitePlayer = userName;
+				gui.blackPlayer = opponent;
+				System.out.printf("on white side white=%s and black=%s\n",gui.whitePlayer,gui.blackPlayer);
 			}
 			else{
 				myColor = "BLACK";
+				String opponent = (String)(ois.readObject());
+				gui.blackPlayer = userName;
+				gui.whitePlayer = opponent;
+				System.out.printf("on white black white=%s and black=%s\n",gui.whitePlayer,gui.blackPlayer);
 			}
+			setStatus(); 
 			Thread remoteMoveListener = new Thread(new RemoteMoveHandler());
 			remoteMoveListener.start();
+
 
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}
+		System.out.printf("on after try/catch white=%s and black=%s\n",gui.whitePlayer,gui.blackPlayer);
 		
 	}
 	/**
@@ -433,7 +487,7 @@ public class Chess {
 
 	class RemoteGameListener implements ActionListener {
 		public void actionPerformed(ActionEvent e){
-			remoteSetup();
+			getRemoteInformation();
 		}
 	}//end inner class RemoteGameListener
 
@@ -450,6 +504,17 @@ public class Chess {
 					ex.printStackTrace();
 				}
 			}
+		}
+	}
+
+	class RemoteInformationListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			System.out.println("about to dispose frame");
+			remoteInformationFrame.dispose();
+			gui.frame.setEnabled(true);
+			String serverLocation = serverLocationField.getText();
+			String playerName = playerNameField.getText();
+			remoteSetup(serverLocation, playerName);
 		}
 	}
 
@@ -472,7 +537,7 @@ public class Chess {
 		public void setBlackLabel(String msg, boolean gameOver){
 			String msg2 = "";
 			if (!gameOver){ msg2 = String.format("%s'S MOVE",game.player);}
-			String message = String.format("%s Black %s %s",whitePlayer,msg,msg2);
+			String message = String.format("%s Black %s %s",blackPlayer,msg,msg2);
 			blackStatus.setText(message);
 		}
 
