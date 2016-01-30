@@ -14,5 +14,6 @@ javac -d .\classes .\src\chess\\*.java
 Run the GUI board by entering
 
 cd classes
+
 java chess.GuiChess 
 
