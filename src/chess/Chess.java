@@ -93,8 +93,10 @@ public class Chess {
 		newGame();
 		localGame = false;
 		String msg = "WAITING FOR OPPONENT TO ARRIVE";
-		gui.setWhiteLabel(msg,false);
-		gui.setBlackLabel(msg,false);
+		gui.whiteStatus.setText(msg);
+		gui.blackStatus.setText(msg);
+
+		gui.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		gui.initialize();
 		gui.frame.repaint();
@@ -538,7 +540,6 @@ public class Chess {
 	class RemoteInformationListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			remoteInformationFrame.dispose();
-			//gui.frame.setEnabled(true);
 			String serverLocation = serverLocationField.getText();
 			String playerName = playerNameField.getText();
 			Thread thread = new Thread(new RemoteThread(serverLocation, playerName));
