@@ -416,12 +416,12 @@ public class Chess {
 				ex.printStackTrace();
 			}catch(Exception ex){
 				ex.printStackTrace();
-			}
 			}finally{
 				try{
 					reader.close();
 				}catch (Exception ex){
 				}
+			}
 
 				JFrame frame = new JFrame("Game logs");
 				JTextArea textArea = new JTextArea(10,20);
@@ -438,9 +438,6 @@ public class Chess {
 				frame.pack();
 				
 				frame.setVisible(true);
-			}
-
-				
 		}
 	}//end inner class ViewGameLogListener
 
@@ -516,8 +513,9 @@ public class Chess {
 	class RemoteMoveHandler implements Runnable {
 		int[] coord = new int[2];
 		String[] notations = new String[2];
+		boolean haveConnection = true;
 		public void run(){
-			while(true){
+			while(haveConnection){
 				try{
 					coord = (int[])(ois.readObject());
 					notations = (String[])(ois.readObject());
@@ -528,6 +526,7 @@ public class Chess {
 								      "Bad Connection",
 								      JOptionPane.WARNING_MESSAGE);
 					gui.frame.dispose();
+					haveConnection = false;
 				}catch(Exception ex){
 					gui.frame.dispose();
 					ex.printStackTrace();
@@ -636,9 +635,8 @@ public class Chess {
 			}
 		}
 	}//end inner class GuiBoard
-
-
 }
+
 /**
  * essentially a JPanel that points to a Square instance
  */

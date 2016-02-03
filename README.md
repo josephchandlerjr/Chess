@@ -21,7 +21,7 @@ java chess.GuiChess
 
 ### chess
 
-Contains classes which run gui game. Chess class is essentially the control center. Game class represent instances of games. Board class models a game board. ChessPiece class holds static references to specific game piece objects.
+Contains classes which run gui game. Chess class is essentially the control center. Game class represent instances of games. Board class models a game board. ChessPiece class holds static references to specific game piece objects.Also of note is ChessServer, which is the server the app uses for remote games.
 
 ### test
 
