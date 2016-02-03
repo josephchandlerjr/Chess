@@ -31,13 +31,7 @@ public class Chess {
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 
-	/**
-	 * main entry point which constructs a Game object and calls consolePlay()
-	 * @param args is not used
-	 */
 	public static void main(String[] args) {
-		//runs the show
-		//constructs a game, whiteIO and blackIO
 		Chess chess = new Chess();
 	}
 
@@ -89,7 +83,6 @@ public class Chess {
 		remoteInformationFrame.pack();
 		remoteInformationFrame.setVisible(true);
 
-		gui.frame.setEnabled(false);
 	}
 	/**
 	 * sets up networking for remote game, reads Color object from server to set player's color,
@@ -99,11 +92,12 @@ public class Chess {
 
 		newGame();
 		localGame = false;
+		String msg = "WAITING FOR OPPONENT TO ARRIVE";
+		gui.setWhiteLabel(msg,false);
+		gui.setBlackLabel(msg,false);
 
 		gui.initialize();
 		gui.frame.repaint();
-
-		setStatus();
 		
 		try{
 			Socket sock = new Socket(ServerAddr,PORTNUM);
@@ -116,31 +110,39 @@ public class Chess {
 				String opponent = (String)(ois.readObject());
 			        gui.whitePlayer = userName;
 				gui.blackPlayer = opponent;
-				System.out.printf("on white side white=%s and black=%s\n",gui.whitePlayer,gui.blackPlayer);
 			}
 			else{
 				myColor = "BLACK";
 				String opponent = (String)(ois.readObject());
 				gui.blackPlayer = userName;
 				gui.whitePlayer = opponent;
-				System.out.printf("on white black white=%s and black=%s\n",gui.whitePlayer,gui.blackPlayer);
 			}
 			setStatus(); 
 			Thread remoteMoveListener = new Thread(new RemoteMoveHandler());
 			remoteMoveListener.start();
 
 
+		}catch(ConnectException ex){
+			JOptionPane.showMessageDialog( null,
+					              "Cannot connect to server",
+					              "Server Unreachable",
+					              JOptionPane.WARNING_MESSAGE);
+			gui.frame.dispose();
+		}catch(SocketException ex){
+			JOptionPane.showMessageDialog( null,
+					              "Connection to server lost",
+					              "Bad Connection",
+					              JOptionPane.WARNING_MESSAGE);
+			gui.frame.dispose();
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}
-		System.out.printf("on after try/catch white=%s and black=%s\n",gui.whitePlayer,gui.blackPlayer);
 		
 	}
 	/**
 	 * executes a move
 	 */	
 	public synchronized void executeMove(String myColor, Square fromSquare, String fromNotation, String toNotation, Square toSquare) {
-		// make sure correct player is moving
 		if(!fromSquare.isOccupied()){ return;} //must be moving a piece
 		String pieceColor = fromSquare.getPieceColor();
 		
@@ -160,7 +162,7 @@ public class Chess {
 		boolean isPawn = ChessPiece.isPawn(fromSquare.getPiece());
 		boolean executed = game.takeAction(move);
  
-		// check if we need to promote pawn
+		// check if we need to promote pawn and if remote game send move made over socket
 		if (executed){
 			if(localGame){
 				this.myColor = game.player; //was a bug, need to specifically set instance var
@@ -174,7 +176,11 @@ public class Chess {
 					oos.writeObject(coord);
 					oos.writeObject(notations);
 				}catch(Exception ex){
-					ex.printStackTrace();
+					JOptionPane.showMessageDialog( null,
+								      "Connection to server lost",
+								      "Bad Connection",
+								      JOptionPane.WARNING_MESSAGE);
+					gui.frame.dispose();
 				}
 			}
 			if(isPawn){
@@ -268,7 +274,10 @@ public class Chess {
 			writer.write(String.format("%tc\n",date));
 			writer.write(gameLog);
 		}catch(Exception ex){
-			System.out.println("failed to write to gamelog");
+			JOptionPane.showMessageDialog( null,
+					              "Failed to same game",
+					              "Couldn't write game to game log",
+					              JOptionPane.WARNING_MESSAGE);
 			ex.printStackTrace();
 		}finally{
 			try{
@@ -352,8 +361,12 @@ public class Chess {
 				setStatus();
 				gui.frame.repaint();
 
+			}catch(FileNotFoundException ex){
+				JOptionPane.showMessageDialog( null,
+							      "Couldn't resume game",
+							      "No game saved",
+							      JOptionPane.WARNING_MESSAGE);
 			}catch(Exception ex){
-				System.out.println("couldn't resume game");
 				ex.printStackTrace();
 			}finally{
 				try{
@@ -371,7 +384,10 @@ public class Chess {
 				os = new ObjectOutputStream(new FileOutputStream(new File("SavedGame.ser")));
 				os.writeObject(game);
 			}catch(Exception ex){
-				System.out.println("couldn't save game");
+				JOptionPane.showMessageDialog( null,
+							      "Couldn't save game",
+							      "Game not saved",
+							      JOptionPane.WARNING_MESSAGE);
 				ex.printStackTrace();
 			}finally{
 				try{
@@ -392,9 +408,15 @@ public class Chess {
 				while ((line = reader.readLine()) != null){
 					text = text + line + "\n";
 				}
-			}catch(Exception ex){
-				text = "couldn't read game log file";
+			}catch(FileNotFoundException ex){
+				JOptionPane.showMessageDialog( null,
+							      "Couldn't read game log",
+							      "Game log not found",
+							      JOptionPane.WARNING_MESSAGE);
 				ex.printStackTrace();
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
 			}finally{
 				try{
 					reader.close();
@@ -500,7 +522,14 @@ public class Chess {
 					coord = (int[])(ois.readObject());
 					notations = (String[])(ois.readObject());
 					remoteExecuteMove(coord,notations);
+				}catch(SocketException ex){
+					JOptionPane.showMessageDialog( null,
+								      "Connection to server lost",
+								      "Bad Connection",
+								      JOptionPane.WARNING_MESSAGE);
+					gui.frame.dispose();
 				}catch(Exception ex){
+					gui.frame.dispose();
 					ex.printStackTrace();
 				}
 			}
@@ -509,12 +538,12 @@ public class Chess {
 
 	class RemoteInformationListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			System.out.println("about to dispose frame");
 			remoteInformationFrame.dispose();
-			gui.frame.setEnabled(true);
+			//gui.frame.setEnabled(true);
 			String serverLocation = serverLocationField.getText();
 			String playerName = playerNameField.getText();
-			remoteSetup(serverLocation, playerName);
+			Thread thread = new Thread(new RemoteThread(serverLocation, playerName));
+			thread.start();
 		}
 	}
 
@@ -607,7 +636,7 @@ public class Chess {
 			}
 		}
 	}//end inner class GuiBoard
-	
+
 
 }
 /**
@@ -637,4 +666,20 @@ class SquarePanel extends JPanel {
 		}
 	}
 
+}
+
+
+class RemoteThread implements Runnable{
+	String location;
+	String name;
+
+	public RemoteThread(String loc, String name){
+		this.location = loc;
+		this.name = name;
+	}
+	public void run(){
+		Chess c = new Chess();
+		c.remoteSetup(location,name);
+		
+	}
 }

@@ -17,3 +17,14 @@ cd classes
 
 java chess.GuiChess 
 
+## Packages
+
+### chess
+
+Contains classes which run gui game. Chess class is essentially the control center. Game class represent instances of games. Board class models a game board. ChessPiece class holds static references to specific game piece objects.
+
+### test
+
+Contains testing classes related to original ConsoleChess class. Deprecated but keeping it around for future reference. Includes PGNFile class which I used to parse PGN format chess games to use in testing.
+
+
