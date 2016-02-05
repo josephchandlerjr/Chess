@@ -73,9 +73,10 @@ public class ChessPiece implements Serializable {
 		imageLocation = base + imageColor + pieceName + ".png";
 		
 	}
-	public int getDirection(){
-	       return 0; // only here so pawns can be cast as ChessPiece and still call this method
-	}	       
+	public int getDirection(){ //just here so we can call getDirection on subclasses
+		return 0; 
+	}
+
 	public String getImageLocation(){
 		return imageLocation;
 	}
