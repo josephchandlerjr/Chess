@@ -32,17 +32,17 @@ public class Chess {
 	ObjectInputStream ois;
 
 	public static void main(String[] args) {
-		Chess chess = new Chess();
+		Chess chess = new Chess(true);
 	}
 
 	/**
 	 * constructor
 	 */
-	public Chess(){
+	public Chess(boolean fullGuiBoard){
 		game = new Game();
 		myColor = "WHITE";
 		this.gui = new GuiBoard();
-		this.gui.build();
+		this.gui.build(fullGuiBoard);
 		this.gui.initialize();
 	}
 	/**
@@ -570,7 +570,7 @@ public class Chess {
 			blackStatus.setText(message);
 		}
 
-		public void build(){
+		public void build(boolean buildButtonBox){
 			frame = new JFrame("CHESS");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -601,29 +601,32 @@ public class Chess {
 			}
 			frame.getContentPane().add(BorderLayout.CENTER, board);
 
-			Box buttonBox = new Box(BoxLayout.Y_AXIS);
+			if(buildButtonBox){
 
-			JButton newGameButton = new JButton("New Local Game");
-			newGameButton.addActionListener(new NewGameListener());
-			buttonBox.add(newGameButton);
+				Box buttonBox = new Box(BoxLayout.Y_AXIS);
 
-			JButton viewGameLogButton = new JButton("View Game Log");
-			viewGameLogButton.addActionListener(new ViewGameLogListener());
-			buttonBox.add(viewGameLogButton);
+				JButton newGameButton = new JButton("New Local Game");
+				newGameButton.addActionListener(new NewGameListener());
+				buttonBox.add(newGameButton);
 
-			JButton saveGameButton = new JButton("Save Game");
-			saveGameButton.addActionListener(new SaveGameListener());
-			buttonBox.add(saveGameButton);
+				JButton viewGameLogButton = new JButton("View Game Log");
+				viewGameLogButton.addActionListener(new ViewGameLogListener());
+				buttonBox.add(viewGameLogButton);
 
-			JButton resumeGameButton = new JButton("Resume Game");
-			resumeGameButton.addActionListener(new ResumeGameListener());
-			buttonBox.add(resumeGameButton );
+				JButton saveGameButton = new JButton("Save Game");
+				saveGameButton.addActionListener(new SaveGameListener());
+				buttonBox.add(saveGameButton);
 
-			JButton remoteButton = new JButton("Remote Game");
-			remoteButton.addActionListener(new RemoteGameListener());
-			buttonBox.add(remoteButton);
+				JButton resumeGameButton = new JButton("Resume Game");
+				resumeGameButton.addActionListener(new ResumeGameListener());
+				buttonBox.add(resumeGameButton );
 
-			frame.getContentPane().add(BorderLayout.EAST, buttonBox);
+				JButton remoteButton = new JButton("Remote Game");
+				remoteButton.addActionListener(new RemoteGameListener());
+				buttonBox.add(remoteButton);
+
+				frame.getContentPane().add(BorderLayout.EAST, buttonBox);
+			}
 
 			frame.pack();
 			frame.setVisible(true);
@@ -677,7 +680,7 @@ class RemoteThread implements Runnable{
 		this.name = name;
 	}
 	public void run(){
-		Chess c = new Chess();
+		Chess c = new Chess(false);
 		c.remoteSetup(location,name);
 		
 	}

@@ -69,8 +69,8 @@ public class ChessNotation
 	 */
 	public static String rowToRank(int row)
 	{
-		String file = "87654321".substring(row ,row+1);
-		return file;
+		String rank = "87654321".substring(row ,row+1);
+		return rank;
 	}
 
 	//getters
