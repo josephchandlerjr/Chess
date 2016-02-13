@@ -12,22 +12,23 @@ import javax.imageio.*;
 
 public class Chess {
 	GuiBoard gui;
-
-	String GAMELOGFILE = "GameLogs";
-	Date date = new Date();
-
-	JList<String> promotionList;
-	JFrame promotionSelector;
-
-	JFrame remoteInformationFrame;
-	JTextField serverLocationField;
-	JTextField playerNameField;
-	final int PORTNUM = 5000;
-
 	Game game;
 	boolean localGame = true;
 	private String myColor;
 
+	//for saving games locally
+	String GAMELOGFILE = "GameLogs";
+	Date date = new Date();
+
+	//for promoting pawns
+	JList<String> promotionList;
+	JFrame promotionSelector;
+
+	//for remote games
+	final int PORTNUM = 5000;
+	JFrame remoteInformationFrame;
+	JTextField serverLocationField;
+	JTextField playerNameField;
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 
@@ -51,7 +52,10 @@ public class Chess {
 	public void newGame(){
 		game = new Game();
 	}
-
+	
+	/**
+	 * opens gui component to get information from user related to remote game
+	 */
 	public void getRemoteInformation(){
 		remoteInformationFrame = new JFrame();
 
