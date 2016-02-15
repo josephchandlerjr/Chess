@@ -268,7 +268,12 @@ public class Chess {
 		scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 		JButton selectPromotion = new JButton("Promote");
-		selectPromotion.addActionListener(new PromoteButtonListener());
+		selectPromotion.addActionListener(new ActionListener(){
+							public void actionPerformed(ActionEvent e){
+									gui.frame.setEnabled(true);
+									promotionSelector.dispose();	
+							}
+							});
 		
 		promotionSelector.getContentPane().add(BorderLayout.CENTER,scroller);
 		promotionSelector.getContentPane().add(BorderLayout.SOUTH,selectPromotion);
@@ -520,12 +525,6 @@ public class Chess {
 		}  
 	}//end inner class BoardListener
 
-	class RemoteGameListener implements ActionListener {
-		public void actionPerformed(ActionEvent e){
-			getRemoteInformation();
-		}
-	}//end inner class RemoteGameListener
-
 	class RemoteMoveHandler implements Runnable {
 		int[] coord = new int[2];
 		String[] notations = new String[2];
@@ -626,7 +625,11 @@ public class Chess {
 				buttonBox.add(resumeGameButton );
 
 				JButton remoteButton = new JButton("Remote Game");
-				remoteButton.addActionListener(new RemoteGameListener());
+			        remoteButton.addActionListener(new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+										getRemoteInformation();
+									}
+				});
 				buttonBox.add(remoteButton);
 
 				frame.getContentPane().add(BorderLayout.EAST, buttonBox);
