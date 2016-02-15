@@ -147,6 +147,7 @@ public class Chess {
 	}
 	/**
 	 * executes a move
+	 * synchronized for remote games who's moves come in via thread
 	 */	
 	public synchronized void executeMove(String myColor, Square fromSquare, String fromNotation, String toNotation, Square toSquare) {
 		if(!fromSquare.isOccupied()){ return;} //must be moving a piece
@@ -171,7 +172,7 @@ public class Chess {
 		// check if we need to promote pawn and if remote game send move made over socket
 		if (executed){
 			if(localGame){
-				this.myColor = game.player; //was a bug, need to specifically set instance var
+				this.myColor = game.player; //set instance variable not local variable
 			}
 			else {
 				try{

@@ -3,6 +3,9 @@ package chess;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
+/**
+ * wraps chess notation from a PGN file
+ */
 public class ChessNotation
 {
 	private String notation;

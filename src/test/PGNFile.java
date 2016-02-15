@@ -1,4 +1,4 @@
-// for now just want to get moves for testing. later make this more robust. perhaps use ANTLR
+
 
 package test;
 
@@ -13,14 +13,20 @@ import chess.ChessNotation;
 
 /**
  * class representation of a .pgn file
+ * this was used originally to test a console chess game
+ * class operates on PGNFiles, removing tags and commments to get at the actual chess moves
  */
 public class PGNFile	
 {
 	Scanner in;
 	List<List<ChessNotation>> games = new ArrayList<List<ChessNotation>>();
-	int gamesIndex = 0;
-	int moveIndex = 0;
+	int gamesIndex;
+	int moveIndex;
 
+	/**
+	 * constructor
+	 * @param fileName location of PGNFile
+	 */
 	public PGNFile(String fileName) throws java.io.FileNotFoundException 
 	{
 		String content = new Scanner(new File(fileName)).useDelimiter("\\Z").next();
@@ -35,7 +41,6 @@ public class PGNFile
 		while (in.hasNext())
 		{
 			String token = in.next();
-
 			ChessNotation notation = new ChessNotation(token);
 
 			if(notation.isValid())
@@ -50,7 +55,7 @@ public class PGNFile
 		}
 	}
 	/**
-	 * returns List of Lists of ChessNotation elements 
+	 * returns List of Lists of ChessNotation objects
 	 * @return List of games, each game is an List of ChessNotation elements
 	 */
 	public List<List<ChessNotation>> getGames()
