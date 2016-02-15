@@ -68,7 +68,16 @@ public class Chess {
 		serverLocationField.setMaximumSize(playerNameField.getPreferredSize());
 
 		JButton enterButton = new JButton("Enter");
-		enterButton.addActionListener(new RemoteInformationListener());
+		enterButton.addActionListener(new ActionListener(){
+		        public void actionPerformed(ActionEvent e){
+				remoteInformationFrame.dispose();
+				String serverLocation = serverLocationField.getText();
+				String playerName = playerNameField.getText();
+				Thread thread = new Thread(new RemoteThread(serverLocation, playerName));
+				thread.start();
+		}                     
+
+		});
 
 	        Box labelBox = new Box(BoxLayout.Y_AXIS);
 		labelBox.add(locationLabel);
@@ -539,16 +548,6 @@ public class Chess {
 					ex.printStackTrace();
 				}
 			}
-		}
-	}
-
-	class RemoteInformationListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){
-			remoteInformationFrame.dispose();
-			String serverLocation = serverLocationField.getText();
-			String playerName = playerNameField.getText();
-			Thread thread = new Thread(new RemoteThread(serverLocation, playerName));
-			thread.start();
 		}
 	}
 
